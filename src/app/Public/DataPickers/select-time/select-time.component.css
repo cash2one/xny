@@ -1,0 +1,57 @@
+.lc-date-picker { padding:10px;padding-top: 0 }
+.lc-date-picker .btn-default { background:#fff; padding:8px; color:#333; margin:0 2px }
+.lc-date-picker .btn-default:focus, .lc-date-picker .btn-default:hover { background:#edf8f8; outline:0 }
+.lc-date-picker .btn-default .text-muted { color:#c1c1c1 }
+.lc-date-picker .btn-default .text-info { color:#f3857c }
+.lc-date-picker tbody .btn-default:focus, .lc-date-picker tbody .btn-default:hover { border-radius:50% }
+.lc-date-picker tbody .btn-default.active { box-shadow:none; border-radius:50%; background:#edf8f8 }
+.lc-date-picker tbody .btn-default.active span { color:#fff }
+.lc-date-picker tbody .btn-default.active:hover { color:#333 }
+.lc-date-picker tbody .btn-default.active:hover span { color:#fff }
+.lc-date-picker .picker-footer { }
+.lc-date-picker .picker-footer:after, .lc-date-picker .picker-footer:before { content:" "; display:table }
+.lc-date-picker .picker-footer:after { clear:both }
+.lc-date-picker .picker-footer input { height:30px; font-size:14px; padding:3px 5px }
+.lc-date-picker .picker-footer .btn-primary { padding:6px 18px }
+.lc-date-picker .picker-footer .btn-link { padding:6px 12px }
+.lc-date-picker .picker-footer .btn-set { float:left }
+.lc-date-picker .picker-footer .action-panel { float:right }
+.lc-date-picker .picker-footer .fixed-margin { margin-top:20px }
+.lc-date-picker .picker-footer table { display:inline-block; vertical-align:middle; float:left }
+.lc-date-picker .picker-footer table .btn-link { padding:3px 5px; line-height:100% }
+.lc-date-picker .picker-footer .glyphcommon-chevron-up { font-family:FontAwesome }
+.lc-date-picker .picker-footer .glyphcommon-chevron-up:before { content:"\f0d8" }
+.lc-date-picker .picker-footer .glyphcommon-chevron-down { font-family:FontAwesome }
+.lc-date-picker .picker-footer .glyphcommon-chevron-down:before { content:"\f0d7" }
+
+
+.uib-time{
+	width: 50px;
+}
+
+/*input框样式*/
+.picker-footer input{
+	width: 100%;
+	outline: none;
+	background-color: #fbfbfb;
+	border-radius: 3px;
+	-webkit-transition: all 0.25s;
+	transition: all 0.25s;
+	padding: 8px 10px;
+	border: 1px solid #eaeff1;
+	font-size: 12px;
+}
+
+.picker-footer input:focus{
+	box-shadow: 0 0 6px 0px #484848;
+}
+
+/*设置时间样式*/
+.setTimeShow{
+	float: left;
+	width: 112px;
+	height: 72px;
+	line-height: 68px;
+	padding-left: 13px;
+	font-weight: bold;
+}

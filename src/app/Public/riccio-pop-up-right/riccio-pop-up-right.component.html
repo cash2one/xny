@@ -1,0 +1,12 @@
+<div class="PopUp-Right" 
+	 *ngIf = "isShow" 
+	 [@leftIn]="'in'"
+	 [ngStyle]="{'z-index':style['z-index']}">
+	<div class="content-text">已选择<span>{{length}}</span>项</div>
+	<ul class="content-list">
+	    <li *ngFor="let list of viewText">
+	        <a href="javascript:;" (click)="FnEmitData(list,$event)">{{list.name}}</a>
+	    </li>
+	</ul>
+	<a href="javascript:;" class="f-r up-hide" (click)="Close()"><span><i class="iconfont_common  common-fanhui1"></i></span></a>
+</div>

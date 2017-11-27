@@ -1,0 +1,127 @@
+<form  class="form-horizontal c-f">
+
+		<!-- <div  class="form-group c-f "
+			  *ngFor="let list of titleAddShow">
+            <label  class="col-sm-2 control-label line-40">{{list.name}}:</label>
+            <div  class="col-sm-10 control-panel">
+                <input  class="form-control"
+                	    name="{{list.action}}"
+                	    placeholder="{{list.name}}"
+                	    style=""
+                        [(ngModel)]="AddEditData[list.action]"
+                        *ngIf="list.type==='input'"
+                        [ngClass]="{'danger':list.danger}"
+                        (focus)="list.danger=false">
+                <div  class="xm-select p-r"
+                	  *ngIf="list.type==='select'">
+                    <select class="form-control select"
+                    		ref-action
+                    		name="list.action"
+                            [ngClass]="{'danger':list.danger}"
+                    		[(ngModel)]="AddEditData[list.action]"
+                            (focus)="list.danger=false"
+                    		(change)='AddEditData[list.action]=+(action.value)'>
+						<option  class=""
+								 value="{{listOption.id}}"
+                                 selected="{{listOption['id']==AddEditData[list.action]?'selected':''}}"
+								 *ngFor = "let listOption of list.option">{{listOption.name}}</option>
+                    </select>
+                    <i class="iconfont_admin  admin-xiangxia"></i>
+                </div>
+            </div>
+        </div> -->
+
+        <div  class="form-group clearfix">
+            <label  class="col-sm-2 control-label line-40">分类名称：</label>
+            <div  class="col-sm-10 control-panel">
+                <input  class="form-control"
+                	    name="name"
+                	    placeholder="请输入分类名称"
+                	    [(ngModel)] = "classifyObj['name']"
+                	    style="">
+            </div>
+        </div>
+
+         <div  class="form-group clearfix">
+            <label  class="col-sm-2 control-label line-40">父级名称：</label>
+            <div  class="col-sm-10 control-panel">
+                <input  class="form-control"
+                	    name="parentid"
+                        readonly="readonly"
+                        [ngModel] = "parentName"
+                        #parentEl
+                        (click) = "parentEmitData(parentEl)"
+                	    placeholder="请选择分类名称"
+                	    style="">
+            </div>
+        </div>
+
+         <div  class="form-group clearfix">
+            <label  class="col-sm-2 control-label line-40">描述：</label>
+            <div  class="col-sm-10 control-panel">
+                <textarea name="remark" class="form-control form-textarea" [(ngModel)] = "classifyObj['remark']"></textarea>
+            </div>
+        </div>
+
+         <div  class="form-group clearfix">
+            <label  class="col-sm-2 control-label line-40">状态：</label>
+            <div  class="col-sm-10 control-panel">
+                <select class="form-control select"
+                    	#statusEl
+                    	name="status"
+                    	[(ngModel)]="classifyObj['status']"
+                    	(change)="classifyObj['status']=+(statusEl.value)">
+						<option  class="" value="1" selected="{{classifyObj['status']==1?'selected':''}}">启用</option>
+						<option  class="" value="0" selected="{{classifyObj['status']==0?'selected':''}}">不启用</option>
+                </select>
+            </div>
+        </div>
+
+         <!-- <div  class="form-group clearfix">
+            <label  class="col-sm-2 control-label line-40">分派：</label>
+            <div  class="col-sm-10 control-panel">
+                <select class="form-control select"
+                    	#assignEl
+                    	name="is_assign"
+                    	[(ngModel)]="classifyObj['is_assign']"
+                    	(change)="classifyObj['is_assign']=+(assignEl.value)">
+						<option  class="" value="1" selected="{{classifyObj['is_assign']==1?'selected':''}}">分派</option>
+						<option  class="" value="0" selected="{{classifyObj['is_assign']==0?'selected':''}}">不分派</option>
+                </select>
+            </div>
+        </div> -->
+
+         <div  class="form-group clearfix">
+            <label  class="col-sm-2 control-label line-40">图标：</label>
+            <div  class="col-sm-10 control-panel">
+                <input  class="form-control"
+                	    name="icon"
+                	    style=""
+                	    [(ngModel)]="classifyObj['icon']">
+            </div>
+        </div>
+
+         <!-- <div  class="form-group clearfix">
+            <label  class="col-sm-2 control-label line-40">是否后台：</label>
+            <div  class="col-sm-10 control-panel">
+                <select class="form-control select"
+                    	#adminEl
+                    	name="is_admin"
+                    	[(ngModel)]="classifyObj['is_admin']"
+                    	(change)="classifyObj['is_admin']=+(adminEl.value)">
+						<option  class="" value="1" selected="{{classifyObj['is_admin']==1?'selected':''}}">是</option>
+						<option  class="" value="0" selected="{{classifyObj['is_admin']==0?'selected':''}}">不是</option>
+                </select>
+            </div>
+        </div> -->
+
+    <div  class="form-group c-f footer-border projectTemplate">
+        <div  class="col-gr-6 col-gr-ml-2 control-panel c-f">
+                <riccio-button [normal] = "'确认'"
+                               [open] = "buttonType"
+                               [disabled] = "'修改中'"
+                               (emitStatus) = 'fnButtonEmit($event)'></riccio-button>
+                <a href="javascript:;" class="gr-btn gr-btn-link close" (click)="Close()">取消</a>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,145 @@
+<!-- 右侧区域 -->
+<div class="gr-wrapper-table">
+	<!-- 通用顶部的从左侧弹出的组件 -->
+	<app-riccio-pop-up-right></app-riccio-pop-up-right>
+	<!-- 主体页面 -->
+	<div class="wrapper-table-top">
+		<div class="table-top-title">
+			<a href="javascript:;" 
+			   class="font18">
+			   已禁用成员
+			</a>
+			<span class="font12 color999">(<em>{{DisableUserData.total}}</em>人)</span>
+		</div>
+	</div>
+	<div class="wrapper-filter clearfix">
+		<form class="form-horizontal">
+			<div class="control-panel col-sm-3">
+				<div class="search-container">
+					<input type="input" name='userSearchName' class="form-control"
+						placeholder="搜索姓名、工号、用户名"
+						[(ngModel)]="searchName" (keyup)="fnKeySearch($event)" (blur)="fnBlurSearch()"
+						autocomplete="false">
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="wrapper-content">
+
+		<table class="table table-hover gr-table" tableTitle>
+			<colgroup>
+	    		<col width="30">
+	    		<col width="60">
+	    		<col width="60">
+	    		<col width="70">
+	    		<col width="70">
+	    		<col width="60">
+	    		<col width="100">
+	    		<col width="60">
+	    		<col width="100">
+	    		<col width="60">
+	    		<col width="100">
+	    		<col width="60">
+	    	</colgroup>
+			<thead class="hand">
+			    <tr>
+			        <th class="th-checkbox" noTitle>
+			            <a href="javascript:;"
+			               class="customer-check"
+			               (click)="FnShowPopUp(null,'all')">
+			                <i class="iconfont_admin  {{allCheckIs==true?'admin-check1 iconColorNormal':'admin-check'}}"></i>
+			            </a>
+			        </th>
+			        <th *ngFor="let name of TableTitle">
+			            {{name}}
+			        </th>
+			        <th class="th-checkbox">操作</th>
+			    </tr>
+			</thead>
+		</table>
+		<div class="wrapper-table" *ngIf = "loadingType=='hide'">
+			<table class="table table-hover gr-table">
+				<colgroup>
+		    		<col width="30">
+		    		<col width="60">
+		    		<col width="60">
+		    		<col width="70">
+		    		<col width="70">
+		    		<col width="60">
+		    		<col width="100">
+		    		<col width="60">
+		    		<col width="100">
+		    		<col width="60">
+		    		<col width="100">
+		    		<col width="60">
+		    	</colgroup>
+				<tbody id="undetails">
+
+				    <tr *ngFor = "let list of DisableUserData['data']" tableTitle>
+				        <td class="td-checkbox" noTitle>
+				            <a href="javascript:;" 
+				               class="customer-check gr-checkbox"
+				               (click)="FnShowPopUp(list)">
+				                <i class="iconfont_admin  {{list.isCheck==true?'admin-check1 iconColorNormal':'admin-check'}}">
+				                </i>
+				            </a>
+				        </td>
+				        <td class="customer-content">
+						{{list.thumb}}
+				        </td>
+				        <td class="customer-content">
+						{{list.name}}
+				        </td>
+				        <td class="customer-content">
+						{{list.parent_name}}
+				        </td>
+				        <td class="customer-content">
+						{{list.department?list.department.name:''}}
+				        </td>
+				        <td class="customer-content">
+						{{list.status==1?'正常':'禁用'}}
+				        </td>
+				        <td class="customer-content">
+						{{list.phone}}
+				        </td>
+				        <td class="customer-content">
+						{{list.real_name}}
+				        </td>
+				        <td class="customer-content">
+						{{list.email}}
+				        </td>
+				        <td class="customer-content">
+						{{list.sex==1?'男':'女'}}
+				        </td>
+				        <td class="customer-content">
+						{{list.jointime}}
+				        </td>
+				        <td class="td-status" noTitle>
+				            <a href="javascript:;" 
+				               class="selectDepartment" 
+				               (click)="fnSetOpen(list)">启用</a>
+				        </td>
+				    </tr>
+				    
+				</tbody>
+			</table>
+		</div>
+
+	    <!-- loading组件 -->
+		<app-riccio-spinners [type]="loadingType"
+							 [emptyText]="'无禁用成员'"></app-riccio-spinners>
+
+	</div>
+
+
+</div>
+
+<!-- 模态弹窗提示 -->
+<app-riccio-modal>
+	<div body>
+		<p style="margin-bottom: 20px;">是否启用所选成员</p>
+	</div>
+</app-riccio-modal>
+
+<!-- pbox组件 -->
+<app-riccio-pbox></app-riccio-pbox>

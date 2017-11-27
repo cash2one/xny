@@ -1,0 +1,73 @@
+<div class="header-title clearfix">
+	<div class="title f-l">
+		<span>
+			<i class="iconfont_ruanwen ruanwen-applications"></i>
+		</span>
+		<span>
+			软文发布
+		</span>
+	</div>
+</div>
+
+<div class="articles-main">
+
+	<div class="writing-articles">
+		
+		<form class="gr-form-horizontal c-f">
+
+			<div class="form-group c-f">
+		        <label class="f-l control-label col-gr-2 t-r">
+		            标题
+		        </label>
+		        <div class="f-l control-panel col-gr-8" style="width: 400px !important;">
+		            <input name="title"  
+		                   class="form-control"
+		                   maxlength="30" 
+		                   #titleEl
+		                   (focus)="postArticle['title']=titleEl.value=='无标题'?'':postArticle['title']"
+		                   (blur)="postArticle['title']=titleEl.value==''?'无标题':postArticle['title']"
+		                   [(ngModel)]="postArticle['title']"
+		                   placeholder="无标题"   
+		                   style="">
+		        </div>
+		    </div>
+
+			<div class="form-group c-f">
+		        <label class="f-l control-label col-gr-2 t-r">
+		            内容
+		        </label>
+		        <div class="f-l control-panel col-gr-8">
+		            <app-ruanwen-ngxueditor [configType]="'basic'"
+		            						[uedContent]="uedContent"
+		            						(emitData)="fnEmitUeditor($event)"></app-ruanwen-ngxueditor>
+		        </div>
+		    </div>
+
+		   <!--  <div class="form-group c-f">
+		        <label class="f-l control-label col-gr-2">
+		            余额
+		        </label>
+		        <div class="f-l control-panel col-gr-8">
+		            
+		        </div>
+		    </div> -->
+
+			<div class="form-group c-f">
+		        <div class="col-gr-6 col-gr-ml-2">
+		            <riccio-button [normal]="'保存文章'"
+		            			   [disabled]="'保存中...'"
+								   [open]="btnDraftType"
+								   [bg]="'#28b779'"
+		            			   (emitStatus)="fnBtnSaveDraft($event,'draft')"></riccio-button>
+		            <riccio-button [normal]="'下一步 选择资源'"
+		            			   [disabled]="'请稍等...'"
+		            			   [open]="btnNextType"
+		            			   (emitStatus)="fnBtnSaveDraft($event,'next')"></riccio-button>
+		        </div>
+		    </div>
+
+		</form>
+
+	</div>
+
+</div>

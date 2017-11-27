@@ -1,0 +1,111 @@
+<form class="gr-form-horizontal c-f" *ngIf = "!loading">
+
+    <div class="form-group c-f">
+        <label class="col-gr-2 control-label t-r">
+           	地区
+        </label>
+        <div class="col-gr-3 control-panel select-location">
+            <input name="province"
+                   #provinceEle
+                   [(ngModel)]="province.name"
+                   (click)="fnShowPboxLocation('province',provinceEle,$event)"
+                   readonly="readonly"   
+                   class="form-control"
+                   style="">
+            <i class="iconfont_console console-xiangxia"></i>
+        </div>
+        <div class="col-gr-3 control-panel select-location">
+            <input name="city"
+                   #cityEle
+                   [(ngModel)]="city.name"
+                   (click)="fnShowPboxLocation('city',cityEle,$event)"
+                   readonly="readonly"   
+                   class="form-control"
+                   style="">
+            <i class="iconfont_console console-xiangxia"></i>
+        </div>
+        <div class="col-gr-3 control-panel select-location">
+            <input name="area"
+                   #areaEle
+                   [(ngModel)]="area.name"
+                   (click)="fnShowPboxLocation('area',areaEle,$event)"
+                   readonly="readonly"   
+                   class="form-control"
+                   style="">
+            <i class="iconfont_console console-xiangxia"></i>
+        </div>
+    </div>
+
+    <div class="form-group c-f">
+        <label class="col-gr-2 control-label t-r">
+            行业
+        </label>
+        <div class="col-gr-9 control-panel select-location">
+            <input name="industry" 
+                   #industryEle
+                   [(ngModel)]="industry.name"
+                   (click)="fnShowPboxIndustry('industry',industryEle,$event)"
+                   readonly="readonly"   
+                   class="form-control"
+                   style="">
+            <i class="iconfont_console console-xiangxia"></i>
+        </div>
+    </div>
+
+    <div class="form-group c-f">
+        <label class="col-gr-2 control-label t-r">
+            规模
+        </label>
+        <div class="col-gr-9 control-panel select-location">
+            <input name="scale"
+                   #scaleEle
+                   [(ngModel)]="scale.name"
+                   (click)="fnShowPboxScale('scale',scaleEle,$event)"
+                   readonly="readonly"   
+                   class="form-control"
+                   style="">
+            <i class="iconfont_console console-xiangxia"></i>
+        </div>
+    </div>
+
+
+    <div class="form-group c-f">
+        <div class="col-gr-6 col-gr-ml-2">
+            <button type="button" class="gr-btn gr-btn-primary" disabled="{{btnData.disabled==true?'disabled':''}}" (click)="fnSaveEdit()">{{btnData.text}}</button>
+            <a href="javascript:;" class="gr-btn gr-btn-link" (click)="closeView()">取消</a>
+        </div>
+    </div>
+
+</form>
+
+<div class="loading-indicator" *ngIf = "loading">
+    <div class="hor-center">
+        <h4 class="ng-binding">
+            正在努力加载中，请稍候
+            <div class="loading-ellipsis">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+              <div class="bounce3"></div>
+            </div>
+        </h4>
+    </div>
+</div>
+
+
+<!-- pbox修改企业地区、规模和行业 -->
+<app-riccio-pbox>
+    <div body>
+        <div class="loading-indicator">
+            <div class="hor-center">
+                <h4 class="ng-binding">
+                <!-- 正在努力加载中，请稍候 -->
+                    <div class="loading-ellipsis">
+                        <div class="bounce1"></div>
+                        <div class="bounce2"></div>
+                      <div class="bounce3"></div>
+                    </div>
+                </h4>
+            </div>
+        </div>
+    </div>
+</app-riccio-pbox>

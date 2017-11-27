@@ -1,0 +1,37 @@
+@import '../siteInfo.common.scss';
+@import '../../../../bsbyClient.common.scss';
+
+$header:#F5F6FA;
+
+$beforeColor:#4E9CF3;
+$afterColor:#FF7F23;
+
+.keywordInfo{
+    width: 100%;
+    .title{
+        padding-left: 20px;
+        border-left: 3px solid $textColorLink;
+        height: 20px;
+        line-height: 20px;
+        margin-bottom: 20px;
+        display: inline-block;
+        .name{
+            font-size: 13px;
+        }
+    }
+    .main{
+        position: relative;
+        height: 400px;
+        .tableList{
+            left: 0px;
+            bottom: 10px;
+            top:0px;
+            tr{
+                th,
+                td{
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,151 @@
+<div class="gr-window-scroll" *ngIf = "isShow">
+    <div class="openBox-Main" 
+         style="z-index: 150;"></div>
+         
+
+    <div class="modal-content" [@flyInOut]="'in'" *ngIf = "isShow">
+        <div class="ng-scope ng-isolate-scope">
+            <div class="modal-header">
+            	<a href="javascript:;" class="modal-close" (click)="Close()">
+                    <i class="lcfont xm-close iconfont_common common-iconfontcha"></i>
+                </a>
+                <h3 class="modal-title">{{header}}</h3>
+            </div>
+            <div class="modal-body">
+                <div class="select-member-area">
+                    <div class="row select-member-panel">
+                        <div class="member-all">
+
+                            <div class="member-panel-header">
+                                <ul class="modal-tab">
+                                    <li class="active">
+                                    	<a href="javascript:;" class="">{{leftTitle}}</a>
+                                    </li>
+                                   <!--  <li [ngClass]="{'active':activeType==1}">
+                                        <a href="javascript:;" class="" (click)="activeType=1">部门</a>
+                                    </li> -->
+                                </ul>
+                            </div>
+
+                            <div class="member-panel-body">
+
+                                <div class="">
+                                <!-- <div class="" *ngIf="item[0].active"> -->
+                                    <div class="search-container">
+                                        <div class="search-area-modal"><i class="fa fa-search"></i>
+                                            <input type="text" 
+                                                   placeholder="搜索成员..." 
+                                                   class="" 
+                                                   style=""
+                                                   #searchUsers
+                                                   (keyup)="getSearchUsers(searchUsers.value)">
+                                        </div>
+                                        <a href="javascript:;" 
+                                           class="btn-action"
+                                           (click)="FnAddAll()">添加全部</a>
+                                    </div>
+                                    <ul>
+                                        <li class="member" 
+                                            *ngFor = "let list of leftData;let i = index"
+                                            (click)="FnLeftData(list)">
+                                            <div class="xm-avatar xm-avatar-30 " 
+                                                 title="xjh" 
+                                                 member="member" 
+                                                 size="30" 
+                                                 name="true">
+                                                <span class="xm-avatar-def"
+                                                      style="background-color: rgb(239, 123, 164);">
+                                                    <div class="ng-binding">
+                                                        {{list[keyName]?list[keyName].slice(0,1):''}}
+                                                    </div>
+                                                </span>
+                                                <div class="xm-avatar-name">{{list[keyName]}}</div>
+                                            </div>
+                                        </li>
+
+                                        <li *ngIf = "nextPage!='hide'">
+
+                                            <div class="loading-indicator" *ngIf = "nextPage=='loading'">
+                                                <div class="hor-center">
+                                                    <h4 class="ng-binding">
+                                                        正在努力加载中，请稍候
+                                                        <div class="loading-ellipsis">
+                                                            <div class="bounce1"></div>
+                                                            <div class="bounce2"></div>
+                                                          <div class="bounce3"></div>
+                                                        </div>
+                                                    </h4>
+                                                </div>
+                                            </div>  
+
+                                            <div class="loading-indicator" 
+                                                 *ngIf = "nextPage=='normal'"
+                                                 (click)="more()">
+                                                <div class="hor-center">
+                                                    <h4 class="ng-binding">
+                                                        加载更多
+                                                    </h4>
+                                                </div>
+                                            </div>  
+
+                                        </li>
+
+                                    </ul>
+
+
+
+                                </div>
+
+<!--                                 <div class="department-list xm-tree" style="" [ngStyle]="{'display':activeType==1?'block':'none'}">
+                                    <app-riccio-tree-department [departmentData]='departmentData'></app-riccio-tree-department>
+                                </div>    -->                       
+
+
+                            </div>
+                        </div>
+
+                        <div class="member-arrow"><i class="iconfont_common  common-you"></i></div>
+
+                        <div class="member-selected">
+
+                            <div class="member-panel-header"><span class="">{{rightTitle}}</span></div>
+
+                            <div class="member-panel-body">
+                                <div>
+                                    <!-- <ul *ngIf = "!selectMembers.boole"> -->
+                                    <ul>
+                                        <li class="member"
+                                            *ngFor = "let list of rightData;let i=index"
+                                            (click)="FnRightData(list)">
+                                            <div class="xm-avatar xm-avatar-30 " title="星牛云" member="member" size="30" name="true">
+                                                <span class="xm-avatar-def" 
+                                                      style="background-color: rgb(239, 123, 164);">
+                                                	<div class="">
+                                                        {{list[keyName]?list[keyName].slice(0,1):''}}
+                                                    </div>
+                                                </span>
+                                                <div class="xm-avatar-name">{{list[keyName]}}</div>
+                                            </div>
+                                            <span class="btn-link-remove f-r" 
+                                                  href="javascript:;">
+                                                  <i class="iconfont_common  common-iconfontcha"></i>
+                                            </span>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="member-action">
+
+                        <button class="btn btn-primary" (click)="FnSaveSelect()">保存</button>
+                        <button class="btn btn-link" (click)="Close()">取消</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

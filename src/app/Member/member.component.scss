@@ -1,0 +1,45 @@
+@import "../Public/theme/common/variable.scss";
+
+// grsaas样式
+.container-fill{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+    font-size: 12px;
+	.container-fill-bg{
+		height: 100%;
+		min-height: 100%;
+		width: 100%
+    }
+    .site-main{
+        position: absolute;
+        top: 52px;
+        bottom: 0px;
+        width: 100%;
+        height: initial;
+        .site-nav-right{
+            position: relative;
+            background-color: #ecedf1;
+            height: 100%;
+            left: 0px;
+            .topMenu{
+                padding: 0 26px;
+                .navbar-text{
+                    font-size: 14px;
+                }
+            }
+            .route{
+                background-color: #fff;
+                border-radius: 5px;
+                overflow: auto;
+                position: absolute;
+                top: 70px;
+                left: 12px;
+                right: 12px;
+                bottom: 12px;
+                padding: 16px;
+            }
+        }
+    }
+}

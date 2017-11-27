@@ -1,0 +1,103 @@
+<!-- pbox组件 -->
+<app-riccio-pbox>
+	<div body> 
+		<app-riccio-datepickers (callDatepickersData)="fnEmitDataPicker($event)"
+								[type]="dateType"></app-riccio-datepickers>
+	</div>
+</app-riccio-pbox>
+
+<div class="header-title clearfix" *ngIf = "config=='full'">
+	<div class="title f-l">
+		<span>
+			<i class="iconfont_ruanwen ruanwen-applications"></i>
+		</span>
+		<span>
+			{{header}}
+		</span>
+	</div>
+	<div class="release f-r" *ngIf = "btnText!=''">
+		<button class="gr-btn gr-btn-primary" (click)="fnEmitBtn()">{{btnText}}</button>
+	</div>
+</div>
+
+<div class="list-search">
+	
+	<form class="gr-form-horizontal c-f">
+
+		<ul class="search-ul">
+			<li class="search-ul-li ">
+				<div class="form-group c-f">
+			        <label class="f-l control-label t-r">
+			            {{searchTitle}}
+			        </label>
+			        <div class="f-l control-panel">
+			            <input name="name"  
+			                   class="form-control" 
+			                   [(ngModel)]="searchData.name"
+			                   placeholder="请输入{{searchTitle}}"   
+			                   style="">
+			        </div>
+			    </div>
+			</li>
+			<li class="search-ul-li ">
+				<div class="form-group c-f">
+			        <label class="f-l control-label t-r">
+			            开始时间
+			        </label>
+			        <div class="f-l control-panel">
+			            <input name="start"  
+			                   class="form-control c-p" 
+			                   #startEl
+			                   (click)="fnShowDataPickers('start',startEl)"
+			                   readonly="readonly" 
+			                   placeholder="请选择开始时间"   
+			                   style=""
+			                   value="{{searchData.start}}">
+			        </div>
+			    </div>
+			</li>
+			<li class="search-ul-li ">
+				<div class="form-group c-f">
+			        <label class="f-l control-label t-r">
+			            结束时间
+			        </label>
+			        <div class="f-l control-panel">
+			            <input name="end"  
+			                   class="form-control c-p" 
+			                   #endEl
+			                   (click)="fnShowDataPickers('end',endEl)"
+			                   readonly="readonly" 
+			                   placeholder="请选择结束时间"   
+			                   style=""
+			                   value="{{searchData.end}}">
+			        </div>
+			    </div>
+			</li>
+			<li class="search-ul-li " *ngIf = "config=='full'">
+				<div class="form-group c-f">
+			        <label class="f-l control-label t-r">
+			            {{statusTitle}}
+			        </label>
+			        <div class="f-l control-panel">
+			            <input name="status"  
+			                   class="form-control c-p" 
+			                   placeholder="请选择{{statusTitle}}"   
+			                   style=""
+			                   [(ngModel)]="statusName"
+			                   readonly="readonly" 
+			                   #statusEl
+			                   (click)="fnShowPbox(statusEl,$event)">
+			        </div>
+			    </div>
+			</li>
+			
+		</ul>
+
+		<div class="search-button f-r">
+			<button class="gr-btn gr-btn-primary" (click)="fnEmitSearchData()">搜索</button>
+			<a href="javascript:;" class="gr-btn gr-btn-link" (click)="fnRemoveSearch()">清空搜索条件</a>
+		</div>
+
+	</form>
+
+</div>

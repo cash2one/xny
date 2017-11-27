@@ -1,0 +1,207 @@
+@import '../siteInfo.common.scss';
+@import '../../../../bsbyClient.common.scss';
+
+$doing:#F4C92D;
+$success:#7EC856;
+$danger:#F37263;
+
+$baseColor:#447bd4;
+
+.baseInfo{
+    width: 100%;
+    position: relative;
+    margin-top: 20px;
+    .left,
+    .right{
+        display: inline-block;
+    }
+    .left{
+        width: 58%;
+        .siteUser,
+        .siteCom{
+            overflow-y: auto;
+        }
+        .siteInfo{
+            height: 200px;
+            margin-bottom: 20px;
+            border: 1px solid lighten($baseColor,26);
+            box-sizing: content-box;
+            .head,
+            .foot{
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: center;
+                align-items: center;
+                overflow: auto;
+            }
+            .head{
+                height: 150px;
+                background: #fff;
+                .statu,
+                .keyword,
+                .days{
+                    padding: 0 36px;
+                    text-align: center;
+                    overflow: hidden;
+                    max-width: 40%;
+                    .value{
+                        height: 60px;
+                        line-height: 54px;
+                        margin-bottom: 12px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        cursor: default;
+                    }
+                }
+                .statu{
+                    .value{
+                        width:60px;
+                        border-radius: 50%;
+                        line-height: 54px;
+                        &.doing{
+                            border: 3px solid $doing;
+                            color:darken($doing,5);
+                        }
+                        &.danger{
+                            border: 3px solid $danger;
+                            color:$danger;
+                        }
+                        &.success{
+                            border: 3px solid $success;
+                            color:$success;
+                        }
+                    }
+                }
+                .keyword{
+                    .value{
+                        font-size: 46px;
+                        color:$baseColor;
+                    }
+                }
+                .days{
+                    .value{
+                        font-size: 46px;
+                        color:$baseColor;
+                    }
+                }
+            }
+            .foot{
+                height: 50px;
+                background-color: #F3F4F6;
+                border-top: 1px solid lighten($baseColor,26);
+                justify-content: space-around;
+                .value{
+                    color:$baseColor;
+                }
+            }
+        }
+        .siteUser{
+            border: 1px solid $headBorderColor;
+            height: 200px;
+            width: 58%;
+            float: left;
+            overflow-y: auto;
+            .excUser{
+                border-bottom: 1px dashed $headBorderColor;
+                .body{
+                    .role{
+                        display: inline-block;
+                        width: 48%;
+                        &::nth-child(1){
+                            float: left;
+                        }
+                        .excDanger{
+                            color:$danger;
+                        }
+                    }
+                }
+            }
+            .serviceUser{
+                .body{
+                    .name{
+                        width: 100%;
+                    }
+                    .info{
+                        display: inline-block;
+                        width: 48%;
+                    }
+                }
+            }
+        }
+        .siteCom{
+            border: 1px solid $headBorderColor;
+            height: 200px;
+            width: 40%;
+            float: right;
+            padding: 0 15px 0 15px;
+            .head{
+                padding: 10px 0 10px 0;
+                font-size: 13px;
+            }
+            .body{
+                 color:$bodyFadeColor;
+                 .value{
+                    color:$bodyDeepColor
+                }
+                .info{
+                    padding:3px 0 3px 0;
+                }
+            }
+        }
+    }
+    .right{
+        width: 40%;
+        float: right;
+        .siteMain{
+            width: 100%;
+            overflow-y: auto;
+            border: 1px solid $headBorderColor;
+            height: 420px;
+            .account{
+                .look{
+                    padding-left: 10px;
+                    color:$bodyFadeColor;
+                    transition: all .3s;
+                    &:hover{
+                        color: $textColorLink;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.block{
+    padding: 0 15px 0 15px;
+    border-bottom: 1px dashed $headBorderColor;
+    &.noBorder{
+        border:none;
+    }
+    .head{
+        height: 30px;
+        line-height: 30px;
+        padding-top: 5px;
+        .title{
+            font-size: 13px;
+            color:$bodyDeepColor
+        }
+        .mgr{
+            float: right;
+            cursor: pointer;
+            a{
+                color:$clickColor;
+            }
+        }
+    }
+    .body{
+        padding: 10px 0 10px 0;
+        color:$bodyFadeColor;
+        .role{ 
+            padding: 3px 0 3px 0;
+        }
+        .value{
+            color:$bodyDeepColor
+        }
+    }
+}

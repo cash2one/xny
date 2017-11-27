@@ -1,0 +1,96 @@
+<div class="login-main">
+    
+    <div class="wrap">
+        <h2 class="title">密码登录</h2>
+        <div class="form-controller">
+            <form class="form-signin w5c-form form-horizontal m-t-20 " method="post">
+                <div class="input-box {{dangerUser['loginName']==true?'danger':''}}">
+                    <label class="user"></label>
+                    <input type="text" 
+                           name="loginName" 
+                           class="input" 
+                           placeholder="手机号码/邮箱"
+                           (focus)="dangerUser['loginName'] = false"
+                           [(ngModel)]="user.loginname">
+                </div>
+                <div class="input-box {{dangerUser['password']==true?'danger':''}}">
+                    <label class="pwd"></label>
+                    <input type="password" 
+                           name="password" 
+                           class="input" 
+                           placeholder="密码"
+                           (focus)="dangerUser['password'] = false"
+                           [(ngModel)]="user.password">
+                </div>
+                <div class="text">
+                    <a href="javascript:;" (click)="forgetPassword()">忘记密码</a>
+                </div>
+                <!-- <div class="submit">
+                    登录
+                </div> -->
+                <button type="submit"  
+                        class="submit" 
+                        id="loginButton" 
+                        [disabled] = "btnType.disabled==true?'disabled':''" 
+                        (click)="toLogin()">{{btnType.text}}</button>
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        <span class="footer-text">Copyright © 2004-{{nowYearTime}} 国人在线36099.com 版权所有</span>
+        <!-- <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备05088445号</a> -->
+    </div>
+
+
+   <!--  <div class="m-w-560">
+        <div class="logo">
+            <a href="#" title="grzhixing">
+                <img class="" alt="grsaas" src="assets/img/grsaas-logo.png">
+                <span class="team-text"></span></a>
+        </div>
+        <div class="single-card">
+            <div class="card-header">
+            	登录
+            </div>
+                <div class="card-body">
+                    <div>
+                    <span class="sub-title">输入您的帐号密码</span>
+                        <form class="form-signin w5c-form form-horizontal m-t-20 " method="post">
+                            <div class="form-group">
+                                <input type="text" name="loginName"  class="form-control valid" placeholder="请输入手机号"
+                                [(ngModel)]="user.loginname">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="password"  class="form-control" placeholder="请输入密码"
+                                [(ngModel)]="user.password">
+                            </div>
+                            <div class="form-group" *ngIf="selectedHeroUser">
+                                <div class="alert alert-danger">
+                                    <i class="fa fa-warning"></i>
+                                    {{errorText}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit"  
+                                        class="btn btn-primary btn-block btn-lg" 
+                                        id="loginButton" 
+                                        [disabled] = "btnType.disabled==true?'disabled':''" 
+                                        (click)="toLogin()">{{btnType.text}}</button>
+                            </div>
+                            <div class="form-group clearfix">
+                                <div class="sub-buttom f-l">
+                                    <span>还没有帐号,<a href="javascript:;" 
+                                    (click)="FnGoRegister()">直接注册</a></span>
+                                </div>
+                                <div class="sub-buttom f-r">
+                                    <span>
+                                        <a href="javascript:;" (click)="forgetPassword()">忘记密码</a>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+        </div>
+    </div> -->
+</div>

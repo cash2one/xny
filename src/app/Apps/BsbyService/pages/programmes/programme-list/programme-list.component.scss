@@ -1,0 +1,51 @@
+@import '../../../../../Public/theme/apps-common/variable.scss';
+@import '../../../bsbyService.common.scss';
+$doing:#F4C92D;
+$success:#7EC856;
+$danger:#F37263;
+
+// .programmeList{
+//     .body{
+//         position: absolute;
+//         top: 60px;
+//         width: 100%;
+//         bottom: 50px;
+//         .bodyMain{
+//             top: 0px;
+//             .tableList{
+//                 left: 0px;
+//                 bottom: 0px;
+//                 .tableTop{
+//                     height: initial;
+//                     line-height: 0;
+//                     .searchProduct{
+//                         height: 40px;
+//                         width: 30%;
+//                         margin: 15px 0;
+//                         input{
+//                             height: 100%;
+//                             border-radius: 5px;
+//                             outline: none;
+//                             border: 1px solid rgba(0,0,0,0.1);
+//                             padding: 0 15px 0 15px;
+//                         }
+//                     }
+//                 }
+//             }
+//             .programmeListTable{
+//                 .first{
+//                     padding: 10px;
+//                     line-height: 20px;
+//                     border-right: 1px solid $headBorderColor;
+//                 }
+//                 .name,
+//                 .domain{
+//                     display: block;
+//                 }
+//                 .domain{
+//                     color: $bodyFadeColor;
+//                 }
+//             }
+//         }
+//     }
+// }

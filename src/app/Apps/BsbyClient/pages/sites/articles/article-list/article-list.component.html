@@ -1,0 +1,85 @@
+<div class="articleList bsbyCommon">
+    <div class="head">
+        <div class="title">
+            <i class="iconfont_bsby bsby-article"></i>
+            <span>文章更新</span>
+        </div>
+    </div>
+    <div class="body">
+        <div class="bodyHead" *ngIf="siteLoadingType == 'hide'">
+            <div class="title">
+                <span class="name">{{siteInfo.domain}}</span>
+            </div>
+            <div class="subTitle">
+                 {{siteInfo.company_name}}
+            </div>
+            <div class="count">
+                共更新文章：<span>{{articleCount}}</span> 篇
+            </div>
+        </div>
+        <div class="bodyMain" *ngIf="siteLoadingType == 'hide'">
+            <div class="gr-wrapper-table articleListTable tableList">
+                <div class="wrapper-content"> 
+                    <table class="table table-hover gr-table" tableTitle>
+                        <colgroup>
+                            <col width="70">
+                            <col width="100">
+                            <col width="120">
+                            <col width="50">
+                            <col width="50">
+                        </colgroup>
+                        <thead class="hand">
+                            <tr>
+                                <th *ngFor = "let title of articleListTitles">
+                                    {{title}}
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                    <div class="wrapper-table" *ngIf="loadingType == 'hide'">
+                        <table class="table hover table-hover gr-table">
+                            <colgroup>
+                                <col width="70">
+                                <col width="100">
+                                <col width="120">
+                                <col width="50">
+                                <col width="50">
+                            </colgroup>
+                            <tbody #detailTB>
+                                <tr *ngFor="let article of articleList" tableTitle>
+                                    <td class="customer-content">
+                                         {{article.showInputtime}} 
+                                    </td>
+                                    <td class="customer-content">
+                                         {{article.title}} 
+                                    </td>
+                                    <td class="customer-content">
+                                         {{article.url}} 
+                                    </td>
+                                    <td class="customer-content">
+                                         {{article.type == 1?'公司新闻':(article.type == 2?'行业新闻':'其他')}} 
+                                    </td>
+                                    <td class="customer-level" noTitle>
+                                        <a *ngIf="!article.url" href="javascript:;" class="approval-action">
+                                            浏览
+                                        </a>
+                                        <a *ngIf="article.url" target="_blank" href="{{article.url}}" class="approval-action">
+                                            浏览
+                                        </a>
+                                    </td>
+                                </tr>                   
+                            </tbody>
+                        </table>
+                    </div>
+                    <app-riccio-spinners [type]="loadingType"
+                                        [emptyText]="pageData.emptyText"></app-riccio-spinners>
+                    <app-riccio-paginations
+                        [total]="pageData['total']"
+                        (pageValue)="fnPagination($event)"></app-riccio-paginations>
+                </div>
+            </div>
+        </div>
+        <app-riccio-spinners [type]="siteLoadingType"></app-riccio-spinners>
+    </div>
+</div>

@@ -1,0 +1,99 @@
+<div class="backLinkList bsbyCommon">
+    <div class="head">
+        <div class="title">
+            <i class="iconfont_bsby bsby-wailian"></i>
+            <span>网站外链</span>
+        </div>
+        <div class="action">
+            <button class="gr-btn gr-btn-primary bsbyBtn addBtn" (click)="fnShowAddBackLink()">
+                <i class="iconfont_bsby bsby-jia"></i>
+                添加外链
+            </button>
+        </div>
+    </div>
+    <div class="body">
+        <div class="bodyHead" *ngIf="siteLoadingType == 'hide'">
+            <div class="title">
+                <span class="name">{{siteInfo.domain}}</span>
+            </div>
+            <div class="subTitle">
+                 {{siteInfo.company_name}}
+            </div>
+            <div class="count">
+                共发布外链：<span>{{backLinkCount}}</span> 条
+            </div>
+        </div>
+        <div class="bodyMain" *ngIf="siteLoadingType == 'hide'">
+            <div class="gr-wrapper-table backLinkListTable tableList">
+                <div class="wrapper-content"> 
+                    <table class="table table-hover gr-table" tableTitle>
+                        <colgroup>
+                            <col width="70">
+                            <col width="100">
+                            <col width="120">
+                            <col width="50">
+                            <col width="50">
+                        </colgroup>
+                        <thead class="hand">
+                            <tr>
+                                <th *ngFor = "let title of backLinkListTitles">
+                                    {{title}}
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                    <div class="wrapper-table" *ngIf="loadingType == 'hide'">
+                        <table class="table hover table-hover gr-table">
+                            <colgroup>
+                                <col width="70">
+                                <col width="100">
+                                <col width="120">
+                                <col width="50">
+                                <col width="50">
+                            </colgroup>
+                            <tbody>
+                                <tr *ngFor="let backLink of backLinkList" tableTitle>
+                                    <td class="customer-content">
+                                         {{backLink.showInputtime}} 
+                                    </td>
+                                    <td class="customer-content">
+                                         {{backLink.title}} 
+                                    </td>
+                                    <td class="customer-content">
+                                         {{backLink.url}} 
+                                    </td>
+                                    <td class="customer-content">
+                                         {{backLink.platform}} 
+                                    </td>
+                                    <td class="customer-level" noTitle>
+                                        <a *ngIf="!backLink.url" href="javascript:;" class="approval-action">
+                                            查看
+                                        </a>
+                                        <a *ngIf="backLink.url" target="_blank" href="{{backLink.url}}" class="approval-action">
+                                            查看
+                                        </a>
+                                        <a href="javascript:;" class="approval-action" (click)="fnShowOp(showOp,backLink,$event)" #showOp>
+                                            <i class="iconfont_bsby bsby-xiangxia"></i>
+                                        </a>
+                                        
+                                    </td>
+                                </tr>                   
+                            </tbody>
+                        </table>
+                    </div>
+                    <app-riccio-spinners [type]="loadingType"
+                                        [emptyText]="pageData.emptyText"></app-riccio-spinners>
+                    <app-riccio-paginations
+                        [total]="pageData['total']"
+                        (pageValue)="fnPagination($event)"></app-riccio-paginations>
+                </div>
+            </div>
+        </div>
+        <app-riccio-spinners [type]="siteLoadingType"></app-riccio-spinners>
+    </div>
+</div>
+
+<app-bsby-service-backLink-op
+    (backLinkFormEmit)="fnOpBackLinkEmit($event)">
+</app-bsby-service-backLink-op>

@@ -1,0 +1,123 @@
+<div class="keywordList bsbyCommon">
+    <div class="head">
+        <div class="title">
+            <i class="iconfont_bsby bsby-icon_keyword"></i>
+            <span>关键词管理</span>
+        </div>
+        <div class="action">
+            <button class="gr-btn gr-btn-primary bsbyBtn addBtn">
+                <i class="iconfont_bsby bsby-jia"></i>
+                添加关键词
+            </button>
+        </div>
+    </div>
+    <div class="body">
+        <div class="bodyMain">
+            <div class="gr-wrapper-table keywordListTable tableList">
+                <div class="wrapper-table-top tableTop">
+                    <div class="headLeft col-sm-8">
+                        <div class="control-panel select-cp col-sm-3">
+                            <i class="down iconfont_bsby bsby-down"></i>
+                            <div class="select color666">选择关键词类型</div>
+                        </div>
+                        <div class="control-panel select-cp col-sm-3">
+                            <i class="down iconfont_bsby bsby-down"></i>
+                            <div class="select color666">选择难易程度</div>
+                        </div>
+                        <div class="control-panel select-cp col-sm-3">
+                            <i class="down iconfont_bsby bsby-down"></i>
+                            <div class="select color666">选择状态</div>
+                        </div>
+                        <div class="control-panel select-cp col-sm-3">
+                            <div class="search">
+                                <input type="input" name='userSearchName' class="form-control" placeholder="输入关键词"
+                                    autocomplete="false">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wrapper-content"> 
+                    <table class="table table-hover gr-table">
+                        <colgroup>
+                            <col width="80">
+                            <col width="80">
+                            <col width="80">
+                            <col width="50">
+                            <col width="50">
+                            <col width="50">
+                            <col width="90">
+                            <col width="80">
+                            <col width="100"> 
+                        </colgroup>
+                        <thead class="hand">
+                            <tr>
+                                <th *ngFor = "let title of keywordListTitles">
+                                    {{title}}
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                    <div class="wrapper-table" *ngIf="loadingType=='hide'">
+                        <table class="table table-hover gr-table">
+                            <colgroup>
+                                <col width="80">
+                                <col width="80">
+                                <col width="80">
+                                <col width="50">
+                                <col width="50">
+                                <col width="50">
+                                <col width="90">
+                                <col width="80">
+                                <col width="100"> 
+                            </colgroup>
+                            <tbody #detailTB>
+                                <tr>
+                                    <td class="customer-content">
+                                        全网营销
+                                    </td>
+                                    <td class="customer-content">
+                                        正常
+                                    </td>
+                                    <td class="customer-content">
+                                        精准核心词
+                                    </td>
+                                    <td class="customer-content">
+                                        9
+                                    </td>
+                                    <td class="customer-content">
+                                        9
+                                    </td>
+                                    <td class="customer-content">
+                                        9
+                                    </td>
+                                    <td class="customer-content">
+                                        2016-09-08
+                                    </td>
+                                    <td class="customer-content">
+                                        优化中
+                                    </td>
+                                    <td class="customer-level">
+                                        <a href="javascript:;" class="approval-action">
+                                            详情
+                                        </a>
+                                        <a href="javascript:;" class="approval-action">
+                                            趋势
+                                        </a>
+                                        <a href="javascript:;" class="approval-action">
+                                            <i class="iconfont_bsby bsby-xiangxia"></i>
+                                        </a>
+                                    </td>
+                                </tr>                   
+                            </tbody>
+                        </table>
+                    </div>
+                    <app-riccio-spinners [type]="loadingType"
+										 [emptyText]="'没有查询到符合条件的记录'"></app-riccio-spinners>
+                    <app-riccio-paginations></app-riccio-paginations>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

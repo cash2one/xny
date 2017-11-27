@@ -1,0 +1,190 @@
+@import '../../../../Admin.value.scss';
+
+$statusYes:#7EC856;
+$statusNo:#F37263;
+$statusLoad:#F3E843;
+
+.tempDetail{
+    position:fixed;
+    z-index: 99;
+    top:53px;
+    right:0px;
+    width:460px;
+    bottom:0px;
+    background-color: #fff;
+    border-right:none;
+    overflow:auto;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    .detailHead{
+        border-bottom:1px solid #DDDDDD;
+        margin-left:30px;
+        .titleShow{
+            height: 46px;
+            line-height: 46px;
+            margin-top: 15px;
+            .title{
+                font-size: 16px;
+                float: left;
+                white-space: nowrap;
+                width: 55%;
+                text-overflow: ellipsis;
+                display: block;
+                overflow: hidden;
+            }
+            .tool{
+                float: right;
+                width: 45%;
+                text-align: right;
+                padding-right: 15px;
+                .disabled{
+                    color:#e5e5e5 !important;
+                }
+                .editOp,
+                .delOp{
+                    display: inline-block;
+                    button{
+                        background: transparent;
+                        background: #fff;
+                        border: none;
+                        &:hover{
+                            cursor: pointer;
+                        }
+                        color:$themeColor;
+                        font-size: 12px;
+                        margin-left:8px;
+                        outline: none;
+                        &:before{
+                            padding-right:5px;
+                        }
+                    }
+                }
+            }
+        }
+        .simpleShow{
+            height: 40px;
+            line-height: 40px;
+            .status{
+                display: inline-block;
+                height: 8px;
+                width: 8px;
+                margin-right: 5px;
+                border-radius: 50%;
+                background: black;
+                margin-left: 30px;
+            }
+            .statuYes{
+                background: $statusYes;
+            }
+            .statuNo{
+                background: $statusNo;
+            }
+            .statuLoad{
+                background: $statusLoad;
+            }
+        }
+    }
+    .detailBody{
+        padding:20px 30px 20px 30px;
+        .one{
+            padding-top:15px;
+            font-size: 12px;
+            width:100%;
+            .keyMain{
+                display: inline-block;
+                width: 20%;
+                .key,
+                .subKey{
+                    display: block;
+                    text-align: right;
+                }
+                .subKey{
+                    color:#dadada;
+                }
+            }
+            .valMain{
+                display: inline-block;
+                width: 75%;
+                vertical-align: top;
+                padding-left: 30px;
+                .val{
+                    width:100%;
+                }
+                img{
+                    width: 180px;
+                }
+                .showImg{
+                    cursor: pointer;
+                    position: relative;
+                }
+            }
+        }
+    }
+}
+
+.configModal{
+    .testBase{
+        width:100%;
+        .testHead{
+            height:20px;
+            line-height: 20px;
+            font-size: 12px;
+            .title{
+                display: block;
+                border-left:2px solid $themeColor;
+                padding-left:10px;
+            }
+        }
+        .testBody{
+            margin-top:20px;
+            label{
+                font-size: 12px;
+                font-weight: 400;
+            }
+            label,
+            input,
+            textarea{
+                display: inline-block;
+            }
+            input,
+            textarea{
+                border-radius:5px;
+                background-color: $formCPBg;
+                border: 1px solid $formCPBorder;
+                color:$contentNarmalColor;
+                outline: none;
+                padding-left:20px;
+                height:100%;
+            }
+            .ft{
+                width:100%;
+                label{
+                    width:20%;
+                    vertical-align: top;
+                    padding-right: 10px;
+                    padding-top: 10px;
+                }
+                textarea{
+                    width:75%;
+                    padding: 10px;
+                }
+            }
+            .send{
+                margin-top:10px;
+                height:36px;
+                margin-left:21%;
+                .sendBtn{
+                    cursor: pointer;
+                    border:none;
+                    color:#fff;
+                    outline: none;
+                    height:inherit;
+                    width:150px;
+                    padding-left:10px;
+                    padding-right:10px;
+                    background: $themeColor;
+                    border-radius:5px;
+                }
+            }
+        }
+    }
+}

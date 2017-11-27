@@ -1,0 +1,129 @@
+<div class="editAdd-main">
+
+	<form class="gr-form-horizontal c-f">
+
+	    <div class="form-group c-f">
+	        <label class="col-gr-2 control-label  t-l">
+	            会员名称
+	        </label>
+	        <div class="col-gr-9 control-panel">
+	            <input name="name"  
+	                   class="form-control"
+	                   [(ngModel)]="memberData['name']"
+	                   placeholder="请输入会员名称" 
+	                   style="">
+	        </div>
+	    </div>
+
+	    <div class="form-group c-f">
+	        <label class="col-gr-2 control-label  t-l">
+	            会员折扣
+	        </label>
+	        <div class="col-gr-9 control-panel">
+	            <input name="discount"  
+	                   class="form-control"
+	                   maxlength="4" 
+	                   onkeyup="this.value=this.value.replace(/[^\d.]/g,'')"  
+	                   onafterpaste="this.value=this.value.replace(/\D/g,'')"
+	                   [(ngModel)]="memberData['discount']"
+	                   placeholder="请输入会员折扣" 
+	                   style="">
+	        </div>
+	    </div>
+
+	    <div class="form-group c-f">
+	        <label class="col-gr-2 control-label  t-l">
+	        </label>
+	        <div class="col-gr-9 control-panel">
+	            <p class="tipColor">当前代理账户折扣为{{mediaInfoData.discount}}折，此处折扣设置不能低于{{mediaInfoData.discount}}折</p>
+	        </div>
+	    </div>
+
+		<div class="form-group c-f p-r">
+	        <label class="col-gr-2 control-label  t-l">
+	            代写价格
+	        </label>
+	        <div class="col-gr-9 control-panel">
+		        <ul class="form-ul">
+		        	<li class="form-li">
+			           <span>普通文章( 800 字) &nbsp;</span>
+				        <div class="col-gr-7 control-panel">
+				           <input name="write_price_1"  
+				                   class="form-control"
+				                   onkeyup="this.value=this.value.replace(/[^\d.]/g,'')"  
+				                   onafterpaste="this.value=this.value.replace(/\D/g,'')"
+				                   [(ngModel)]="write_price[0]['price']"
+				                   placeholder="" 
+				                   style="">
+				        </div>
+				        <span>元</span>
+		        	</li>
+		        	<li class="form-li">
+			           <span>优秀文章( 1000 字)</span>
+				        <div class="col-gr-7 control-panel">
+				           <input name="write_price_2"  
+				                   class="form-control"
+				                   onkeyup="this.value=this.value.replace(/[^\d.]/g,'')"  
+				                   onafterpaste="this.value=this.value.replace(/\D/g,'')"
+				                   [(ngModel)]="write_price[1]['price']"
+				                   placeholder="" 
+				                   style="">
+				        </div>
+				        <span>元</span>
+		        	</li>
+		        	<li class="form-li">
+			           <span>高级写手( 1500 字)</span>
+				        <div class="col-gr-7 control-panel">
+				           <input name="write_price_3"  
+				                   class="form-control"
+				                   onkeyup="this.value=this.value.replace(/[^\d.]/g,'')"  
+				                   onafterpaste="this.value=this.value.replace(/\D/g,'')"
+				                   [(ngModel)]="write_price[2]['price']"
+				                   placeholder="" 
+				                   style="">
+				        </div>
+				        <span>元</span>
+		        	</li>
+		        	<li class="form-li">
+			           <span>专业写手( 2000 字)</span>
+				        <div class="col-gr-7 control-panel">
+				           <input name="write_price_4"  
+				                   class="form-control"
+				                   onkeyup="this.value=this.value.replace(/[^\d.]/g,'')"  
+				                   onafterpaste="this.value=this.value.replace(/\D/g,'')"
+				                   [(ngModel)]="write_price[3]['price']"
+				                   placeholder="" 
+				                   style="">
+				        </div>
+				        <span>元</span>
+		        	</li>
+		        </ul>
+	        </div>
+	        
+	    </div>
+
+	    <div class="form-group c-f">
+	        <label class="col-gr-2 control-label  t-l">
+	            会员描述
+	        </label>
+	        <div class="col-gr-9 control-panel">
+	        	<textarea name="describe" class="form-control describe" 
+	        			  [(ngModel)]="memberData['describe']" placeholder="请输入会员描述"></textarea>
+	        </div>
+	    </div>
+
+	    <div class="form-group c-f">
+	        <div class="col-gr-6 control-panel col-gr-ml-2">
+	            <riccio-button [normal]="'保存'"
+		        				   [disabled]="'保存中...'"
+		        				   [open]="btnType"
+		        				   (emitStatus)="fnEditOrAdd()"></riccio-button>
+		        <a href="javascript:;" class='gr-btn gr-btn-link' (click)='closer()'>取消</a>
+	        </div>
+	    </div>
+
+	</form>
+	
+
+
+</div>

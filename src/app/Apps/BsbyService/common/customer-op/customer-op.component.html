@@ -1,0 +1,226 @@
+<div class="gr-window-scroll" *ngIf = "isShow">
+    <div class="openBox-Main"
+            style="z-index: 150;"></div>
+            
+    <div class="modal-content" [@flyInOut]="'in'" *ngIf = "isShow">
+        <div class="ng-scope ng-isolate-scope">
+            <div class="modal-header">
+                <a href="javascript:;" class="modal-close" (click)="close()">
+                    <i class="lcfont xm-close iconfont_common common-iconfontcha"></i>
+                </a>
+                <h3 class="modal-title">{{headerTitle}}</h3>
+            </div>
+    
+            <div class="modal-body">
+                <div class="tabs" *ngIf="opType == 0">
+                    <a href="javascript:;" (click)="addType(0)" [ngClass]="{'active':addTypes == 0}">选择已有企业</a>
+                    <span></span>
+                    <a href="javascript:;" (click)="addType(1)" [ngClass]="{'active':addTypes == 1}">新增企业客户</a>
+                </div>
+                <div class="opCustomer">
+                    <div class="selectCustomer" *ngIf="addTypes == 0 && opType == 0" [@heightScroll]="'in'">
+                        <div class="gr-wrapper-table tableList">
+                            <div class="wrapper-table-top tableTop">
+                                <div class="search">
+                                    <bsby-search-input
+                                        [placeholder]="'输入公司名称'"
+                                        [(ngModel)]="searchParam.name"
+                                        (searchEmit)="getAllCustomerList()"></bsby-search-input>
+                                </div>
+                                <div class="showNowSelect color999">
+                                    当前选中企业：{{activeCustomer?activeCustomer.name:' - '}}
+                                </div>
+                            </div>
+    
+                            <div class="wrapper-content"> 
+                                <table class="table table-hover gr-table" tableTitle>
+                                    <colgroup>
+                                        <col width="100">
+                                        <col width="30">
+                                    </colgroup>
+                                    <thead class="hand">
+                                        <tr>
+                                            <th *ngFor = "let title of customerListTitle">
+                                                {{title}}
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                </table>
+    
+                                <div class="wrapper-table" *ngIf = "loadingType == 'hide'">
+                                    <table class="table hover table-hover gr-table">
+                                        <colgroup>
+                                            <col width="100">
+                                            <col width="30">
+                                        </colgroup>
+                                        <tbody>
+                                            <tr *ngFor = "let com of customerList" (click)="fnSelectCom(com)"
+                                                [ngClass]="{'active':activeCustomer && com.id == activeCustomer.id}" tableTitle>
+                                                <!--企业名称-->
+                                                <td class="customer-content">
+                                                    <i class="iconfont_common common-gou1 isCheck"></i>
+                                                    {{com.name}}
+                                                </td>
+                                                <!--企业负责人-->
+                                                <td class="customer-content">
+                                                    {{com.user_name}}
+                                                </td>
+                                            </tr>                    
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <app-riccio-spinners [type]="loadingType" class="spinner"
+                                                    [emptyText]="'没有查询到符合条件的记录'"></app-riccio-spinners>
+                                <app-riccio-paginations
+                                                    [total]="comsTotal"
+                                                    (pageValue)="fnPagination($event)"></app-riccio-paginations>
+                            </div>
+                            <button class="gr-btn gr-btn-primary addBtn" 
+                                (click)="fnAddExCom()"
+                                [disabled]="!activeCustomer && submitBtn.status">{{submitBtn.text}}</button>
+                        </div>
+                    </div>
+                    <form class="gr-form-horizontal opCustomerForm" 
+                        *ngIf="addTypes == 1"
+                        [@heightScroll]="'in'"
+                        [formGroup]="customerOpForm" 
+                        (ngSubmit)="fnOpCustomer()">
+                        <span class="title">企业信息</span>
+                        <div class="form-group f-i">
+                            <label class="control-label color666 label-required col-gr-2">
+                                企业名称
+                            </label>
+                            <div class="control-panel col-gr-10">
+                                <input name="company_name" class="form-control" autocomplete="off" placeholder="请输入企业名称" 
+                                    [formControl]="ctrlKeys.company_name" [(ngModel)]="customerOpData.company_name"
+                                    [ngClass]="{'danger':!ctrlKeys.company_name.valid && ctrlKeys.company_name.touched}">
+                            </div>
+                        </div>
+                        <div class="form-group f-i f-select">
+                            <label class="control-label color666 col-gr-2">
+                                    企业行业
+                            </label>
+                            <div class="control-panel col-gr-10" (click)="showComInd(showInd)" #showInd>
+                                <div class="form-control" [ngClass]="{'selectDef':!companyShow.industry}">
+                                    {{companyShow.industry?companyShow.industry:'请选择企业行业'}}
+                                    <i class="down iconfont_bsby bsby-down"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group f-i f-select">
+                            <label class="control-label color666 col-gr-2">
+                                    企业规模
+                            </label>
+                            <div class="control-panel col-gr-10" (click)="showComScale(showScale)" #showScale>
+                                <div class="form-control" [ngClass]="{'selectDef':!companyShow.scale}">
+                                    {{companyShow.scale?companyShow.scale:'请选择企业规模'}}
+                                    <i class="down iconfont_bsby bsby-down"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group f-i f-select f-pos">
+                            <label class="control-label color666 col-gr-2">
+                                    企业地址
+                            </label>
+                            <div class="control-panel col-gr-10">
+                                <div class="pos form-control" [ngClass]="{'selectDef':!companyShow.location.province}"
+                                    (click)="showComProvince(showProvince)" #showProvince>
+                                    {{companyShow.location.province?companyShow.location.province:'请选择省'}}
+                                    <i class="down iconfont_bsby bsby-down"></i>
+                                </div>
+                                <div class="pos form-control" [ngClass]="{'selectDef':!companyShow.location. city}"
+                                    (click)="showComCity(showCity)" #showCity>
+                                    {{companyShow.location. city?companyShow.location. city:'请选择市'}}
+                                    <i class="down iconfont_bsby bsby-down"></i>
+                                </div>
+                                <div class="pos form-control" [ngClass]="{'selectDef':!companyShow.location.area}"
+                                    (click)="showComArea(showArea)" #showArea>
+                                    {{companyShow.location.area?companyShow.location.area:'请选择地区'}}
+                                    <i class="down iconfont_bsby bsby-down"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <span class="title">企业负责人信息</span>
+                        <div class="form-group f-i">
+                            <label class="control-label color666 label-required col-gr-2">
+                                手机号
+                            </label>
+                            <div class="control-panel col-gr-10">
+                                <input name="mobile" class="form-control" autocomplete="off" placeholder="请输入手机号" 
+                                    [formControl]="ctrlKeys.mobile" [(ngModel)]="customerOpData.mobile" maxlength="11"
+                                    [ngClass]="{'danger':!ctrlKeys.mobile.valid && ctrlKeys.mobile.touched}">
+                            </div>
+                        </div>
+                        <div class="form-group f-i">
+                            <label class="control-label color666 label-required col-gr-2">
+                                用户名
+                            </label>
+                            <div class="control-panel col-gr-10">
+                                <input name="name" class="form-control" autocomplete="off" placeholder="请输入用户名" 
+                                    [formControl]="ctrlKeys.name" [(ngModel)]="customerOpData.name"
+                                    [ngClass]="{'danger':!ctrlKeys.name.valid && ctrlKeys.name.touched}">
+                            </div>
+                        </div>
+                        <div class="form-group f-i">
+                            <label class="control-label color666 label-required col-gr-2">
+                                密码
+                            </label>
+                            <div class="control-panel col-gr-10">
+                                <input name="password" type="password" class="form-control" autocomplete="off" placeholder="请输入密码" 
+                                    [formControl]="ctrlKeys.password" [(ngModel)]="customerOpData.password"
+                                    [ngClass]="{'danger':!ctrlKeys.password.valid && ctrlKeys.password.touched}">
+                            </div>
+                        </div>
+                        <div class="form-group f-i">
+                            <label class="control-label color666 label-required col-gr-2">
+                                姓名
+                            </label>
+                            <div class="control-panel col-gr-10">
+                                <input name="nickname" class="form-control" autocomplete="off" placeholder="请输入姓名" 
+                                    [formControl]="ctrlKeys.real_name" [(ngModel)]="customerOpData.real_name"
+                                    [ngClass]="{'danger':!ctrlKeys.real_name.valid && ctrlKeys.real_name.touched}">
+                            </div>
+                        </div>
+                        <div class="form-group f-i">
+                            <label class="control-label color666 col-gr-2">
+                                QQ
+                            </label>
+                            <div class="control-panel col-gr-10">
+                                <input name="qq" class="form-control" autocomplete="off" placeholder="请输入qq号" maxlength="11"
+                                    [formControl]="ctrlKeys.qq" [(ngModel)]="customerOpData.qq"
+                                    [ngClass]="{'danger':!ctrlKeys.qq.valid && ctrlKeys.qq.touched}">
+                            </div>
+                        </div>
+                        <div class="form-group f-i">
+                            <label class="control-label color666 col-gr-2">
+                                邮箱
+                            </label>
+                            <div class="control-panel col-gr-10">
+                                <input name="email" class="form-control" autocomplete="off" placeholder="请输入邮箱" 
+                                    [formControl]="ctrlKeys.email" [(ngModel)]="customerOpData.email"
+                                    [ngClass]="{'danger':!ctrlKeys.email.valid && ctrlKeys.email.touched}">
+                            </div>
+                        </div>
+                        <div class="form-group f-status">
+                            <label class="control-label col-gr-2 color666">
+                                性别
+                            </label>
+                            <div class="control-panel col-gr-10">
+                                <input class="gr-radio" name="sex" type="radio" 
+                                    [formControl]="ctrlKeys.sex" [(ngModel)]="customerOpData.sex" [value]=1 /> 男
+                                <input class="gr-radio" name="sex" type="radio" 
+                                    [formControl]="ctrlKeys.sex" [(ngModel)]="customerOpData.sex" [value]=2 /> 女
+                            </div>
+                        </div>
+                
+                        <div class="form-group f-btn col-gr-3 col-gr-ml-2">
+                            <button type="submit" class="gr-btn addBtn" [ngClass]="{'gr-btn-primary':customerOpForm.valid && submitBtn.status}" 
+                                [disabled]="!customerOpForm.valid && submitBtn.status">{{submitBtn.text}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

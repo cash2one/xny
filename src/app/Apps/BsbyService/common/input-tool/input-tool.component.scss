@@ -1,0 +1,73 @@
+@import '../../bsbyService.common.scss';
+@import '../../../../Public/theme/apps-common/variable.scss';
+
+.inputTool{
+    width: 100%;
+    .files{
+        display: inline-block;
+        width: 80%;
+        vertical-align: top;
+        .item{
+            display: inline-block;
+            height: 24px;
+            line-height: 24px;
+            background-color: aliceblue;
+            padding: 0 8px;
+            margin: 4px;
+            border-radius: 5px;
+            position: relative;
+            max-width: 100%;
+            .word{
+                padding: 0 14px 0 0;
+
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                display: inline-block;
+                vertical-align: top;
+                max-width: 100%;
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+            .del{
+                color:$buttonColorDanger;
+                position: absolute;
+                right: 6px;
+            }
+            .icon{
+                position: absolute;
+            }
+            img{
+                width: 18px;
+                height: 18px;
+                position: absolute;
+                top: 3px;
+            }
+        }
+    }
+    .tools{
+        float: right;
+        .tool{
+            background: #fff;
+            border: none;
+            padding: 0 4px;
+            outline: none;
+            cursor: pointer;
+            height: 24px;
+            line-height: 24px;
+            margin: 4px 0px;
+            &:hover{
+                color:$textColorLink;
+            }
+            &[disabled]{
+                color:rgba(0,0,0,0.2);
+            }
+        }
+    }
+}
+.fileUpload{
+    height: 1px;
+    width: 1px;
+    display: inline-block;
+    opacity: 0;
+}

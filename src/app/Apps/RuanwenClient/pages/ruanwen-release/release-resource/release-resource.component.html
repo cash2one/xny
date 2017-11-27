@@ -1,0 +1,173 @@
+<!-- 筛选条件 -->
+<app-release-screen-resource (emitSearchData)="fnEmitSearchData($event)"
+							 [page]="page"
+							 [field]="fieldName"
+							 [sort]="sortName"></app-release-screen-resource>
+
+<!-- 购物车组件 -->
+<app-release-shopping-cart *ngIf = "screenViewType==='init'"></app-release-shopping-cart>
+
+
+<!-- 模态框组件 -->
+<app-riccio-modal>
+	<div body>
+		<app-release-resource-info [infoData]='resourceInfoData'></app-release-resource-info>
+	</div>
+</app-riccio-modal>
+
+<!-- 入口如果是继续选择资源的话就在底部显示完成按钮 -->
+<div class="complete-bottom" *ngIf = "screenViewType==='order'">
+	<button class="gr-btn gr-btn-danger" (click)="fnGoToDelivery()">完成</button>
+</div>
+
+<!-- tip提示zu jian -->
+<app-riccio-popovers [aspect]="'top'">
+  <div #tip>{{popoversText}}</div>
+</app-riccio-popovers>
+
+<!-- 新闻媒体的表格 -->
+<div class="resource-main">
+	
+	<!-- 头部tag切换和搜索组件 -->
+	<app-screen-type-header (emitTag)="fnEmitTag($event)"
+							(emitSearch)="fnEmitSearch($event)"></app-screen-type-header>
+
+	<div class="gr-wrapper-table">
+
+		<div class="wrapper-content">
+			<!-- 所有员工列表 -->
+			<table class="table table-hover gr-table">
+				<colgroup>
+		    		<col width="40">
+		    		<col width="80">
+		    		<col width="60">
+		    		<col width="60">
+		    		<col width="100">
+		    		<col width="80">
+		    		<col width="80">
+		    		<col width="120">
+		    		<col width="60">
+		    	</colgroup>
+				<thead class="hand">
+				    <tr>
+				        <th class="th-checkbox">
+				            <div class="gr-checkbox" (click)="fnAllIsCart('open')">
+					            <span class="gr-checkbox-label {{allIsCheck==false?'':'checked'}}"></span>
+				            </div>
+				        </th>
+				        <th *ngFor="let name of tableTitle">
+				            {{name}}
+				            <a href="javascript:;" class="{{sortObj.price==true?'':'sort'}}" 
+				                *ngIf = "name=='会员价'" (click)="handleSort(name)">
+				            	<i class="iconfont_ruanwen ruanwen-downBlock"></i>
+				            </a>
+				            <a href="javascript:;" class="{{sortObj.genre==true?'':'sort'}}" 
+				                *ngIf = "name=='入口类型'" (click)="handleSort(name)">
+				            	<i class="iconfont_ruanwen ruanwen-downBlock"></i>
+				            </a>
+				            <a href="javascript:;" class="{{sortObj.connect==true?'':'sort'}}" 
+				                *ngIf = "name=='连接分类'" (click)="handleSort(name)">
+				            	<i class="iconfont_ruanwen ruanwen-downBlock"></i>
+				            </a>
+				            <a href="javascript:;" class="{{sortObj.news==true?'':'sort'}}" 
+				                *ngIf = "name=='新闻源'" (click)="handleSort(name)">
+				            	<i class="iconfont_ruanwen ruanwen-downBlock"></i>
+				            </a>
+				        </th>
+				    </tr>
+				</thead>
+			</table>
+			<div class="wrapper-table" *ngIf = "spinnerType=='hide'">
+				<table class="table table-hover gr-table">
+					<colgroup>
+			    		<col width="40">
+			    		<col width="80">
+			    		<col width="60">
+			    		<col width="60">
+			    		<col width="100">
+			    		<col width="80">
+			    		<col width="80">
+			    		<col width="120">
+			    		<col width="60">
+			    	</colgroup>
+					<tbody id="undetails">
+					    <tr *ngFor = "let list of mediaItem">
+					        <td class="td-checkbox">
+					            <div class="gr-checkbox" (click)="fnAddOrDelShoppingCart(list)">
+					            	<span class="gr-checkbox-label {{list.is_cart==0?'':'checked'}}"></span>
+					            </div>
+					        </td> 
+					        <td class="customer-content">
+							{{list.media_name}}
+					        </td>
+					        <td class="customer-content">
+							{{list.media_type}}
+					        </td>
+					        <td class="customer-content">
+							{{list.media_inlevel_name}}
+					        </td>
+					        <td class="customer-content" >
+							   <span class="content-price">¥{{list.media_price}}</span>
+					        </td>
+					        <td class="customer-content" >
+							{{list.media_url}}
+					        </td>
+					        <td class="customer-content" >
+							{{list.media_news_name}}
+					        </td>
+					        <td class="customer-content" title="{{list.media_memo}}">
+							{{list.media_memo}}
+					        </td>
+					        <td class="td-status">
+					        	<div class="table-edit">
+					        		<ul>
+					        			<li>
+					        				<a href="javascript:;" 
+											   (mouseenter)="popoversText='查看详情'"
+											   [riccioPopovers]='tip'
+					        				   (click)="fnShowInfo(list)">
+					        					<i class="iconfont_ruanwen ruanwen-ZHicon-"></i>
+					        				</a>
+					        			</li>
+					        			<li>
+					        				<a href="javascript:;" 
+											   (mouseenter)="popoversText=list.is_collect==1?'取消收藏':'收藏'"
+											   [riccioPopovers]='tip'
+					        				   (click)="fnIsCollect(list)">
+					        					<i class="iconfont_ruanwen  {{list.is_collect==1?'ruanwen-shitidian- text-00c1de':'ruanwen-shoucang'}}"></i>
+					        				</a>
+					        			</li>
+					        			<li>
+					        				<a href="javascript:;" 
+											   (mouseenter)="popoversText=list.is_back==0?'拉黑':'取消拉黑'"
+											   [riccioPopovers]='tip'
+					        				   (click)="fnBlack(list)">
+					        					<i class="iconfont_ruanwen  {{list.is_back==0?'ruanwen-yanjing':'ruanwen-lahei'}}" [ngStyle]="{'color':list.is_back==0?'#aaa':'#00c1de'}"></i>
+					        				</a>
+					        			</li>
+					        			<li>
+					        				<a href="javascript:;" 
+											   (mouseenter)="popoversText=list.is_cart==0?'加入购物车':'从购物车移除'"
+											   [riccioPopovers]='tip'
+					        				   (click)="fnAddOrDelShoppingCart(list)">
+					        					<i class="iconfont_ruanwen ruanwen-gouwuche" [ngStyle]="{'color':list.is_cart==0?'#aaa':'#00c1de'}"></i>
+					        				</a>
+					        			</li>
+					        		</ul>
+					        	</div>
+					        </td>
+					    </tr>
+					    
+					</tbody>
+				</table>
+	
+			</div>
+
+			<app-riccio-spinners [type]='spinnerType' [emptyText]="'暂没有数据'"></app-riccio-spinners>
+
+			<app-riccio-paginations [total]="total" [page]='page' (pageValue)="fnEmitPage($event)"></app-riccio-paginations>
+
+		</div>
+	</div>
+
+</div>

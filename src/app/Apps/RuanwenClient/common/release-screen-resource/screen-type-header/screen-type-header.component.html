@@ -1,0 +1,36 @@
+<div class="header-tag clearfix">
+	<div class="nav-tag f-l">
+		<ul class="tag-ul">
+			<li class="tag-ul-li start {{active=='全部资源'?'active':''}}"
+				(click)="fnEmitTag(0);active='全部资源'">
+				<span>全部资源</span>
+			</li>
+			<li class="tag-ul-li {{active=='收藏资源'?'active':''}}"
+				(click)="fnEmitTag(1);active='收藏资源'">
+				<span>收藏资源</span>
+			</li>
+			<li class="tag-ul-li end {{active=='已拉黑资源'?'active':''}}"
+				(click)="fnEmitTag(2);active='已拉黑资源'">
+				<span>已拉黑资源</span>
+			</li>
+		</ul>
+	</div>
+	<div class="search-media f-l">
+		<form class="gr-form-horizontal c-f">
+			<div class="form-group c-f">
+		        <div class="f-l control-panel col-gr-12">
+		            <input name="mobile"  
+		                   class="form-control col-gr-9" 
+		                   placeholder="请输入媒体名称"
+		                   #searchEl
+		                   style="">
+		            <div class="search-icon col-gr-3" (click)="fnEmitSearchValue(searchEl.value)">
+			        	<span>
+			        		<i class="iconfont_ruanwen ruanwen-sousuo"></i>
+			        	</span>
+			        </div>
+		        </div>
+		    </div>
+		</form>
+	</div>
+</div>

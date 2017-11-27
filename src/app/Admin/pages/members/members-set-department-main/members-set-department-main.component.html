@@ -1,0 +1,32 @@
+<div class="">
+
+	<div class="nav-tree-content">
+
+		<div class="tree-content-view" 
+			 *ngIf = "DeparmentListData.length; else Treeloading">
+			<div class="tree-content-view-done">
+				<app-riccio-tree [tree] = 'DeparmentListData'
+								 [children] = "'chilren'"
+								 [name] = "'name'"
+								 [icon]  = "'common-fangwuleixing- color999'"
+								 (parentData) = "CallTreeData($event)"></app-riccio-tree>	
+			</div>			
+		</div>
+		<ng-template #Treeloading>
+		    <div class="loading-indicator">
+		        <div class="hor-center">
+		            <h4 class="ng-binding">
+		                正在努力加载中，请稍候
+		                <div class="loading-ellipsis">
+		                    <div class="bounce1"></div>
+		                    <div class="bounce2"></div>
+		                  <div class="bounce3"></div>
+		                </div>
+		            </h4>
+		        </div>
+		    </div>
+		</ng-template>
+
+	</div>
+
+</div>

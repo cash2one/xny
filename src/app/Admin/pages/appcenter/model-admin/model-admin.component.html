@@ -1,0 +1,75 @@
+  <div class="modal-content">
+	<div class="module-header">
+		<div class="breadcrumb">
+			<app-riccio-breadcrumb
+				[iconfont]="'iconfont_admin admin-guanli'"
+				[breadData]="breadData"></app-riccio-breadcrumb>
+		</div>
+	</div>
+	<div id="app-container" class="container">
+	    <div class="app">
+	        <div class="app-inner clearfix">
+	            <div class="app-init-container">
+	                <div id="js-app-content" class="app__content ump-dashboard">
+
+	                    <div class="application-list" style="display: block;">
+	                    	<span class="list-title">基本配置</span>
+	                        <ul class="clearfix">
+
+	                            <li class="application-item" style="width: 236.25px;">
+	                                <a href="javascript:;" (click)="FnGoModel('menu','菜单管理')">
+	                                    <div class="application-logo">
+	                                        <span class="application-background background-blue">
+	                                        	<i class="iconfont_admin  admin-liebiao"></i>
+	                                        </span>
+	                                    </div>
+	                                    <div class="application-name">菜单管理</div>
+	                                    <div class="application-desc">
+	                                        菜单节点管理
+	                                    </div>
+	                                </a>
+	                            </li>
+
+	                            <li class="application-item" style="width: 236.25px;">
+	                                <a href="javascript:;" (click)="FnGoModel('auth','权限管理')">
+	                                    <div class="application-logo">
+	                                        <span class="application-background background-blue">
+	                                        	<i class="iconfont_admin  admin-crmrole"></i>
+	                                        </span>
+	                                    </div>
+	                                    <div class="application-name">权限管理</div>
+	                                    <div class="application-desc">
+	                                        控制总控制中心的使用权限
+	                                    </div>
+	                                </a>
+	                            </li>
+
+	                        </ul>
+	                    </div>
+
+
+						<div class="application-list" style="display: block;">
+	                    	<span class="list-title">人员管理</span>
+	                        <ul class="clearfix">
+
+	                            <li class="application-item" style="width: 236.25px;">
+	                                <a href="javascript:;" (click)="FnGoModel('user','人员管理')">
+	                                    <div class="application-logo">
+	                                        <span class="application-background background-origin">
+	                                        	<i class="iconfont_admin  admin-qiye"></i>
+	                                        </span>
+	                                    </div>
+	                                    <div class="application-name">人员管理</div>
+	                                    <div class="application-desc">
+	                                        绑定人员等操作
+	                                    </div>
+	                                </a>
+	                            </li>
+	                        </ul>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>

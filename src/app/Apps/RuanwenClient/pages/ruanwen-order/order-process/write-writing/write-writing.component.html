@@ -1,0 +1,19 @@
+<!-- 模态框组件 -->
+<app-riccio-modal>
+	<div body>
+		<app-order-write-ruanwen-info [info]="orderRuanwenInfo"></app-order-write-ruanwen-info>
+	</div>
+</app-riccio-modal>
+
+
+<div class="writing-main">
+	
+	<!-- 代写订单详情信息 -->
+	<app-order-write-info [content]="orderInfoContent"></app-order-write-info>
+
+	<!-- 代写订单的媒体列表 -->
+	<app-order-write-ruanwen-list [writeRuanwenItem]="orderWriteRuanwenList"
+								  [orderId]="orderId"
+								  (emitData)="fnEmitRuanwenInfo($event)"></app-order-write-ruanwen-list>
+
+</div>

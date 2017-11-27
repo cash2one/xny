@@ -1,0 +1,93 @@
+@import '../../../../Public/theme/apps-common/variable.scss';
+
+$tabBg:#e4e4e4;
+.opSite{
+    .f-select{
+        .selectDef{
+            color:#a2a2a2;
+        }
+        .form-control{
+            cursor: pointer;
+            line-height: 36px;
+            padding: 0px;
+            padding-left: 16px;
+        }
+        .control-label{
+            vertical-align: top;
+        }
+        .down{
+            color:#999;
+            float: right;
+            margin-right: 8px;
+            height: 36px;
+            line-height: 36px;
+        }
+    }
+    .tab{
+        margin: 0 10px 20px 10px;
+        background-color: rgba(0,0,0,0.4);
+        background-color: $tabBg;
+        .tabCommon{
+            cursor: pointer;
+            height: 34px;
+            line-height: 34px;
+            text-align: center;
+            width: 50%;
+            display: inline-block;
+            position: relative;
+            &.active{
+                background-color: $textColorLink;
+                color:#fff;
+            }
+        }
+        .tabBase{
+            float: left;
+            &.active{
+                &:before{
+                    content: '';
+                    position: absolute;
+                    top: 0px;
+                    bottom: 0px;
+                    right: -20px;
+                    border-top: 17px solid transparent;
+                    border-right: 0px solid transparent;
+                    border-bottom: 17px solid transparent;
+                    border-left: 20px solid $textColorLink;
+                }
+            }
+        }
+        .tabInfo{
+            &.active{
+                &:before{
+                    content: '';
+                    position: absolute;
+                    top: 0px;
+                    bottom: 0px;
+                    left: -20px;
+                    border-top: 17px solid $textColorLink;
+                    border-right: 0px solid $textColorLink;
+                    border-bottom: 17px solid $textColorLink;
+                    border-left: 20px solid $tabBg;
+                }
+            }
+        }
+    }
+    .opSiteForm{
+        &.hidden{
+            display: none;
+        }
+        .control-panel{
+            .p-select{
+                position: absolute;
+                top: 0px;
+                height: 40px;
+                line-height: 40px;
+                left: 30px;
+            }
+            .input-select{
+                color:transparent;
+                color:#fbfbfb;
+            }
+        }
+    }
+}

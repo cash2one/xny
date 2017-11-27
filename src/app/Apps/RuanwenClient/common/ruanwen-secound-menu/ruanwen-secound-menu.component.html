@@ -1,0 +1,27 @@
+<div class="gr-secound-menu {{openCollapse===true?'':'width0'}}">
+	
+	<div class="menu-main">
+		<div class="menu-title">
+			<span>{{title}}</span>
+		</div>
+		<div class="menu-list">
+			<ul class="menu-ul">
+				<li class="menu-ul-li" *ngFor = "let list of menuList" routerLinkActive="active">
+					<a href="javascript:;" routerLink="{{list.url}}"><i class="iconfont_ruanwen {{list.fonticon}}"></i>{{list.name}}</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="viewFramework-product-navbar-collapse {{openCollapse===true?'':'active'}}">
+			<div class="product-navbar-collapse-inner">
+			    <div class="product-navbar-collapse-bg"></div>
+			    <div class="product-navbar-collapse" (click)="openCollapse=!openCollapse">
+				    <span class="">
+				    	<i class="iconfont_ruanwen ruanwen-collapse-right"></i>
+				    </span>
+			    </div>
+			</div>
+		</div>
+	</div>
+
+</div>

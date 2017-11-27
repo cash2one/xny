@@ -1,0 +1,81 @@
+<div body class="siteAccountEdit">
+    <form class="gr-form-horizontal siteAccountEditForm" 
+        [formGroup]="accountForm"
+        (ngSubmit)="fnPostSite()">
+        <div class="form-group f-i">
+            <label class="control-label color666 label-required col-gr-2">
+                后台地址
+            </label>
+            <div class="control-panel col-gr-10">
+                <input name="domain_admin" class="form-control" autocomplete="off" placeholder="请输入网站后台地址"
+                    [formControl]="ctrlAccount.domain_admin" [(ngModel)]="accountPostData.domain_admin"
+                    [ngClass]="{'danger':!ctrlAccount.domain_admin.valid && ctrlAccount.domain_admin.touched}">
+            </div>
+        </div>
+        <div class="form-group f-i">
+            <label class="control-label color666 label-required col-gr-2">
+                后台账号
+            </label>
+            <div class="control-panel col-gr-10">
+                <input name="domain_user" class="form-control" autocomplete="off" placeholder="请输入网站后台账号"
+                    [formControl]="ctrlAccount.domain_user" [(ngModel)]="accountPostData.domain_user"
+                    [ngClass]="{'danger':!ctrlAccount.domain_user.valid && ctrlAccount.domain_user.touched}">
+            </div>
+        </div>
+        <div class="form-group f-i">
+            <label class="control-label color666 label-required col-gr-2">
+                后台密码
+            </label>
+            <div class="control-panel col-gr-10">
+                <input type="password" name="domain_password" class="form-control" autocomplete="off" placeholder="请输入网站后台密码"
+                    [formControl]="ctrlAccount.domain_password" [(ngModel)]="accountPostData.domain_password"
+                    [ngClass]="{'danger':!ctrlAccount.domain_password.valid && ctrlAccount.domain_password.touched}">
+            </div>
+        </div>
+        <div class="form-group f-i">
+            <label class="control-label color666 col-gr-2">
+                FTP地址
+            </label>
+            <div class="control-panel col-gr-10">
+                <input name="ftp_address" class="form-control" autocomplete="off" placeholder="请输入网站FTP地址"
+                    [formControl]="ctrlAccount.ftp_address" [(ngModel)]="accountPostData.ftp_address"
+                    [ngClass]="{'danger':!ctrlAccount.ftp_address.valid && ctrlAccount.ftp_address.touched}">
+            </div>
+        </div>
+        <div class="form-group f-i">
+            <label class="control-label color666 col-gr-2">
+                FTP端口
+            </label>
+            <div class="control-panel col-gr-10">
+                <input name="ftp_port" class="form-control" autocomplete="off" placeholder="请输入网站FTP端口"
+                    [formControl]="ctrlAccount.ftp_port" [(ngModel)]="accountPostData.ftp_port"
+                    [ngClass]="{'danger':!ctrlAccount.ftp_port.valid && ctrlAccount.ftp_port.touched}">
+            </div>
+        </div>
+        <div class="form-group f-i">
+            <label class="control-label color666 col-gr-2">
+                FTP账号
+            </label>
+            <div class="control-panel col-gr-10">
+                <input name="ftp_user" class="form-control" autocomplete="off" placeholder="请输入网站FTP账号"
+                    [formControl]="ctrlAccount.ftp_user" [(ngModel)]="accountPostData.ftp_user"
+                    [ngClass]="{'danger':!ctrlAccount.ftp_user.valid && ctrlAccount.ftp_user.touched}">
+            </div>
+        </div>
+        <div class="form-group f-i">
+            <label class="control-label color666 col-gr-2">
+                FTP密码
+            </label>
+            <div class="control-panel col-gr-10">
+                <input type="password" name="ftp_password" class="form-control" autocomplete="off" placeholder="请输入网站FTP密码"
+                    [formControl]="ctrlAccount.ftp_password" [(ngModel)]="accountPostData.ftp_password"
+                    [ngClass]="{'danger':!ctrlAccount.ftp_password.valid && ctrlAccount.ftp_password.touched}">
+            </div>
+        </div>
+        <div class="form-group f-btn col-gr-3 col-gr-ml-2">
+            <button type="submit" class="gr-btn gr-btn-primary" [disabled]="!accountForm.valid || !submitBtn.status">
+                {{submitBtn.text}}
+            </button>
+        </div> 
+    </form> 
+</div>

@@ -1,0 +1,266 @@
+<div class="openBox-Main"
+	 (click)="CloseBack()"
+     style="z-index: 150"></div>
+<div class="openBox-Main" 
+     *ngIf = "createList.isShow" 
+     (click)="createList.isShow = !createList.isShow"></div>
+<div class="openBox-Main" 
+     *ngIf = "createTask.isShow" 
+     (click)="createTask.isShow = !createTask.isShow"></div>
+
+
+
+<div class="user-details" [@rightIn]="'in'">
+	<div class="content-title">
+		<span>{{ DetailsData.name }}</span>
+        <a href="javascript:;" class="f-r" (click)="CloseBack()">
+            <i class="iconfont_admin  admin-iconfontcha"></i>
+        </a>
+	</div>
+		<div class="main-body-center module-wrapper">
+            <div class="module-body">
+	            <div class="module-body-list">
+                <div class="task-board" [dragula]='"sixth-bag"'>
+                    
+                    <!-- 任务列表主体开始 -->
+                    <div class="task-board-wrapper" *ngFor = "let items of tagList" id="{{items.id}}">
+                        <div class="entry-wrapper">
+                            <div class="entry-item">
+                                <div class="entry-header">
+                                    <div>
+                                    	<span *ngIf="!(TasksTagTeam.isShow&&TasksCatId==items.id)">
+	                                        
+                                            <span class="entry-title pbox-trigger" 
+                                                  (click)="FneditTag(items)">{{items.name}}</span>
+
+	                                        <span class="ignore-elm pbox-trigger action">
+	                                        	<a href="javascript:;" class="black" (click)="FneditTag(items)"><i class="iconfont_admin  admin-bianji"></i></a>
+	                                                &nbsp;
+	                                            <a href="javascript:;" class="black" (click)="FnTaskTagDelete($event,items.id)" ><i class="iconfont_admin  admin-shanchu"></i></a>
+	                                        </span>                                    		
+
+                                    	</span>
+
+
+
+                                        <div class="title-editor"
+					                         *ngIf="TasksTagTeam.isShow&&TasksCatId==items.id">
+					                        <div class="form-group">
+                                                <form class="form-horizontal c-f">
+    					                            <input  class="form-control" 
+    					                                    placeholder="输入列表名称" 
+    					                                    rows="1" 
+    					                                    style="word-wrap: break-word;resize: horizontal;height: 34px;"
+    					                                    #textTagTitle
+    					                                    value="{{items.name}}"
+                                                            (blur)="FnEditTagName($event,textTagTitle.value,items)"
+    					                                    >
+                                                </form>
+					                        </div>
+					                        <button class="btn btn-primary" 
+					                            id='TagChange' 
+					                            [disabled]="TasksTagTeam.text.disabled"
+					                            (click)="FnEditTagName($event,textTagTitle.value,items.name)">
+					                            {{TasksTagTeam.text.buttonText}}
+					                        </button>
+					                        <button class="btn btn-link"(click)="TasksTagTeam.isShow = !TasksTagTeam.isShow" >取消</button>
+					                    </div>
+
+
+
+
+                                        <div class="progressbar-container">
+                                            <span>
+                                                <b class="pedding-num">0/</b>{{items.temlist.length}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="entry-tasks" id="{{items.id}}" >
+                                    <div class="entry-tasks-cont" [dragula]='"another-bag"'>
+                                        <!-- 任务卡片 -->
+                                        <div class="task-card slide-trigger pbox-trigger c-f"
+                                         *ngFor="let list of items.temlist" id="{{list.id}}"
+                                         (mousedown)='FnNoweTasks(list)'>
+                                            <div class="task-main">
+                                                 
+                                                <span *ngIf="!(TasksTitleData.isShow&&list.id==TasksId)">
+                                                	<span class="task-title"
+                                                     (click)="FneditTask(list)" >{{list.name}}
+                                                    </span>
+
+                                                	<a href="javascript:;" class="black task-operate" 
+                                                       (click)="FneditTask(list)"><i class="iconfont_admin  admin-bianji"></i></a>
+                                                    &nbsp;
+                                                    <a href="javascript:;" class="black task-operate" 
+                                                       (click)="FnDeleteShow($event,list.id)" ><i class="iconfont_admin  admin-shanchu"></i></a>
+                                                </span>
+    												
+                                                    
+    						                    <div class="title-editor"
+    						                         *ngIf="TasksTitleData.isShow&&TasksId==list.id">
+
+                                                    <form class="form-horizontal c-f">
+                                                        <div class="form-group">
+                                                            <input  class="form-control" 
+                                                                    placeholder="输入任务标题" 
+                                                                    rows="1"
+                                                                    value="{{list.name}}"
+                                                                    #textTasksTitle
+                                                                    (blur)="FnEditCancel()">
+                                                        </div>    
+                                                    </form>
+    						                        
+    						                        <button class="btn btn-primary" 
+    						                            id='SaveChange' 
+    						                            (click)="FnSaveEditName($event,textTasksTitle.value,list)"
+    						                            [disabled]="TasksTitleData.text.disabled">
+    						                            {{TasksTitleData.text.buttonText}}
+    						                        </button>
+    						                        <button class="btn btn-link" (click)="FnEditCancel()">取消</button>
+    						                    </div>
+
+                                            </div>
+
+                                            <span class="task-badge task-priority">
+                                            	<i class="iconfont_admin  xm-priority-o"></i> 
+                                            </span>
+
+                                            <div class="task-summary clearfix">
+                                                
+                                            </div>
+                                            <div class="task-summary clearfix">
+                                            </div>
+                                        </div>
+
+                                        <!-- 任务卡片结束 -->
+                                    </div>
+                                    
+                                 
+
+                                </div>
+
+		                        <div class="task-create" *ngIf = "createTask.isShow&&items.id==TasksCatId">
+		                            
+		                            <form class="form-horizontal">
+		                                <div class="form-group">
+		                                    <input class="form-control" 
+		                                           autofocus  
+		                                           #createTask
+		                                           [class.danger]="createTask.error">
+		                                </div>
+		                                <div class="form-group">
+		                                    <button type="submit" 
+		                                            class="btn btn-primary"
+		                                            (click)="FnCreateCatTask(createTask.value)"
+		                                            [disabled]="createList.buttonStyle.disabled">
+		                                            确定
+		                                    </button> 
+		                                    <a class="btn btn-link fs-14" 
+		                                       (click)="Fncancel()">取消</a>
+		                                </div>
+		                            </form>
+
+		                        </div>
+
+
+                                <!-- 添加新任务按钮 -->
+                                <div class="entry-footer"  *ngIf="!(addCatTask&&items.id==TasksCatId)">
+                                    <a href="javascript:;" class="btn-add fs-14" (click)="FnAddCatTask(items)">
+                                        <i class="iconfont_admin  admin-add"></i> 
+                                        添加新任务
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 任务列表主体结束 -->
+
+                    <div class="ignore-item entry-new form-horizontal" 
+                         style="z-index: 100" >
+                        
+                        <div *ngIf = "createList.isShow">
+                            
+                            <form>
+                                <div class="form-group">
+                                    <input class="form-control" 
+                                           autofocus 
+                                           id="createList"
+                                           #TextCreate
+                                           [class.danger]="createList.error">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" 
+                                            class="btn btn-primary"
+                                            (click)="FnCreateTasksCat(TextCreate.value)"
+                                            [disabled]="createList.buttonStyle.disabled">
+                                            {{createList.buttonStyle.buttonText}}
+                                    </button> 
+                                    <a class="btn btn-link fs-14" 
+                                       (click)="createList.isShow = !createList.isShow">取消</a>
+                                </div>
+                            </form>
+
+                        </div>	
+
+
+                        <div class="link-panel">
+                            <a href="javascript:;" class="btn-add fs-14" (click)="FnAddTaskCatList('#createList')">
+                               <i class="iconfont_admin  admin-add"></i>新建列表
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="task-board" id="scrollContainer"></div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<div class="pbox pbox-open" 
+     *ngIf = "ShowDelete.isShow"
+     #deleteElm
+     [ngStyle]="{'left':ShowDelete.position.left+'px','top':ShowDelete.position.top+'px'}">
+    <ul class="pop-menu">
+
+             <div class="pbox-header">
+                <h3 class="pbox-title">确认删除?</h3>
+            </div>
+            <div class="sure-card pbox-body w-360">
+                <p class="">删除后不可恢复，确定要删除该任务吗？</p>
+                        <button type="button" 
+                        class="btn btn-danger"
+                   
+                        (click)="FnDeleteTask()">删除</button> 
+                <a class="btn btn-link" (click)="ShowDelete.isShow = !ShowDelete.isShow">取消</a>
+            </div>
+
+    </ul>
+</div>
+
+
+<div class="pbox pbox-open" 
+     *ngIf = "TaskTeamDelete.isShow"
+     #TagdeleteElm
+     [ngStyle]="{'left':TaskTeamDelete.position.left+'px','top':TaskTeamDelete.position.top+'px'}">
+    <ul class="pop-menu">
+
+             <div class="pbox-header">
+                <h3 class="pbox-title">确认删除?</h3>
+            </div>
+            <div class="sure-card pbox-body w-360">
+                <p class="">删除后不可恢复，确定要删除该列表吗？</p>
+                        <button type="button" 
+                        class="btn btn-danger"
+                   
+                        (click)="FnDeleteTaskTag()">删除</button> 
+                <a class="btn btn-link" (click)="TaskTeamDelete.isShow = !TaskTeamDelete.isShow">取消</a>
+            </div>
+
+    </ul>
+</div>

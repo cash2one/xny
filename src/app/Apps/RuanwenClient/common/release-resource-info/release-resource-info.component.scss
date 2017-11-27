@@ -1,0 +1,26 @@
+.info-main{
+	ul.info-ul{
+		padding: 0 20px;
+		li.info-ul-li{
+			height: 50px;
+			line-height: 50px;
+			.title{
+				display: inline-block;
+				margin-right: 20px;
+				font-weight: bolder;
+			}
+			.text{
+				display: inline-block;
+				margin-right: 20px;
+			}
+			.left{
+				float:left;
+				width: 50%;
+			}
+			.right{
+				float:right;
+				width: 50%;
+			}
+		}
+	}
+}

@@ -1,0 +1,62 @@
+<div class="modal-body">
+
+    <div class="select-member-area">
+        <div class="row select-member-panel">
+            <div class="member-all">
+			
+                <div class="member-panel-header"><span class="">请选择成员</span></div>
+
+                <div class="member-panel-body">
+					<div class="search-container">
+                        <div class="search-area-modal">
+                        	<i class="iconfont_console console-search1"></i>
+                            <input type="text"
+                                   name="searchName"
+                                   [(ngModel)]="membersName"
+                                   (ngModelChange)="searchMembers(membersName)"
+                                   placeholder="请输入员工姓名或员工编号" 
+                                   class="" 
+                                   style=""
+                                   #term>
+                        </div>
+                    </div>
+                    <ul *ngIf = "!loading">
+                        <li class="member"
+                            *ngFor = "let list of membersList"
+                            (click)="fnEmitTransferData(list)">
+                            <div class="xm-avatar xm-avatar-30 " 
+                                 title="星牛云" 
+                                 member="member" 
+                                 size="30" 
+                                 name="true">
+                                <span class="xm-avatar-def" 
+                                      style="background-color: rgb(239, 123, 164);">
+                                    <div class="ng-binding">
+                                        {{list.sliceName}}
+                                    </div>
+                                </span>
+                                <div class="xm-avatar-name">{{list.name}}</div>
+                            </div>
+                            <span class="btn-link-remove f-r">
+                                  <i class="iconfont_console "></i>
+                            </span>
+                        </li>
+                    </ul>                       
+                    <div class="loading-indicator" *ngIf = "loading">
+                        <div class="hor-center">
+                            <h4 class="ng-binding">
+                                正在努力加载中，请稍候
+                                <div class="loading-ellipsis">
+                                    <div class="bounce1"></div>
+                                    <div class="bounce2"></div>
+                                  <div class="bounce3"></div>
+                                </div>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

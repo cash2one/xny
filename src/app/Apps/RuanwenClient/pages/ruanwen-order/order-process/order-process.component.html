@@ -1,0 +1,12 @@
+<div class="gr-content-right">
+	
+	<app-release-top-navbar></app-release-top-navbar>
+
+	<app-release-path-navbar [activeRouter]="activeRouter"
+							 [itemData]="pathNavbar"></app-release-path-navbar>
+
+	<div class="release-router-content">
+		<router-outlet></router-outlet>
+	</div>
+
+</div>

@@ -1,0 +1,17 @@
+.breadcrumb{
+    ul{
+        li{
+            font-size: 14px;
+            a,
+            .title-color{
+                padding: 0 8px;
+            }
+        }
+    }
+}
+
+.breadcrumb,
+ul,
+li{
+    display: inline-block;
+}

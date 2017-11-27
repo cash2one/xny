@@ -1,0 +1,90 @@
+.Details-main{
+	position: absolute;
+    right: 0;
+    bottom: 0;
+    top: 70px;
+    background-color: #fff;
+    z-index: 1;
+    min-width: 585px;
+    box-shadow: -2px 0 3px rgba(0, 0, 0, 0.1);
+    .closeBox{
+        position: absolute;
+        left: -30px;
+        top: 50%;
+        width: 30px;
+        height: 40px;
+        background: #fff;
+        z-index: 1;
+        border-radius: 5px 0 0 5px;
+        box-shadow: -5px 0 10px rgba(0,0,0,0.1);
+        margin: -20px 0 0;
+        text-align: center;
+        line-height: 40px;
+        color: #666;
+        cursor: pointer;
+    }
+    .details-head{
+	    padding: 20px 20px 0px;
+	    .head-top{
+    	    overflow: hidden;
+            line-height: 40px;
+            .head-operating{
+                font-size: 12px;
+                & a{
+                    display: inline-block;
+                    margin-right: 10px;
+                }
+            }
+            .avatar{
+                font-size: 16px;
+                line-height: 40px;
+                .thumb{
+                    margin-right: 30px;
+                    display: inline-block;
+                    width: 40px;
+                    height: 40px;
+                    text-align: center;
+                    line-height: 40px;
+                    & i{font-size: 40px}
+                }
+            }
+	    }
+	    .head-neck{
+	    	margin: 15px 0;
+            color: #999;
+            .neck-time{
+                margin-right: 20px;
+                span{
+                    display: inline-block;
+                    margin-right: 10px;
+                }
+            }
+            .neck-number{
+                span{
+                    display: inline-block;
+                    margin-right: 10px;
+                }
+            }
+	    }
+    }
+    .details-content{
+	    margin: 0 0px 0 20px;
+	    padding: 20px 0;
+	    border-top: 1px solid #eee;
+	    line-height: 40px;
+        font-size: 12px;
+        overflow-y: auto;
+        top: 109px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        position: absolute;
+        overflow-x: hidden;
+        ul.item{
+            margin-left: -15px;
+            li.item-li span.title{
+                color: #999;
+            }
+        }
+    }
+}

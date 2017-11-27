@@ -1,0 +1,26 @@
+<div class="gr-menu">
+    <a href="javascript:;" class="shrink" [@shrinkRotate]="menuState" 
+        [ngClass]="{'active':menuState == 'default'}" (click)="fnChangeAnimation()">
+        <i class="iconfont_common common-zuobianjiantou" 
+            [ngClass]="{'common-zuobianjiantou':menuState == 'active','common-youbianjiantou':menuState == 'default'}"></i>
+    </a>
+    <ul class="gr-menu-ul" [@menuWidth]="menuState">
+        <li class="default" [ngClass]="{'de':menuState == 'default'}">
+            <span *ngIf="menuState == 'active'" class="menuTitle" title="{{leftData.title}}">{{leftData.title}}</span>
+            <div class="imgContainer" *ngIf="!isImgError && menuState == 'default'">
+                <img src="{{leftData.logo}}" (error)="imgError()">
+            </div>
+            <span *ngIf = "isImgError && menuState == 'default'" class="imgError"></span>
+        </li>
+        <li class="gr-menu-ul-li" *ngFor="let menu of leftData.menu" [riccioPopovers]='featureTip' routerLinkActive="active" (mouseenter)="featureName = menu.name">
+            <a href="javascript:;" [routerLink]="['./'+menu.url]" (click)="fnEmit(menu)">
+                <i class="iconfont_{{leftData.module}}  {{menu.fonticon}}"></i>
+                <span [@menuName]="menuState">{{menu.name}}</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<app-riccio-popovers  *ngIf="menuState == 'default'" [aspect]="'right'">
+    <div #featureTip>{{featureName}}</div>
+</app-riccio-popovers>

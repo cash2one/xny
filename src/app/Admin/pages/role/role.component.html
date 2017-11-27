@@ -1,0 +1,31 @@
+<div class="site-content">
+    <div class="module-header">
+        <div class="breadcrumb">
+            <app-riccio-breadcrumb
+                [iconfont]="'iconfont_admin admin-guanli'"
+                [breadData]="breadData"></app-riccio-breadcrumb>
+        </div>
+        <!-- <div class="title">
+            <span class="iconfont_admin  admin-guanli"></span>
+            <span class="routerLink" routerLink="/Admin/appcenter/list"> 应用管理 </span>/
+            <span class="routerLink" *ngIf="routerInfo.model === 'Admin'" routerLink="/Admin/appcenter/Admin"> 总控制中心 </span>
+            <span *ngIf="routerInfo.model === 'Admin'">/</span>
+            <span class="routerLink" *ngIf="routerInfo.model === 'Console'" routerLink="/Admin/appcenter/Console"> 企业控制台 </span>
+            <span *ngIf="routerInfo.model === 'Console'">/</span>
+            <span class="title-color"> 权限设置</span>
+        </div> -->
+        <div class="flex-panel">
+            <ul class="nav nav-pills lc-tabs" role="tablist">
+                <li class="rightTab {{RouterActive=='list'?'active':''}}">
+                    <a href="javascript:;" routerLink="list/model/{{routerInfo.model}}/cid/{{routerInfo.cid}}" (click)="RouterActive='list'">成员管理</a>
+                </li>
+                <li class="rightTab {{RouterActive=='management'?'active':''}}">
+                    <a href="javascript:;" routerLink="management/model/{{routerInfo.model}}/cid/{{routerInfo.cid}}" (click)="RouterActive='management'">角色管理</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+	<router-outlet></router-outlet>
+</div>
+

@@ -1,0 +1,65 @@
+<!--<app-riccio-pbox></app-riccio-pbox>-->
+<app-riccio-modal>
+	<div body class="configModal">
+		<!--驳回-->
+		<div class="testBase">
+			<div class="testBody">
+				<form #rejectForm="ngForm">
+					<div class="form-group ft">
+						<label class="control-label color666 label-required">驳回信息</label>
+						<textarea type="text" autocomplete="off" required rows="5" [(ngModel)]="rejectVal"
+								placeholder="请输入需要重新修改的信息" name="reject"></textarea>
+					</div>
+					<div class="send">
+						<button class="gr-btn sendBtn" [disabled]="!rejectForm.form.valid" (click)="rejectAudit()">确认驳回</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</app-riccio-modal>
+
+<div class="tempDetail" 
+	[ngStyle]="{top:confData.top+ 'px'}" 
+	*ngIf="isShow" [@rightIn]="'in'">
+	<div class="detailHead">
+		<div class="titleShow">
+			<span class="title color333">{{detailData.company_name}}</span>
+			<div class="tool">
+				<div class="editOp">
+					<button class="editBtn iconfont_admin admin-tongguo" #passBtn [ngClass]="{'disabled':detailData.status == 2}"
+						(click)="fnPass($event,passBtn)">通过</button>
+				</div>
+				<div class="delOp">
+					<button class="delBtn iconfont_admin admin-bohui" [ngClass]="{'disabled':detailData.status == 2}"
+						(click)="fnReject()">驳回</button>
+				</div>
+				<div class="delOp">
+					<button class="delBtn iconfont_admin admin-more" #moreBtn
+						(click)="fnMore($event,moreBtn)">更多</button>
+				</div>
+			</div>
+		</div>
+		<div class="simpleShow">
+			<span class="color999">申请时间：</span>
+			<span class="color999">{{detailData.created_at}}</span>
+
+			<span class="status" [ngClass]="{'statuYes':detailData.status == 2,'statuNo':detailData.status == 3,'statuLoad':detailData.status == 1}"></span> 
+            <span>{{detailData.status == 1?'审核中':detailData.status == 2?'已通过':'未通过'}}</span>
+		</div>
+	</div>
+	<div class="detailBody">
+        <div class="one" *ngFor="let one of showDetailData">
+			<div class="keyMain color999">
+				<span class="key">{{one.name}} :</span>
+				<span class="subKey" *ngIf="one.subName">{{one.subName}}</span>
+			</div>
+			<div class="valMain">
+				<span *ngIf="!one.isImg" class="val color666">{{detailData[one.flag]}}</span>
+				<img class="showImg" *ngIf="one.isImg" 
+					src="{{detailData[one.flag]}}"
+					(click)="fnShowImg(detailData[one.flag])">
+			</div>
+        </div>
+    </div>
+</div>

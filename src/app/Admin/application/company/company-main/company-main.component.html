@@ -1,0 +1,189 @@
+<!--new-->
+<show-detail></show-detail>
+<app-riccio-modal>
+    <div body [ngSwitch]='modalType'>
+        <ng-template [ngSwitchCase]="'addCom'">
+            <p style="margin-bottom: 20px;">确定将企业 “{{addComName}}” 分配此应用</p>
+        </ng-template>
+    </div>
+</app-riccio-modal>
+<app-riccio-single-members
+    [membersList]="selectComData.data"
+    [isShow]="selectComData.isShow"
+    [header]="'选择企业'"
+    [title]="'企业'"
+    [keyName]="'name'"
+    [placeholder]="'输入企业名称搜寻'"
+    [nextPage]="selectComData.nextPage"
+    (searchValue)="fnSearchSingleCom($event)"
+    (pageValue)="fnMoreCom($event)"
+    (close)="fnSelectComClose()"
+    (emitData)="addCom($event)">
+</app-riccio-single-members>
+<!-- <app-riccio-pbox></app-riccio-pbox> -->
+
+<div class="site-content">
+    <div class="module-header">
+        <div class="breadcrumb">
+            <app-riccio-breadcrumb
+                [iconfont]="'iconfont_admin admin-guanli'"
+                [breadData]="breadData"></app-riccio-breadcrumb>
+        </div>
+        <div class="flex-panel">
+            <ul class="nav nav-pills lc-tabs" *ngIf="routerRule == '1'" role="tablist">
+                <li class="rightTab" *ngFor="let menu of menuRight" routerLinkActive='active'>
+                    <a class="" href="javascript:;" [routerLink]="['/Admin/'+menu.url]">{{menu.name}}</a>
+                </li>
+            </ul>
+            <ul class="nav nav-pills lc-tabs" *ngIf="routerRule == '0'" role="tablist">
+                <li class="mainTab">
+                    <a class="" href="javascript:;">企业管理</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="module-body">
+        <div class="modal-content">
+            <div class="module-header">
+                <div class="title">
+                    <span class="title-w title-active"><a href="javascript:;">企业列表</a></span>
+                </div>
+                <div class="selectUser" *ngIf="routerType!='Console'">
+                    <i class="iconfont_admin  admin-adduser"></i>
+                    <a href="javascript:;" (click)="fnSelectCom()">选择企业</a>
+                </div>
+				<!--<button class="btn addBtn btn-primary btn-sm f-r">添加企业</button>-->
+            </div>
+            <div class="module-body table-scroll-p">
+                <div class="tempList">
+                    <div class="integration-header" *ngIf="routerRule == 0">
+                        <form class="form-horizontal">
+                            <div class="control-panel col-sm-4">
+                                <div class="search-container">
+                                    <input type="input" name='userSearchName' [(ngModel)]="searchParam" class="form-control" placeholder="输入企业名称" autocomplete="false">
+                                </div>
+                            </div>
+							<div class="control-panel col-sm-1">
+								<button class="btn searchBtn btn-primary btn-sm f-r" (click)="fnSearchCom()">搜索</button>
+							</div>
+                        </form>
+                    </div>
+                    <div class="integration-header" *ngIf="routerRule == 1">
+                        <form class="form-horizontal">
+                            <div class="control-panel select-cp col-sm-2">
+                                <i class="down iconfont_admin admin-down1"></i>
+                                <div class="select color666" #rangeBtn (click)="fnRange($event,rangeBtn)">{{rangeVal}}</div>
+                            </div>
+                            <div class="control-panel col-sm-4">
+                                <div class="search-container">
+                                    <input type="input" name='userSearchName' class="form-control" placeholder="输入企业名称" [(ngModel)]="userSearchParams.other"
+                                        autocomplete="false" (keyup)="fnSearchCom($event)" (blur)="fnBlurSearchCom()">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                   
+                    <div class="customer-list">
+                        <!-- 从上侧弹出的组件样式 -->
+                        <div class="flyLeftContent" *ngIf="flyLeftData.isShow" [@flyTop]="'in'">
+                            <div class="content-text">已选择<span>{{flyLeftData.number}}</span>项</div>
+                            <ul class="content-list">
+                                <li *ngFor="let list of flyLeftData.showText">
+                                    <a href="javascript:;" #checkStatu (click)="fnChangeCheck(list.type,checkStatu,$event)">{{list.name}}</a>
+                                </li>
+                            </ul>
+                            <a href="javascript:;" class="f-r up-hide" (click)="fnCheckAll(false)"><span><i class="iconfont_admin  admin-up"></i></span></a>
+                        </div>
+                        <table class="table table-hover lc-table" tableTitle>
+                            <colgroup>
+                                <col width="35">
+                                <col width="50">
+                                <col width="70">
+                                <col width="100">
+                                <col width="100">
+                                <col width="120">
+                                <col width="100">
+                                <col width="50">
+                                <col width="160">
+                            </colgroup>
+                            <thead class="hand table-head">
+                                <tr>
+                                    <th class="checkAll" noTitle>
+                                        <a href="javascript:;" class="customer-check" (click)="fnCheckAll(!allCheck)">
+                                            <i class="iconfont_admin  {{allCheck===false?'admin-check':'admin-check1'}}">
+                                            </i>
+                                        </a>
+                                    </th>
+                                    <th *ngFor="let title of titleArr">
+                                        {{title}}
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <div class="table-scroll">
+                            <table class="table table-hover lc-table">
+                                <colgroup>
+                                    <col width="35">
+									<col width="50">
+									<col width="70">
+									<col width="100">
+									<col width="100">
+									<col width="120">
+									<col width="100">
+									<col width="50">
+									<col width="160">
+                                </colgroup>
+                                 <app-my-loading *ngIf="isLoading"></app-my-loading>
+                                <tbody class="table-body" *ngIf="!isLoading" #clickTb>
+                                    <tr *ngFor="let list of companyList" (click)="fnShowDetail(list)" tableTitle>
+                                        <td class="customer-select" noTitle>
+                                            <a href="javascript:;" class="customer-check" (click)="fnCheckUser(list,$event)">
+                                                <i class="iconfont_admin  {{list['isCheck']===false?'admin-check':'admin-check1'}}">
+                                                </i>
+                                            </a>
+                                        </td>
+                                        <td class="customer-content">
+                                            {{list.id}}
+                                        </td>
+                                        <td class="customer-content">
+                                            <i class="noImg iconfont_admin admin-tu" *ngIf="list.noImg"></i>
+											<img class="logo" *ngIf="!list.noImg" [src]="list.logo" (error)="noImg(list)">
+                                        </td>
+                                        <td class="customer-content">
+                                            {{list.name}}
+                                        </td>
+                                        <td class="customer-content">
+                                            {{list.real_name}}
+                                        </td>
+                                        <td class="customer-content">
+                                            {{list.industry_name}}
+                                        </td>
+                                        <td class="customer-content">
+                                            {{list.scale_name}}
+                                        </td>
+										<td class="customer-content">
+                                            <span class="status" [ngClass]="{'statuYes':list.status == 1,'statuNo':list.status == 2}"></span> 
+                                            {{list.status == 1?'正常':'禁用'}}
+                                        </td>
+
+                                        <td class="customer-level" noTitle>
+                                            <a href="javascript:;" class="approval-action" (click)="fnGoManag('rule',list,$event)">权限管理</a>
+                                            <a href="javascript:;" class="approval-action" (click)="fnGoManag('menu',list,$event)">菜单管理</a>
+                                            <a href="javascript:;" class="approval-action" (click)="fnGoManag('members',list,$event)">成员管理</a>
+                                            <a href="javascript:;" class="approval-action login">登录</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <app-riccio-paginations></app-riccio-paginations>
+                    </div>
+                </div>
+            </div>
+
+            <router-outlet></router-outlet>
+            
+        </div>
+    </div>
+</div>

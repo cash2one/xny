@@ -1,0 +1,125 @@
+<div class="order-list">
+
+	<!-- 列表头部信息 -->
+	<app-ruanwen-list-header [header]="'软文订单'"
+							 [btnText]="'软文发布'"
+							 [searchTitle]="'订单名称'"
+							 [statusTitle]="'发布状态'"
+							 [statusValue]='searchStatus'
+							 (emitSearch)="fnEmitSearch($event)"
+							 (emitBtn) = 'fnEmitListHeaderBtn($event)'></app-ruanwen-list-header>
+
+	<div class="order-main">
+		<div class="gr-wrapper-table">
+
+			<div class="wrapper-content">
+				<!-- 所有员工列表 -->
+				<table class="table table-hover gr-table">
+					<colgroup>
+			    		<col width="100">
+			    		<col width="100">
+			    		<col width="80">
+			    		<col width="80">
+			    		<col width="80">
+			    		<col width="50">
+			    		<col width="80">
+			    	</colgroup>
+					<thead class="hand">
+					    <tr>
+					        <th *ngFor="let name of tableTitle">
+					            {{name}}
+					        </th>
+					    </tr>
+					</thead>
+				</table>
+				<div class="wrapper-table">
+					<table class="table table-hover gr-table" *ngIf = "loadingType=='hide'">
+						<colgroup>
+				    		<col width="100">
+				    		<col width="100">
+				    		<col width="80">
+				    		<col width="80">
+				    		<col width="80">
+				    		<col width="50">
+				    		<col width="80">
+				    	</colgroup>
+						<tbody id="undetails">
+						    <tr *ngFor = "let list of orderItem">
+						        <td class="customer-content">
+								{{list.number}}
+						        </td>
+						        <td class="customer-content">
+								{{list.order_name}}
+						        </td>
+						        <td class="customer-content">
+								{{list.created_at}}
+						        </td>
+						        <td class="customer-content" >
+								{{list.finish_count}}/{{list.total_count}}
+						        </td>
+						        <td class="customer-content" >
+								<em class="text-green">¥ {{list.finish_amount?list.finish_amount:'0.00'}}</em> / ¥ {{list.final_amount}}
+						        </td>
+						        <td class="customer-content" >
+							        <span class="status {{list.status==1
+														  ?'yellow'
+														  :list.status==2
+														  ?'green'
+														  :list.status==3
+														  ?'ash'
+														  :''}}"></span>
+									{{list.status==1
+									  ?'进行中'
+									  :list.status==2
+									  ?'已完成'
+									  :list.status==3
+									  ?'草稿'
+									  :''}}
+						        </td>
+						        <td class="td-status" [ngSwitch]="list.status">
+						        	<a href="javascript:;" 
+						        	   (click)="fnOrderInfo(list)"
+						        	   class="">详情</a>
+
+						        	<ng-template [ngSwitchCase]="1">
+							        	<a href="javascript:;" 
+							        	   class="color999">编辑</a>
+							        	<a href="javascript:;" 
+							        	   class="color999">删除</a>
+						        	</ng-template>
+
+						        	<ng-template [ngSwitchCase]="2">
+							        	<a href="javascript:;" 
+							        	   class="color999">编辑</a>
+							        	<a href="javascript:;" 
+							        	   class="color999">删除</a>
+						        	</ng-template>
+
+						        	<ng-template [ngSwitchCase]="3">
+							        	<a href="javascript:;" 
+							        	   (click)="fnEditOrder(list)"
+							        	   class="">编辑</a>
+							        	<a href="javascript:;" 
+							        	   #deleteEl
+							        	   (click)="fnDelOrder(list,deleteEl,$event)"
+							        	   class="">删除</a>
+						        	</ng-template>
+
+						        </td>
+						    </tr>
+						    
+						</tbody>
+					</table>
+
+					<!-- loading组件 -->
+					<app-riccio-spinners [emptyText]="'无订单数据'"
+										 [type]="loadingType"></app-riccio-spinners>
+				</div>
+
+				<app-riccio-paginations [total]="totalPage" (pageValue)="fnEmitPage($event)"></app-riccio-paginations>
+
+			</div>
+		</div>
+	</div>
+
+</div>

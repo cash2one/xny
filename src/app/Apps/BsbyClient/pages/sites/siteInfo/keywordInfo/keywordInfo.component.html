@@ -1,0 +1,90 @@
+<div class="keywordInfo">
+    <div class="title">
+        <span class="name">关键词当前信息</span>
+    </div>
+    <div class="main">
+        <div class="gr-wrapper-table tableList">
+            <div class="wrapper-content"> 
+                <table class="table table-hover gr-table" tableTitle>
+                    <colgroup>
+                        <col width="50">
+                        <col width="80">
+                        <col width="80">
+                        <col width="80">
+                        <col width="80">
+                    </colgroup>
+                    <thead class="hand">
+                        <tr>
+                            <th *ngFor = "let title of tableTitles">
+                                {{title}}
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+
+                <div class="wrapper-table" *ngIf="loadingType == 'hide'">
+                    <table class="table hover table-hover gr-table">
+                        <colgroup>
+                            <col width="50">
+                            <col width="80">
+                            <col width="80">
+                            <col width="80">
+                            <col width="80">
+                        </colgroup>
+                        <tbody>
+                            <tr *ngFor="let keyword of keywordList" tableTitle>
+                                <td class="customer-content">
+                                    {{keyword.name}}
+                                </td>
+                                <td class="customer-content">
+                                    {{keyword.info?keyword.info.baidu:'-'}}
+                                    <a href="javascript:;" class="approval-action" *ngIf="keyword.info && keyword.info.baidu_snapshot" 
+                                        (click)="showImg(keyword.info.baidu_snapshot)" noTitle>
+                                        [快照]
+                                    </a>
+                                    <a href="javascript:;" class="approval-action color999" *ngIf="!keyword.info || !keyword.info.baidu_snapshot">
+                                        [未更新]
+                                    </a>
+                                </td>
+                                <td class="customer-content">
+                                    {{keyword.info?keyword.info.s360:'-'}}
+                                    <a href="javascript:;" class="approval-action" *ngIf="keyword.info && keyword.info.s360_snapshot" 
+                                        (click)="showImg(keyword.info.s360_snapshot)" noTitle>
+                                        [快照]
+                                    </a>
+                                    <a href="javascript:;" class="approval-action color999" *ngIf="!keyword.info || !keyword.info.s360_snapshot">
+                                        [未更新]
+                                    </a>
+                                </td>
+                                <td class="customer-content">
+                                    {{keyword.info?keyword.info.sougou:'-'}}
+                                    <a href="javascript:;" class="approval-action" *ngIf="keyword.info && keyword.info.sougou_snapshot" 
+                                        (click)="showImg(keyword.info.sougou_snapshot)" noTitle>
+                                        [快照]
+                                    </a>
+                                    <a href="javascript:;" class="approval-action color999" *ngIf="!keyword.info || !keyword.info.sougou_snapshot">
+                                        [未更新]
+                                    </a>
+                                </td>
+                                <td class="customer-content" noTitle>
+                                    <a href="javascript:;" class="approval-action" (click)="fnShowChart(keyword)">
+                                        查看
+                                    </a>
+                                </td>
+                            </tr>                   
+                        </tbody>
+                    </table>
+                </div>
+                <app-riccio-spinners [type]="loadingType" [emptyText]="pageData.emptyText"></app-riccio-spinners>
+                <app-riccio-paginations
+                    [total]="pageData['total']"
+                    (pageValue)="fnPagination($event)"></app-riccio-paginations>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-bsby-service-keyword-chart (searchEmit)="fnSearchChart($event)">
+</app-bsby-service-keyword-chart>
+
+<app-riccio-browse></app-riccio-browse>

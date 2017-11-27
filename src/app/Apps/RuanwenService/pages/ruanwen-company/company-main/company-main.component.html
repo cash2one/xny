@@ -1,0 +1,137 @@
+<app-riccio-pbox *ngIf = "showPbox"></app-riccio-pbox>
+
+<app-riccio-modal>
+	<div body>
+		<app-company-edit-add [companyData]="companyGroup"
+							  [companyId]="companyId"
+							  [type]="editAddType"
+							  (emitClose)="fnEmitCloseEditAdd($event)"
+							  (closeOtherPbox) = "showPbox=$event=='close'?false:true"
+							  (emitSuccess)="$event=='success'?fnGetCompanyItem(searchEl.value):''"></app-company-edit-add>
+	</div>
+</app-riccio-modal>
+
+<div class="company-main">
+	
+	<!-- 头部搜索 -->
+	<div class="header-title clearfix">
+		<div class="title f-l">
+			<span>
+				<i class="iconfont_ruanwen ruanwen-applications"></i>
+			</span>
+			<span>
+				企业中心
+			</span>
+		</div>
+	</div>
+
+	<div class="list-search">
+		
+		<form class="gr-form-horizontal c-f">
+
+			<ul class="search-ul clearfix">
+				<li class="search-ul-li f-l">
+					<div class="form-group c-f">
+				        <label class="f-l control-label t-r">
+				            公司名称
+				        </label>
+				        <div class="f-l control-panel">
+				            <input name="name"  
+				                   class="form-control"
+				                   #searchEl
+				                   [(ngModel)]="searchCompany"
+				                   placeholder="请输入公司名称"   
+				                   style="">
+				        </div>
+				    </div>
+				</li>
+				<li class="search-ul-li f-l">
+					<div class="form-group c-f">
+				        <label class="f-l control-label t-r">
+				            会员组名称
+				        </label>
+				        <div class="f-l control-panel">
+				            <input name="member_name"  
+				                   class="form-control c-p"
+				                   readonly="readonly" 
+				                   #memberEl
+				                   [ngModel]="membersNameSearch"
+				                   (click)="fnShowPboxMembers(memberEl)"
+				                   placeholder="请选择会员组名称"   
+				                   style="">
+				        </div>
+				    </div>
+				</li>
+				<li class="search-ul-li f-l">
+					<button class="gr-btn gr-btn-primary" (click)="fnGetCompanyItem(searchCompany)">搜索</button>
+				</li>
+				<li class="search-ul-li f-r">
+					<button class="gr-btn gr-btn-primary" (click)="fnAddCompany('add')">添加企业会员</button>
+				</li>
+			</ul>
+
+		</form>
+
+	</div>
+
+	<!-- 表格内容 -->
+	<div class="gr-wrapper-table">
+
+		<div class="wrapper-content">
+			<!-- 所有企业列表 -->
+			<table class="table table-hover gr-table">
+				<colgroup>
+		    		<col width="100">
+		    		<col width="100">
+		    		<col width="30">
+		    	</colgroup>
+				<thead class="hand">
+				    <tr>
+				        <th *ngFor="let name of tableTitle">
+				            {{name}}
+				        </th>
+				    </tr>
+				</thead>
+			</table>
+			<div class="wrapper-table">
+				<table class="table table-hover gr-table" *ngIf = "loadingType=='hide'">
+					<colgroup>
+			    		<col width="100">
+			    		<col width="100">
+			    		<col width="30">
+			    	</colgroup>
+					<tbody id="undetails">
+					    <tr *ngFor = "let list of companyItem">
+					        <td class="customer-content" >
+							{{list.company_name}}
+					        </td>
+					        <td class="customer-content" >
+							{{list.member_name}}
+					        </td>
+					        <td class="customer-content" >
+								<a href="javascript:;" (click)="fnAddCompany('edit',list)">
+									编辑
+								</a>
+								<a href="javascript:;"
+								   #delEl 
+								   (click)="fnDelCompany(list,delEl,$event)">
+									删除
+								</a>
+					        </td>
+					    </tr>
+					    
+					</tbody>
+				</table>
+
+				<!-- loading组件 -->
+				<app-riccio-spinners [emptyText]="'无数据'"
+									 [type]="loadingType"></app-riccio-spinners>
+			</div>
+
+			<app-riccio-paginations [total]="pageTotal" (pageValue)="fnEmitPage($event)"></app-riccio-paginations>
+
+		</div>
+	</div>
+
+
+</div>

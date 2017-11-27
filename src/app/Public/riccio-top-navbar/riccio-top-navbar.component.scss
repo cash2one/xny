@@ -1,0 +1,111 @@
+@import "../theme/common/common.scss";
+
+$navHeight:52px;
+.site-top{
+	height: $navHeight;
+    min-height: $navHeight;
+    line-height: $navHeight;
+    padding-right:20px;
+    background-color: #373D41;
+    color: #fff;
+    overflow: hidden;
+    .company-brand{
+        .f-l{
+            height: 100%;
+        }
+    	height: 100%;
+        .company-img{
+            max-width: 180px;
+            min-width: 180px;
+            text-align: center;
+            span.gray{
+                display: inline-block;
+                height: 32px;
+                width: 32px;
+                background-color: rgba(102, 102, 102, 0.51);
+                margin-top: 10px;
+            }
+        }
+    	.company-name{
+            margin-right: 100px;
+            padding-left: 0px;
+        }
+        .company-router{
+            border-left: 1px solid darken(#373D41,3);
+            a{
+                padding: 24px;
+            }
+        }
+        .tool{
+            border-left: 1px solid darken(#373D41,3);
+            height: $navHeight;
+            a{
+                color: #ddd;
+                transition: all .3s;
+                padding: 0 24px;
+                display: inline-block;
+                height: 100%;
+                width: 100%;
+                &:hover{
+                    color: #fff;
+                }
+                span{
+                }
+                .count{
+                    display: inline-block;
+                    border-radius: 5px;
+                    background: #ff9900;
+                    color: #fff;
+                    height: 20px;
+                    line-height: 20px;
+                    padding: 0 6px;
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
+}
+
+//横向导航拦样式
+.gr-nav-transverse{
+    height: 100%;
+    li.nav-li{
+        font-size: 14px;
+        display: inline-block;
+        float: left;
+        padding: 0;
+        a{
+            color: #ddd;
+            &:hover{
+                color: #fff
+            }
+        }
+        &:hover{
+            // height: $navHeight;
+            // border-bottom: 2px solid $textColorLink;
+            background-color: #ff6700;
+            & a{
+                color: #fff;
+            }
+        }
+    }
+    li.company-name-li{
+        // padding: 0;
+        // float: left;
+        // display: inline-block;
+        // font-size: 14px;
+        // a{
+        //     padding: 0;
+        // }
+    }
+}
+
+.companyName{
+    display: inline-block;
+    max-width: 130px;
+    width: 130px;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    padding-right: 0;
+}

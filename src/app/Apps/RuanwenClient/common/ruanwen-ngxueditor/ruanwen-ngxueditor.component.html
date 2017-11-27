@@ -1,0 +1,6 @@
+<ueditor [(ngModel)]="full_source" 
+		  #UedFull
+		 (onReady)="uedOnReady($event)"
+		 (onContentChange)="uedOnChange($event)"
+		 (onDestroy)="uedDestroy()"
+		 [config]="uedConfig"></ueditor>

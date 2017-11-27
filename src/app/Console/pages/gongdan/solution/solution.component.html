@@ -1,0 +1,59 @@
+<div class="submitStepThree">
+  <div class="remind">
+    <div class="remind-header">
+      <span>我的工单提醒：</span>
+      <span>待您反馈（{{feedback}}）</span>
+    </div>
+    <div class="remind-body">
+      <app-submit-step-bar [step]="'3'"></app-submit-step-bar>
+    </div>
+  </div>
+  <div class="issueClassify">
+    <div class="issueClassify-header">
+      <span>
+        请选择您遇到的问题分类
+      </span>
+    </div>
+    <div class="issueClassify-body clear">
+      <ul class="left select">
+        <li class="clear" *ngFor="let problem of lastCat" (click)="chooseClassify(problem.id)" [ngStyle]="{'border-right':problem.id == clickId?'none':'1px solid #eaeaea'}">
+          <span>{{problem.name}}</span>
+          <span>&gt;</span>
+        </li>
+      </ul>
+      <div class="right issueClassifyRight">
+        <div class="clear">
+          <div class="knowledge left">
+            <div class="knowledge-header">
+              解决率最高的{{issueLength}}条热门知识点
+            </div>
+            <ul>
+              <li *ngFor="let issue of issueList"><i class="iconfont_console console-dian"></i>{{issue.title}}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="more">
+          <div class="more-header">
+            你还可以：
+          </div>
+          <ul>
+            <li (click)="newGongdan()">
+              <i class="iconfont_console console-order-add"></i>
+              <div class="words">
+                <div>新建工单</div>
+                <div>专注云平台，汇聚星牛云众多领域专家的智慧，秒极相应，无需等待</div>
+              </div>
+            </li>
+            <li>
+              <i class="iconfont_console console-gongdan"></i>
+              <div class="words">
+                <div>查看帮助手册</div>
+                <div>专注云平台，汇聚星牛云众多领域专家的智慧，秒极相应，无需等待</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

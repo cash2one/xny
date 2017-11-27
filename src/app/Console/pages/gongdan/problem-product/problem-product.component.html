@@ -1,0 +1,51 @@
+<div class="stepOne">
+  <div class="remind">
+    <div class="remind-header">
+      <span>我的工单提醒：</span>
+      <span>待您反馈（{{feedback}}）</span>
+    </div>
+    <div class="remind-body clear">
+      <div class="stepBar">
+        <app-submit-step-bar [step]="'1'"></app-submit-step-bar>
+      </div>
+      <div class="search">
+        <div class="">
+          <div>
+            <input [formControl]="listFilter" type="text" placeholder="请输入关键字" (blur)="blurEvent()">
+            <ul *ngIf="searchListIsShow">
+              <li *ngFor="let searchResult of searchResults" (click)="ask(searchResult.id)">{{searchResult.name}}</li>
+            </ul>
+          </div>
+          <button (click)="searchResult(keywork)" (blur)="blurEvent()">查询</button>
+        </div>
+      </div>
+      <div class="content">
+        <ul class="content-header">
+          <li *ngFor="let problemHead of problemCatHead">
+            <div class="clear">
+              <i [class]= "problemHead.icon ? problemHead.icon: 'iconfont_console console-caiwu'" ></i>
+              <div class="words">
+                <span class="title">{{problemHead.name}}</span>
+                <span class="desc">{{problemHead.desc==""?1:problemHead.desc}}</span>
+              </div>
+              <button (click)="ask(problemHead.id)">提问</button>
+            </div>
+          </li>
+        </ul>
+        <div class="content-body">
+          <ul class="problem-middle">
+            <li class="clear" *ngFor="let problemMiddle of problemCatMiddle">
+              <i [class]="problemMiddle.icon?problemMiddle.icon:'iconfont_console console-yingyong'"></i>
+              <span>{{problemMiddle.name}}</span>
+              <button (click)="ask(problemMiddle.id)">提问</button>
+            </li>
+          </ul>
+          <app-more-product [isShowMore]="isShowMore" [problemBottom]="problemCatBottom" (closeShowMore)="closeMoreHandle($event)"></app-more-product>
+        </div>
+        <div class="content-bottom" *ngIf="isShowMore == false">
+          更多产品与服务问题&nbsp;&nbsp;<i class="iconfont_console console-d-down" (click)="showMore()"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

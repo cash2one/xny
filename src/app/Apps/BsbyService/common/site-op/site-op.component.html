@@ -1,0 +1,187 @@
+<div body class="opSite">
+    <div class="tab">
+        <div class="tabCommon tabBase" 
+            [ngClass]="{'active':formType == 'base'}"
+            (click)="fnNextForm('base')">1.基本信息</div>
+        <div class="tabCommon tabInfo" 
+            [ngClass]="{'active':formType == 'account'}"
+            (click)="fnNextForm('account')">2.账户信息</div>
+    </div>
+    <form class="gr-form-horizontal opSiteForm" 
+            [ngClass]="{'hidden':formType == 'account'}"
+            [formGroup]="baseForm"
+            (ngSubmit)="fnNextForm('account')">
+        <div class="form-group f-i">
+            <label class="control-label color666 label-required col-gr-2">
+                网站地址
+            </label>
+            <div class="control-panel col-gr-10">
+                <input name="domain" class="form-control" autocomplete="off" placeholder="请输入网站地址 例如：“ www.36099.com ”"
+                    [formControl]="ctrlBase.domain" [(ngModel)]="basePostData.domain"
+                    [ngClass]="{'danger':!ctrlBase.domain.valid && ctrlBase.domain.touched}">
+            </div>
+        </div>
+        <div class="form-group f-i f-select">
+            <label class="control-label color666 label-required col-gr-2">
+                竞争程度
+            </label>
+            <div class="control-panel col-gr-10">
+                <div class="form-control" (click)="fnShowCompetitions(showCompetitions)" #showCompetitions
+                    [ngClass]="{'selectDef':!selectShow.competition}">
+                    {{selectShow.competition}}
+                    <i class="down iconfont_bsby bsby-down"></i>
+                </div>
+            </div>
+            </div>
+        <div class="form-group f-i f-select">
+            <label class="control-label color666 label-required col-gr-2">
+                选择公司
+            </label>
+            <div class="control-panel col-gr-10" (click)="fnSelectCom()">
+                <input name="cid" class="form-control input-select"
+                    readonly="readonly"
+                    [formControl]="ctrlBase.cid" [(ngModel)]="basePostData.cid"
+                    [ngClass]="{'danger':!ctrlBase.cid.valid && ctrlBase.cid.touched}">
+                <div class="p-select">
+                    <a href="javascript:;">
+                        <i class="iconfont_bsby bsby-jiahao"></i>
+                        {{selectShow.cname}}
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="form-group f-i f-select">
+            <label class="control-label color666 label-required col-gr-2">
+                产品方案
+            </label>
+            <div class="control-panel col-gr-10" (click)="fnSelectProduct(showProducts)">
+                <input name="product_id" class="form-control input-select" 
+                        readonly="readonly" #showProducts
+                        [formControl]="ctrlBase.product_id" [ngModel]="basePostData.product_id"
+                        [ngClass]="{'danger':!ctrlBase.product_id.valid && ctrlBase.product_id.touched}">
+                <div class="p-select">
+                    <a href="javascript:;" >
+                        <i class="iconfont_bsby bsby-jiahao"></i>
+                        {{selectShow.product}}
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="form-group f-i f-select">
+            <label class="control-label color666 label-required col-gr-2">
+                启动时间
+            </label>
+            <div class="control-panel col-gr-10">
+                <div class="form-control" (click)="fnShowDate('start')"
+                        #showStarttime>
+                    <i class="down iconfont_bsby bsby-xuanzeshijian"></i>
+                    {{selectShow.starttime}}
+                </div>
+            </div>
+        </div>
+        <div class="form-group f-i f-select">
+            <label class="control-label color666 label-required col-gr-2">
+                到期时间
+            </label>
+            <div class="control-panel col-gr-10">
+                <div class="form-control" (click)="fnShowDate('end')"
+                    #showEndtime>
+                    <i class="down iconfont_bsby bsby-xuanzeshijian"></i>
+                    {{selectShow.endtime}}
+                </div>
+            </div>
+            </div>
+
+
+            <div class="form-group f-btn col-gr-3 col-gr-ml-2">
+            <button type="submit" class="gr-btn gr-btn-primary" [disabled]="!baseForm.valid">
+                下一步
+            </button>
+        </div> 
+    </form> 
+
+
+
+    <form class="gr-form-horizontal opSiteForm" 
+        [ngClass]="{'hidden':formType == 'base'}"
+        [formGroup]="accountForm"
+        (ngSubmit)="fnPostSite()">
+        <div class="form-group f-i">
+            <label class="control-label color666 label-required col-gr-2">
+                后台地址
+            </label>
+            <div class="control-panel col-gr-10">
+                <input name="domain_admin" class="form-control" autocomplete="off" placeholder="请输入网站后台地址"
+                    [formControl]="ctrlAccount.domain_admin" [(ngModel)]="accountPostData.domain_admin"
+                    [ngClass]="{'danger':!ctrlAccount.domain_admin.valid && ctrlAccount.domain_admin.touched}">
+            </div>
+        </div>
+        <div class="form-group f-i">
+            <label class="control-label color666 label-required col-gr-2">
+                后台账号
+            </label>
+            <div class="control-panel col-gr-10">
+                <input name="domain_user" class="form-control" autocomplete="off" placeholder="请输入网站后台账号"
+                    [formControl]="ctrlAccount.domain_user" [(ngModel)]="accountPostData.domain_user"
+                    [ngClass]="{'danger':!ctrlAccount.domain_user.valid && ctrlAccount.domain_user.touched}">
+            </div>
+        </div>
+        <div class="form-group f-i">
+            <label class="control-label color666 label-required col-gr-2">
+                后台密码
+            </label>
+            <div class="control-panel col-gr-10">
+                <input type="password" name="domain_password" class="form-control" autocomplete="off" placeholder="请输入网站后台密码"
+                    [formControl]="ctrlAccount.domain_password" [(ngModel)]="accountPostData.domain_password"
+                    [ngClass]="{'danger':!ctrlAccount.domain_password.valid && ctrlAccount.domain_password.touched}">
+            </div>
+        </div>
+        <div class="form-group f-i">
+            <label class="control-label color666 col-gr-2">
+                FTP地址
+            </label>
+            <div class="control-panel col-gr-10">
+                <input name="ftp_address" class="form-control" autocomplete="off" placeholder="请输入网站FTP地址"
+                    [formControl]="ctrlAccount.ftp_address" [(ngModel)]="accountPostData.ftp_address"
+                    [ngClass]="{'danger':!ctrlAccount.ftp_address.valid && ctrlAccount.ftp_address.touched}">
+            </div>
+        </div>
+        <div class="form-group f-i">
+            <label class="control-label color666 col-gr-2">
+                FTP端口
+            </label>
+            <div class="control-panel col-gr-10">
+                <input name="ftp_port" class="form-control" autocomplete="off" placeholder="请输入网站FTP端口"
+                    [formControl]="ctrlAccount.ftp_port" [(ngModel)]="accountPostData.ftp_port"
+                    [ngClass]="{'danger':!ctrlAccount.ftp_port.valid && ctrlAccount.ftp_port.touched}">
+            </div>
+        </div>
+        <div class="form-group f-i">
+            <label class="control-label color666 col-gr-2">
+                FTP账号
+            </label>
+            <div class="control-panel col-gr-10">
+                <input name="ftp_user" class="form-control" autocomplete="off" placeholder="请输入网站FTP账号"
+                    [formControl]="ctrlAccount.ftp_user" [(ngModel)]="accountPostData.ftp_user"
+                    [ngClass]="{'danger':!ctrlAccount.ftp_user.valid && ctrlAccount.ftp_user.touched}">
+            </div>
+        </div>
+        <div class="form-group f-i">
+            <label class="control-label color666 col-gr-2">
+                FTP密码
+            </label>
+            <div class="control-panel col-gr-10">
+                <input type="password" name="ftp_password" class="form-control" autocomplete="off" placeholder="请输入网站FTP密码"
+                    [formControl]="ctrlAccount.ftp_password" [(ngModel)]="accountPostData.ftp_password"
+                    [ngClass]="{'danger':!ctrlAccount.ftp_password.valid && ctrlAccount.ftp_password.touched}">
+            </div>
+        </div>
+        <div class="form-group f-btn col-gr-3 col-gr-ml-2">
+            <button type="submit" class="gr-btn gr-btn-primary" [disabled]="!accountForm.valid || !submitBtn.status">
+                {{submitBtn.text}}
+            </button>
+        </div> 
+    </form> 
+</div>
+
+<bsby-site-select-com></bsby-site-select-com>

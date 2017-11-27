@@ -1,0 +1,115 @@
+<div class="login-main">
+    
+    <div class="m-w-560">
+        <div class="logo">
+            <a href="#" title="grzhixing">
+                <img class="" alt="星牛云" src="assets/img/grsaas-logo.png">
+                <span class="team-text"></span></a>
+        </div>
+        <div class="single-card">
+            <div class="card-header">
+            	注册
+                <span  class="text-gr">国人在线</span>
+            </div>
+                <div class="card-body">
+                    <div>
+                    
+                        <form class="form-signin w5c-form form-horizontal m-t-20 " method="post">
+                            <div class="form-group clearfix mobile">
+	                            <span class="sub-title"><em class="sub-major">*</em>请输入您的手机号</span>
+                                <div class="mobile-select f-l">
+                                <div  class="xm-select p-r">
+                                    <select  class="form-control select" 
+                                             name="">
+                                          <option  class="" 
+                                                   value=""
+                                                   selected="selected">中国+86</option>
+                                    </select>
+                                    <i class="iconfont_common  common-xiangxia"></i>
+                                </div>
+                                </div>
+                                <input type="text" 
+                                       name="Mobile"  
+                                       class="form-control valid" 
+                                       placeholder="请输入您的手机号"
+                                       [ngClass]="{'danger':mobileDanger}"
+                                       (focus)="mobileDanger=false;selectedHeroUser=false"
+                                       onkeyup="this.value=this.value.replace(/\D/g,'')"
+                                       maxlength='11'
+                                       [(ngModel)]="RegisterData.mobile">
+                            </div>
+                            <div class="form-group clearfix code">
+	                            <span class="sub-title"><em class="sub-major">*</em>请输入验证码</span>
+                                <input type="text" 
+                                	   name="code"  
+                                	   class="form-control valid f-l"
+                                       [ngClass]="{'danger':codeDanger}"
+                                       (focus)="codeDanger=false;selectedHeroUser=false"
+                                	   placeholder="请输入您手机上收到的短信验证码"
+                                     maxlength='4'
+                                	   [(ngModel)]="RegisterData.code">
+                                <button type="submit"  
+                                        class="btn btn-primary btn-block btn-lg f-l"
+                                        [disabled] = "CodeData.disabled==true?'disabled':''"
+                                        (click)="FnGetCode()">
+                                        {{CodeData.text}}</button>
+                            </div>
+                            <div class="form-group">
+	                            <span class="sub-title"><em class="sub-major">*</em>真实姓名</span>
+                                <input type="text" 
+                                       name="name"  
+                                       [ngClass]="{'danger':redShow&&!(RegisterData.name)}"
+                                       (focus)="redShow=false;selectedHeroUser=false"
+                                       class="form-control valid" 
+                                       placeholder="输入真实姓名"
+                                       [(ngModel)]="RegisterData.name">
+                            </div>
+                            <div class="form-group">
+	                            <span class="sub-title"><em class="sub-major">*</em>输入初始密码</span>
+                                <input type="password" 
+                                       name="password"  
+                                       class="form-control valid" 
+                                       [ngClass]="{'danger':passwordDanger}"
+                                       (focus)="passwordDanger=false;selectedHeroUser=false"
+                                       placeholder="8-20位字符，包含字母和数字"
+                                       [(ngModel)]="RegisterData.password">
+                            </div>
+                            <div class="form-group clearfix">
+                                <div class="f-r sub-Terms">
+	                                <a href="javascript:;" 
+	                                   class="customer-check f-l"
+	                                   style="color: #8f8f8f;margin-right: 5px"
+                                       (click)="Terms=!Terms">
+	                                    <i class="iconfont_common  {{Terms===true?'common-check1':'common-check'}}">
+	                                    </i>
+	                                </a>
+	                                <span>我已阅读并同意<a href="javascript:;">服务条款</a></span>
+                                </div>
+                            </div>
+                            <div class="form-group" *ngIf="selectedHeroUser">
+                                <div class="alert alert-danger">
+                                    <i class="fa fa-warning"></i>
+                                    {{errorText}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit"  
+                                        class="btn btn-primary btn-block btn-lg" 
+                                        id="loginButton" 
+                                        [disabled] = "btnType.disabled==true?'disabled':''" 
+                                        (click)="ToRegister();redShow=true">{{btnType.text}}</button>
+                            </div>
+                            <div class="form-group clearfix">
+                                <div class="sub-buttom">
+	                                <span>已经注册过帐号,<a href="javascript:;" 
+                                    (click)="FnGoLogin()">直接登录</a></span>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+<app-my-prompt-box *ngIf="showBoxText" [showBoxText]="showBoxText"></app-my-prompt-box>

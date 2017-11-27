@@ -1,0 +1,56 @@
+<app-riccio-modal>
+	<div body class="opBackLink">
+        <form class="gr-form-horizontal opBackLinkForm" [formGroup]="backLinkForm"
+            (ngSubmit)="fnEmitOpBackLink()">
+            <div class="form-group f-i">
+                <label class="control-label color666 label-required col-gr-2">
+                    信息标题
+                </label>
+                <div class="control-panel col-gr-10">
+                    <input name="title" class="form-control" autocomplete="off" placeholder="请输入信息标题" 
+                        [formControl]="ctrlBackLink.title" [(ngModel)]="backLinkData.title"
+                        [ngClass]="{'danger':!ctrlBackLink.title.valid && ctrlBackLink.title.touched}">
+                </div>
+            </div>
+            <div class="form-group f-i">
+                <label class="control-label color666 label-required col-gr-2">
+                    链接地址
+                </label>
+                <div class="control-panel col-gr-10">
+                    <input name="url" class="form-control" autocomplete="off" 
+                         placeholder="请输入完整链接地址，如 ‘http://www.baidu.com’ " 
+                        [formControl]="ctrlBackLink.url" [(ngModel)]="backLinkData.url"
+                        [ngClass]="{'danger':!ctrlBackLink.url.valid && ctrlBackLink.url.touched}">
+                </div>
+            </div>
+            <div class="form-group f-i">
+                <label class="control-label color666 label-required col-gr-2">
+                    发布平台
+                </label>
+                <div class="control-panel col-gr-10">
+                    <input name="platform" class="form-control" autocomplete="off" placeholder="请输入发布平台" 
+                        [formControl]="ctrlBackLink.platform" [(ngModel)]="backLinkData.platform"
+                        [ngClass]="{'danger':!ctrlBackLink.platform.valid && ctrlBackLink.platform.touched}">
+                </div>
+            </div>
+            <div class="form-group f-i f-select">
+                <label class="control-label color666 label-required col-gr-2">
+                    发布日期
+                </label>
+                <div class="control-panel col-gr-10">
+                    <input class="form-control" type="text" name="inputtime" readonly placeholder="请选择发布日期"
+                        (click)="fnShowInputDate()" #showInputTime
+                        [formControl]="ctrlBackLink.inputtime" [(ngModel)]="backLinkData.inputtime"
+                        [ngClass]="{'danger':!ctrlBackLink.inputtime.valid && ctrlBackLink.inputtime.touched}">
+                    <i class="down iconfont_bsby bsby-xuanzeshijian"></i>
+                </div>
+            </div>
+
+            <div class="form-group f-btn col-gr-3 col-gr-ml-2">
+                <button type="submit" class="gr-btn gr-btn-primary" [disabled]="!backLinkForm.valid || !submitBtn.status">
+                    {{submitBtn.text}}
+                </button>
+            </div>
+        </form>
+	</div>
+</app-riccio-modal>

@@ -1,0 +1,70 @@
+<div class="demandList bsbyCommon">
+    <div class="head">
+        <div class="title">
+            <i class="iconfont_bsby bsby-taolun"></i>
+            <span>需求沟通</span>
+        </div>
+    </div>
+    <div class="body">
+        <div class="bodyHead">
+            <div class="searchDemand">
+                <bsby-search-input
+                    [placeholder]="'输入客户名称或域名'"
+                    [(ngModel)]="searchParam.name"
+                    (searchEmit)="getDemandList()"></bsby-search-input>
+            </div>
+        </div>
+        <div class="bodyMain">
+            <div class="comment tableList">
+                <div class="container">
+                    <div class="commentHead">沟通记录</div>
+                    <ul class="commentUl" *ngIf="loadingType == 'hide'">
+                        <li class="commentLi" *ngFor="let demand of demandList" (mouseenter)="demand.del = true"
+                            (mouseleave)="demand.del = false">
+                            <div class="main">
+                                <div class="mainHead">
+                                    <span class="name">{{demand.username}}</span>
+                                    <span class="time">[{{demand.created_at}}]：</span>
+                                    <a href="javascript:;" class="del" *ngIf="demand.del" (click)="fnShowDelConfirm(demand,delConfirm,$event)" #delConfirm>
+                                        [ 删除 ]
+                                    </a>
+                                </div>
+                                <div class="mainBody">
+                                     <span [innerHTML]="demand.content"></span>
+                                     <div class="files" *ngIf="demand.images && demand.images.length > 0">
+                                         <span class="title">
+                                             <i class="iconfont_bsby bsby-fujian"></i>
+                                             附件
+                                         </span>
+                                         <a href="javascript:;" class="file" *ngFor="let file of demand.images"
+                                             (click)="download(file.url)">
+                                             <i *ngIf="!file.isImg" class="icon iconfont_bsby bsby-fujian"></i>
+                                             <img *ngIf="file.isImg" src="{{file.url | fileUrlPipe}}">
+                                             <span title="{{file.name}}" class="word">{{file.name}}</span>
+                                         </a>
+                                     </div>
+                                </div>
+                            </div>
+                            <div class="foot">
+                                <div class="com">
+                                    <span class="name color333">{{demand.company}}</span>
+                                    <span class="domain color999">{{demand.domain}}</span>
+                                </div>
+                                <div class="icon">
+                                    <a target="_blank" href="http://{{demand.domain}}">
+                                        <i class="color999 iconfont_bsby bsby-chakan"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <app-riccio-spinners [type]="loadingType"
+                                        [emptyText]="pageData.emptyText"></app-riccio-spinners>
+                </div>
+                <app-riccio-paginations
+                    [total]="pageData['total']"
+                    (pageValue)="fnPagination($event)"></app-riccio-paginations>
+            </div>
+        </div>
+    </div>
+</div>

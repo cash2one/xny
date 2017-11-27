@@ -1,0 +1,24 @@
+<div class="wrapper-content">
+	  
+	  <span class="menu-title" *ngIf="RoleAuthData.menu && RoleAuthData.menu.length>0">菜单</span>
+	  <app-role-authority *ngFor = "let list of RoleAuthData.menu"
+	                      [competenceData] = "list"
+	                      [constParentParent]="list"></app-role-authority>
+
+
+	  <span class="company-title" *ngIf="RoleAuthData.tab && RoleAuthData.tab.length>0">应用配置</span>
+	  <app-role-authority *ngFor = "let list of RoleAuthData.tab"
+	                      [competenceData] = "list"
+	                      [constParentParent]="list"></app-role-authority> 
+
+	<div class="form-group c-f" *ngIf = "!isTop">
+	    <div class="">
+	        <riccio-button [normal]="'授权'" 
+	                       [disabled] = "'授权中...'" 
+	                       [open]="disabledBtn"
+	                       (emitStatus)="fnSaveRoleRuth($event)"></riccio-button>
+	    </div>
+	</div>
+
+</div>
+

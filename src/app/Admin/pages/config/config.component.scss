@@ -1,0 +1,118 @@
+@import "../../Admin.value.scss";
+
+$buttonColorNormal:$themeColor;
+$buttonColorDanger:#FF7663;
+
+#{'/deep/'}{
+    .dangerColor{
+        color:rgb(255, 94, 94);
+    }
+    //默认表单input框样式的颜色
+    .gr-form-horizontal{
+        width: 100%;
+        .form-group{
+            margin-bottom: 10px;
+        }
+        .form-control{
+            width: 100%;
+            outline: none;
+            background-color: #fbfbfb;
+            border-radius: 3px;
+            border: 1px solid #eaeff1;
+            padding: 4px 16px;
+            font-size: 15px;
+            color: #555;
+            line-height: 1.42857143;
+            transition: all 0.25s;
+            font-size: 12px;
+            &:focus{
+                box-shadow: 0 0 6px 0px #484848;
+            }
+            &.danger:focus{
+                box-shadow: none;
+            }
+        }
+        & .danger{
+        border:1px solid $buttonColorDanger !important;
+        box-shadow: 0 0 5px 0 $buttonColorDanger !important;
+        }
+    }
+
+    //默认按钮颜色和样式
+    .gr-btn{
+        border-radius: 3px;
+        font-weight: 500;
+        border: 0;
+        display: inline-block;
+        margin-bottom: 0;
+        text-align: center;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        white-space: nowrap;
+        padding: 8px 36px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        -moz-user-select: none;
+        user-select: none;
+        outline: none;
+        &[disabled]{
+            cursor: not-allowed;
+            opacity: .8;
+        }
+        &.gr-btn-primary{
+            color: #fff;
+            background-color: $buttonColorNormal;
+        }
+        &.gr-btn-danger{
+            color: #fff;
+            background-color: $buttonColorDanger;
+        }
+        &.gr-btn-link{
+            color: #999999;
+            padding: 8px 25px;
+        }
+    }
+
+
+    //默认单选框颜色和样式
+    .gr-radio{
+        color: #333;
+        display: inline-block;
+        margin: 0 10px;
+        span{
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background-color: #fff;
+            border: 1px solid #333;
+            border-radius: 50%;
+            position: relative;
+            top: 2px;
+            margin-right: 2px;
+        }
+        &.active{
+            & span:after{
+                content: "";
+                position: absolute;
+                width: 8px;
+                height: 8px;
+                background-color: #666;
+                border-radius: 50%;
+                left: 2px;
+                top: 2px;			
+            }
+        }
+    }
+
+    //默认多选框样式
+    .gr-checkbox{
+        i.iconfont_admin{
+            color: #aaa;
+            &.admin-check1{
+                color: $themeColor !important;
+            }
+        }
+    }
+}

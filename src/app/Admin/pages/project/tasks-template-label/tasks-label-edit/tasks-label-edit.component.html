@@ -1,0 +1,78 @@
+<!-- <div class="elasticScrollo" style="overflow-y: hidden !important;" > -->
+
+<!-- 全局点击事件 -->
+<div class="openBox-Main" 
+	 (click)="getCloseBack(0)" 
+	 style="
+	  z-index: 0;height: 100%;
+	  position: fixed;
+	  left: -100%;
+	  top: -30px;
+	  right: -100%;
+	  bottom: -100%;"
+	  ></div>
+
+	<div class="elasticLayerMain" [@flyInOut]="'in'">
+		<div class="layerDialog">
+			<div class="layerContent">
+
+				<div class="modal-dialog">
+
+				    <div class="modal-content">
+				        <div>
+
+				            <div class="modal-header">
+				                <a href="javascript:;" class="modal-close" (click)="getCloseBack(0)">
+				                    <i class="iconfont_admin  admin-iconfontcha"></i>
+				                </a>
+				                <h3 class="modal-title">修改任务标签</h3>
+				            </div>
+				            <div class="modal-body">
+				                <form  class="form-horizontal c-f">
+				                	<div  class="form-group c-f "
+			                			  *ngFor="let list of EditShowData">
+			                            <label  class="col-sm-2 control-label line-40">{{list.name}}</label>
+			                            <div  class="col-sm-10 control-panel">
+			                                <input  class="form-control"  
+			                                	    style="" 
+			                                	    name="{{list.action}}"
+			                                	    placeholder="{{list.name}}"
+			                                	    [(ngModel)]="tagData[list.action]"
+			                                	    *ngIf = "list.type==='textarea'">
+			                                <div  class="xm-select p-r"
+			                                	  *ngIf = "list.type==='select'">
+			                                    <select  class="form-control select"  
+			                                    (change)="tagData[list.action]=+(action.value)"
+			                                    	     #action>
+			                						<option  class="" 
+			                								 value="{{listOption.value}}"
+			                							     *ngFor = "let listOption of list.option"
+			                							     selected="{{listOption.value==tagData[list.action]?'selected':''}}" 
+			                							     >{{listOption.name}}</option>
+			                                    </select>
+			                                    <i class="iconfont_admin  admin-xiangxia"></i>
+			                                </div>
+			                            </div>
+			                        </div>
+			                	
+			                        <div  class="form-group c-f footer-border projectTemplate">
+				                        <div  class="col-sm-5 control-panel c-f">
+				                            	<button  class="btn btn-primary pull-right f-r" 
+				                            			 type="submit"
+				                                         (click)="FnSaveEdit()"
+				                                         [disabled]="buttonStyle.disabled">
+				                                         {{buttonStyle.buttonText}}
+                  								</button>
+				                        </div>
+				                    </div>
+
+				                </form>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+<!-- </div> -->

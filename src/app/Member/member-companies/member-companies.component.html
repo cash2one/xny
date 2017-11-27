@@ -1,0 +1,28 @@
+<!-- 搜索和企业列表 -->
+<div class="main-content">
+    <!-- 搜索事件 -->
+    <div class="content-search">
+        <form>
+            <input class="gr-search" type="" name="Search" placeholder="搜索企业">
+            <button type="submit" style="display: none"></button>
+        </form>
+    </div>
+    <!-- 企业列表 -->
+    <div class="content-company-list">
+        <div class="company-info" *ngFor="let list of companyList" (click)="fnGoToCompany(list.id)">
+            <div class="info-name font14">
+                {{list.name}}
+            </div>
+            <ul class="info-other">
+                <li>
+                    <span>状态:</span>
+                    <span>{{list.status==1?'正常':'禁用'}}</span>
+                </li>
+            </ul>
+            <div class="info-modify">
+                <a href="javascript:;" (click)="fnGoInfo($event)">修改</a>
+                <a href="javascript:;" (click)="fnGoInfo($event)">转让</a>
+            </div>
+        </div>
+    </div>
+</div>

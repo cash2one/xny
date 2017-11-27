@@ -1,0 +1,213 @@
+.modal-dialog{
+  width: 600px;
+}
+
+.modal-content {
+    border: 0;
+    width: 400px;
+    border-radius: 5px;
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.4);
+    padding: 0 30px;
+    position: absolute;
+    z-index: 9000;
+    left: 50%;
+    margin: 30px 0 30px 0;
+    margin-left: -200px;
+    background-color: #fff;
+}
+
+.modal-header {
+    padding: 20px 0 16px;
+    border-bottom: solid 1px #f3f3f3
+}
+
+.modal-header h3 {
+    font-size: 18px;
+    color: #333;
+    font-weight: 500;
+    margin: 0
+}
+
+.modal-header .modal-close {
+    float: right;
+    color: #8f8f8f
+}
+
+.modal-header .modal-close:hover {
+    text-decoration: none;
+    color: #696969
+}
+
+.modal-body {
+    padding: 20px 0
+}
+
+.modal-body .sure-card p {
+    color: #333;
+    font-size: 15px
+}
+
+.modal-footer {
+    padding: 15px 0
+}
+
+.modal-tab {
+    margin: 0;
+    padding: 0;
+    display: -webkit-box;
+    display: flex;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    -ms-flex-direction: row;
+    flex-direction: row
+}
+
+.modal-tab li {
+    list-style-type: none;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -webkit-flex: 1;
+    text-align: center
+}
+
+.modal-tab li a {
+    color: #dee1e2;
+    font-size: 16px;
+}
+
+.modal-tab li a:focus,
+.modal-tab li a:hover {
+    color: #b5bcbe;
+    text-decoration: none
+}
+
+.modal-tab li.active a {
+    color: #6f8092
+}
+
+.modal-tab li.divider {
+    -webkit-box-flex: 0;
+    -ms-flex: 0;
+    flex: 0;
+    -webkit-flex: 0;
+    border-right: solid 1px #f3f3f3
+}
+
+@media (min-width:940px) {
+    .modal-lg {
+        width: 900px
+    }
+}
+
+/*选择成员样式*/
+.select-member-panel { display:-webkit-box; display:flex; display:-ms-flexbox; display:-webkit-flex; -ms-flex-direction:row; flex-direction:row; margin:-10px 0 0 }
+.select-member-panel .member-all, .select-member-panel .member-selected { -webkit-box-flex:1; -ms-flex:1 1 0px; flex:1 1 0; -webkit-flex:1 1 0; width:0 }
+.select-member-panel .member-arrow { width:40px; -webkit-box-flex:0; -ms-flex-positive:0; flex-grow:0; -ms-flex-negative:0; flex-shrink:0; text-align:center; margin-top:180px; font-size:26px; color:#8f8f8f }
+.select-member-panel .member-panel-header { margin-bottom:10px; min-width:250px ;text-align: center;}
+.select-member-panel .member-panel-header span { color:#7b8a9a; font-weight:500; font-size:16px }
+.select-member-panel .member-panel-body { border:1px solid #f3f3f3; border-radius:3px; padding:5px; overflow:auto; height:360px }
+.select-member-panel .member-panel-body li.member { list-style-type:none; position:relative }
+.select-member-panel .member-panel-body li.member .lc-avatar, .select-member-panel .member-panel-body li.member a { display:block; padding:5px 10px; line-height:30px; color:#333; border-radius:3px }
+.select-member-panel .member-panel-body li.member .lc-avatar:after, .select-member-panel .member-panel-body li.member .lc-avatar:before, .select-member-panel .member-panel-body li.member a:after, .select-member-panel .member-panel-body li.member a:before { content:" "; display:table }
+.select-member-panel .member-panel-body li.member .lc-avatar img, .select-member-panel .member-panel-body li.member .lc-avatar span, .select-member-panel .member-panel-body li.member a img, .select-member-panel .member-panel-body li.member a span { float:left; width:30px; height:30px; border-radius:3px; margin-right:10px }
+.select-member-panel .member-panel-body li.member .lc-avatar .lc-avatar-name, .select-member-panel .member-panel-body li.member a .lc-avatar-name { display:block }
+.select-member-panel .member-panel-body li.member .lc-check { position:absolute; top:7px; right:7px }
+.select-member-panel .member-panel-body li.member .btn-link-remove i { margin-top:4px }
+.select-member-panel .member-panel-body li.member .btn-link-remove i.lc-close { position:absolute; top:7px; right:7px; font-size:12px }
+.select-member-panel .member-panel-body .department-list { margin:0; padding:0 }
+.select-member-panel .member-panel-body .department-list .lc-tree { margin-bottom:5px }
+.select-member-panel .member-panel-body .department-list .lc-tree li a i.lc-add { display:none; font-size:12px }
+.select-member-panel .member-panel-body .department-list .lc-tree li a:hover i.lc-add { display:inline-block }
+.select-member-panel .member-panel-body .department-list .lc-tree li .lc-avatar img, .select-member-panel .member-panel-body .department-list .lc-tree li .lc-avatar span { margin-right:5px }
+.select-member-panel .member-panel-body .search-container { position:relative; width:auto; margin-top:0 }
+.select-member-panel .member-panel-body .search-container .search-area, .select-member-panel .member-panel-body .search-container .search-area-modal { border-bottom:solid 1px #f3f3f3; padding:5px 65px 5px 30px; margin-bottom:10px; position:relative }
+.select-member-panel .member-panel-body .search-container .search-area i, .select-member-panel .member-panel-body .search-container .search-area-modal i { position:absolute; left:5px; top:0px; color:#d9d9d9 }
+.select-member-panel .member-panel-body .search-container .search-area input, .select-member-panel .member-panel-body .search-container .search-area-modal input { display:block; width:100%; border:0; height:auto; padding-left:1px }
+.select-member-panel .member-panel-body .search-container .search-area input:focus, .select-member-panel .member-panel-body .search-container .search-area-modal input:focus { outline:0 }
+.select-member-panel .member-panel-body .search-container .btn-action { position:absolute; top:5px; right:10px; color:#c8cfd4 }
+.select-member-panel .member-panel-body .search-container .btn-action:focus, .select-member-panel .member-panel-body .search-container .btn-action:hover { color:#9daab2; text-decoration:none }
+.member-action { margin-top:20px }
+.member-action .share-invite-link { margin-left:265px; cursor:pointer; text-decoration:none }
+.select-member-single { width:260px }
+.select-member-single .select-member-panel { margin-top:0; display:block; padding:10px 0 0 10px }
+.select-member-single .modal-tab li a { display:block; font-size:15px; line-height:2 }
+.select-member-single .member-panel-body { border:0; border-radius:0; padding:0 10px 10px 0 }
+.select-member-single .member-panel-body .search-container { margin:0 }
+.select-member-single .member-panel-body .search-container .btn-action { top:7px }
+.select-member-single .member-panel-body .department-list { border-top:solid 1px #f3f3f3; padding:10px 0 0; margin:0 }
+.select-member-single .member-panel-body .department-list li a .title { overflow:inherit; white-space:inherit; text-overflow:inherit }
+.select-member-panel .member-panel-body .department-list .lc-tree { margin-bottom:5px }
+.select-member-panel .member-panel-body .department-list .lc-tree li a i.lc-add { display:none; font-size:12px }
+.select-member-panel .member-panel-body .department-list .lc-tree li a:hover i.lc-add { display:inline-block }
+.select-member-panel .member-panel-body .department-list .lc-tree li .lc-avatar img, .select-member-panel .member-panel-body .department-list .lc-tree li .lc-avatar span { margin-right:5px }
+
+
+.lc-tree a { display:-webkit-box; display:flex; display:-ms-flexbox; display:-webkit-flex; -ms-flex-direction:row; flex-direction:row; padding:6px 10px 6px 18px; margin-bottom:2px; color:#333; text-decoration:none; cursor:pointer }
+.lc-tree a.active, .lc-tree a:hover { color:#333; background:#eaeaea }
+.lc-tree a.disable, .lc-tree a.disable:hover { color:#ddd!important; background:0 0!important; cursor:default!important }
+.lc-tree a.disable i, .lc-tree a.disable:hover i { color:#ddd!important }
+.lc-tree a.lvl0 { padding-left:20px!important }
+.lc-tree a.lvl1 { padding-left:40px!important }
+.lc-tree a.lvl2 { padding-left:60px!important }
+.lc-tree a.lvl3 { padding-left:80px!important }
+.lc-tree a.lvl4 { padding-left:100px!important }
+.lc-tree a.lvl5 { padding-left:120px!important }
+.lc-tree a.lvl6 { padding-left:140px!important }
+.lc-tree a.lvl7 { padding-left:160px!important }
+.lc-tree a.lvl8 { padding-left:180px!important }
+.lc-tree a.lvl9 { padding-left:200px!important }
+.lc-tree a.lvl10 { padding-left:220px!important }
+.lc-tree a .title { -webkit-box-flex:1; -ms-flex:1; flex:1; -webkit-flex:1; line-height:25px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis }
+.lc-tree a .title .title-text { max-width:60%; overflow:hidden; display:inline-block; white-space:nowrap; text-overflow:ellipsis; vertical-align:middle }
+.lc-tree a .title .title-desc { display:inline-block; margin-left:3px; color:#c1c1c1; font-size:12px; line-height:26px; vertical-align:top }
+.lc-tree a .title .title-action { margin-left:0; cursor:pointer; opacity:.4 }
+.lc-tree a .title .title-action:hover { opacity:.8 }
+.lc-tree a .title .title-action i { font-size:16px!important; vertical-align:-2px; margin-left:0!important }
+.lc-tree a .more { margin-left:4px; font-size:12px; color:#94abc4 }
+.lc-tree a i { color:#8f8f8f; margin-left:3px; margin-right:3px; -webkit-transition:all .2s;
+transition:all .2s;
+font-size:18px }
+.lc-tree a i:hover { color:#696969 }
+.lc-tree a i.active { -webkit-transform:rotate(90deg); transform:rotate(90deg) }
+.lc-tree a i.fa-caret-right { margin-top:5px }
+.lc-tree a i.lc-arrow-r { font-size:12px }
+.lc-tree a i.lc-department-o { margin-top:2px }
+.lc-tree a i.lc-check { color:#333!important }
+
+.department-list .lc-tree a.lvl0 { padding-left:10px!important }
+
+
+/*hover样式*/
+.member-panel-body .member{
+    cursor: pointer;
+}
+.member-panel-body .member:hover{
+    background-color: #eaeaea
+}
+
+/*项目列表样式修改*/
+.select-member-panel  .member-panel-body li.member{
+    padding: 5px
+}
+
+.department-list ul>ul{
+    overflow:hidden;
+}
+
+.loading-indicator{
+    cursor: pointer;
+}
+
+
+.gr-window-scroll{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 100%;
+    z-index: 900;
+    overflow-y: auto;
+    background-color: rgba(0,0,0,.3);
+}

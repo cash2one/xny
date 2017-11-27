@@ -1,0 +1,7 @@
+<li class="item-ul-li" #itemLi (click)="fnOutputData(list.media_data,itemLi)">
+	<input type="text"
+		   name="{{list.media_name}}"
+		   readonly="readonly" 
+	       [ngModel]="list.media_name">
+	<i class="iconfont_ruanwen ruanwen-downBlock"></i>
+</li>

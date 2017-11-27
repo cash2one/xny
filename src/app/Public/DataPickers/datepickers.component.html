@@ -1,0 +1,34 @@
+
+<div class="datepickers" 
+	 [style.left]="datepickers.position.x+'px'"
+	 [style.top]="datepickers.position.y+'px'"
+	 [@smallBig]="'in'">
+
+<ngl-datepicker [(date)]="date" 
+			    class="slds-box slds-box--x-small"
+			    #ngdate
+			    (click)="FnChechDate($event)"></ngl-datepicker>
+
+<!-- 用于替代select的按钮样式 -->
+<div class = "selectYear" 
+	 (click)="FnSelectYear()">{{selectYearData.data.name}}</div>
+
+
+<!-- 选择时间 -->
+<app-select-time (callTimeData)="FnGetTimeData($event)"></app-select-time>
+
+
+
+<!-- 选择月份 -->
+<app-select-month *ngIf = "selectMonthData.isShow"
+				  (callMonthName)="FnGetMonthData($event)"
+				  [selectMonthData]="selectMonthData"></app-select-month>
+
+
+<!-- 选择年份 -->
+<app-select-year *ngIf = "selectYearData.isShow"
+				 (callYearName)="FnGetYearData($event)"
+				 [selectYearData]="selectYearData"></app-select-year>
+
+</div>
+

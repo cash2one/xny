@@ -1,0 +1,139 @@
+<div class="gr-window-scroll selectCom" *ngIf = "show">
+    <div class="openBox-Main"
+         style="z-index: 150;"></div>
+         
+    <div class="modal-content" 
+         [@smallBig]="'in'" 
+         *ngIf = "show">
+        <div class="">
+            <div class="modal-header">
+              <a href="javascript:;" class="modal-close" (click)="fnClose()">
+                    <i class="lcfont xm-close iconfont_bsby bsby-iconfontquxiao"></i>
+                </a>
+                <h3 class="modal-title">选择公司</h3>
+            </div>
+            <div class="modal-body">
+                <div class="select-com-area">
+                    <div class="gr-wrapper-table tableList">
+                        <div class="wrapper-table-top tableTop">
+                            <div class="searchCom">
+                                <bsby-search-input
+                                    [placeholder]="'请输入客户名称'"
+                                    [(ngModel)]="comListRequestPara.name"
+                                    (searchEmit)="getComList()"></bsby-search-input>
+                            </div>
+                            <a href="javascript:;" class="gr-btn gr-btn-primary addCom"
+                                (click)="fnAddCustomer()">添加客户</a>
+                        </div>
+
+                        <div class="wrapper-content"> 
+                            <table class="table table-hover gr-table" tableTitle>
+                                <colgroup>
+                                    <col width="100">
+                                    <col width="60">
+                                    <col width="70">
+                                    <col width="100">
+                                    <col width="50"> 
+                                </colgroup>
+                                <thead class="hand">
+                                    <tr>
+                                        <th *ngFor = "let title of tableTitles">
+                                            {{title}}
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+
+                            <div class="wrapper-table" *ngIf = "loadingType == 'hide'">
+                                <table class="table table-hover gr-table">
+                                    <colgroup>
+                                        <col width="100">
+                                        <col width="60">
+                                        <col width="70">
+                                        <col width="100">
+                                        <col width="50"> 
+                                    </colgroup>
+                                    <tbody>
+                                         <tr *ngFor = "let com of comList" tableTitle>
+                                            <!--企业名称-->
+                                            <td class="customer-content rowspan comName" 
+                                                *ngIf="com.site"
+                                                [attr.rowspan]="com.site.length"
+                                                [ngClass]="{'active':emitData && com.cid == emitData.id}"
+                                                (click)="fnSelectCom(com)">
+                                                {{com.name}}
+                                            </td>
+                                            <!--企业负责人-->
+                                            <td class="customer-content rowspan" 
+                                                *ngIf="com.site"
+                                                [attr.rowspan]="com.site.length">
+                                                {{com.user_name}}
+                                            </td>
+
+                                            <!--企业有网站，显示第一个网站  产品方案-->
+                                            <td class="customer-content" 
+                                                *ngIf="com.site && com.site.length == 0">
+                                                -
+                                            </td>
+                                            <td class="customer-content" 
+                                                *ngIf="com.site && com.site.length > 0">
+                                                {{com.site[0].product_name}}
+                                            </td>
+                                            <!--除第一个其他网站 产品方案-->
+                                            <td class="customer-content"
+                                                *ngIf="!com.site">
+                                                {{com.product_name}}
+                                            </td>
+
+                                            <!--企业有网站，显示第一个网站  域名-->
+                                            <td class="customer-content" 
+                                                *ngIf="com.site && com.site.length == 0">
+                                                -
+                                            </td>
+                                            <td class="customer-content" 
+                                                *ngIf="com.site && com.site.length > 0">
+                                                {{com.site[0].domain}}
+                                            </td>
+                                            <!--除第一个其他网站 域名-->
+                                            <td class="customer-content"
+                                                *ngIf="!com.site">
+                                                {{com.domain}}
+                                            </td>
+
+                                             <!--企业有网站，显示第一个网站 客服-->
+                                            <td class="customer-content" 
+                                                *ngIf="com.site && com.site.length == 0">
+                                                -
+                                            </td>
+                                            <td class="customer-content" 
+                                                *ngIf="com.site && com.site.length > 0">
+                                                {{com.site[0].service_user}}
+                                            </td>
+                                            <!--除第一个其他网站 客服-->
+                                            <td class="customer-content"
+                                                *ngIf="!com.site">
+                                                {{com.service_user}}
+                                            </td>
+
+                                        </tr>                    
+                                    </tbody>
+                                </table>
+                            </div>
+                            <app-riccio-spinners [type]="loadingType" class="spinner"
+                                                [emptyText]="'没有查询到符合条件的记录'"></app-riccio-spinners>
+                            <app-riccio-paginations
+                                                [total]="total"
+                                                (pageValue)="fnPagination($event)"></app-riccio-paginations>
+                        </div>
+                    </div>
+                </div>
+                <div class="member-action">
+                    <button class="gr-btn gr-btn-primary" 
+                        (click)="fnEmitData()">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<bsby-customer-op></bsby-customer-op>

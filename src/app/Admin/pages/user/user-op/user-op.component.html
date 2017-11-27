@@ -1,0 +1,81 @@
+<app-riccio-modal>
+	<div body class="configModal">
+		<!--添加·-->
+		<div class="modalBase">
+			<form class="gr-form-horizontal" #addOrEditForm="ngForm">
+				<div class="form-group f-i">
+					<label class="control-label color666 label-required">
+                        手机号
+                    </label>
+					<div class="control-panel">
+						<input name="u_mobile" class="form-control" autocomplete="off" placeholder="请输入手机号" 
+                            #u_mobile="ngModel" minlength="11" maxlength="11" [(ngModel)]="userAddData.mobile"
+                            [ngClass]="{'danger':u_mobile.touched && u_mobile.invalid || !userAddValid.mobile}" required>
+					</div>
+				</div>
+				<div class="form-group f-i">
+					<label class="control-label color666 label-required">
+                        用户名
+                    </label>
+					<div class="control-panel">
+						<input name="u_name" autocomplete="off" class="form-control" placeholder="请输入用户名"
+                            #u_name="ngModel" [(ngModel)]="userAddData.name" 
+                            [ngClass]="{'danger':u_name.touched && u_name.invalid || !userAddValid.name}" required>
+					</div>
+				</div>
+                <div class="form-group f-i" *ngIf="opType === 'add'">
+					<label class="control-label color666 label-required">
+                        密码
+                    </label>
+					<div class="control-panel">
+						<input name="u_password" type="password" autocomplete="off" class="form-control" placeholder="请输入密码"
+                            #u_password="ngModel" [(ngModel)]="userAddData.password" minlength="6"
+                            [ngClass]="{'danger':u_password.touched && u_password.invalid || !userAddValid.password}" required>
+					</div>
+				</div>
+                <div class="form-group f-i">
+					<label class="control-label color666 label-required">
+                        姓名
+                    </label>
+					<div class="control-panel">
+						<input name="u_nickname" autocomplete="off" class="form-control" placeholder="请输入姓名"
+                            #u_nickname="ngModel" [(ngModel)]="userAddData.real_name"
+                            [ngClass]="{'danger':u_nickname.touched && u_nickname.invalid || !userAddValid.real_name}" required>
+					</div>
+				</div>
+                <div class="form-group f-i">
+					<label class="control-label color666 label-required">
+                        邮箱
+                    </label>
+					<div class="control-panel">
+						<input name="u_emial" autocomplete="off" class="form-control" placeholder="请输入邮箱"
+                            #u_emial="ngModel" [(ngModel)]="userAddData.email" 
+                            [ngClass]="{'danger':u_emial.touched && u_emial.invalid || !userAddValid.email}" required>
+					</div>
+				</div>
+                <div class="form-group f-sex">
+					<label class="control-label color666">
+                        性别
+                    </label>
+					<div class="control-panel">
+						<input class="gr-radio" name="u_sex" type="radio" [(ngModel)]="userAddData.sex" [value]="1" /> 男
+						<input class="gr-radio" name="u_sex" type="radio" [(ngModel)]="userAddData.sex" [value]="2" /> 女
+					</div>
+				</div>
+				<div class="form-group f-i" *ngIf="opType === 'edit'">
+					<label class="control-label color666">
+                        密码
+                    </label>
+					<div class="control-panel">
+						<input name="u_password" type="password" autocomplete="off" class="form-control" placeholder="如需更改密码请输入密码"
+                            #u_password="ngModel" [(ngModel)]="userAddData.password"
+                            [ngClass]="{'danger':!userAddValid.password}">
+					</div>
+				</div>
+				<div class="form-group f-btn">
+					<button class="gr-btn addBtn" [disabled]="!addOrEditForm.form.valid" (click)="fnOpUser()">{{addBtn.text}}</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</app-riccio-modal>

@@ -1,0 +1,82 @@
+<app-riccio-modal>
+	<div body class="configModal">
+        <app-company-charge *ngIf="isShowCharge"
+            (statuData)="fnShowComCharge($event)"
+            (emitData)="fnComUserChange($event)"></app-company-charge>
+		<!--添加或者修改·-->
+		<div class="modalBase" *ngIf="type == 'add' || type == 'edit'">
+			<form class="gr-form-horizontal addTempForm" #addOrEditForm="ngForm">
+				<div class="form-group f-i">
+					<label class="control-label color666 label-required">
+                        企业名称
+                    </label>
+					<div class="control-panel">
+						<input name="com_name" class="form-control" autocomplete="off" placeholder="请输入企业名称"
+                            [(ngModel)]="addComData['comName']['value']"
+                            [ngClass]="{'danger':!addComData['comName']['valid']}"
+                            (ngModelChange)="fnNameChange()">
+					</div>
+				</div>
+				<div class="form-group f-i">
+					<label class="control-label color666 label-required">
+                        企业负责人
+                    </label>
+					<div class="control-panel">
+						<input name="com_user" autocomplete="off" readonly="readonly" class="form-control" placeholder="请选择企业负责人"
+                            [(ngModel)]="addComData['comUser']['show']"
+                            [ngClass]="{'danger':!addComData['comUser']['valid']}"
+                            (click)="fnShowComCharge(true)">
+					</div>
+				</div>
+                <div class="form-group f-i f-select">
+                    <label class="control-label color666">
+                         企业行业
+                    </label>
+                    <div class="control-panel" (click)="showComInd(showInd)" #showInd>
+						<div class="form-control" [ngClass]="{'selectDef':!addComData.comInd.show}">
+                            {{addComData.comInd.show?addComData.comInd.show:'请选择企业行业'}}
+                            <i class="down iconfont_admin admin-down1"></i>
+                        </div>
+					</div>
+                </div>
+                <div class="form-group f-i f-select">
+                    <label class="control-label color666">
+                         企业规模
+                    </label>
+                    <div class="control-panel" (click)="showComScale(showScale)" #showScale>
+						<div class="form-control" [ngClass]="{'selectDef':!addComData.comScale.show}">
+                            {{addComData.comScale.show?addComData.comScale.show:'请选择企业规模'}}
+                            <i class="down iconfont_admin admin-down1"></i>
+                        </div>
+					</div>
+                </div>
+                <div class="form-group f-i f-select f-pos">
+                    <label class="control-label color666">
+                         企业地址
+                    </label>
+                    <div class="control-panel">
+						<div class="pos form-control" [ngClass]="{'selectDef':!addComData.comLocation['value']['province']['show']}" (click)="showComProvince(showProvince)" #showProvince>
+                            {{addComData.comLocation['value']['province']['show']?addComData.comLocation['value']['province']['show']:'请选择省'}}
+                            <i class="down iconfont_admin admin-down1"></i>
+                        </div>
+						<div class="pos form-control" [ngClass]="{'selectDef':!addComData.comLocation['value']['city']['show']}" (click)="showComCity(showCity)" #showCity>
+                            {{addComData.comLocation['value']['city']['show']?addComData.comLocation['value']['city']['show']:'请选择市'}}
+                            <i class="down iconfont_admin admin-down1"></i>
+                        </div>
+						<div class="pos form-control" [ngClass]="{'selectDef':!addComData.comLocation['value']['area']['show']}" (click)="showComArea(showArea)" #showArea>
+                            {{addComData.comLocation['value']['area']['show']?addComData.comLocation['value']['area']['show']:'请选择地区'}}
+                            <i class="down iconfont_admin admin-down1"></i>
+                        </div>
+					</div>
+                </div>
+                <div class="form-group f-btn">
+					<button class="gr-btn addBtn" [disabled]="!addComBtn.valid" (click)="fnOpCompany()">{{addComBtn.show}}</button>
+				</div>
+			</form>
+		</div>
+    <!--启用或者禁用弹出框-->
+    <div *ngIf="type == 'changeStatus'"></div>
+	</div>
+</app-riccio-modal>
+
+<!-- <app-riccio-pbox></app-riccio-pbox> -->

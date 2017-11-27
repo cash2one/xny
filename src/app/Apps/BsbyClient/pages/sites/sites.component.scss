@@ -1,0 +1,35 @@
+@import '../../../../Public/theme/apps-common/variable.scss';
+$doing:#F4C92D;
+$success:#7EC856;
+$danger:#F37263;
+
+.siteTable{
+    .doing{
+        background-color: $doing;
+    }
+    .success{
+        background-color: $success;
+    }
+    .danger{
+        background-color: $danger;
+    }
+    .customer-content{
+        .statu{
+            display: inline-block;
+            height: 8px;
+            width: 8px;
+            border-radius: 50%;
+        }
+    }
+    th{
+        padding: 0 10px 0 10px !important;
+    }
+    tr{
+        &:hover{
+            background-color: $tableTrHover;
+        }
+        td{
+            padding:0 10px 0 10px !important;
+        }
+    }
+}

@@ -1,0 +1,56 @@
+.ruanwen-contant{
+	width: 100%;
+	height: 100%;
+}
+
+
+.gr-menu{
+	width: 50px;
+	min-width: 50px;
+	max-width: 180px;
+	transition:all .35s;
+	&.open{
+		width: 180px;
+		min-width: 180px;
+	}
+	.gr-menu-ul{
+		.gr-menu-ul-li{
+			a{
+			    display: flex;
+			    &.justify-content{
+			    	justify-content:center;
+			    }
+			    i.rotate{
+					display: inline-block;
+					transform: rotateZ(90deg);
+				}
+				.text{
+					i{
+						display: inline-block;
+					    width: 50px;
+					    height: 40px;
+					    line-height: 40px;
+					    text-align: center;
+					    float: left;
+					}
+				}
+			}
+
+
+		}
+	}
+}
+
+
+.ash{
+	background-color: #999
+}
+.yellow{
+	background-color: #f4ff02
+}
+.green{
+	background-color: #55BD47
+}
+.red{
+	background-color: #ff0000
+}

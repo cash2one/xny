@@ -1,0 +1,146 @@
+<!-- 已选资源列表 -->
+<app-release-selected-resource (emitOrderInfo)="fnEmitOrderInfo($event)"
+							   (emitTotalPrice)="totalPrice=$event"
+							   (emitResourceInfo)="fnEmitResourceInfo($event)"></app-release-selected-resource>
+
+<!-- model提示组件 -->
+<app-riccio-modal>
+	<div body [ngSwitch]="modalType">
+		<ng-template [ngSwitchCase]="'matter'">
+			<app-activity-matter (emitType)="fnEmitMatter($event)"></app-activity-matter>
+		</ng-template>		
+	
+		<ng-template [ngSwitchCase]="'resourceInfo'">
+			<app-release-resource-info [infoData]="resourceInfoData"></app-release-resource-info>
+		</ng-template>
+
+		<ng-template [ngSwitchCase]="'code'">
+			<app-activity-code [btnType]="codeBtnType"
+							   [close]="codeClose"
+							   [orderMediaArr] = "orderInfo['article']"
+			                   (emitCode)="postOrderAddDraft['code']=$event;postSaveOrder()"></app-activity-code>
+		</ng-template>
+
+		<ng-template [ngSwitchCase]="'article'">
+			<app-activity-articles (emitCheck)="fnEmitDraftArticle($event)"></app-activity-articles>
+		</ng-template>
+		<ng-template [ngSwitchCase]="'agreement'">
+			<app-ruanwen-service-agreement></app-ruanwen-service-agreement>
+		</ng-template>
+		<ng-template [ngSwitchCase]="'ad'">
+			<app-ruanwen-advertising-law></app-ruanwen-advertising-law>
+		</ng-template>
+	</div>
+</app-riccio-modal>
+
+<!-- 软文信息 -->
+<div class="activity-main">
+
+	<div class="header">
+		<span>软文信息</span>
+	</div>
+
+	<div class="content">
+		<form class="gr-form-horizontal c-f">
+
+		    <div class="form-group c-f">
+		        <label class="col-gr-2 control-label label-required t-r">
+		            订单名称
+		        </label>
+		        <div class="col-gr-4 control-panel">
+		            <input name="order_name"  
+		                   class="form-control"
+		                   (focus)="errorTipData['order_name']=false"
+		                   [ngClass]="{'danger':errorTipData['order_name']}"
+		                   [(ngModel)]="postOrderAddDraft['order_name']"
+		                   placeholder="请填写项目名称或活动名称，方便区分订单"   
+		                   style="">
+		        </div>
+		    </div>
+
+		    <div class="form-group c-f">
+		        <label class="col-gr-2 control-label label-required t-r">
+		            文章标题
+		        </label>
+		        <div class="col-gr-4 control-panel">
+		            <input name="title"  
+		                   class="form-control" 
+		                   maxlength="30" 
+		                   #titleEl
+		                   (focus)="errorTipData['title']=false;postOrderAddDraft['title']=titleEl.value=='无标题'?'':postOrderAddDraft['title']"
+		                   (blur)="postOrderAddDraft['title']=titleEl.value==''?'无标题':postOrderAddDraft['title']"
+		                   [ngClass]="{'danger':errorTipData['title']}"
+		                   [(ngModel)]="postOrderAddDraft['title']"
+		                   placeholder="标题字数建议16-30个字"   
+		                   style="">
+		        </div>
+		        <div class="col-gr-2 control-panel" *ngIf = "activityViewType == 'cart'">
+		        	<button class="gr-btn gr-btn-primary height40" (click)="fnSelectArticle()">选择文章</button>
+		        </div>
+		    </div>
+
+		    <div class="form-group c-f">
+		        <label class="col-gr-2 control-label label-required t-r">
+		            内容
+		        </label>
+		        <div class="col-gr-7 control-panel">
+			        <!-- 百度富文本编辑器 -->
+			        <app-ruanwen-ngxueditor [uedContent]="uedContent" 
+			        						[configType]="uedConfigType"
+			        						(emitData)="fnEmitUeditor($event)"></app-ruanwen-ngxueditor>
+		        </div>
+		        
+		    </div>
+
+		    <div class="form-group c-f">
+		        <label class="col-gr-2 control-label t-r">
+		            备注
+		        </label>
+		        <div class="col-gr-9 control-panel">
+		            <textarea name="remark" 
+		            		  class="form-control height100"
+		            		  [(ngModel)]="postOrderAddDraft['remark']"
+		            		  placeholder="请填写备注信息，该备注不影响计费；请不要超过600个汉字！"></textarea>
+		        </div>
+		    </div>
+
+		    <div class="form-group c-f">
+		
+		        <div class="col-gr-6 col-gr-ml-2">
+		            
+		            <div class="total col-gr-4">
+		            	<span class="color666 font14">总金额</span>
+			            <span class="form-price">¥{{totalPrice}}元</span>
+		            </div>
+
+		            <div class="balance col-gr-4">
+		            	<!-- <span>当前账户可用余额<em>¥123</em>元</span> -->
+		            </div>
+		        </div>
+		        
+		    </div>
+
+		    <div class="form-group c-f">
+		        <div class="col-gr-6 col-gr-ml-2">
+		           <i class="iconfont_ruanwen  {{isCheckAgreement==true?'ruanwen-check1 iconColorNormal':'ruanwen-check'}}  c-p" (click)="isCheckAgreement = !isCheckAgreement"></i>
+		           <span class="agreement">同意<a href="javascript:;" (click)="fnShowModal('agreement')">国人在线服务协议</a>，发布内容请遵守<a href="javascript:;" (click)="fnShowModal('ad')">广告法</a>。</span>
+		        </div>
+		    </div>
+
+		    <div class="form-group c-f">
+		        <div class="col-gr-6 col-gr-ml-2">
+		            <button type="button" 
+		            		(click)="saveRuanwen('order')"
+		                    class="gr-btn gr-btn-major">立即支付</button>
+		        	<riccio-button [normal]="'保存草稿'"
+		        				   [disabled]="'保存中...'"
+		        				   [open]="btnDraftType"
+		        				   (emitStatus)="saveRuanwen('draft')"></riccio-button>
+		        </div>
+		    </div>
+
+
+		</form>
+	</div>
+
+</div>

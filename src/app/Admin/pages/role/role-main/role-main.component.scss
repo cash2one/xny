@@ -1,0 +1,27 @@
+// @import '../../../../Console/Console-variable.scss';
+
+.wrapper-table-top{
+	border-bottom: 1px solid #eee;
+	line-height: 58px !important;
+}
+
+#undetails{
+	i.thumb{
+		font-size: 24px;
+		color: #ccc;
+	}
+}
+
+.wrapper-tabLab{
+	.RoleTitleTab{
+		height: 52px;
+		.menu-ul{
+			height: 52px;
+			.menu-ul-li{
+				&.active{
+					height: 52px;
+				}
+			}
+		}
+	}
+}

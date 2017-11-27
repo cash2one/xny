@@ -1,0 +1,20 @@
+<div class="item-main clearfix">
+	
+	<div class="item-title col-gr-1">
+		<span>其他类型:</span>
+	</div>
+
+	<div class="item-list col-gr-11">
+		<ul class="item-ul">
+			<app-select-single *ngFor = "let list of itemList;index as i"
+			                   [list]="list"
+			                   [id] = 'i'
+			                   (emitPboxData)='fnGetEmitSingle($event)'></app-select-single>
+		</ul>
+
+	</div>
+
+</div>
+
+<!-- 下拉框选择 -->
+<app-riccio-pbox></app-riccio-pbox>

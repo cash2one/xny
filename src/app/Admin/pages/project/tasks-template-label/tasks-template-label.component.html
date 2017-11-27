@@ -1,0 +1,116 @@
+<div class="site-content">
+    <div class="module-header">
+        <div class="title">
+            <span><a href="javascript:;" routerLinkActive='active' [routerLink]="['../../task/list']">任务列表</a></span>
+            <span><a href="javascript:;" routerLinkActive='active' [routerLink]="['../../task/taglist']">任务标签列表</a></span>
+        </div>
+        <div class="flex-panel">
+            <a href="javascript:;" class="f-r" [routerLink]="['../../appcenter/Admin']">返回列表</a>
+        </div>
+    </div>
+
+    <div class="module-body">
+
+    <div class="customer-list">
+    	<!-- 从顶部左侧弹出的组件样式 -->
+        <div class="flyLeftContent" *ngIf = "FlyLeftData.isShow" [@flyTop]="'in'">
+            <div class="content-text">已选择<span>{{FlyLeftData.number}}</span>项</div>
+            <ul class="content-list">
+                <li *ngFor="let list of FlyLeftData.showText">
+                	<a href="javascript:;"  (click)="FunOperate(list.type,$event)">{{list.name}}</a>
+                </li>
+            </ul>
+
+        </div>
+
+    	<div class="integration-header">
+            <button class="btn btn-primary btn-sm f-r" 
+                            (click)="FnTagAdd()" 
+                            style="line-height: -1">添加标签</button>
+            <form >
+        		<div class="search-container"><i class="iconfont_admin  admin-search1"></i>
+        		    <input type="input" 
+                           name='UserSearchName'
+                           class="form-control" 
+                           placeholder="输入要搜索的标签名称" 
+                           #Tasksname>
+        		</div>
+        		<button type="submit" (click)="FnnameChange(Tasksname.value)">搜索</button>
+            </form>
+    	</div>
+
+        <table class="table table-hover gr-table">
+            <thead class="hand">
+                <tr>
+                	<th>
+                        <a href="javascript:;" 
+                           class="customer-check"
+                           (click)="FnCheckAll()">
+                            <i class="iconfont_admin  {{allCheck===false?'admin-check':'admin-check1'}}"></i>
+                        </a>
+                    </th>
+                    <th *ngFor = "let list of headerList">
+                        {{list}}
+                    </th>
+                </tr>
+            </thead>
+            <tbody >
+                <tr *ngFor = "let list of TagListData.data" class="entry-title pbox-trigger">
+                	<td class="customer-select">
+                        <a href="javascript:;" class="customer-check" (click)="FnCheckTasks(list)">
+                            <i class="iconfont_admin  {{list.isCheck===false?'admin-check':'admin-check1'}}" >
+                        </i>
+                        </a>
+                    </td>
+                    <td class="customer-content">{{list.id}}</td>
+                    <td class="customer-content">{{list.name}}
+                    </td>
+     
+                    <td class="customer-content">
+                    {{list.status===1?'显示':'隐藏'}}
+                    </td>
+                    <td>
+                        <a href="javascript:;" class="black" (click)="openEditView(list)"><i class="iconfont_admin  admin-edit"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="pbox pbox-open" 
+         *ngIf = "ShowDelete.isShow"
+         #deleteElm
+         [ngStyle]="{'left':ShowDelete.position.left+'px','top':ShowDelete.position.top+'px'}">
+        <ul class="pop-menu">
+
+                 <div class="pbox-header">
+                    <h3 class="pbox-title">确认删除?</h3>
+                </div>
+                <div class="sure-card pbox-body w-360">
+                    <p class=""></p>
+                            <button type="button" 
+                            class="btn btn-danger"
+                            (click)="FnDeleteTask()">删除</button> 
+                    <a class="btn btn-link" (click)="ShowDelete.isShow = !ShowDelete.isShow">取消</a>
+                </div>
+
+        </ul>
+    </div>
+
+
+    <!-- 弹出添加标签的组件 -->
+    <app-tasks-label-add *ngIf = "TagAdd.isShow"
+    					  (callShow)="getCloseBack($event)"
+    					></app-tasks-label-add>
+
+
+    <!-- 弹出修改标签的组件 -->
+    <app-tasks-label-edit *ngIf = "TagEdit.isShow"
+                          (callShow)="getEditCloseBack($event)"
+                          [tagData]="TagEdit.tagData"
+                        ></app-tasks-label-edit>  
+
+
+    </div>
+</div>

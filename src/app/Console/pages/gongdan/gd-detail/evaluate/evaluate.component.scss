@@ -1,0 +1,56 @@
+.evaluate{
+  .evaluate-header{
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+    background-color: #f8f8f8;
+    padding: 12px 36px;
+    span{
+      border-bottom: 1px solid #447bd4;
+      padding-bottom:13px;
+    }
+  }
+  .evaluate-body{
+    padding: 16px 28px;
+    ul li{
+      margin: 20px 0;
+      .active{
+        cursor: pointer;
+        border: 1px solid #447bd4;
+        background-color: #447bd4;
+        color: #FFF;
+        padding: 3px 10px;
+      }
+      button{
+        cursor: pointer;
+        border: 1px solid #cccccc;
+        background-color: #eeeeee;
+        color: #6c6c6c;
+        padding: 3px 10px;
+      }
+      label{
+        display: inline-block;
+        margin-right: 14px;
+      }
+      textarea{
+        width: 760px;
+        height: 160px;
+        border: 1px solid #dddddd;
+        padding: 10px 15px;
+        background-color: #fafafa;
+        resize:none;
+      }
+      .commit{
+        cursor: pointer;
+        font-size: 16px;
+        border: 1px solid #447bd4;
+        background-color: #447bd4;
+        color: #FFF;
+        border-radius: 3px;
+        padding: 5px 34px;
+      }
+    }
+    ul li:not(:first-child){
+      margin-left:70px;
+    }
+  }
+}

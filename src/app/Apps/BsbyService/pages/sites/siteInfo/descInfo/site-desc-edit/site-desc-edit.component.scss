@@ -1,0 +1,44 @@
+@import '../../../../../../../Public/theme/apps-common/variable.scss';
+
+$tabBg:#e4e4e4;
+.siteDescEdit{
+    .f-select{
+        .selectDef{
+            color:#a2a2a2;
+        }
+        .form-control{
+            cursor: pointer;
+            line-height: 36px;
+            padding: 0px;
+            padding-left: 16px;
+        }
+        .control-label{
+            vertical-align: top;
+        }
+        .down{
+            color:#999;
+            float: right;
+            margin-right: 8px;
+            height: 36px;
+            line-height: 36px;
+        }
+    }
+    .opSiteForm{
+        &.hidden{
+            display: none;
+        }
+        .control-panel{
+            .p-select{
+                position: absolute;
+                top: 0px;
+                height: 40px;
+                line-height: 40px;
+                left: 25px;
+            }
+            .input-select{
+                color:transparent;
+                color:#fbfbfb;
+            }
+        }
+    }
+}

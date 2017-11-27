@@ -1,0 +1,164 @@
+<!-- pbox显示组件 -->
+<app-riccio-pbox></app-riccio-pbox>
+
+
+<div class="executory-main">
+	
+	<div class="normal" *ngIf = "spinnerType=='hide'">
+		<div class="header">
+			<div class="title clearfix">
+				<span class="header-icon f-l">
+					<i class="iconfont_ruanwen ruanwen-ruanwen-xuanzhong"></i>
+				</span>
+				<p>恭喜您，软文投放已经完成。</p>
+			</div>
+		</div>
+
+		<div class="number-info">
+			<ul class="info-ul">
+				<li class="info-ul-li">
+					<span class="title">资源数: <em>{{orderInfo.total_count}}</em>个</span>
+				</li>
+				<li class="info-ul-li">
+					<span class="title">总消费: ¥<em class="num-price font16">{{orderInfo.final_amount}}</em>元</span>
+				</li>
+				<li class="info-ul-li">
+					<span class="title">发布中: <em class="num-blue font16">{{numberInfoStatus.release}}</em>个;</span>
+				</li>
+				<li class="info-ul-li">
+					<span class="title">已完成: <em class="num-green font16">{{numberInfoStatus.complete}}</em>个;</span>
+				</li>
+				<li class="info-ul-li">
+					<span class="title">已拒稿: <em class="num-price font16">{{numberInfoStatus.refuse}}</em>个;</span>
+				</li>
+				<li class="info-ul-li">
+					<span class="title">已取消: <em class="font16">{{numberInfoStatus.cancel}}</em>个</span>
+				</li>
+			</ul>
+		</div>
+
+		<div class="order-list">
+
+			<!-- 执行中的订单列表 -->
+			<div class="gr-wrapper-table">
+
+				<div class="wrapper-content">
+					<!-- 所有员工列表 -->
+					<table class="table table-hover gr-table">
+						<colgroup>
+				    		<col width="80">
+				    		<col width="80">
+				    		<col width="80">
+				    		<col width="80">
+				    		<col width="80">
+				    		<col width="40">
+				    	</colgroup>
+						<thead class="hand">
+						    <tr>
+						        <th *ngFor="let name of tableTitle">
+						            {{name}}
+						        </th>
+						    </tr>
+						</thead>
+					</table>
+					<div class="wrapper-table">
+						<table class="table table-hover gr-table">
+							<colgroup>
+					    		<col width="80">
+					    		<col width="80">
+					    		<col width="80">
+					    		<col width="80">
+					    		<col width="80">
+					    		<col width="40">
+					    	</colgroup>
+							<tbody id="undetails">
+							    <tr *ngFor = "let list of orderInItem">
+							        <td class="customer-content">
+									{{list.article_key}}
+							        </td>
+							        <td class="customer-content">
+									{{list.media_name}}
+							        </td>
+							        <td class="customer-content">
+										<a href="{{list.article_url}}" 
+										   target="_blank">
+											{{list.article_url}}
+										</a>
+							        </td>
+							        <td class="customer-content">
+										<span class="price">¥{{list.article_cost}}元</span>
+							        </td>
+							        <td class="customer-content order-status">
+							        	<span class="status {{list.article_status==0
+																?'yellow'
+																:list.article_status==1
+																?'green'
+																:list.article_status==2
+																?'red'
+																:list.article_status==3
+																?'ash'
+																:''}}"></span>
+										{{list.article_status==0
+										?'发布中'
+										:list.article_status==1
+										?'已完成'
+										:list.article_status==2
+										?'已拒稿'
+										:list.article_status==3
+										?'已取消'
+										:''}}
+
+							        </td>
+							        <td class="td-status"
+							        	[ngSwitch]="list.article_status">
+							        	
+										<ng-template [ngSwitchCase]='0'>
+											-
+										</ng-template>
+
+										<ng-template [ngSwitchCase]='1'>
+											<a href="javascript:;" 
+											   (click)="fnAgainRelease(list)">
+				        					重发
+					        				</a>
+										</ng-template>
+
+										<ng-template [ngSwitchCase]='2'>
+											<a href="javascript:;" 
+											   (click)="fnAgainRelease(list)">
+					        				重发
+					        				</a>
+										</ng-template>
+
+										<ng-template [ngSwitchCase]='3'>
+											<a href="javascript:;" 
+											   (click)="fnAgainRelease(list)">
+				        					重发
+					        				</a>
+										</ng-template>
+				        				
+							        </td>
+
+							    </tr>
+							    
+							</tbody>
+						</table>
+			
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="hide">
+		<app-riccio-spinners [type]='spinnerType' [emptyText]="'暂无此订单信息！'"></app-riccio-spinners>
+	</div>
+
+
+</div>
+
+
+<!-- 软文订单信息 -->
+<app-ruanwen-order-info [orderInfo]="orderInfo"></app-ruanwen-order-info>

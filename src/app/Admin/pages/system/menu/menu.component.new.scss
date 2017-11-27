@@ -1,0 +1,119 @@
+@charset "UTF-8";
+@import "../../../Admin.value.scss";
+@import "../../../../Public/theme/common/keyframes.scss";
+
+$tableHeadOpBtnBg:#848484;
+.site-content{
+    .title-color{
+        color:$themeColor;
+    }
+    .module-header{
+        height: 60px;
+        .breadcrumb{
+            height: 60px;
+            line-height: 60px;
+        }
+        .title,
+        .flex-panel{
+            height:60px;
+            line-height: 60px;
+            padding: 0px;
+        }
+        .title{
+            font-size: 14px;
+        }
+        .flex-panel{
+            a{
+                padding: 0px;
+            }
+        }
+    }
+    .refresh{
+        padding: 2px 7px;
+        border-radius: 5px;
+        background: #fff;
+        position: fixed;
+        z-index: 99;
+        right: -2px;
+        top: 119px;
+        outline: none;
+        border: 1px solid #cbd8dd;
+        cursor: pointer;
+        &.animate{
+            i{
+                &:before{
+                    display: inline-block;
+                    @include setAnimation(
+                        rotate360
+                    )
+                }
+            }
+        }
+        i{
+            font-size: 16px;
+            color:$tableHeadOpBtnBg;
+        }
+    }
+    .module-body{
+        margin-bottom: 30px;
+        .modal-content{
+            margin-top:0px;
+        }
+        .title,
+        .module-header{
+            height:54px;
+            line-height: 54px;
+        }
+        .module-header{
+            .title{
+                transition: all 0.7s;
+                .title-w{
+                    font-size: 12px;
+                    padding-left:10px;
+                    margin-right: 20px;
+                    a{
+                        color:#adadad !important;
+                    }
+                    
+                }
+                .title-active{
+                    font-size: 14px;
+                    a{
+                        color:#666 !important;
+                    }
+                    border-left:2px solid $themeColor;
+                }
+            }
+            .f-r{
+                height:30px;
+                margin-top:12px;
+            }
+        }
+        .lc-table{
+            .table-head{
+                color:#818181;
+            }
+            .customer-director{
+                input{
+                    width:40px;
+                    outline: none;
+                }
+            }
+            .customer-name{
+                text-align: left;
+                padding-left:25px;
+            }
+            .customer-level{
+                a{
+                    margin-left: 3px;
+                    margin-right: 3px;
+                }
+            }
+        }
+    }
+    .table-scroll-p{
+        top:114px;
+        bottom: 0px;
+        // left: 
+    }
+}

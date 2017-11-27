@@ -1,0 +1,42 @@
+.members-setting{
+	width: 600px;
+	padding-top: 12px;
+	button{
+		width: 100%;
+    }
+    .form-group{
+        .sex{
+            height: 40px;
+            line-height: 40px;
+        }
+        .control-label{
+            font-weight: normal;
+        }
+        &.thumb{
+            line-height: 60px;
+            height: 60px;
+        }
+    }
+	.setting-thumb{
+		width: 45px;
+		height: 45px;
+		overflow: hidden;
+        margin-right: 20px;
+        border-radius: 5px;
+        vertical-align: middle;
+        display: inline-block;
+		& img{
+            height: 45px;
+            vertical-align: initial;
+		}
+	}
+	.setting-mobile{
+		height: 40px;
+		line-height: 40px;
+	}
+	.cropperInput{
+		opacity: 0;
+		width: 24px;
+		height: 14px;
+	}
+}

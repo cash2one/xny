@@ -1,0 +1,37 @@
+<div class="gr-window-scroll note" *ngIf = "isShow">
+    <div class="openBox-Main"
+            style="z-index: 150;"></div>
+            
+    <div class="modal-content" 
+            [@smallBig]="'in'" 
+            *ngIf = "isShow">
+        <div class="modal-header">
+            <a href="javascript:;" class="modal-close" (click)="fnClose()">
+                    <i class="lcfont xm-close iconfont_console console-iconfontquxiao"></i>
+                </a>
+            <h3 class="modal-title">备注</h3>
+        </div>
+        <div class="modal-body">
+            <span class="gr-alert gr-alert-warn">
+                请勿备注个人敏感信息，若不是自己填写，小心被骗。
+                平台不会修改交易备注信息。
+            </span>
+            <div class="noteInfo">
+                <div class="title">
+                    <span class="label">支付事项：</span>
+                    <span class="value">{{noteData.title}}</span> 
+                </div>
+                <div class="mark">
+                    <span class="label">备注：</span>
+                    <textarea name="mark" placeholder="备注"
+                        [ngClass]="{'danger':noNote}"
+                        (focus)="noNote = false"
+                        [(ngModel)]="postData.note"></textarea>
+                </div>
+            </div>
+            <div class="member-action">
+                <button (click)="fnMark()" [disabled]="!btn.status" class="gr-btn gr-btn-primary gr-btn-primary">{{btn.text}}</button>
+            </div>
+        </div>
+    </div>
+</div>

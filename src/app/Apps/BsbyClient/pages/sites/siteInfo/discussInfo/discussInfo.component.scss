@@ -1,0 +1,122 @@
+@import '../siteInfo.common.scss';
+@import '../../../../bsbyClient.common.scss';
+
+$header:#F5F6FA;
+
+$beforeColor:#4E9CF3;
+$afterColor:#FF7F23;
+
+.discussInfo{
+    width: 100%;
+    .title{
+        padding-left: 20px;
+        border-left: 3px solid $textColorLink;
+        height: 20px;
+        line-height: 20px;
+        margin-bottom: 15px;
+        display: inline-block;
+        .name{
+            font-size: 13px;
+        }
+    }
+    .main{
+        .comment{
+            .commentMain{
+                width: 100%;
+                border: 1px solid $headBorderColor;
+                border-radius: 5px;
+                outline: none;
+                resize:none;
+                padding: 10px;
+            }
+            .tools{
+                overflow: hidden;
+                .inputTool{
+                    display: inline-block;
+                    width: 80%;
+                }
+                .tool{
+                    background: #fff;
+                    border: none;
+                    padding: 0 4px;
+                    outline: none;
+                    cursor: pointer;
+                    &:hover{
+                        color:$textColorLink;
+                    }
+                }
+                .submit{
+                    padding: 5px 20px;
+                    border-radius: 3px;
+                    margin-left: 10px;
+                    background-color: $textColorLink;
+                    color:#fff;
+                    font-weight: normal;
+                    font-size: 12px;
+                    float: right;
+                    &:hover{
+                        color:#fff;
+                    }
+                }
+            }
+        }
+        .list{
+            .commentList{
+                padding: 4px 0;
+                .commentListChild{
+                    display: inline-block;
+                }
+                .thumb,
+                .del{
+                vertical-align: top; 
+                }
+                .thumb{
+                    i{
+                        font-size: 20px;
+                        color:#BDBEC0;
+                    }
+                }
+                .center{
+                    width: 80%;
+                    margin-left: 8px;
+                    .name{
+                        
+                    }
+                    .time{
+                        padding-left: 10px;
+                        color:$bodyFadeColor;
+                    }
+                    .commentWords{
+                        color:$bodyFadeColor;
+                        .word{
+                            display: inline-block;
+                            max-width: 80%;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            vertical-align: middle;
+                        }
+                        .hasFile{
+                            padding-left: 12px;
+                            display: inline-block;
+                            transform: scale(0.8);
+                            color:darken($textColorLink,5);
+                            i{
+                                position: relative;
+                                top: 2px;
+                            }
+                        }
+                    }
+                }
+                .del{
+                    background: #fff;
+                    border: none;
+                    outline: none;
+                    float: right;
+                    cursor: pointer;
+                    color:$danger;
+                }
+            }
+        }
+    }
+}

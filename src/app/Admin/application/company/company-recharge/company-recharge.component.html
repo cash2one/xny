@@ -1,0 +1,49 @@
+<div class="gr-window-scroll recharge" *ngIf = "isShow">
+    <div class="openBox-Main"
+            style="z-index: 150;"></div>
+            
+    <div class="modal-content" 
+            [@smallBig]="'in'" 
+            *ngIf = "isShow">
+        <div class="modal-header">
+            <a href="javascript:;" class="modal-close" (click)="fnClose()">
+                    <i class="lcfont xm-close iconfont_admin admin-iconfontquxiao"></i>
+                </a>
+            <h3 class="modal-title">充值</h3>
+        </div>
+        <div class="modal-body">
+            <div class="rechargeInfo gr-form-horizontal">
+                <div class="amountNow form-group">
+                    <span class="label">当前金额为：</span>
+                    <span class="value">{{rechargeData.amountNow}}</span>
+                </div>
+                <div class="amountCharge form-group">
+                    <span class="label label-required">充值金额：</span>
+                    <div class="selectType color">
+                        <a href="javascript:;" 
+                            (click)="postData['type'] = 1" 
+                            class="gr-radio add {{postData['type']==1?'active':''}}">
+                            <span></span>
+                            <label>+</label>
+                        </a>
+                        <a href="javascript:;" 
+                            (click)="postData['type']=2" 
+                            class="gr-radio redure {{postData['type']==2?'active':''}}">
+                            <span></span>
+                            <label>-</label>
+                        </a>
+                    </div>
+                    <input name="charge" autocomplete="off" placeholder="请输入充值金额"
+                        (keydown)="resolveChargeInput()" (keyup)="resolveChargeInput()" [(ngModel)]="postData.amount">元
+                </div>
+                <div class="amountMark form-group">
+                    <span class="label label-required">支付事项：</span>
+                    <textarea name="mark" placeholder="请输入支付事项" [(ngModel)]="postData.desc"></textarea>
+                </div>
+            </div>
+            <div class="member-action">
+                <a class="gr-btn gr-btn-primary gr-btn-primary" (click)="recharge()">添加</a>
+            </div>
+        </div>
+    </div>
+</div>

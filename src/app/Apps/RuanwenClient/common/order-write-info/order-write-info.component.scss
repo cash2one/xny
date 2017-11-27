@@ -1,0 +1,18 @@
+.writeInfo-main{
+	background-color: #fff;
+	height: 400px;
+	margin-bottom: 20px;
+	.header{
+		p{
+			line-height: 60px;
+		}
+	}
+	.info-content{
+		padding:  0 50px;
+		.content{
+		    border: 1px solid #E1E6EB;
+		    height: 290px;
+		    padding: 20px;
+		}
+	}
+}

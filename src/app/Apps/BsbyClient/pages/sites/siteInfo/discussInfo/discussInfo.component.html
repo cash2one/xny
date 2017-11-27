@@ -1,0 +1,50 @@
+<div class="discussInfo">
+    <div class="title">
+        <span class="name">需求沟通</span>
+    </div>
+    <div class="main">
+        <div class="comment">
+            <textarea class="commentMain" 
+                (focus)="fnShowTool()"
+                [(ngModel)]="postData.content" rows="2" placeholder="输入沟通内容"></textarea>
+            <div class="tools" [@toolState]="toolState">
+                <div class="inputTool">
+                    <app-bsby-client-input-tool
+                        [uploadUrl]="uploadUrl"
+                        (uploadEmit)="uploadEmit($event)"></app-bsby-client-input-tool>
+                </div>
+                <button class="tool gr-btn gr-btn-primary submit" (click)="addDemand()" 
+                    [disabled]="!btnStatu.statu">{{btnStatu.text}}</button>
+            </div>
+        </div>
+        <div class="list">
+            <app-riccio-spinners [type]="demandLoadingType"
+                [emptyText]="'近期没有沟通需求'"></app-riccio-spinners>
+            <ul *ngIf="demandLoadingType == 'hide'">
+                <li class="commentList" *ngFor="let demand of demandList"
+                (mouseenter)="demand.del = true" (mouseleave)="demand.del = false">
+                    <div class="commentListChild thumb">
+                        <i class="iconfont_bsby bsby-touxiang"></i>
+                    </div>
+                    <div class="commentListChild center">
+                        <span class="name">{{demand.username}}</span>
+                        <span class="time">{{demand.created_at}}</span>
+                        <div class="commentWords">
+                            <span class="word">
+                                {{demand.content}}
+                            </span>
+                            <span class="hasFile color999" *ngIf="demand.images && demand.images.length > 0">
+                                <i class="iconfont_bsby bsby-fujian"></i>
+                                附件
+                            </span>
+                        </div>
+                    </div>
+                    <button class="commentListChild del" *ngIf="demand.del" (click)="showDel(demand.id,del,$event)" #del>
+                        <i class="iconfont_bsby bsby-shanchu"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+    

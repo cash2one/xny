@@ -1,0 +1,25 @@
+<form class="gr-form-horizontal c-f">
+
+	<div class="form-group c-f">
+		<div class="col-gr-8 control-panel getCodeSMSInput p-r">
+			<input name="code"
+					[(ngModel)]="code"
+					class="form-control"
+					placeholder="请输入验证码" 
+					maxlength="4"  
+					style="">
+		</div>
+		<div class="col-gr-4 control-panel">
+			<button type="button" 
+					class="gr-btn gr-btn-primary getCodeSMS"
+					(click)="fnVerifyCode()">验证</button>
+		</div>
+	</div>
+
+	<div class="form-group c-f">
+		<div class="col-gr-12 control-panel">
+			<p class="color999">短信验证码已经发送到该手机号：+86-{{userPhone}}，请注意查收</p>
+		</div>
+	</div>
+
+</form>

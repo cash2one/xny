@@ -1,0 +1,46 @@
+<base target="_blank">
+
+<div class="info-main">
+	
+	<div class="header-title">
+		<p>{{orderInfo.number}} 的订单信息</p>
+	</div>
+
+	<div class="info-content">
+
+		<div class="content-list content-title">
+			<div class="ruanwen-title">
+				{{orderInfo.title}}
+			</div>
+		</div>
+
+		<div class="content-list content-order">
+			<div class="order-name f-l">
+				<div class="title">
+					订单名称:
+				</div>
+				{{orderInfo.order_name}}
+			</div>
+			<div class="order-time f-l">
+				<div class="title">
+					发表时间:
+				</div>
+				{{orderInfo.created_at}}
+			</div>
+		</div>
+	
+		<div class="content-list ruanwen-content">
+			<div class="" #contentEl></div>
+		</div>
+
+<!-- 		<div class="content-list noborder order-ramake">
+			<div class="ruanwen-remarks">
+				<div class="title f-l">
+					订单备注:
+				</div>
+				{{orderInfo.remark}}
+			</div>
+		</div> -->
+	</div>
+
+</div>

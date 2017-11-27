@@ -1,0 +1,201 @@
+<!-- <app-riccio-loading></app-riccio-loading> -->
+<!-- 删除列表项弹出框-->
+<app-riccio-pbox></app-riccio-pbox>
+
+
+<div class="modal-content">
+	<div class="module-header clearfix">
+		<div class="f-l titleTag">
+			模版管理
+		</div>
+		<div class="flex-panel">
+			<button class="btn btn-primary btn-sm f-r" (click)="fnShowAddTemplate()">添加模版</button>
+		</div>
+	</div>
+	<div class="module-body table-scroll-p">
+		<div class="tempList">
+			<div class="customer-list">
+				<!-- 从上侧弹出的组件样式 -->
+				<div class="flyLeftContent" *ngIf="FlyLeftData.isShow" [@flyTop]="'in'">
+					<div class="content-text">已选择<span>{{FlyLeftData.number}}</span>项</div>
+					<ul class="content-list">
+						<li><a href="javascript:;" #deleteCheck (click)="fnDeleteCheck($event,deleteCheck)">删除</a></li>
+					</ul>
+					<a href="javascript:;" class="f-r up-hide" (click)="fnCheckAll(false)">
+						<span><i class="iconfont_admin  admin-up"></i></span>
+					</a>
+				</div>
+				<table class="table table-hover lc-table" cellpadding="50px" tableTitle>
+					<colgroup>
+						<col width="20">
+						<col width="30">
+						<col width="60">
+						<col width="80">
+						<col width="80">
+					</colgroup>
+					<thead class="table-head">
+						<tr>
+							<th class="checkAll" noTitle>
+								<a href="javascript:;" class="customer-check" (click)="fnCheckAll(!AllCheck)">
+									<i class="iconfont_admin  {{AllCheck===false?'admin-check':'admin-check1'}}">
+									</i>
+								</a>
+							</th>
+							<th *ngFor="let list of driveList">
+								<span>{{list}}</span>
+							</th>
+						</tr>
+					</thead>
+				</table>
+				<div class="table-scroll">
+					<table class="table table-hover lc-table" cellpadding="50px">
+						<colgroup>
+							<col width="20">
+							<col width="30">
+							<col width="60">
+							<col width="80">
+							<col width="80">
+						</colgroup>
+						<app-my-loading *ngIf="isLoading"></app-my-loading>
+						<tbody class="table-body" *ngIf="!isLoading" #clickTb>
+							<tr *ngFor="let list of templateData;let i=index" (click)="fnShowDetail(list)" tableTitle>
+								<td class="customer-select" noTitle>
+									<a href="javascript:;" class="customer-check" (click)="fnCheckUser(list,$event)">
+										<i class="iconfont_admin  {{list['isCheck']===false?'admin-check':'admin-check1'}}">
+										</i>
+									</a>
+								</td>
+								<td class="customer-content">
+									{{list.id}}
+								</td>
+								<td class="customer-content">
+									{{list.name}}
+								</td>
+								<td class="customer-content">
+									{{list.title}}
+								</td>
+								<td class="customer-content" noTitle>
+									<a href="javascript:;" class="approval-action" (click)="fnShowEdit($event,list)">
+										编辑
+									</a>
+									<a href="javascript:;" class="approval-action" (click)="fnShowTest($event,list)">
+										测试
+									</a>
+									<a href="javascript:;" class="approval-action" #delLink (click)="fnShowConfirm($event,delLink,list)">
+										删除
+									</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<app-riccio-paginations class="page"
+					[pboxData]="pageParam['pboxData']"
+					[total]="pageParam['total']"
+					(pageValue)="fnPagination($event)">
+				</app-riccio-paginations>
+			</div>
+		</div>
+	</div>
+</div>
+
+<show-detail (onEmit)="detailClick($event)">
+</show-detail>
+
+<app-riccio-modal>
+	<div body class="configModal" [ngSwitch]="modalShow">
+		<!--测试-->
+		<div class="testBase" *ngSwitchCase="'mail_test'">
+			<div class="testHead">
+				<span class="title">
+					当前模版：{{testListData.name}}
+				</span>
+			</div>
+			<div class="testBody">
+				<form #testForm="ngForm">
+					<div class="form-group ft">
+						<label class="control-label color666 label-required">邮箱地址</label>
+						<input type="text" autocomplete="off" required placeholder="请输入接收的邮箱地址" name="email"
+							 [(ngModel)]="testListData.email" (blur)="fnEmailBlur()"
+							 [ngClass]="{'danger':!testListData.emailValid}">
+					</div>
+					<div class="form-group fta">
+						<label class="control-label color666 label-required">邮件内容</label>
+						<div class="control-panel">
+							<ueditor name="content"
+								*ngIf="uedTestShow"
+								[ngClass]="{'uedanger':content.dirty && content.invalid}"
+								required #content="ngModel"
+								[(ngModel)]="testListData.content"
+								[config]="ueditorConf">
+							</ueditor>
+						</div>
+					</div>
+					<div class="send">
+						<button class="gr-btn sendBtn" [disabled]="!testForm.form.valid" (click)="fnSendTest()">{{testBtnName}}</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!--添加或者修改·-->
+		<div class="modalBase" *ngSwitchCase="'mail_add_edit'">
+			<form class="gr-form-horizontal addTempForm" *ngIf="addEditFormShow" #addOrEditForm="ngForm">
+				<div class="form-group f-i">
+					<label class="control-label color666 label-required">
+                        模版标识
+                    </label>
+					<div class="control-panel">
+						<input name="t_alias" class="form-control" autocomplete="off" placeholder="请输入模版唯一标识" required #t_alias="ngModel" [ngClass]="{'danger':t_alias.dirty && t_alias.invalid}"
+						 [(ngModel)]="addOrEditList.alias">
+					</div>
+				</div>
+				<div class="form-group f-i">
+					<label class="control-label color666 label-required">
+                        模版名称
+                    </label>
+					<div class="control-panel">
+						<input name="t_name" autocomplete="off" class="form-control" placeholder="请输入模版名称" required #t_name="ngModel" [ngClass]="{'danger':t_name.dirty && t_name.invalid}"
+						 [(ngModel)]="addOrEditList.name">
+					</div>
+				</div>
+				<div class="form-group f-i">
+					<label class="control-label color666 label-required">
+                        邮件标题
+                    </label>
+					<div class="control-panel">
+						<input name="t_title" autocomplete="off" class="form-control" placeholder="请输入邮件标题" required #t_title="ngModel" [ngClass]="{'danger':t_title.dirty && t_title.invalid}"
+						 [(ngModel)]="addOrEditList.title">
+					</div>
+				</div>
+				<div class="form-group f-ta">
+					<label class="control-label color666 label-required">
+                        邮件内容
+                    </label>
+					<div class="control-panel">
+						<ueditor name="t_content"
+							*ngIf="uedshow"
+							[ngClass]="{'uedanger':t_content.dirty && t_content.invalid}"
+							required #t_content="ngModel"
+							 [(ngModel)]="addOrEditList.content"
+							 [config]="ueditorConf">
+						</ueditor>
+					</div>
+				</div>
+				<div class="form-group f-ta">
+					<label class="control-label color666 label-required">
+                        参数设置
+                    </label>
+					<div class="control-panel">
+						<textarea name="t_parme" rows="5" required #t_parme="ngModel"
+							[ngClass]="{'danger':t_parme.dirty && t_parme.invalid}"
+							 class="form-control" placeholder="请输入参数，例如 “@var(code)验证码”" [(ngModel)]="addOrEditList.parme"></textarea>
+						<span class="tip">一行一个</span>
+					</div>
+				</div>
+				<div class="form-group f-btn">
+					<button class="gr-btn addBtn" [disabled]="!addOrEditForm.form.valid" (click)="fnTempAddOrEdit()">{{modalShowIsAddOrEdit.btnName}}</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</app-riccio-modal>

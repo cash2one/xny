@@ -1,0 +1,32 @@
+.item-main{
+	min-height: 40px;
+	margin-top: 20px;
+	.item-title{
+		max-width: 95px;
+		line-height: 40px;
+	}
+	.item-list{
+		min-height: 40px;
+		padding: 0;
+		line-height: 40px;
+		ul.item-ul{
+			li.item-ul-li{
+				display: inline-block;
+				height: 34px;
+				line-height: 34px;
+				font-size: 12px;
+				margin-right: 10px;
+				position: relative;
+				border:1px solid #E1E6EB;
+				padding: 0 10px;
+				span.type-choose{
+					color: #FF0000;
+					i{
+						cursor: pointer;
+						font-size: 12px;
+					}
+				}
+			}
+		}
+	}
+}

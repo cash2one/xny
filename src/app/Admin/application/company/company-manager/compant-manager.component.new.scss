@@ -1,0 +1,277 @@
+@import "../../../Admin.value.scss";
+
+$statusYes:#7EC856;
+$statusNo:#F37263;
+// #{'/deep/'}{
+    .site-content{
+        .module-header{
+            height: 56px;
+            .title,
+            .flex-panel{
+                height:56px;
+                line-height: 56px;
+                padding: 0px;
+            }
+            .title{
+                font-size: 14px;
+            }
+            .flex-panel{
+                a{
+                    padding: 0px;
+                }
+                .rightTab{
+                    a{
+                        font-size: 14px !important;
+                        // color:$themeColor !important;
+                        border-radius: 0px;
+                        padding-left:16px !important;
+                        padding-right:16px !important;
+                        // border-bottom: 2px solid $themeColor;
+                    }
+                }
+                .mainTab{
+                    a{
+                        font-size: 14px !important;
+                        color:$themeColor !important;
+                        border-radius: 0px;
+                        padding-left:16px !important;
+                        padding-right:16px !important;
+                        border-bottom: 2px solid $themeColor;
+                    }
+                }
+            }
+        }
+        .module-body{
+            margin-bottom: 30px;
+            .modal-content{
+                margin-top:0px;
+            }
+            .title,
+            .module-header{
+                height:54px;
+                line-height: 54px;
+            }
+            .module-header{
+                .title{
+                    transition: all 0.7s;
+                    .title-w{
+                        font-size: 12px;
+                        padding-left:10px;
+                        margin-right: 20px;
+                        a{
+                            color:#adadad !important;
+                        }
+                        
+                    }
+                    .title-active{
+                        font-size: 14px;
+                        a{
+                            color:#666 !important;
+                        }
+                        border-left:2px solid $themeColor;
+                    }
+                }
+                .f-r{
+                    height:30px;
+                    margin-top:12px;
+                }
+                .addBtn{
+                    margin-right: 8px;
+                }
+            }
+            .tempList{
+                .integration-header{
+                    height: 54px;
+                    line-height: 54px;
+                    margin-bottom:10px;
+                    margin-top: 10px;
+                    .searchBtn{
+                        &:hover{
+                            background: $themeColor;
+                        }
+                    }
+                    .noneBtn{
+                        height: 0px;
+                        width: 0px;
+                    }
+                    .control-panel{
+                        padding-left:0px;
+                        select,
+                        input,
+                        button{
+                            width: 100%;
+                            height: 38px;
+                            margin-top:8px;
+                            outline: none;
+                            box-shadow: none;
+                        }
+                        button{
+                            padding: 0px;
+                        }
+                    }
+                    .select-cp {
+                        position: relative;
+                        height: 38px;
+                        .select{
+                            border: 1px solid #eaeff1;
+                            background: #fff;
+                            padding-left:20px;
+                            padding-right:20px;
+                            border-radius: 5px;
+                            text-align: left;
+                            height: 38px;
+                            line-height: 38px;
+                            margin-top: 8px;
+                            cursor: pointer;
+                        }
+                        .down{
+                            position: absolute;
+                            width: 40px;
+                            color: rgba(0, 0, 0, 0.32);
+                            font-size: 20px;
+                            top: 8px;
+                            right: 10px;
+                            z-index: 2;
+                            height: 38px;
+                            line-height: 42px;
+                        }
+                    }
+                }
+                .customer-list{
+                    margin-top: 0px;
+                    .flyLeftContent{
+                        height: 60px;
+                        top:-114px;
+                        left: -25px;
+                    }
+                }
+            }
+            .lc-table{
+                .table-head{
+                    color:#818181;
+                }
+                .customer-director{
+                    input{
+                        width:40px;
+                        outline: none;
+                    }
+                }
+                .customer-name{
+                    text-align: left;
+                    padding-left:25px;
+                }
+                .customer-level{
+                    a{
+                        margin-left: 3px;
+                        margin-right: 3px;
+                    }
+                    .login{
+                        color:#e2e2e2;
+                    }
+                }
+                .noImg{
+                    color:#999;
+                    font-size: 18px;
+                }
+                .logo{
+                    width: 45px;
+                }
+                .status{
+                    display: inline-block;
+                    height: 8px;
+                    width: 8px;
+                    margin-right: 5px;
+                    border-radius: 50%;
+                    background: black;
+                }
+                .statuYes{
+                    background: $statusYes;
+                }
+                .statuNo{
+                    background: $statusNo;
+                }
+            }
+        }
+        .table-scroll-p{
+            top:110px;
+            bottom: 60px; 
+        }
+    }
+    
+    .configModal{
+        .modalBase{
+            .f-select{
+                .selectDef{
+                    color:#a2a2a2;
+                }
+                .form-control{
+                    cursor: pointer;
+                    line-height: 36px;
+                    padding: 0px;
+                    padding-left: 16px;
+                }
+                .control-label{
+                    vertical-align: top;
+                }
+                .down{
+                    color:#999;
+                    float: right;
+                    margin-right: 8px;
+                    height: 36px;
+                    line-height: 36px;
+                }
+            }
+            .f-pos{
+                .pos{
+                    width: 32.5%;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+// }
+
+#{'/deep/'}{
+    .rechargeTip{
+        .tip{
+            .ico{
+                width: 15%;
+                display: inline-block;
+                text-align: center;
+                line-height: 1;
+                i{
+                    font-size: 28px;
+                    color:$textColorLink;
+                }
+            }
+            .show{
+                display: inline-block;
+                width: 80%;
+                vertical-align: top;
+                .f{
+                    display: block;
+                    color:#333;
+                }
+                .s{
+                    display: block;
+                    padding-top: 15px;
+                    color:#999;
+                }
+            }
+        }
+        .member-action{
+            margin-top: 20px;
+            margin-left: 20px;
+            .success{
+                display: inline-block;
+            }
+            .help{
+                background: #fff;
+                background: transparent;
+                padding: 8px 20px;
+                display: inline-block;
+                font-weight: 400;
+            }
+        }
+    }
+}

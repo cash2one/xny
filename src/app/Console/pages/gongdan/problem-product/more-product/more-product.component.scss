@@ -1,0 +1,58 @@
+@import "../../gongdan.common.scss";
+
+.showMore{
+  margin: 20px -4px;
+  border: 1px solid #eaeaea;
+  .more-head{
+    background-color: #f8f8f8;
+    padding: 10px 0px;
+    text-align: center;
+    border-bottom: 1px solid #eaeaea;
+    font-size: 14px;
+    color: #9a9a9a;
+  }
+  .more-body{
+    padding: 0px 10px;
+    margin: 0px 5px;
+    font-size: 12px;
+    .out{
+      width: 17%;
+      margin-right: 3%;
+      float: left;
+      .outLi{
+        padding: 28px 0px 20px;
+        border-bottom: 1px solid #eaeaea;
+        div{
+          color: #999;
+          margin-bottom: 12px;
+        }
+        .inner{
+          li{
+            width: 100%;
+            display: block;
+            padding: 3px 0px;
+            cursor: pointer;
+          }
+          li:hover{
+            background-color: #f2f2f2;
+          }
+        }
+      }
+      .outLi:last-child{
+        border-bottom: none;
+      }
+    }
+  }
+  .packUp{
+    width: 50px;
+    background-color: #F5F6FA;
+    border: 1px solid #e1e6eb;
+    border-top-width: 0px;
+    position: relative;
+    top: 25px;
+    left: calc(50% - 25px);
+    text-align: center;
+    cursor: pointer;
+  }
+}
+

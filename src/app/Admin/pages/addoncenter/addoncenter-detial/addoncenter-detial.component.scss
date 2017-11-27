@@ -1,0 +1,242 @@
+.user-details{
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 700px;
+  background-color: #fff;
+  box-shadow: -3px 0 15px #eee;
+    z-index: 1000;
+    overflow-y:auto;
+    padding: 10px 0 0 20px;
+    .content-form{
+        margin-top: 20px;
+        form.form-horizontal{
+            .form-group{
+                max-width: 520px;
+                button.save{
+                    margin-right: 20px;
+                }
+                a.close{
+                    line-height: 50px;
+                    color: #666;
+                }
+                .sex-button{
+                    height: 40px;
+                    line-height: 40px;
+                    i{
+                        font-size: 27px;
+                    }
+                    a{
+                        color: #ccc;
+                        &.man{
+                            color: #69d0d1
+                        }
+                        &.woman{
+                            color: #F99
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .content-title{
+        position: relative;
+        left: -20px;
+        margin-left: 20px;
+        height: 40px;
+        border-bottom: 1px solid #f3f3f3;
+        a{
+            color: #ccc;
+        }
+        span{
+            font-size: 16px;
+            font-weight: bold;
+        }
+    }
+}
+
+.module-body{
+    height: 100%;
+}
+
+.module-wrapper{
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.entry-item{
+  .entry-header{
+    .title-editor{
+      width: calc(100% + 20px);
+      input{
+        outline: none;
+      }
+      .form-group{
+        margin-bottom: 10px;
+      }
+    }
+    .progressbar-container{
+      margin-bottom: 20px;
+    }
+  }
+
+  .entry-tasks{
+      height: 100%;
+      overflow-y: scroll;
+      .task-card{
+        &:hover > .task-main > span .task-operate{
+          display: inline-block;
+        }
+        .task-main{
+          .task-operate{
+            display: none;
+          }
+          .task-title{
+            margin-right: 10px;
+          }   
+        }
+
+        .title-editor{
+          width: 100%;
+          input{
+            outline: none;
+          }
+        }
+        
+      }
+  }
+
+  .task-create{
+    padding: 0 15px 0 8px;
+  }
+
+}
+
+
+.entry-wrapper{
+    position: relative;
+}
+
+.entry-wrapper .entry-item{
+  z-index: 100;
+}
+
+.module-body-list{
+  position: absolute;
+  // overflow-x: hidden;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 10px;
+}
+
+.task-board{
+    height: 100%;
+    position: absolute;
+    display: flex;
+}
+
+.task-board-wrapper{
+}
+
+/*.task-card .task-main .task-check {
+  margin:0 8px 0 0;
+  color: #69d0d1;
+}*/
+
+/*鼠标滚动区域*/
+#scrollContainer{
+    padding: 0;
+    position: absolute;
+    top: -10px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+/* dragula */
+.gu-mirror {
+  position: fixed !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+  opacity: 1;
+  transition:all 0.1s;
+  transform:rotate(3deg);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+}
+.gu-hide {
+  display: none !important;
+  transition:all 0.1s;
+}
+.gu-unselectable {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  transition:all 0.1s;
+}
+.gu-transit {
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  transition:all 0.1s;
+  filter: alpha(opacity=20);
+}
+
+.goal-list.goal-list-main{
+  position: absolute;
+  top: 100px;
+  padding-top: 6px;
+  bottom: 20px;
+  right: 0;
+  left: 290px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+}
+
+
+.goal-list-main .j_goalitem{
+  outline: none;
+}
+
+/*#mainline-list .j_goalitem.goal-item dt{
+  width: 76px !important;
+  height: 76px !important;
+  left: -10px !important;
+}*/
+
+.goal-list-main  .footer  .speed-box i{
+  transition:all 0.4s !important;
+  width:0px;
+}
+
+
+.gola-list-screen{
+  padding: 0;
+  height: 30px;
+  margin: 0 4px;
+}
+.gola-list-screen .screen-list{
+  padding-left: 70px;
+}
+
+.gola-list-screen .screen-list span i{
+  display: block
+}
+
+
+.gola-list-screen .screen-manage-box .screen-manage.Manage{
+  background-color: #69d0d1;
+  color: #fff;
+}
+
+
+
+.gola-list-screen .screen-list span a.Edit{
+  background-color: #69d0d1;
+  color: #fff;
+}

@@ -1,0 +1,98 @@
+<form class="gr-form-horizontal c-f">
+
+    <div class="form-group c-f">
+        <label class="col-gr-2 control-label label-required t-r">
+            帐号
+        </label>
+        <div class="mobile-select f-l col-gr-2">
+            <div class="gr-select">
+                <select class="form-control select" name="">
+                      <option class="" selected="selected" value="">中国+86</option>
+                </select>
+                <i class="iconfont_admin  admin-xia"></i>
+            </div>
+        </div>
+        <div class="col-gr-7 control-panel">
+            <input name="mobile"
+                   class="form-control"
+                   [ngClass]="{'danger':danger['mobile']}"
+                   [(ngModel)]="mobilePhone"
+                   (blur)="fnGetFindMobile()"
+                   (focus)="danger['mobile']=false"
+                   maxlength="11"
+                   placeholder="请输入对方的帐号">
+        </div>
+        <div class="col-gr-1">
+          <button type="button" class="gr-btn gr-btn-primary search" (click)="searchUser()">选择</button>
+        </div>
+    </div>
+
+    <div class="form-group c-f">
+        <label class="col-gr-2 control-label label-required t-r">
+            姓名
+        </label>
+        <div class="col-gr-9 control-panel">
+            <input name="real_name"
+                   class="form-control"
+                   [ngClass]="{'danger':danger['real_name']}"
+                   [(ngModel)]="postAddData['real_name']"
+                   (focus)="danger['real_name']=false"
+                   (blur)="fnAllBlurEle('real_name')"
+                   placeholder="请输入对方的真实姓名">
+        </div>
+    </div>
+
+    <div class="form-group c-f">
+        <label class="col-gr-2 control-label label-required t-r">
+            职务
+        </label>
+        <div class="col-gr-9 control-panel">
+            <input name="positionname"
+                   class="form-control"
+                   [ngClass]="{'danger':danger['positionname']}"
+                   (focus)="danger['positionname']=false"
+                   [(ngModel)]="postAddData['positionname']"
+                    (blur)="fnAllBlurEle('positionname')"
+                   placeholder="请输入对方的职务">
+        </div>
+    </div>
+
+    <div class="form-group c-f">
+        <label class="col-gr-2 control-label t-r">
+            状态
+        </label>
+        <div class="col-gr-9 control-panel">
+            <div class="selectStatus">
+                <a href="javascript:;"
+                   (click)="postAddData['status']=1"
+                   class="gr-radio {{postAddData['status']==1?'active':''}}" ><span></span>正常</a>
+                <a href="javascript:;"
+                   (click)="postAddData['status']=2"
+                   class="gr-radio {{postAddData['status']==2?'active':''}}" ><span></span>禁用</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group c-f">
+        <div class="col-gr-6 col-gr-ml-2">
+            <button type="button"
+                    class="gr-btn gr-btn-primary"
+                    disabled="{{btnData.disabled==true?'disabled':''}}"
+                    (click)="fnAddMembers()">{{btnData.text}}</button>
+            <a href="javascript:;" class="gr-btn gr-btn-link" (click)="Close()">取消</a>
+        </div>
+    </div>
+</form>
+
+<!-- 弹出的成员单选框 -->
+<app-riccio-single-members
+  [membersList]="membersList"
+  [isShow]="isShow"
+  [header]="header"
+  [title]="title"
+  [placeholder]="placeholder"
+  [keyName]="name"
+  [nextPage]="nextPage"
+  (close)="closeViewHandler($event)"
+  (searchValue)="searchHandler($event)"
+  (emitData)="emitDataHandler($event)"></app-riccio-single-members>

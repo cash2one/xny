@@ -1,0 +1,103 @@
+<div class="gr-window-scroll" *ngIf = "isShow">
+    <div class="openBox-Main"
+         style="z-index: 150;"></div>
+         
+
+    <div class="modal-content" [@flyInOut]="'in'" *ngIf = "isShow">
+        <div class="ng-scope ng-isolate-scope">
+            <div class="modal-header">
+            	<a href="javascript:;" class="modal-close" (click)="Close()">
+                    <i class="lcfont xm-close iconfont_common common-iconfontcha"></i>
+                </a>
+                <h3 class="modal-title">{{header}}</h3>
+            </div>
+	
+			<div class="modal-body">
+
+			    <div class="select-member-area">
+			        <div class="row select-member-panel">
+			            <div class="member-all">
+						
+			                <div class="member-panel-header"><span class="">{{title}}</span></div>
+
+			                <div class="member-panel-body">
+								<div class="search-container">
+			                        <div class="search-area-modal">
+			                        	<i class="iconfont_common  common-search1"></i>
+			                            <input type="text"
+			                                   name="searchName"
+			                                   #membersName
+			                                   (keyup)="getSearchUsers(membersName.value)"
+			                                   placeholder="{{placeholder}}" 
+			                                   class="" 
+			                                   style="">
+			                        </div>
+			                    </div>
+			                    <ul>
+			                        <li class="member"
+			                            *ngFor = "let list of membersList"
+			                            (click)="fnEmitTransferData(list)">
+			                            <div class="xm-avatar xm-avatar-30 " 
+			                                 title="{{memberTitle}}" 
+			                                 member="member" 
+			                                 size="30" 
+			                                 name="true">
+			                                <span class="xm-avatar-def" 
+			                                      style="background-color: rgb(239, 123, 164);">
+			                                    <div class="ng-binding">
+			                                        {{list[keyName].slice(0,1)}}
+			                                    </div>
+			                                </span>
+			                                <div class="xm-avatar-name">{{list[keyName]}}</div>
+			                            </div>
+			                            <span class="btn-link-remove f-r">
+			                                  <i class="iconfont_common "></i>
+			                            </span>
+			                        </li>
+
+		                        	<li *ngIf = "nextPage!='hide'">
+
+                                        <div class="loading-indicator" *ngIf = "nextPage=='loading'">
+                                            <div class="hor-center">
+                                                <h4 class="ng-binding">
+                                                    正在努力加载中，请稍候
+                                                    <div class="loading-ellipsis">
+                                                        <div class="bounce1"></div>
+                                                        <div class="bounce2"></div>
+                                                      <div class="bounce3"></div>
+                                                    </div>
+                                                </h4>
+                                            </div>
+                                        </div>  
+
+                                        <div class="loading-indicator" 
+                                             *ngIf = "nextPage=='normal'"
+                                             (click)="more()">
+                                            <div class="hor-center">
+                                                <h4 class="ng-binding">
+                                                    加载更多
+                                                </h4>
+                                            </div>
+										</div>  
+										
+										<div class="loading-indicator" 
+												*ngIf = "nextPage=='empty'">
+											<div class="hor-center">
+												<h4 class="ng-binding">
+													已无更多数据
+												</h4>
+											</div>
+										</div>  
+
+                                    </li>
+			                    </ul>
+			                </div>
+			            </div>
+			        </div>
+
+			    </div>
+			</div>
+
+        </div>
+    </div>
+</div>

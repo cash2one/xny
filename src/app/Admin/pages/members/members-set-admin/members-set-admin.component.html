@@ -1,0 +1,79 @@
+    <div class="select-member-single">
+        <div class="select-member-panel">
+            <div class="member-panel-header">
+                <ul class="modal-tab m-r-5">
+
+                    <li class="{{Tab==='User'?'active':''}}">
+	                    <a href="javascript:;" 
+	                       class="" 
+	                       (click)="Tab='User';FnGetUserList()">成员</a>
+                    </li>
+                    <li class="{{Tab==='Department'?'active':''}}">
+	                    <a href="javascript:;" 
+	                       class="" 
+	                       (click)="Tab='Department';FnGetDepartmentList()">团队</a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="member-panel-body" [ngSwitch]="Tab">
+
+                <!-- 搜索项目成员 -->
+                <ng-template [ngSwitchCase]="'User'">
+	                <div class="tab-member active" *ngIf = "UserList.length; else loading">
+	                    <div class="search-container">
+	                        <div class="search-area">
+	                        	<i class="iconfont_admin  admin-search1"></i>
+	                            <input type="text"  
+	                                   placeholder="搜索成员..." 
+	                                   class="" 
+	                                   style=""
+	                                   #searchUsers
+	                                   (keyup)="getSearchUsers(searchUsers.value)">
+	                        </div>
+	                    </div>
+	                    <ul>
+	                        <li class="member"
+		                        *ngFor = "let list of UserList"
+	                            (click)="FnUsersData(list)">
+	                            <div class="xm-avatar xm-avatar-30 " 
+	                                 title="{{list.real_name}}" 
+	                                 member="member" 
+	                                 size="30" 
+	                                 name="true">
+	                                <span class="xm-avatar-def" 
+	                                      style="background-color: rgb(239, 123, 164);">
+		                                <div class="ng-binding">{{list.real_name?list.real_name.slice(0,1):''}}</div>
+	                                </span>
+	                                <div class="xm-avatar-name">{{list.real_name}}</div>
+	                            </div>
+	                        </li>
+	                    </ul>
+	                </div>
+				</ng-template>
+				<ng-template #loading>
+				    <div class="loading-indicator">
+				        <div class="hor-center">
+				            <h4 class="ng-binding">
+				                正在努力加载中，请稍候
+				                <div class="loading-ellipsis">
+				                    <div class="bounce1"></div>
+				                    <div class="bounce2"></div>
+				                  <div class="bounce3"></div>
+				                </div>
+				            </h4>
+				        </div>
+				    </div>
+				</ng-template>
+
+                <!-- 部门列表 -->
+                <ng-template [ngSwitchCase]="'Department'">
+	                <div class="department-list xm-tree tab-member active" style="">
+						<app-riccio-tree-department [departmentData]="departmentData">
+						</app-riccio-tree-department>
+	                </div>
+				</ng-template>
+            </div>
+        </div>
+    </div>

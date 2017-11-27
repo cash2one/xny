@@ -1,0 +1,47 @@
+@import '../../../../../../Public/theme/apps-common/variable.scss';
+@import '../../../../bsbyClient.common.scss';
+
+$doing:#F4C92D;
+$success:#7EC856;
+$danger:#F37263;
+
+.keywordList{
+    .body{
+        padding-bottom:50px;
+        .bodyHead{
+            .optimize{
+                display: inline-block;
+                margin-left: 25px;
+                font-size: 14px;
+                .ing,
+                .stop{
+                    font-size: 20px;
+                    padding: 0px 10px 0 0;
+                }
+                .ing{
+                    color:$success;
+                }
+                .stop{
+                    color:$danger;
+                }
+            }
+        }
+        .bodyMain{
+            .ing{
+                background-color: $success;
+            }
+            .stop{
+                background-color: $bodyFadeColor;
+            }
+            .keywordListTable{
+                .headLeft{
+                    padding-left: 0px;
+                    .search{
+                        line-height: 38px;
+                        vertical-align: top;
+                    }
+                }
+            }
+        }
+    }
+}

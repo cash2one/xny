@@ -1,0 +1,148 @@
+@import "../../../../Public/theme/common/variable.scss";
+@import "../account.component.scss";
+
+$headBorderColor:#efefef;
+$textColor:#797979;
+
+.note{
+    background-color: rgba(0,0,0,0.2);
+    .modal-dialog{
+        width: 600px;
+    }
+
+    .danger{
+        border:1px solid $buttonColorDanger !important;
+        box-shadow: 0 0 5px 0 $buttonColorDanger !important;
+    }
+
+    .modal-content {
+        border: 0;
+        border-radius: 3px;
+        box-shadow: 0 0 24px rgba(0, 0, 0, 0.3);
+        padding: 0 30px;
+        position: absolute;
+        z-index: 1500;
+        left: 50%;
+        margin: 50px 0 30px 0;
+        background-color: #fff;
+        width: 500px;
+        margin-left: -250px;
+    }
+
+    .modal-header {
+        padding: 20px 0 16px;
+        border-bottom: solid 1px #f3f3f3
+    }
+
+    .modal-header h3 {
+        font-size: 15px;
+        color: #666;
+        font-weight: 400;
+        margin: 0;
+    }
+
+    .modal-header .modal-close {
+        float: right;
+        color: #8f8f8f
+    }
+
+    .modal-header .modal-close:hover {
+        text-decoration: none;
+        color: #696969
+    }
+
+    .modal-body {
+        padding: 15px;
+        .member-action{
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-left: 40px;
+            .tip{
+                padding: 20px 0;
+                .color{
+                    color:$moneyColor;
+                }
+            }
+        }
+        .noteInfo{
+            padding: 15px 0;
+            .title,
+            .mark{
+                .label{
+                    width: 25%;
+                    text-align: right;
+                    display: inline-block;
+                    padding: 10px 0;
+                }
+                textarea{
+                    outline: none;
+                    padding: 10px;
+                    margin-right: 10px;
+                    border-radius: 5px;
+                    border: 1px solid $headBorderColor;
+                    width: 60%;
+                    resize: none;
+                    height: 100px;
+                    padding: 10px;
+                    vertical-align: top;
+                }
+            }
+        }
+    }
+
+    .modal-body .sure-card p {
+        color: #333;
+        font-size: 15px
+    }
+
+    .modal-footer {
+        padding: 15px 0
+    }
+
+
+    /*项目列表样式修改*/
+    .select-member-panel  .member-panel-body li.member{
+        padding: 5px
+    }
+
+    .department-list ul>ul{
+        overflow:hidden;
+    }
+
+
+    .gr-btn{
+        border-radius: 3px;
+        font-weight: 500;
+        border: 0;
+        display: inline-block;
+        margin-bottom: 0;
+        text-align: center;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        white-space: nowrap;
+        padding: 8px 36px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        -moz-user-select: none;
+        user-select: none;
+        outline: none;
+        &[disabled]{
+            cursor: not-allowed;
+            opacity: .8;
+        }
+        &.gr-btn-success{
+            color: #fff;
+            background-color: $buttonColorNormal;
+        }
+        &.gr-btn-danger{
+            color: #fff;
+            background-color: $buttonColorDanger;
+        }
+        &.gr-btn-link{
+            color: #999999;
+            padding: 8px 25px;
+        }
+    }
+}

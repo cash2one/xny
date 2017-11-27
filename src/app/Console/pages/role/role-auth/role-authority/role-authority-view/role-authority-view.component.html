@@ -1,0 +1,34 @@
+
+<div class="content-title" *ngIf =  "level===0">
+    <label class="authority-check AllRoleCheck" (click)="FnCheckAll(viewData)">
+        <i class="iconfont_console  {{isCheck==false?'console-check':'console-check1'}}" *ngIf = "symbolID!=1;else symbol"></i> 
+        <ng-template #symbol>
+            <i class="iconfont_console console-check1 forbid"></i> 
+          </ng-template>
+        <span class="authority-label-text color666">{{name}}</span>
+    </label>
+</div>
+<div class="" [ngClass]="{'content-view':level===0}">
+
+<div class="view-items lv{{level==0?'0':'1'}}" *ngIf = "viewData.length>0">
+    <label class="authority-check" *ngFor = "let list of viewData;let i = index;" id="{{list.id}}">
+    	<div class="" (click)="FnCheckLabel(list,i)">
+          <i class="iconfont_console  {{list.isCheck==false?'console-check':'console-check1'}}" *ngIf = "symbolID!=1;else symbol"></i> 
+          <ng-template #symbol>
+            <i class="iconfont_console console-check1 forbid"></i> 
+          </ng-template>
+	        <span class="authority-label-text color999">{{list.name}}</span>
+        </div>
+	    <app-role-authority-view *ngIf = "list.chilren.length>0" 
+	    				                 [viewData]="list.chilren" 
+                               [parentData]="list"
+                               [constParent]="viewData"
+                               [constParentParent]="constParentParent"
+          	    		           [level]="list.level"
+          	    		           [name]="list.name"
+          	    		           [ID]="list.id"
+                               [isCheck]="list.isCheck"></app-role-authority-view>
+    </label>
+</div>
+
+</div>

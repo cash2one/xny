@@ -1,0 +1,44 @@
+.release-path-navbar{
+    height: 35px;
+    margin: 10px 20px 0 20px;
+    background-color: #fff;
+    line-height: 35px;
+	ul.navbar-ul{
+		width: 100%;
+		overflow: hidden;
+		height: 35px;
+		font-size: 0;
+		li.navbar-ul-li{
+			display: inline-block;
+			width: 23%;
+			font-size: 12px;
+			text-align: center;
+			position: relative;
+			&.active{
+				background-color: #00C1DE;
+				color: #fff;
+				&:after{
+				    content: '';
+				    position: absolute;
+				    border-top: 17px solid transparent;
+				    border-bottom: 18px solid transparent;
+				    border-left: 30px solid #00c1de;
+				    right: -30px;
+				}
+				&:before{
+					content: '';
+				    position: absolute;
+				    border-top: 17px solid transparent;
+				    border-bottom: 18px solid transparent;
+				    border-left: 30px solid #fff;
+				    left: 0;
+				}
+			}
+			&.noBefore{
+				&:before{
+					content: none;
+				}
+			}
+		}
+	}
+}

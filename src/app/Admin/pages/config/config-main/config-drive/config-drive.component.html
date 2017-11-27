@@ -1,0 +1,39 @@
+<div class="modal-content">
+    <div class="module-header">
+        <div class="f-l titleTag">
+            接口配置
+        </div>
+    </div>
+
+    <div class="modal-body">
+        <form class="form-horizontal c-f">
+            <div class="form-group c-f ">
+                <label class="col-sm-3 control-label line-40">短信驱动</label>
+                <div class="col-sm-9 control-panel">
+                    <div class="xm-select p-r">
+                        <select class="form-control select" name="title" [ngModel]="driveType" (ngModelChange)="driveType=$event;fnTypeChange()">
+                            <option class="" *ngFor="let type of driveTypes" [value]="type.type">{{type.name}}</option>
+                        </select>
+                        <i class="iconfont_admin  admin-xiangxia"></i>
+                        <a href="{{smsUrl}}" class="urlTitle" target="_blank">访问官网</a>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="driveType">
+                <div class="form-group c-f" *ngFor="let drive of driveConfig[driveType]['value']">
+                    <label class="col-sm-3 control-label line-40">{{drive.name}}</label>
+                    <div class="col-sm-9 control-panel">
+                        <input class="form-control" name="{{drive.name}}" placeholder="请输入{{drive.name}}" [ngClass]="{'danger':!(drive.valid)}" [(ngModel)]="drive.value">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group c-f footer-border projectTemplate">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-4 control-panel cp-save c-f">
+                    <button class="btn btn-primary pull-right f-r" type="submit" [disabled]="!btnStatus.status" (click)="fnSaveSMS()">{{btnStatus.text}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="programmeListAll">
+    <div class="body ">
+        <div class="bodyMain">
+            <div class="gr-wrapper-table tableList programmeListTable">
+                <div class="wrapper-table-top tableTop">
+                    <div class="searchProduct">
+                        <bsby-search-input
+                            [placeholder]="'输入客户名称或域名'"
+                            [(ngModel)]="searchParam.name"
+                            (searchEmit)="getProgrammeList()"></bsby-search-input>
+                    </div>
+                </div>
+
+                <div class="wrapper-content"> 
+                    <table class="table table-hover gr-table" tableTitle>
+                        <colgroup>
+                            <col width="100">
+                            <col width="130">
+                            <col width="80">
+                            <col width="70">
+                            <col width="80">
+                        </colgroup>
+                        <thead class="hand">
+                            <tr>
+                                <th *ngFor = "let title of programmeListTitles">
+                                    {{title}}
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                    <div class="wrapper-table" *ngIf="loadingType == 'hide'">
+                        <table class="table hover table-hover gr-table">
+                            <colgroup>
+                                <col width="100">
+                                <col width="130">
+                                <col width="80">
+                                <col width="70">
+                                <col width="80">
+                            </colgroup>
+                            <tbody>
+                                <tr *ngFor="let programme of programmeList" tableTitle>
+                                    <td class="customer-content first" *ngIf="programme.com_count" [attr.rowspan]="programme.com_count">
+                                        <span class="name">{{programme.company}}</span>
+                                        <span class="domain">{{programme.domain}}</span>
+                                    </td>
+                                    <td class="customer-content">
+                                        {{programme.title}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{programme.created_at}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{programme.username}}
+                                    </td>
+                                    <td class="customer-level" noTitle>
+                                        <a href="javascript:;" class="approval-action" [routerLink]="['../edit/']+programme.id+'/'+programme.site_id">
+                                            编辑
+                                        </a>
+                                        <a href="javascript:;" class="approval-action" [routerLink]="['../detail/']+programme.id+'/'+programme.site_id">
+                                            详情
+                                        </a>
+                                    </td>
+                                </tr>      
+                            </tbody>
+                        </table>
+                    </div>
+                    <app-riccio-spinners [type]="loadingType"
+                                        [emptyText]="pageData['emptyText']"></app-riccio-spinners>
+                    <app-riccio-paginations
+                        [total]="pageData['total']"
+                        (pageValue)="fnPagination($event)"></app-riccio-paginations>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+

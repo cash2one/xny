@@ -1,0 +1,11 @@
+<p>确认移除所选成员?</p>
+<div class="form-group c-f">
+    <div class="">
+        <riccio-button [normal]="'确认移除'" 
+                       [disabled] = "'移除中...'" 
+                       [open]="disabledBtnOpen" 
+                       [status]="'danger'"
+                       (emitStatus)="fnDelete($event)"></riccio-button>
+        <a href="javascript:;" class="gr-btn gr-btn-link" (click)="closeView()">取消</a>
+    </div>
+</div>

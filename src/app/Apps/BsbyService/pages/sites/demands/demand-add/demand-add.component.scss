@@ -1,0 +1,22 @@
+@import '../../../../bsbyService.common.scss';
+
+.opDemand{
+    .addDemandForm{
+        textarea{
+            height: 200px;
+            resize: none;
+            padding: 20px;
+        }
+        .commentMain{
+            width: 100%;
+            border: 1px solid $headBorderColor;
+            border-radius: 5px;
+            outline: none;
+            resize:none;
+            padding: 16px;
+        }
+        .inputTool{
+            padding: 0 24px;
+        }
+    }
+}

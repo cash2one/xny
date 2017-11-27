@@ -1,0 +1,52 @@
+<div class="pbox pbox-open" [style.left]="affiliatedTeam.data.client.x+'px'"
+                            [style.top]="affiliatedTeam.data.client.y+'px'"
+                            [@smallBig]="'in'">
+    <div class="select-member-single">
+        <div class="select-member-panel">
+            <div class="member-panel-header">
+                <ul class="modal-tab m-r-5">
+
+                    <li class="">
+                      <a href="javascript:;" class="">菜单</a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="member-panel-body">
+
+                <!-- 部门列表 -->
+                <div class="department-list xm-tree tab-member" 
+                     style="" 
+                     class="active"
+                     *ngIf="DepartmentData; else loading">
+                    <a class="view-title" (click)="getCallData({'name':'作为一级菜单','id':0})">
+                        <span class="authority-label-text">作为一级菜单</span>
+                    </a>
+                    <app-riccio-tree [tree]="DepartmentData"
+                                     [name]="'name'"
+                                     (parentData)="getCallData($event)"></app-riccio-tree>
+
+                </div>
+
+                <ng-template #loading>
+                    <div class="loading-indicator">
+                        <div class="hor-center">
+                            <h4 class="ng-binding">
+                                正在努力加载中，请稍候
+                                <div class="loading-ellipsis">
+                                    <div class="bounce1"></div>
+                                    <div class="bounce2"></div>
+                                  <div class="bounce3"></div>
+                                </div>
+                            </h4>
+
+                        </div>
+                    </div>
+                </ng-template>
+
+
+            </div>
+        </div>
+    </div>
+</div>

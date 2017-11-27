@@ -1,0 +1,9 @@
+<div class="release-path-navbar">
+	<ul class="navbar-ul">
+		<li class="navbar-ul-li" 
+			*ngFor = "let list of itemData;let i = index"
+			[ngClass]="{'noBefore':i==0?true:false,'active':activeRouter==list['active']}">
+			<span>{{list.name}}</span>
+		</li>
+	</ul>
+</div>

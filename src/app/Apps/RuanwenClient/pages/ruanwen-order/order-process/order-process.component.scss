@@ -1,0 +1,16 @@
+.gr-content-right{
+	background-color: #E7E8EB;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+
+	.release-router-content{
+		margin: 10px 20px 0 20px;
+		overflow-y: auto;
+		position: relative;
+		height: calc(100% - 100px);
+		top: 0;
+		bottom: 0;
+	}
+
+}

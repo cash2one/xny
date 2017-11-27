@@ -1,0 +1,72 @@
+@import "../theme/common/variable.scss";
+
+
+.BoxPrompt-Main{
+	position: fixed;
+	top: 30px;
+	right: 30px;
+	z-index: 9999;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+	.Main-center{
+		height: 48px;
+		background-color: #fff;
+		box-shadow: 0 0 6px 0px #2b3c4d;
+		border-radius: 2px;
+		text-align: left;
+		line-height: 48px;
+		display: inline-block;
+		transition: all 0.35s;
+		z-index: 1100;
+		white-space: nowrap;
+		font-size: 14px;
+		margin-bottom: 5px;
+		min-width: 300px;
+	}
+	.BoxLeft{
+		width: 100%;
+		height: 100%;
+		padding: 0 30px 0 15px;
+		border-left: 5px solid $textColorLink;
+		border-radius: 2px 0 0 2px;
+		transform: translateX(-1px);
+		i.iconfont_common{
+			margin-right:5px;
+		}
+		a.ng-tns-c2-0 i.close{
+			font-size: 13px;
+		}
+	}
+	.Main-center .iconfont_common{
+		font-size: 20px;
+		display: inline-block;
+		transform: translateY(3px);
+	}
+	.iconfont_common .common-jinggao:before{
+		color: #E67676 !important;
+		margin-left: -20px;
+	}
+	.TipBox{
+		border-left-color: $textColorLink !important;
+	}
+	.TipBox-success i.iconfont_common{
+		color: $textColorLink !important;
+	}
+	.TipBox-warning i.iconfont_common{
+		color: #f0ad4e !important;
+	}
+	.TipBox-danger i.iconfont_common{
+		color: #FF7663 !important;
+	}
+	.TipBox-danger{
+		border-left:5px solid #FF7663 !important;
+	}
+	.TipBox-success{
+		border-left:5px solid $textColorLink !important;
+	}
+	.TipBox-warning{
+		border-left:5px solid #f0ad4e !important;
+	}
+}
+

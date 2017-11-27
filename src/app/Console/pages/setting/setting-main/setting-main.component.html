@@ -1,0 +1,121 @@
+<div class="gr-wrapper-table">
+	
+	<!-- 标题 -->
+	<div class="gr-content-title">
+		<span class="">基本信息</span>
+	</div>
+
+	<!-- 分块的内容区域 -->
+	<div class="gr-overflow-y">
+		<!-- 修改企业名和域名 -->
+		<div class="setting-content clearfix">
+			<div class="content-lettle-title clearfix">
+				<!-- <h3 class="f-l font16 nomargin">修改企业名和域名</h3> -->
+				<h3 class="f-l font16 nomargin" (click)="isShowName = !isShowName">修改企业名</h3>
+				<a href="javascript:;" class="f-r" *ngIf = 'isShowName' (click)="isShowName=false">收起<i class="iconfont_console console-xiangxia"></i></a>
+				<a href="javascript:;" class="f-r" *ngIf = '!isShowName' (click)="isShowName=true">展开<i class="iconfont_console console-xiangshan"></i></a>
+			</div>
+			<!-- <p class="content-p">修改当前企业的名称和二级域名，修改二级域名系统会自动发邮件通知所有企业成员。</p> -->
+			<p class="content-p">修改当前企业的名称。</p>
+			<button class="gr-btn gr-btn-primary" *ngIf = "isShowName" (click)="fnShowModal('editName')">修改</button>
+		</div>
+
+		<!-- 修改企业信息 -->
+		<div class="setting-content clearfix">
+			<div class="content-lettle-title clearfix">
+				<h3 class="f-l font16 nomargin" (click)="isShowArea = !isShowArea">修改企业信息</h3>
+				<a href="javascript:;" class="f-r" *ngIf = 'isShowArea' (click)="isShowArea=false">收起<i class="iconfont_console console-xiangxia"></i></a>
+				<a href="javascript:;" class="f-r" *ngIf = '!isShowArea' (click)="isShowArea=true">展开<i class="iconfont_console console-xiangshan"></i></a>
+			</div>
+			<p class="content-p">修改当前企业的地区、规模和所属行业。</p>
+			<button class="gr-btn gr-btn-primary" *ngIf = "isShowArea" (click)="fnShowModal('editArea')">修改</button>
+		</div>
+
+		<!-- 转让企业 -->
+		<div class="setting-content noborderbottom clearfix">
+			<div class="content-lettle-title clearfix">
+				<h3 class="f-l font16 nomargin" (click)="isShowTransfer = !isShowTransfer">转让企业</h3>
+				<a href="javascript:;" class="f-r" *ngIf = 'isShowTransfer' (click)="isShowTransfer=false">收起<i class="iconfont_console console-xiangxia"></i></a>
+				<a href="javascript:;" class="f-r" *ngIf = '!isShowTransfer' (click)="isShowTransfer=true">展开<i class="iconfont_console console-xiangshan"></i></a>
+			</div>
+			<p class="content-p">如果你不想再管理当前企业，你可以选择一个企业成员作为新的企业拥有者，转让之后你将成为公司的普通成员，并且该操作无法撤销。</p>
+
+			<form class="gr-form-horizontal c-f" *ngIf = 'isShowTransfer'>
+
+			    <div class="form-group c-f">
+			        <div class="col-gr-6 control-panel">
+			            <input name="transferData"  
+			                   class="form-control cursorP"
+			                   maxlength=""
+			                   [(ngModel)] = "transferData.name" 
+			                   readonly="readonly" 
+			                   placeholder=""
+			                   (click)="fnShowModal('editTransfer')" 
+			                   style="">
+			        </div>
+			    </div>
+
+			    <div class="form-group c-f">
+			        <div class="col-gr-6 control-panel">
+			            <input name="transferPassword"  
+			                   class="form-control"
+			                   maxlength="" 
+			                   type="password" 
+			                   [(ngModel)] = "transferPassword"
+			                   placeholder="输入当前帐号密码"   
+			                   style="">
+			        </div>
+				</div>
+				
+				<div class="form-group c-f">
+					<div class="col-gr-6 control-panel getCodeSMSInput p-r">
+						<input name="transferCode"
+								[(ngModel)]="transferCode"
+								class="form-control"
+								placeholder="请输入验证码" 
+								maxlength="4"  
+								style="">
+					</div>
+					<div class="col-gr-4 control-panel">
+						<button type="button" 
+								class="gr-btn gr-btn-primary getCodeSMS"
+								disabled="{{smsTimeData==0?'':'disabled'}}" 
+								(click)="fnGetSmsCode()">{{smsTimeData==0?'获取验证码':smsTimeData+'秒后重新获取'}}</button>
+					</div>
+				</div>
+		
+				<div class="form-group c-f">
+					<div class="col-gr-12 control-panel">
+						<p class="color999">短信验证码将发送到企业负责人的手机号：+86-{{userInfo['mobile']}}，请注意查收</p>
+					</div>
+				</div>
+
+				<div class="form-group c-f">
+					<div class="col-gr-1 control-panel">
+				        <button class="gr-btn gr-btn-primary" (click)="fnTransfer()">转让企业</button>
+			        </div>
+			    </div>
+
+			</form>
+
+		</div>
+	</div>
+
+</div>
+
+<!-- 模态弹窗提示 -->
+<app-riccio-modal>
+	<div body [ngSwitch]="modalSymbol">
+		<ng-template [ngSwitchCase]="'editName'">
+			<app-edit-name-setting></app-edit-name-setting>
+		</ng-template>
+		<ng-template [ngSwitchCase]="'editArea'">
+			<app-edit-area-setting></app-edit-area-setting>
+		</ng-template>
+		<ng-template [ngSwitchCase]="'editTransfer'"> 
+			<app-edit-transfer-setting (emitData)="fnOutputTransfer($event)"></app-edit-transfer-setting>
+		</ng-template>
+	</div>
+</app-riccio-modal>
+
+

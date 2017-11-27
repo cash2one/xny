@@ -1,0 +1,50 @@
+@import '../../../../../../Public/theme/apps-common/variable.scss';
+@import '../../../../bsbyClient.common.scss';
+$doing:#F4C92D;
+$success:#7EC856;
+$danger:#F37263;
+
+.programmeDetail{
+    .body{
+        .bodyMain{
+            margin-top: 20px;
+            border: 1px solid $headBorderColor;
+            padding: 20px 0;
+            overflow-y: auto;
+            margin-bottom: 50px;
+            position: relative;
+            top: 0px;
+            .programmeDetailForm{
+                textarea{
+                    width: 100%;
+                    resize: none;
+                    padding: 10px 16px;
+                }
+                .form-group{
+                    padding: 10px 0;
+                    border-bottom: 1px solid $headBorderColor;
+                    margin: 0 20px;
+                    &:nth-last-child(1){
+                        border-bottom: none;
+                    }
+                    .control-panel{
+                        vertical-align: middle;
+                    }
+                }
+                .content{
+                    textarea{
+                        height: 300px;
+                    }
+                }
+                .mark{
+                    textarea{
+                        height: 150px;
+                    }
+                }
+                .f-btn{
+                    padding-left: 33px;
+                }
+            }
+        }
+    }
+}

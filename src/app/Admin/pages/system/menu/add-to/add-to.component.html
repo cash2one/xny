@@ -1,0 +1,68 @@
+<div class="openBox-Main" *ngIf="affiliatedTeam.isShow" (click)="hideAffiliatedTeam()" style="z-index: 150"></div>
+
+<div class="modal-dialog" #Modal>
+
+    <!-- 创建项目 -->
+    <div class="modal-content">
+        <div>
+
+            <!-- <div class="modal-header">
+                <a href="javascript:;" class="modal-close" (click)="Close()">
+                    <i class="iconfont_admin  admin-iconfontcha"></i>
+                </a>
+                <h3 class="modal-title color-666">{{ShowText.title}}</h3>
+            </div> -->
+            <div class="modal-body">
+                <form class="form-horizontal c-f">
+
+                    <div class="form-group c-f " *ngFor="let list of MenuAddShow">
+                        <label class="col-sm-3 control-label line-40 color666">{{list.name}}:</label>
+                        <div class="col-sm-9 control-panel">
+                            <input class="form-control" name="{{list.action}}" placeholder="{{list.name}}" [(ngModel)]="MenuData.data[list.action]" *ngIf="list.type==='input'"
+                                [ngClass]="{'danger':list.danger,'col-gr-9':list.action==='name' && routerCid!=0}" (click)="showAffiliatedTeam($event,list.action)" [readonly]="list.action==='parentid'?true:false"
+                                (focus)="list.danger=false">
+
+                            <span *ngIf="list.action=='name'&&routerCid!=0 " class="btn moreBtn" (click)="showMenuOpen($event)">
+                                选择默认菜单
+                            </span>
+                            <div class="xm-select p-r" *ngIf="list.type==='select'">
+                                <select class="form-control select" ref-action name="{{list.action}}" 
+                                    [(ngModel)]="MenuData.data[list.action]">
+                                        <option  value="{{listOption.value}}" 
+                								 *ngFor = "let listOption of list.option">{{listOption.name}}</option>
+                                    </select>
+                                <i class="iconfont_admin  admin-xiangxia"></i>
+                            </div>
+                            <textarea name="{{list.action}}"
+                                      class="form-control"
+                                      placeholder="例: 参数1 | 参数2" 
+                                      [ngStyle] = "{'height':'100px'}"
+                                      [(ngModel)]="MenuData.data[list.action]" 
+                                      *ngIf = "list.type==='textarea'"></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="form-group c-f footer-border projectTemplate">
+                        <div class="col-sm-9 col-sm-offset-3 control-panel c-f">
+                            <span class="gr-alert gr-alert-success">附加参数涉及到权限控制,请让技术协助添加</span>
+                        </div>
+                    </div> -->
+
+                    <div class="form-group c-f footer-border projectTemplate">
+                        <div class="col-sm-4 col-sm-offset-3 control-panel c-f">
+                            <button class="btn saveBtn btn-primary pull-right f-r" type="submit" (click)="FnAddMenu(ShowText.type)">{{ShowText.btn}}</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 选择模型的组件 -->
+<app-select-model *ngIf="SelectModel.isShow" (callSelectModel)="getSelectData($event)" (callShow)="getCloseBack($event)"></app-select-model>
+
+<!-- 选中父级菜单的组件 -->
+<app-menu-add *ngIf="affiliatedTeam.isShow" [model]="MenuData.data['model']" [cid]="parentCid" [menuType]="routerStatus"
+    (callAffiliatedTeamData)="getCallData($event)" [affiliatedTeam]="affiliatedTeam"></app-menu-add>

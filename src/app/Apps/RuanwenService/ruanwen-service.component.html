@@ -1,0 +1,60 @@
+<!-- <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_362704_3a5o0qtuilunxw29.css"> -->
+<link rel="stylesheet" type="text/css" [href]="windowUrl"> 
+
+<!-- tip提示组件 -->
+<!-- <app-riccio-popovers *ngIf = "!openShrink" [aspect]="'right'">
+  <div #tip>{{popoversText}}</div>
+</app-riccio-popovers> -->
+
+<!-- pbox显示下拉框组件 -->
+<app-riccio-pbox></app-riccio-pbox>
+
+<app-riccio-top-navbar [navName] = "appInfo['name']"
+					   [userName] = "userInfo['user_info']['name']+'('+userInfo['company_userinfo']['real_name']+')'"
+					   [navMenu] = "topNavMenuData"
+                       [notifyCount]="userInfo['notify']"
+                       [companyMenu] = "comMenu"
+					   [companyName]="userInfo['company_userinfo']['name']"
+					   [logoSrc] = "resolveFileString(userInfo['company_userinfo']['logo'])"></app-riccio-top-navbar>
+
+<div class="gr-main">
+
+    <app-riccio-app-left-menu [leftData]="leftMenuData"></app-riccio-app-left-menu>
+
+	<!-- <div class="gr-menu {{openShrink==true?'open':''}}">
+		
+		<ul class="gr-menu-ul">
+			
+			<li class="gr-menu-ul-li">
+				<a href="javascript:;" 
+				   (click)="moveAndClose()" 
+				   class="justify-content" 
+				   [riccioPopovers]='tip'
+				   (mouseenter)="setPopoverText('openShrink')">
+					<i class="iconfont_ruanwen ruanwen-santiaogang {{openShrink==true?'rotate':''}}"></i>
+				</a>
+			</li>
+
+			<li class="gr-menu-ul-li" *ngFor="let list of menuList" routerLinkActive="active">
+				<a href="javascript:;" [riccioPopovers]='tip' (mouseenter)="setPopoverText(list.name)" routerLink="{{list.url}}">
+					<div class="text">
+						<i class="iconfont_ruanwen {{list.fonticon}}"></i>
+						<span>{{list.name}}</span>
+					</div>
+				</a>
+			</li>
+		</ul>
+
+	</div> -->
+	
+	<!-- 二级菜单路由 -->
+	<app-ruanwen-secound-menu [title]="menuSecoundTitle"
+								*ngIf = "!(secoundType=='company')&&!(secoundType=='account')"
+							  [menuList] = 'menuSecoundList'
+							  style="height: 100%"></app-ruanwen-secound-menu>
+
+	<div class="ruanwen-contant">
+		<router-outlet></router-outlet>
+	</div>
+
+</div>

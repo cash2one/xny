@@ -1,0 +1,111 @@
+<div class="site-top">
+	<div class="company-brand clearfix">
+		<div class="company-img f-l c-p" (click)="goHome()">
+			<img src="assets/img/xingniuyun-logo.png" alt="星牛云" height="32">
+			<!-- <span *ngIf = "noLogo" class="gray"></span> -->
+		</div>
+		<!-- <div class="company-name f-l">
+			{{navName}}
+		</div> -->
+		<!-- <div class="company-router f-l">
+			<ul class="gr-nav-transverse">
+				<li routerLinkActive="active" *ngFor= "let list of navMenu">
+					<a href="javascript:;" routerLink="{{list.routerLink}}">
+						<i class="{{list.icon}}"></i>
+						{{list.name}}
+					</a>
+				</li>
+			</ul>
+		</div> -->
+		<div class="company-router f-l">
+			<ul class="gr-nav-transverse">
+                <li class="nav-li">
+                    <a href="javascript:;" routerLink="/Console">
+                        管理控制台
+                    </a>
+                </li>
+				<li class="nav-li">
+					<a href="javascript:;" routerLink="/Console/apps/my">
+                        产品与服务
+                        <i class="iconfont_common common-down1"></i>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="f-r tool">
+			<ul class="gr-nav-transverse">
+				<li class="nav-li">
+					<a href="javascript:;" 
+						class="color666" 
+						#message
+						(click)="fnGoToMessage()">
+						<!-- <i class="iconfont_common common-xiaoxi"></i> -->
+						<span>消息</span>
+						<span class="count" *ngIf="notifyCount != 0">{{notifyCount}}</span>
+					</a>
+				</li>
+				<li class="nav-li" #charge>
+					<a href="javascript:;" 
+						class="color666" 
+						(mouseover)="fnShowCharge(charge)">
+						<span>费用</span>
+					</a>
+				</li>
+				<li class="nav-li">
+					<a href="javascript:;" 
+						class="color666">
+						<span>工单</span>
+					</a>
+				</li>
+				<li class="nav-li">
+					<a href="javascript:;" 
+						class="color666">
+						<span>支持</span>
+					</a>
+				</li>
+				<li class="nav-li company-name-li" #comMenuEle>
+					<a href="javascript:;" 
+                       class="color666 clearfix"
+                       (mouseover)="fnShowComMenu(comMenuEle)">
+					    <span class="companyName f-l" [title]="companyName">{{companyName}}</span>	
+					</a>
+				</li>
+				<li class="nav-li" #userInfoEle>
+					<a href="javascript:;" 
+					   class="color666 clearfix" 
+					   (mouseover)="fnShowUserPbox(userInfoEle)">
+						<span>{{userName}}</span>
+					</a>
+				</li>
+				
+			</ul>
+		</div>
+		<!-- <div class="company-user-info f-r tool">
+			<a href="javascript:;" 
+			   class="color666" 
+			   #userInfoEle
+			   (click)="fnShowUserPbox(userInfoEle)">
+				<span>{{userName}}</span>
+				<i class="iconfont_common common-down1"></i>
+			</a>
+		</div>
+		<div class="company-charge f-r tool">
+			<a href="javascript:;" 
+				class="color666" 
+				#charge
+				(click)="fnShowCharge(charge)">
+				<span>费用</span>
+			</a>
+		</div>
+		<div class="company-message f-r tool">
+			<a href="javascript:;" 
+				class="color666" 
+				#message
+				(click)="fnGoToMessage()">
+				<i class="iconfont_common common-xiaoxi"></i>
+				<span>消息</span>
+				<span class="count" *ngIf="notifyCount != 0">{{notifyCount}}</span>
+			</a>
+		</div> -->
+	</div>
+</div>

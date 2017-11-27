@@ -1,0 +1,15 @@
+<div class="siteDel">
+    <div class="tip">
+        <span class="ico">
+            <i class="iconfont_bsby bsby-group"></i>
+        </span>
+        <div class="show">
+            <span class="f">你确定删除此网站？</span>
+            <span class="s">删除后无法撤销</span>
+        </div>
+    </div>
+    <div class="member-action">
+        <button class="gr-btn gr-btn-danger" (click)="del()" [disabled]="!submitBtn.status">{{submitBtn.text}}</button>
+        <button class="gr-btn cancle" (click)="cancle()">取消</button>
+    </div>
+</div>

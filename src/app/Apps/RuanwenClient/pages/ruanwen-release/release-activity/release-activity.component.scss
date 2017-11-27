@@ -1,0 +1,47 @@
+.activity-main{
+	background-color: #fff;
+	margin-top: 10px;
+	padding-bottom: 10px;
+	.header{
+		height: 60px;
+		line-height: 60px;
+		padding: 0 20px;
+		span{
+			color: #999999;
+		}
+	}
+}
+
+
+.height100{
+	height: 100px !important;
+}
+
+.height40{
+	height: 40px;
+}
+
+.form-group{
+	.total{
+		padding: 0;
+		.form-price{
+		    font-size: 14px;
+		    font-weight: bold;
+		    color: #ff0000;
+		    display: inline-block;
+		    margin-left: 20px;
+		}
+	}
+	.balance{
+		em{
+			display: inline-block;
+			color: #FF9900;
+			margin:0 10px;
+		}
+	}
+}
+.agreement{
+	display: inline-block;
+	margin-left: 10px;
+}
+

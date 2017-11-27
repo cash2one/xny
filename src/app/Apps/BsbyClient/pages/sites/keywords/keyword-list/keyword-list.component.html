@@ -1,0 +1,143 @@
+<div class="keywordList bsbyCommon">
+    <div class="head">
+        <div class="title">
+            <i class="iconfont_bsby bsby-icon_keyword"></i>
+            <span>关键词管理</span>
+        </div>
+    </div>
+    <div class="body">
+        <div class="bodyHead" *ngIf="siteLoadingType == 'hide'">
+            <div class="title">
+                <span class="name">{{siteInfo.domain}}</span>
+            </div>
+            <div class="subTitle">
+                 {{siteInfo.company_name}}
+            </div>
+            <div class="optimize">
+                优化中：<span class="ing">{{siteInfo.keyword_run?siteInfo.keyword_run:0}}</span>
+                已停止：<span class="stop">{{siteInfo.keyword_stop?siteInfo.keyword_stop:0}}</span>
+            </div>
+        </div>
+        <div class="bodyMain" *ngIf="siteLoadingType == 'hide'">
+            <div class="gr-wrapper-table keywordListTable tableList">
+                <div class="wrapper-table-top tableTop">
+                    <div class="headLeft col-sm-8">
+                        <div class="control-panel select-cp col-sm-3">
+                            <i class="down iconfont_bsby bsby-down"></i>
+                            <div class="select color666" (click)="fnRangeType(typeBtn)" #typeBtn>{{searchShow.type}}</div>
+                        </div>
+                        <div class="control-panel select-cp col-sm-3">
+                            <i class="down iconfont_bsby bsby-down"></i>
+                            <div class="select color666" (click)="fnRangeDiff(difficultBtn)" #difficultBtn>{{searchShow.difficult}}</div>
+                        </div>
+                        <div class="control-panel select-cp col-sm-3">
+                            <i class="down iconfont_bsby bsby-down"></i>
+                            <div class="select color666" (click)="fnRangeStatus(statuBtn)" #statuBtn>{{searchShow.status}}</div>
+                        </div>
+                        <div class="control-panel select-cp col-sm-3">
+                            <div class="search">
+                                <bsby-search-input
+                                    [placeholder]="'输入关键词'"
+                                    [(ngModel)]="searchParam.name"
+                                    (searchEmit)="getKeywordList()"></bsby-search-input>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="headRight">
+                        <button class="gr-btn gr-btn-primary bsbyBtn" (click)="fnGoDetail()">
+                            <i class="iconfont_bsby bsby-icon_keyword"></i>
+                            关键词明细
+                        </button>
+                    </div>
+                </div>
+
+                <div class="wrapper-content"> 
+                    <table class="table table-hover gr-table" tableTitle>
+                        <colgroup>
+                            <col width="80">
+                            <col width="80">
+                            <col width="80">
+                            <col width="50">
+                            <col width="50">
+                            <col width="50">
+                            <col width="90">
+                            <col width="80">
+                            <col width="100"> 
+                        </colgroup>
+                        <thead class="hand">
+                            <tr>
+                                <th *ngFor = "let title of keywordListTitles">
+                                    {{title}}
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                    <div class="wrapper-table" *ngIf="keywordLoadingType == 'hide'">
+                        <table class="table hover table-hover gr-table">
+                            <colgroup>
+                                <col width="80">
+                                <col width="80">
+                                <col width="80">
+                                <col width="50">
+                                <col width="50">
+                                <col width="50">
+                                <col width="90">
+                                <col width="80">
+                                <col width="100"> 
+                            </colgroup>
+                            <tbody *ngIf=" siteInfo.keywordInfo" #detailTB>
+                                <tr *ngFor="let keyword of siteInfo.keywordInfo.data" tableTitle>
+                                    <td class="customer-content">
+                                        {{keyword.name}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{keyword.difficult == 1?'正常':(keyword.difficult == 2?'简单':'困难')}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{keyword.type == 1?'精准核心词':(keyword.type == 2?'精准长尾词':(keyword.type == 3?'品牌词':'区域词'))}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{keyword.info?keyword.info.baidu:'-'}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{keyword.info?keyword.info.s360:'-'}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{keyword.info?keyword.info.sougou:'-'}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{keyword.starttime}}
+                                    </td>
+                                    <td class="customer-content">
+                                        <span class="statu" 
+                                            [ngClass]="{'ing':keyword.status == 1,'stop':keyword.status == 2}"></span>
+                                        {{keyword.status == 1?'优化中':'已停止'}}
+                                    </td>
+                                    <td class="customer-level" noTitle>
+                                        <a href="javascript:;" class="approval-action" [routerLink]="['../detail/'] + keyword.name">
+                                            详情
+                                        </a>
+                                        <a href="javascript:;" class="approval-action" (click)="fnShowChart(keyword)">
+                                            趋势
+                                        </a>
+                                    </td>
+                                </tr>                   
+                            </tbody>
+                        </table>
+                    </div>
+                    <app-riccio-spinners [type]="keywordLoadingType"
+                        [emptyText]="pageData.emptyText"></app-riccio-spinners>
+                    <app-riccio-paginations
+                        [total]="pageData['total']"
+                        (pageValue)="fnPagination($event)"></app-riccio-paginations>
+                </div>
+            </div>
+        </div>
+        <app-riccio-spinners [type]="siteLoadingType"></app-riccio-spinners>
+    </div>
+</div>
+
+<app-bsby-service-keyword-chart (searchEmit)="fnSearchChart($event)">
+
+</app-bsby-service-keyword-chart>

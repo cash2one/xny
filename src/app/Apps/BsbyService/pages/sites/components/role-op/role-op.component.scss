@@ -1,0 +1,109 @@
+@import '../../../../../../Public/theme/apps-common/variable.scss';
+@import '../../siteInfo/siteInfo.common.scss';
+
+.opRole{
+    position:fixed;
+    z-index: 99;
+    top:52px;
+    right:0px;
+    width:300px;
+    bottom:0px;
+    background-color: #fff;
+    border-right:none;
+    overflow:auto;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    .roleBody{
+        padding: 30px;
+        .title{
+            height: 36px;
+            line-height: 36px;
+            font-size: 14px;
+            color:$bodyDeepColor;
+            a{
+                color:$bodyFadeColor;
+            }
+        }
+        .body{
+            .addRole{
+                display: block;
+                margin:8px 0;
+            }
+            .role,
+            .serviceU{
+                padding: 2px 0;
+                cursor: move ;
+                height: 32px;
+                line-height: 32px;
+                .name,
+                .value{
+                    display: inline-block;
+                    overflow: hidden;
+                }
+                .name{
+                    color:$bodyFadeColor;
+                    width: 75px;
+                }
+                .value{
+                    color:$bodyDeepColor;
+                    text-align: left;
+                    width: 80px;
+                    &.danger{
+                        color:$danger;
+                    }
+                }
+                a{
+                    color:$bodyFadeColor;
+                    height: 100%;
+                    display: inline-block;
+                    vertical-align: top;
+                    visibility: hidden;
+                    transition:all 0.3s;
+                    opacity: 0;
+                }
+                &:hover{
+                    a{
+                        visibility: visible;
+                        opacity: 1;
+                    }
+                }
+            }
+            .serviceU{
+                .name{
+                    text-align: left;
+                    color:$bodyFadeColor;
+                }
+                .addService{
+                    display: block;
+                    margin:8px 0;
+                    color:$danger;
+                    visibility:visible;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+.gu-mirror{
+    padding: 2px 0;
+    cursor: move ;
+    height: 32px;
+    line-height: 32px;
+    .name,
+    .value{
+        display: inline-block;
+        overflow: hidden;
+    }
+    .name{
+        color:$bodyFadeColor;
+        width: 75px;
+    }
+    .value{
+        color:$bodyDeepColor;
+        text-align: left;
+        width: 80px;
+        &.danger{
+            color:$danger;
+        }
+    }
+}

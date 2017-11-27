@@ -1,0 +1,41 @@
+<div class="submitStepTwo">
+  <div class="remind">
+    <div class="remind-header">
+      <span>我的工单提醒：</span>
+      <span>待您反馈（{{feedback}}）</span>
+    </div>
+    <div class="remind-body">
+      <div class="stepBar">
+        <app-submit-step-bar [step]="'2'"></app-submit-step-bar>
+      </div>
+    </div>
+  </div>
+  <div class="classify">
+    <div class="classify-header">
+      <span>请选择您遇到的问题分类</span>
+    </div>
+    <div class="classify-body clear">
+      <ul class="left select">
+        <li class="clear" *ngFor="let problem of lastCat" (click)="issueList(problem.id)">
+          <span>{{problem.name}}</span>
+          <span>&gt;</span>
+        </li>
+      </ul>
+      <div class="right">
+        <div class="hotArticle">
+          <div class="title">
+            热点文章
+          </div>
+          <ul>
+            <li>云服务器ECS-用户指南-连接实例-连接 连接Linux实例</li>
+            <li>云服务器ECS-用户指南-连接实例-连接 Linux实例</li>
+            <li>云服务器ECS-用户指南-连接实例-</li>
+          </ul>
+        </div>
+        <div class="hotIssue">
+          <i class="iconfont_console console-gantanhao"></i>&nbsp;&nbsp;你还没有热点问题产生哦
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

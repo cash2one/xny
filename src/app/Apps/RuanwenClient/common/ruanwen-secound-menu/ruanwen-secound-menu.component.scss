@@ -1,0 +1,32 @@
+.gr-secound-menu{
+	min-width: 0 !important;
+	overflow-y:inherit !important; 
+	.menu-title{
+		span{
+			margin-left: 20px;
+		}
+	}
+	.menu-list{
+		.menu-ul-li{
+			text-align: center !important;
+			a{
+				i{
+					display: inline-block;
+					margin-right: 7px;
+					color: #999
+				}
+				padding-left: 0 !important;
+			} 
+		}
+	}
+}
+
+
+.width0{
+	width: 0px !important;
+}
+
+.viewFramework-product-navbar-collapse.active{
+	transform:rotateY(0deg);
+	right: -25px;
+}

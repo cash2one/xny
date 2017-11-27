@@ -1,0 +1,48 @@
+<div class="assist-header">
+	<span>帮助中心</span>
+</div>
+
+<div class="assist-main clearfix">
+	
+	<!-- 左侧 -->
+	<app-assist-menu [helpList] = "helpList"
+			         (docId) = "docId = $event" 
+	                 (treePoboxEmit) = "acceptMenuEmit($event)"></app-assist-menu>
+	
+	<!-- 表格菜单 -->
+	<app-assist-table (docDataEmit) = 'acceptTableDocEmit($event)'></app-assist-table>
+
+</div>
+
+<!-- 模态框 -->
+<app-riccio-modal>
+	<div body [ngSwitch] = "_modalType">
+		<ng-template [ngSwitchCase] = "'DEL_DOC'">
+			<span>是否删除该文档</span>
+		</ng-template>
+		<ng-template [ngSwitchCase] = "'DEL_CLASSIFY'">
+			<span>是否删除该分类</span>
+		</ng-template>
+		<ng-template [ngSwitchCase] = "'DOC'">
+			<app-assist-add-edit-doc [docId] = "docId"
+				                     [docData] = "docData"
+			                         [TYPE] = "_docType"></app-assist-add-edit-doc>
+		</ng-template>
+		<ng-template [ngSwitchCase] = "'CLASSIFY'">
+			<app-assist-add-edit-classify (successNotifications) = 'getAssistList()'
+					                      [TYPE] = "_classifyType"
+					                      [menuEditData] = "menuData"
+					                      [helpList] = "helpList"
+			                              (parentPbox) = 'acceptParentClassifyData($event)'></app-assist-add-edit-classify>
+		</ng-template>
+	</div>
+</app-riccio-modal>
+
+<!-- 分类选中父级 -->
+<app-riccio-pbox>
+	<div body [ngSwitch]="_pboxOtherType">
+		<ng-template [ngSwitchCase]="'CLASSIFY_PARENT'">
+			<app-classify-parent></app-classify-parent>
+		</ng-template>
+	</div>
+</app-riccio-pbox>

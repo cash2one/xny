@@ -1,0 +1,32 @@
+<div class="gr-secound-menu {{openCollapse===true?'':'width0'}}">
+
+	<div class="menu-main">
+		<div class="menu-title">
+			<span>{{title}}</span>
+		</div>
+		<div class="menu-list">
+			<ul class="menu-ul">
+				<li class="menu-ul-li" *ngFor = "let list of menuList" routerLinkActive="active">
+					
+					<a href="javascript:;" routerLink="{{list.url}}">
+						<i class="iconfont_console  {{list.fonticon}}"></i>
+						<span>{{list.name}}</span>
+						<span *ngIf="list.count !== undefined &&  list.count !== 0" class="count">{{list.count}}</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="viewFramework-product-navbar-collapse" [ngClass]="{'hide':hideArrow}">
+			<div class="product-navbar-collapse-inner">
+			    <div class="product-navbar-collapse-bg"></div>
+			    <div class="product-navbar-collapse" (click)="fnHide()">
+				    <span class="{{openCollapse===true?'':'active'}}">
+				    	<i class="iconfont_console console-collapse-right"></i>
+				    </span>
+			    </div>
+			</div>
+		</div>
+	</div>
+
+</div>

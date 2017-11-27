@@ -1,0 +1,45 @@
+@import '../message.component.scss';
+@import '../../../../Public/theme/common/variable.scss';
+
+$borderColor:#efefef;
+
+.content{
+    .message-content{
+        position: absolute;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        top: 20px;
+        bottom: 10px;
+        .title{
+            padding-left: 10px;
+            border-left: 3px solid $textColorLink;
+            height: 20px;
+            line-height: 20px;
+            margin-bottom: 15px;
+            display: inline-block;
+            a{
+                margin-left: 20px;
+            }
+        }
+        .main{
+            padding: 20px;
+            border: 1px solid $borderColor;
+            .head{
+                text-align: center;
+                border-bottom: 1px solid $borderColor;
+                padding: 0 0 20px 0;
+                .name{
+                    font-size: 18px;
+                    padding: 5px 0;
+                }
+                .time{
+                    font-size: 12px;
+                }
+            }
+            .body{
+                padding: 30px;
+            }
+        }
+    }
+}

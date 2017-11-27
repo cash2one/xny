@@ -1,0 +1,102 @@
+<div class="site-content">
+  <div class="module-header">
+    <div class="title">
+      <span class="iconfont_admin  admin-guanli"></span>
+      <span>企业管理</span>
+    </div>
+    <div class="flex-panel">
+      <ul class="nav nav-pills lc-tabs" role="tablist">
+        <li class="rightTab" *ngFor="let menu of menuRight" routerLinkActive='active'>
+          <a class="" href="javascript:;" [routerLink]="['/Admin/'+menu.url]">{{menu.name}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="module-body">
+    <div class="modal-content">
+      <div class="module-header">
+        <div class="title">
+          <span class="title-w title-active"><a href="javascript:;">企业应用列表</a></span>
+        </div>
+        <button class="btn addBtn btn-primary btn-sm f-r" (click)="fnOpenApp()">开通应用</button>
+      </div>
+      <div class="module-body table-scroll-p">
+        <div class="tempList">
+          <div class="customer-list">
+            <table class="table table-hover lc-table" tableTitle>
+              <colgroup>
+                <col width="80">
+                <col width="150">
+                <col width="100">
+                <col width="100">
+                <col width="100">
+                <col width="250">
+              </colgroup>
+              <thead class="hand table-head">
+              <tr>
+                  <th>缩略图</th>
+                  <th>应用名称</th>
+                  <th>最新版本号</th>
+                  <th>应用类型</th>
+                  <th>状态</th>
+                  <th>管理操作</th>
+              </tr>
+              </thead>
+            </table>
+            <div class="table-scroll">
+              <table class="table table-hover lc-table">
+                <colgroup>
+                  <col width="80">
+                  <col width="150">
+                  <col width="100">
+                  <col width="100">
+                  <col width="100">
+                  <col width="250">
+                </colgroup>
+                <tbody class="table-body">
+                  <tr *ngFor="let app of appList">
+                    <td><img src="{{app.thumb_icon_40x40}}"></td>
+                    <td>{{app.name}}</td>
+                    <td>{{app.version}}</td>
+                    <td>{{app.type == 1?"商业":"定制应用"}}</td>
+                    <td>{{app.status == 1?"显示":"禁用"}}</td>
+                    <td>
+                      <a href="javascript:;" class="approval-action" (click)="fnGoManage('member',app.model,app.id)">成员管理</a>
+                      <a href="javascript:;" class="approval-action" (click)="fnGoManage('menu',app.model,app.id)">菜单管理</a>
+                      <a href="javascript:;" class="approval-action" (click)="fnGoManage('rule',app.model,app.id)">权限管理</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 选择应用弹框 -->
+  <app-riccio-single-members
+    [isShow]="modalIsShow"
+    [header]="modalHeader"
+    [title]="modalTitle"
+    [placeholder]="modalPlaceholder"
+    [membersList]="membersList"
+    [keyName]="name"
+    [nextPage]="nextPage"
+    (close)="closeModalHandler($event)"
+    (searchValue)="searchHandler($event)"
+    (emitData)="emitDataHandler($event)"
+    (pageValue)="pageValueHamdler($event)"></app-riccio-single-members>
+
+  <!-- 确认是否添加应用弹框 -->
+  <div class="confirmModal" *ngIf="confirmIsShow">
+    <div class="content">
+      <div class="header">是否添加应用</div>
+      <div class="body">
+        <button (click)="addApp()">确认</button>
+        <button (click)="cancelAddApp()">取消</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+
+<div class="gr-wrapper-table">
+	
+	<!-- 标题 -->
+	<div class="gr-content-title">
+		<span class="">我的应用</span>
+	</div>
+
+	<!-- 分块的内容区域 -->
+	<div class="gr-overflow-y">
+
+		<div class="apps-main-list">
+
+			<app-riccio-spinners [emptyText]="'暂无应用列表'"
+								 [type]="loadingType"></app-riccio-spinners>
+
+			<ul class="apps-ul clearfix">
+				<li class="apps-li" *ngFor = "let list of itemList" (click)="fnGoInfo(list)">
+					<span class="apps-thumb" *ngIf="list.noImg">
+						<i class="iconfont_console  {{list.iconfont?list.iconfont:'console-yingyong'}}"></i>
+					</span>
+					<img class="apps-thumb" [src]="list.thumb_icon_40x40" *ngIf="!list.noImg" alt="" (error)="noImg(list)">
+					<span class="disabled-apps" *ngIf = "list.status==2">已下架</span>
+					<div class="li-text">
+						<h3>{{list.name}}</h3>
+						<p>{{list.desc}}</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+		
+	</div>
+
+</div>
+
+

@@ -1,0 +1,29 @@
+@import "./variable.scss";
+
+.gr-header{
+    height: 50px;
+    position: fixed;
+    background-color: $black;
+    top: 0;
+    left: 0;
+    right: 0;
+    .header-left{
+    	color: #fff;
+    	float: left;
+    	.logo{
+    		float: left;
+		    width: 50px;
+			height: 50px;
+			margin-left: 10px;
+			margin-right: 10px;
+		    overflow: hidden;
+		    display: inline-block;
+    	}
+    	.name{
+    		float: left;
+    		font-size: 14px;
+    		line-height: 50px;
+    	}
+    }
+}
+

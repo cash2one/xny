@@ -1,0 +1,150 @@
+<div class="site-content">
+	<div class="module-header">
+	    <div class="title">
+	        <span>插件中心</span>
+	    </div>
+	    <div class="flex-panel">
+	    	<button class="btn btn-primary btn-sm f-r" 
+                        (click)="addonView()" 
+                        style="line-height: -1">添加插件</button>
+	    </div>
+<!-- 	    <div class="flex-panel">
+	    	<button class="btn btn-primary btn-sm f-r" 
+                        (click)="addonceshi()" 
+                        style="line-height: -1">发送邮件</button>
+	    </div> -->
+	</div>
+
+	<!-- 从上侧弹出的组件样式 -->
+    <div class="flyLeftContent" *ngIf = "FlyLeftData.isShow" [@flyTop]="'in'">
+        <div class="content-text">已选择<span>{{FlyLeftData.number}}</span>项</div>
+        <ul class="content-list">
+            <li *ngFor="let list of FlyLeftData.showText"><a href="javascript:;">{{list.name}}</a></li>
+        </ul>
+        <a href="javascript:;" class="f-r up-hide" (click)="FnCheckAll(false)"><span><i class="iconfont_admin  admin-up"></i></span></a>
+    </div>
+
+	<div class="module-body">
+
+	<div  class="modal-content">
+
+	        <div  class="modal-body">
+
+					<div class="customer-list">
+					    <table class="table table-hover lc-table">
+					        <thead class="hand">
+					            <tr>
+					            	<!-- <th>
+				                        <a href="javascript:;" 
+				                           class="customer-check"
+				                           (click)="FnCheckAll(!allCheck)">
+				                            <i class="iconfont_admin  {{allCheck===false?'admin-check':'admin-check1'}}"></i>
+				                        </a>
+				                    </th> -->
+
+					                <th *ngFor="let list of DriveList">
+					                    {{list}}
+					                </th> 
+					            </tr>
+					        </thead>
+					        <tbody>
+					            <tr *ngFor = "let list of AppcenterData">
+					            	<!-- <td class="customer-select">
+                                        <a href="javascript:;" 
+                                           class="customer-check"
+                                           (click)="FnCheckUser(list)"
+                                           style="color: #8f8f8f">
+                                            <i class="iconfont_admin  {{list.isCheck===false?'admin-check':'admin-check1'}}">
+                                            </i>
+                                        </a>
+                                    </td> -->
+                                    <td class="customer-director"
+					                	(click)="isSort=list.id">
+							            <span *ngIf = "!(isSort==list.id)">{{list.listorder}}</span>
+						            	<input type="number" 
+								               name="{{list.listorder}}"
+						            		   [(ngModel)]="list.listorder"
+						            		   style="width: 40px;" 
+						            		   *ngIf= "isSort==list.id" 
+						            		   autofocus
+						            		   onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"
+						            		   (blur)="FnSortMenu(list);isSort='-1'">
+					                </td>
+					                <td class="customer-content">
+					                	{{list.id}}
+					                </td> 
+					                <td class="customer-content ">
+						            {{list.thumb}}
+					                </td>
+					                <td class="customer-content realname"   routerLink="{{list.id}}" style="outline: none">
+					                {{list.name}}
+					                </td>
+					               
+					                <td class="customer-content" >
+					                {{list.model}}  
+					                </td>
+					                <td class="customer-content">
+						            {{list.version}}
+					                </td>	
+					                <td class="customer-content">
+						            {{list.status==1?'显示':list.status==0?'隐藏':'禁用'}}
+					                </td>
+					             
+					                <td class="customer-content">
+						            {{list.created_at}}
+					                </td>
+
+					                <td class="customer-level">
+					                    <a href="javascript:;" 
+									       class="approval-action"
+									       (click)="editView(list)">
+									    	<i class="iconfont_admin  admin-edit"></i>
+									    </a> 
+				                        <a href="javascript:;" 
+				                           class="approval-action" 
+				                           style="position: relative;top: 2px"
+				                           [routerLink]="['../'+list.model]">
+				                        	<i class="iconfont_admin  admin-guanli"></i>
+				                        </a>
+				                        <a href="javascript:;" 
+				                           class="approval-action" 
+				                           style="color: #eee;">|</a> 
+			              				<a href="javascript:;"
+					                       class="approval-action"
+					                       (click)="FnShowPbox($event,list)"
+					                       (blur)="FnBlurPbox()">
+				                        	<i class="iconfont_admin  admin-zhuangtai1"></i>
+				                        </a>
+					                </td>
+
+					            </tr>
+					        </tbody>
+					    </table>
+					</div>
+
+	        </div>
+	</div>
+
+	</div>
+</div>
+
+<!-- 点击角色标题弹出选项卡列表 -->
+<div class="pbox pbox-open"
+     *ngIf = "ShowPbox.isShow"
+     [ngStyle]="{'top':ShowPbox.position.top+'px','left':ShowPbox.position.left+'px'}">
+    <div class="pop-menu">
+        <ul class="">
+            <li><a href="javascript:;" 
+                   class="no-icon" 
+                   (focus)="FnClickOperat(1)">显示</a></li>
+            <li><a href="javascript:;" 
+                   class="no-icon" 
+                   (focus)="FnClickOperat(0)">隐藏</a></li>
+            <li><a href="javascript:;" 
+                   class="no-icon"
+                   (focus)="FnClickOperat(2)">禁用</a></li>
+        </ul>
+    </div>
+</div>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,78 @@
+<div class="gr-special-table">
+	<table class="table table-hover gr-table" tableTitle>
+		<colgroup>
+			<col width="30">
+			<col width="60">
+			<col width="60">
+			<col width="60">
+			<col width="200">
+			<col width="120">
+		</colgroup>
+		<thead class="hand">
+		    <tr>
+		        <th *ngFor="let name of tableTitle">
+		            {{name}}
+		        </th>
+		        <th class="th-checkbox">操作</th>
+		    </tr>
+		</thead>
+	</table>
+	<div class="wrapper-table" *ngIf = "!loading">
+		<table class="table table-hover gr-table">
+			<colgroup>
+	    		<col width="30">
+	    		<col width="60">
+	    		<col width="60">
+	    		<col width="60">
+	    		<col width="200">
+	    		<col width="120">
+	    	</colgroup>
+			<tbody id="undetails">
+
+			    <tr *ngFor="let list of departmentDisable" tableTitle>
+			        <td class="td-checkbox">
+		            <span>{{list.listorder}}</span>
+			        </td>
+			        <td class="customer-content">
+			        {{list.name}}
+			        </td>
+			        <td class="customer-content">
+			        {{list.parentname?list.parentname:'无'}}
+			        </td>
+			        <td class="customer-content">
+			        {{list.note}}
+			        </td>
+			        <td class="customer-content">
+			        {{list.created_at}}
+			        </td>
+			        <td class="td-status" noTitle>
+					    <a href="javascript:;" class="" (click)="fnShowModalOpen(list)">启用</a>
+			        </td>
+			    </tr>
+			    
+			</tbody>
+		</table>
+	</div>
+
+	<div class="loading-indicator" *ngIf = 'loading'>
+	    <div class="hor-center">
+	        <h4 class="ng-binding">
+	            正在努力加载中，请稍候
+	            <div class="loading-ellipsis">
+	                <div class="bounce1"></div>
+	                <div class="bounce2"></div>
+	              <div class="bounce3"></div>
+	            </div>
+	        </h4>
+	    </div>
+	</div>
+
+</div>
+
+
+<!-- pbox -->
+<app-riccio-modal>
+	<div body>
+		<p>是否修改 {{departmentInfo.name}} 部门的状态为启用</p>
+	</div>
+</app-riccio-modal>

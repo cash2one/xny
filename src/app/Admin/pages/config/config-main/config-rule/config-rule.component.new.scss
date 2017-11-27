@@ -1,0 +1,132 @@
+@import '../../../../../Public/theme/common/variable.scss';
+@import '../config-main.value.scss';
+@import '../../../../../Public/theme/common/keyframes.scss';
+
+.modal-content{
+    .module-header{
+        .flex-panel{
+            height:30px;
+            margin-top:11px;
+        }
+    }
+    .module-body{
+        top: 114px;
+        bottom: 30px;
+        .tempList{
+            .customer-list{
+                .flyLeftContent{
+                    top: -114px;
+                }
+                .lc-table{
+                    .table-head{
+                        tr{
+                            th{
+                                &:nth-child(1){
+                                    &:after{
+                                        display: none;
+                                    }
+                                }
+                                &:nth-child(2){
+                                    &:before{
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .table-body{
+                        .hasOp{
+                            .opShow{
+                                transition: all 0.5s;
+                            }
+                            .op{
+                                transition: all 0.5s;
+                                font-size: 18px;
+                                display: none;
+                                right:0px;
+                            }
+                        }
+                        .hoverOp{
+                            display:block;
+                            padding-right:25px;
+                            .op{
+                                display: inline-block;
+                                color:$themeColor;
+                                right:25px;
+                                line-height: 1.2;
+                            }
+                        }
+                        td{
+                            .disBtn{
+                                transition: all 0.5s;
+                                display: inline-block;
+                                vertical-align: middle;
+                                cursor: pointer;
+                                height: 22px;
+                                width: 35px;
+                                background: #fff;
+                                border: 1px solid #dfdfdf;
+                                border-radius: 22px;
+                                position: relative;
+                                margin-left:3px;
+                                outline: none;
+                                &:before{
+                                    content: '';
+                                    transition: all 0.2s;
+                                    display: inline-block;
+                                    position: absolute;
+                                    top: 0px;
+                                    left: 0px;
+                                    height: 20px;
+                                    width: 21px;
+                                    background: #fff;
+                                    border-radius: 50%;
+                                    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+                                }
+                            }
+                            .disBtnAc{
+                                background: $themeColor;
+                                border-color: $themeColor;
+                                &:before{
+                                    left:13px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.configModal{
+    .modalBase{
+        .f-status{
+            height: 36px;
+            line-height: 36px;
+            input{
+                margin-right:5px;
+            }
+        }
+    }
+    .bindBase{
+        .tempList{
+            .customer-list{
+                min-width: 500px;
+                margin-top:0px;
+            }
+            .lc-table{
+                .table-body{
+                    .op{
+                        padding-left:5px;
+                        padding-right:5px;
+                        color:rgba(0,0,0,0.4);
+                        &:hover{
+                            color:$themeColor;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

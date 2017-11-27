@@ -1,0 +1,179 @@
+<div class="siteList bsbyCommon">
+    <div class="head">
+        <div class="title">
+            <i class="iconfont_bsby bsby-wangzhan"></i>
+            <span>网站列表</span>
+        </div>
+        <div class="action">
+            <button class="gr-btn gr-btn-primary bsbyBtn addBtn" (click)="fnAddSite()">
+                <i class="iconfont_bsby bsby-jia"></i>
+                添加网站
+            </button>
+        </div>
+
+        <app-riccio-pop-up-right></app-riccio-pop-up-right>
+    </div>
+
+    <div class="body">
+        <div class="bodyHead">
+            <div>
+                <button class="likeBtn" (click)="fnShowSort(sortBtn)" #sortBtn>
+                    {{rangeName ? rangeName : '排序'}}
+                    <i class="iconfont_bsby bsby-down"></i>
+                </button>
+                <button class="likeBtn" (click)="fnShowScene()" #findBtn>
+                    筛选
+                    <i class="iconfont_bsby bsby-down"></i>
+                </button>
+            </div>
+        </div>
+        <div class="bodyMain">
+            <div class="gr-wrapper-table siteTable tableList">
+                <div class="wrapper-table-top tableTop">
+                    <div class="headLeft">
+                        <span class="title">我的场景</span>
+                        <span class="scene" [ngClass]="{'active':sceneAllBtn.active}">
+                            <a href="javascript:;" (click)="fnAllScene()">{{sceneAllBtn.name}}</a>
+                        </span>
+                        <div class="scenes">
+                            <span class="scene" [ngClass]="{'active':scene.active}" *ngFor="let scene of sceneList">
+                                <a href="javascript:;" (click)="fnSelectScene(scene)">
+                                    {{scene.name}}
+                                </a>
+                                <i *ngIf="sceneOp.active" class="iconfont_bsby bsby-guanli" [id]="scene.id" (click)="fnSceneEdit(scene.id,sceneEditBtn)" #sceneEditBtn></i>
+                                <i *ngIf="sceneOp.active" class="iconfont_bsby bsby-iconfontquxiao" (click)="fnSceneDel(scene,sceneDelBtn,$event)" #sceneDelBtn></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="headRight">
+                        <button class="likeBtn" (click)="fnShowSceneOp()">
+                            <i class="iconfont_bsby bsby-guanli"></i>
+                            {{sceneOp.name}}
+                        </button>
+                    </div>
+                </div>
+
+                <div class="wrapper-content"> 
+                    <table class="table table-hover gr-table" tableTitle>
+                        <colgroup>
+                            <col width="35">
+                            <col width="90">
+                            <col width="100">
+                            <col width="80">
+                            <col width="50">
+                            <col width="50">
+                            <col width="60">
+                            <col width="70">
+                            <col width="70">
+                            <col width="80"> 
+                        </colgroup>
+                        <thead class="hand">
+                            <tr>
+                                <th class="checkAll" noTitle>
+                                    <a href="javascript:;" class="customer-check" (click)="fnShowPopUp('all')">
+                                        <i class="iconfont_bsby {{allCheck===false?'bsby-check':'check bsby-check1'}}">
+                                        </i>
+                                    </a>
+                                </th>
+                                <th *ngFor = "let title of siteListTitles">
+                                    {{title}}
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                    <div class="wrapper-table" *ngIf = "loadingType=='hide'">
+                        <table class="table hover table-hover gr-table">
+                            <colgroup>
+                                <col width="35">
+                                <col width="90">
+                                <col width="100">
+                                <col width="80">
+                                <col width="50">
+                                <col width="50">
+                                <col width="60">
+                                <col width="70">
+                                <col width="70">
+                                <col width="80"> 
+                            </colgroup>
+                            <tbody #detailTB>
+                                <tr *ngFor = "let site of siteList" tableTitle>
+                                    <td class="customer-select" noTitle>
+                                        <a href="javascript:;" class="customer-check" (click)="fnShowPopUp('one',site)">
+                                            <i class="iconfont_bsby  {{site['isCheck']===false?'bsby-check':'check bsby-check1'}}"></i>
+                                        </a>
+                                    </td>
+                                    <td class="customer-content first">
+                                        <span class="domain">{{site.domain}}</span>
+                                        <span class="competition">{{site.competition == 1?'普通竞争行业':'激烈竞争行业'}}</span>
+                                    </td>
+                                    <td class="customer-content">
+                                        {{site.company_name}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{site.product_name}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{site.executor_user}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{site.service_user}}
+                                    </td>
+                                    <td class="customer-content">
+                                        <span class="statu" 
+                                            [ngClass]="{'success':site.status == 1,'danger':site.status == 2,'doing':site.status == 3}"></span>
+                                        {{site.status == 1?'执行中':(site.status == 2?'已停止':'待执行')}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{site.starttime}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{site.endtime}}
+                                    </td>
+                                    <td class="customer-level" noTitle> 
+                                        <a href="javascript:;" class="approval-action" (click)="fnToInfo(site)">
+                                            管理
+                                        </a>
+                                        <a href="javascript:;" class="approval-action" (click)="fnRoleMgr(site)" #roleMgr>
+                                            成员
+                                        </a>
+                                        <a href="javascript:;" class="approval-action" (click)="fnShowStatus(site,statuBtn,$event)" #statuBtn>
+                                            <i class="iconfont_bsby bsby-xiangxia"></i>
+                                        </a>
+                                    </td>
+                                </tr>                   
+                            </tbody>
+                        </table>
+                    </div>
+                    <app-riccio-spinners [type]="loadingType"
+										 [emptyText]="pageData.emptyText"></app-riccio-spinners>
+                    <app-riccio-paginations
+                        [total]="pageData['total']"
+                        (pageValue)="fnPagination($event)"></app-riccio-paginations>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-riccio-modal>
+    <div body [ngSwitch]="modalType">
+        <ng-template [ngSwitchCase]="'siteOp'">
+            <bsby-site-op></bsby-site-op> 
+        </ng-template>
+        <ng-template [ngSwitchCase]="'siteDel'">
+            <bsby-site-del [siteId]="activeSite.id" (delEmit)="delSite()"></bsby-site-del>
+        </ng-template>
+    </div>
+</app-riccio-modal>
+
+<bsby-scene
+    (emitScene)="fnEmitScene($event)"
+    (emitSearch)="fnSearchSite($event)">
+</bsby-scene>
+<bsby-role-op
+    (addRoleEmit)="fnOpRoleEmit()"
+    (delRoleEmit)="fnOpRoleEmit()"
+    (opUserEmit)="fnOpRoleEmit()"
+    (draRoleEmit)="fnOpRoleEmit()"
+    (delServiceEmit)="fnOpRoleEmit()"></bsby-role-op>

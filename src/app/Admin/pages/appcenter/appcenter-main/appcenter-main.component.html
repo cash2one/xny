@@ -1,0 +1,125 @@
+<show-detail></show-detail>
+<!-- 删除列表项弹出框-->
+<app-riccio-pbox></app-riccio-pbox>
+
+<div class="modal-content">
+	<div class="module-header">
+	    <div class="title">
+			<i class="iconfont_admin  admin-guanli"></i>
+	        <span>应用管理</span>
+	    </div>
+	    <div class="flex-panel">
+		    <button class="btn btn-primary btn-sm f-r"
+		    		(click)="fnShowAdd()">添加应用</button>
+	    </div>
+	</div>
+	<button class="refresh" [ngClass]="{'animate':refresh}" (click)="fnGetAppList()">
+		<i class="iconfont_admin  admin-sx"></i>
+	</button>
+	<div class="module-body table-scroll-p">
+		<div class="tempList">
+			<div class="customer-list">
+				<table  class="table table-hover lc-table" cellpadding="50px" tableTitle>
+					<colgroup>
+						<col width="40">
+						<col width="30">
+						<col width="50">
+						<col width="80">
+						<col width="80">
+						<col width="80">
+						<col width="80">
+						<col width="80">
+						<col width="130">
+					</colgroup>
+					<thead class="table-head">
+						<tr>
+							<th *ngFor="let title of titleList">
+								<span>{{title}}</span>
+							</th>
+						</tr>
+					</thead>
+				</table>
+				<div class="table-scroll">
+					<table  class="table table-hover lc-table" cellpadding="50px">
+						<colgroup>
+							<col width="40">
+							<col width="30">
+							<col width="50">
+							<col width="80">
+							<col width="80">
+							<col width="80">
+							<col width="80">
+							<col width="80">
+							<col width="130">
+						</colgroup>
+						<app-my-loading *ngIf="isLoading"></app-my-loading>
+						<tbody class="table-body" *ngIf="!isLoading" #clickTb>
+							<tr *ngFor="let list of templateData;let i=index" (click)="fnShowDetail(list)" tableTitle>
+								<td class="customer-content"
+									(click)="fnSortClick(list,$event)">
+									<span *ngIf = "!(isSort==list.id)">{{list.listorder}}</span>
+									<input type="number" class="sortInput"
+											name="{{list.listorder}}"
+											[(ngModel)]="list.listorder"
+											*ngIf= "isSort==list.id" 
+											autofocus
+											onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"
+											(blur)="fnSortMenu(list);isSort='-1'">
+								</td>
+								<td class="customer-content">
+									{{list.id}}
+								</td>
+								<td class="customer-content">
+									<img [src]="list.thumb_icon_show" alt="" *ngIf="!list.noImg" (error)="noImg(list)">
+									<img src="assets/img/apps_defulet.jpg" alt="" *ngIf="list.noImg">
+								</td>
+								<td class="customer-content">
+									{{list.name}}
+								</td>
+								<td class="customer-content">
+									{{list.model}}
+								</td>
+								<td class="customer-content">
+									{{list.version}}
+								</td>
+								<td class="customer-content">
+									{{list.type === 0?'系统应用':list.type === 1?'商业应用':'定制应用'}}
+								</td>
+								<td class="customer-content">
+									{{list.status == 1?'显示':list.status == 0?'隐藏':'禁用'}}
+								</td>
+								<td class="customer-content" noTitle>
+									<a href="javascript:;" class="approval-action" (click)="fnShowEdit(list,$event)">
+										编辑
+									</a>
+									<a href="javascript:;" class="approval-action" [routerLink]="['../'+list.model]">
+										管理
+									</a>
+									<a href="javascript:;" class="approval-action" #statusBtn (click)="fnChangeStatus(list,$event,statusBtn)">
+										状态
+									</a>
+									<a href="javascript:;" class="approval-action">
+										访问
+									</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<app-riccio-paginations class="page"
+                            [pboxData]="pageParam['pboxData']"
+                            [total]="pageParam['total']"
+                            (pageValue)="fnPagination($event)">
+                        </app-riccio-paginations>
+			</div>
+		</div>
+	</div>
+</div>
+
+<app-riccio-modal>
+	<div body [ngSwitch]='showType'>
+		<ng-template [ngSwitchCase]="'add-edit-appcenter'">
+			<app-add-edit-appcenter></app-add-edit-appcenter>
+		</ng-template>
+	</div>
+</app-riccio-modal>

@@ -1,0 +1,364 @@
+
+<div class="module-body">
+	<div class="gr-content-wrap" #FnAllElement>
+		<div class="gr-nav-tree">
+			<div class="nav-tree-title">
+				<div class="select-title font18">组织架构</div>
+				<i class="iconfont_admin  "></i>
+			</div>
+
+			<div class="nav-tree-content">
+				<div class="tree-content-tip {{TableTitle.symbol=='NoAdminItems'?'tip-blue':'tip-red'}}"
+					*ngIf = "noAdminList.length>0">
+					<i class="iconfont_admin  admin-tanhao1" *ngIf = "TableTitle.symbol!=='NoAdminItems'"></i>
+					<a href="javascript:;"
+					(click)="fnGetNoAdmin($event)">{{noAdminTotal}}个部门未设置负责人</a>
+				</div>
+				<div class="tree-content-tip {{TableTitle.symbol=='NoDepartmentItems'?'tip-blue':'tip-red'}}"
+					*ngIf = "noDepartment.length>0">
+					<i class="iconfont_admin  admin-tanhao1" *ngIf = "TableTitle.symbol!=='NoDepartmentItems'"></i>
+					<a href="javascript:;"
+					(click)="fnGetNoDepartment($event);TableTitle.symbol = 'NoDepartmentItems'">
+					{{noDepartmentTotal}}个员工未设置部门</a>
+				</div>
+				<div class="tree-content-view"
+					*ngIf = "DeparmentListData.length; else Treeloading"
+					(click)="TableTitle.symbol = 'AllUserItems'">
+					<app-riccio-tree [tree] = 'DeparmentListData'
+									[children] = "'chilren'"
+									[name] = "'name'"
+									[pbox] = 'true'
+									[pboxOptions] = 'pboxOptions'
+									[icon]  = "'admin-fangwuleixing- color999'"
+									(parentData) = "CallTreeData($event)"
+									(pboxActive)="pboxActive($event)"></app-riccio-tree>
+				</div>
+				<ng-template #Treeloading>
+					<div class="loading-indicator">
+						<div class="hor-center">
+							<h4 class="ng-binding">
+								正在努力加载中，请稍候
+								<div class="loading-ellipsis">
+									<div class="bounce1"></div>
+									<div class="bounce2"></div>
+								<div class="bounce3"></div>
+								</div>
+							</h4>
+						</div>
+					</div>
+				</ng-template>
+
+			</div>
+
+		</div>
+
+		<!-- 右侧区域 -->
+		<div class="gr-wrapper-table">
+			<!-- 通用顶部的从左侧弹出的组件 -->
+			<app-riccio-pop-up-right></app-riccio-pop-up-right>
+			<!-- 详情页面组件 -->
+			<!-- <app-members-details [data]="membersDetailsData"></app-members-details> -->
+			<!-- 主体页面 -->
+			<div class="wrapper-table-top">
+				<div class="table-top-title">
+					<a href="javascript:;"  class="font18">{{postSearchUserData.title}}</a> （<em>总数：{{postSearchUserData.length}}</em>）
+				</div>
+				<div class="table-top-button f-r">
+					<ul class="table-ul clearfix">
+						<li class="table-ul-li f-l" *ngIf="postSearchUserData['data']['department_id']!=''">
+							<i class="iconfont_admin  admin-adduser"></i>
+							<a href="javascript:;" (click)="fnAddDepartmentUser()">
+								选择成员
+							</a>
+						</li>
+						<li class="table-ul-li f-l" *ngIf="postSearchUserData['data']['department_id']==''">
+							<i class="iconfont_admin  admin-adduser"></i>
+							<a href="javascript:;" (click)="fnAddMember()">
+								添加成员
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="wrapper-filter clearfix">
+				<form class="form-horizontal">
+					<div class="control-panel select-cp col-sm-2" *ngIf="TableTitle.symbol=='AllUserItems'">
+						<i class="down iconfont_admin admin-down1"></i>
+						<div class="select color666" #rangeBtn (click)="fnRange($event,rangeBtn)">{{rangeName}}</div>
+					</div>
+					<div class="control-panel col-sm-3">
+						<div class="search-container">
+							<input type="input" name='userSearchName' class="form-control"
+								placeholder="{{TableTitle.symbol=='AllUserItems'?'请输入员工姓名或员工编号':TableTitle.symbol=='NoAdminItems'?'请输入部门名称':'请输入员工姓名或员工编号'}}"
+								[(ngModel)]="searchName" (keyup)="fnKeySearch($event)" (blur)="fnBlurSearch()" autocomplete="false">
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<div class="wrapper-content" [ngSwitch]="TableTitle.symbol">
+
+				<ng-template [ngSwitchCase]="'AllUserItems'">
+					<table class="table table-hover gr-table" tableTitle>
+						<colgroup>
+							<col width="30">
+							<col width="80">
+							<col width="100">
+							<col width="80">
+							<col width="120">
+							<col width="50">
+							<col width="100">
+							<col width="100">
+						</colgroup>
+						<thead class="hand">
+							<tr>
+								<th class="th-checkbox" noTitle>
+									<a href="javascript:;"
+									class="customer-check"
+									(click)="fnShowPopUp('','deparmentUserListData','all')">
+										<i class="iconfont_admin  {{allCheckIs==true?'admin-check1 iconColorNormal':'admin-check'}}"></i>
+									</a>
+								</th>
+								<th *ngFor="let name of TableTitle['AllUserItems']">
+									{{name}}
+								</th>
+							</tr>
+						</thead>
+					</table>
+					<div class="wrapper-table" *ngIf = "!loading" >
+						<!-- 所有员工列表 -->
+						<table class="table table-hover gr-table">
+							<colgroup>
+								<col width="30">
+								<col width="80">
+								<col width="100">
+								<col width="80">
+								<col width="120">
+								<col width="50">
+								<col width="100">
+								<col width="100">
+							</colgroup>
+							<tbody id="undetails">
+								<tr *ngFor = "let list of deparmentUserListData"
+									(click)="FnShowDetails(list,$event)" tableTitle>
+									<td class="td-checkbox" noTitle>
+										<a href="javascript:;"
+										class="customer-check"
+										(click)="fnShowPopUp(list,'deparmentUserListData')">
+											<i class="iconfont_admin  {{list.isCheck==true?'admin-check1 iconColorNormal':'admin-check'}}"></i>
+										</a>
+									</td>
+									<td class="customer-content">
+									{{list.real_name}}
+									</td>
+									<td class="customer-content">
+									{{list.phone}}
+									</td>
+									<td class="customer-content">
+									{{list.positionname}}
+									</td>
+									<td class="customer-content" >
+									{{list.email}}
+									</td>
+									<td class="customer-content" >
+									{{list.sex=='1'?'男':'女'}}
+									</td>
+									<td class="customer-content" >
+									{{list.employeecode}}
+									</td>
+									<td class="td-status" noTitle>
+										<a href="javascript:;" (click)="fnDisableUser(list.id,dsMember,$event)" #dsMember>禁用</a>
+										<a href="javascript:;" *ngIf="!(postSearchUserData.data['department_id']=='')" (click)="fnRemoveUser(list.id,rmMember,$event)" #rmMember>移除</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+				</ng-template>
+
+				<ng-template [ngSwitchCase]="'NoAdminItems'">
+					<table class="table table-hover gr-table">
+						<colgroup>
+							<col width="80">
+							<col width="80">
+							<col width="80">
+							<col width="60">
+						</colgroup>
+						<thead class="hand">
+							<tr>
+								<th *ngFor="let name of TableTitle['NoAdminItems']">
+									{{name}}
+								</th>
+							</tr>
+						</thead>
+					</table>
+					<div class="wrapper-table" *ngIf = "!loading" >
+						<!-- 未设置负责人部门的列表 -->
+						<table class="table table-hover gr-table">
+							<colgroup>
+								<col width="80">
+								<col width="80">
+								<col width="80">
+								<col width="60">
+							</colgroup>
+							<tbody id="undetails">
+								<tr *ngFor = "let list of noAdminList"
+									(click)="FnShowDetails(list,$event)">
+									<td class="customer-content">
+									{{list.name}}
+									</td>
+									<td class="customer-content">
+									{{list.parent_name}}
+									</td>
+									<td class="customer-content">
+									{{list.created_at}}
+									</td>
+									<td class="td-status">
+										<a href="javascript:;" (click)="fnShowSetAdmin(list,setAdmin,$event)" #setAdmin>设置负责人</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</ng-template>
+
+				<ng-template [ngSwitchCase]="'NoDepartmentItems'">
+					<table class="table table-hover gr-table">
+						<colgroup>
+							<col width="80">
+								<col width="80">
+								<col width="80">
+								<col width="80">
+								<col width="50">
+								<col width="100">
+						</colgroup>
+						<thead class="hand">
+							<tr>
+								<th *ngFor="let name of TableTitle['NoDepartmentItems']">
+									{{name}}
+								</th>
+							</tr>
+						</thead>
+					</table>
+					<!-- 未设置部门的成员列表 -->
+					<div class="wrapper-table" *ngIf = "!loading" >
+						<table class="table table-hover gr-table">
+							<colgroup>
+								<col width="80">
+								<col width="80">
+								<col width="80">
+								<col width="80">
+								<col width="50">
+								<col width="100">
+							</colgroup>
+							<tbody id="undetails">
+								<tr *ngFor = "let list of noDepartment"
+									(click)="FnShowDetails(list,$event)">
+									<td class="customer-content">
+									{{list.real_name}}
+									</td>
+									<td class="customer-content">
+									{{list.name}}
+									</td>
+									<td class="customer-content">
+									{{list.positionname}}
+									</td>
+									<td class="customer-content">
+									{{list.phone}}
+									</td>
+									<td class="customer-content">
+									{{list.sex == 1?'男':'女'}}
+									</td>
+									<td class="td-status">
+										<a href="javascript:;"
+										(click)="fnShowSetDepart(list.id,$event,setDepart)" #setDepart>设置主属部门</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</ng-template>
+
+				<div class="loading-indicator" *ngIf = 'loading'>
+					<div class="hor-center">
+						<h4 class="ng-binding">
+							正在努力加载中，请稍候
+							<div class="loading-ellipsis">
+								<div class="bounce1"></div>
+								<div class="bounce2"></div>
+							<div class="bounce3"></div>
+							</div>
+						</h4>
+					</div>
+				</div>
+
+				<app-riccio-paginations
+					[total]="postSearchUserData.length"
+					(pageValue)="fnPagination($event)"></app-riccio-paginations>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- pbox设置部门负责人 -->
+<app-riccio-pbox>
+	<div body>
+		<app-admin-members-set-admin
+			[routerInfo]="routerInfo"
+		    *ngIf = "adminOrDepartment=='admin'">
+		</app-admin-members-set-admin>
+		<app-admin-members-set-department-main [routerInfo]="routerInfo" *ngIf = "adminOrDepartment=='department'">
+		</app-admin-members-set-department-main>
+	</div>
+</app-riccio-pbox>
+
+<!-- 模态弹窗提示 -->
+<app-riccio-modal>
+	<div body [ngSwitch]='popUpRightPrompt.showModalText'>
+		<ng-template [ngSwitchCase]="'normal'">
+			<p style="margin-bottom: 20px;">{{popUpRightPrompt.promptText}}</p>
+		</ng-template>
+		<ng-template [ngSwitchCase]="'department'">
+			<app-admin-members-set-department [SetDepartmentData]='popUpRightPrompt.SetDepartmentData'
+										[symbol]="constDepartmentSymbol"
+										[routerInfo]="routerInfo">
+			</app-admin-members-set-department>
+		</ng-template>
+		 <ng-template [ngSwitchCase]="'role'">
+			<app-admin-members-set-role [SetRoleData]='popUpRightPrompt.SetRoleData'
+				[routerInfo]="routerInfo">
+			</app-admin-members-set-role>
+		</ng-template>
+		<ng-template [ngSwitchCase]="'createEdit'">
+			<app-admin-department-create [departmentInfo]="departmentInfo['data']"
+								[symbol]="departmentInfo['symbol']"
+								[routerInfo]="routerInfo"
+			                    (callData)="fnDepartmentCreateEdit($event)">
+			</app-admin-department-create>
+		</ng-template>
+		<ng-template [ngSwitchCase]="'disableDepartment'">
+			<p>是否禁用 {{departmentInfo.data.name}} 部门?</p>
+		</ng-template>
+		<ng-template [ngSwitchCase]="'delDepartment'">
+			<p>是否删除 {{departmentInfo.data.name}} 部门?</p>
+		</ng-template>
+	</div>
+</app-riccio-modal>
+
+<!-- 添加成员 -->
+<app-admin-members-add *ngIf = "addMembers.isShow"
+	[routerInfo]="routerInfo" (callBackData)="receiveMembersAdd($event)">
+</app-admin-members-add>
+
+<app-riccio-select-members
+	[rightTitle]="'已有成员'"
+	[isShow]="selectMemberData.isShow"
+	[leftData]="selectMemberData.leftData"
+	[rightData]="selectMemberData.rightData"
+	(close)="fnSelectMemberClose()"
+	(pageValue)="fnMoreRoleUser($event)"
+	(emitData)="addRoleUser($event)"
+	(searchValue)="fnSearchRoleUser($event)"
+	[nextPage]="selectMemberData.nextPage">
+</app-riccio-select-members>

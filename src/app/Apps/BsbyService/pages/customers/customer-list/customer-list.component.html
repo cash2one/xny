@@ -1,0 +1,222 @@
+<div class="customer bsbyCommon">
+    <div class="head">
+        <div class="title">
+            <i class="iconfont_bsby bsby-wangzhan"></i>
+            <span>客户管理</span>
+        </div>
+        <div class="action">
+            <button class="gr-btn gr-btn-primary bsbyBtn addBtn" (click)="fnAddCustomer()">
+                <i class="iconfont_bsby bsby-jia"></i>
+                添加客户
+            </button>
+        </div>
+    </div>
+
+    <div class="body">
+        <div class="bodyHead">
+            <div class="search col-gr-3">
+                <bsby-search-input
+                    [placeholder]="'输入公司名称搜索'"
+                    [(ngModel)]="customerListRequestParam.name"
+                    (searchEmit)="getCustomerList()"></bsby-search-input>
+            </div>
+        </div>
+        <div class="bodyMain">
+            <div class="gr-wrapper-table customerList tableList">
+                <div class="wrapper-content"> 
+                    <table class="table table-hover gr-table" tableTitle>
+                        <colgroup>
+                            <col width="120">
+                            <col width="60">
+                            <col width="60">
+                            <col width="80">
+                            <col width="100">
+                            <col width="80">
+                            <col width="80">
+                            <col width="70">
+                            <col width="70"> 
+                        </colgroup>
+                        <thead class="hand">
+                            <tr>
+                                <th *ngFor = "let title of customerListTitles">
+                                    {{title}}
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                    <div class="wrapper-table" *ngIf = "loadingType=='hide'">
+                        <table class="table table-hover gr-table">
+                            <colgroup>
+                                <col width="120">
+                                <col width="60">
+                                <col width="60">
+                                <col width="80">
+                                <col width="100">
+                                <col width="80">
+                                <col width="80">
+                                <col width="70">
+                                <col width="70">
+                            </colgroup>
+                            <tbody #detailTB>
+                                <tr *ngFor = "let customer of customerList" tableTitle>
+                                    <!--企业名称-->
+                                    <td class="customer-content customerName" 
+                                        *ngIf="customer.site"
+                                        [attr.rowspan]="customer.site.length"
+                                        (click)="fnShowDetail(customer)">
+                                        {{customer.name}}
+                                    </td>
+
+                                    <!--企业有网站，显示第一个网站 执行负责人-->
+                                    <td class="customer-content" 
+                                        *ngIf="customer.site && customer.site.length == 0">
+                                        -
+                                    </td>
+                                    <td class="customer-content" 
+                                        *ngIf="customer.site && customer.site.length > 0">
+                                        {{customer.site[0].executor_user}}
+                                    </td>
+                                    <!--除第一个其他网站 执行负责人-->
+                                    <td class="customer-content"
+                                        *ngIf="!customer.site">
+                                        {{customer.executor_user}}
+                                    </td>
+
+                                    <!--企业有网站，显示第一个网站 客服-->
+                                    <td class="customer-content" 
+                                        *ngIf="customer.site && customer.site.length == 0">
+                                        -
+                                    </td>
+                                    <td class="customer-content" 
+                                        *ngIf="customer.site && customer.site.length > 0">
+                                        {{customer.site[0].service_user}}
+                                    </td>
+                                    <!--除第一个其他网站 客服-->
+                                    <td class="customer-content"
+                                        *ngIf="!customer.site">
+                                        {{customer.service_user}}
+                                    </td>
+
+                                    <!--企业有网站，显示第一个网站  产品方案-->
+                                    <td class="customer-content" 
+                                        *ngIf="customer.site && customer.site.length == 0">
+                                        -
+                                    </td>
+                                    <td class="customer-content" 
+                                        *ngIf="customer.site && customer.site.length > 0">
+                                        {{customer.site[0].product_name}}
+                                    </td>
+                                    <!--除第一个其他网站 产品方案-->
+                                    <td class="customer-content"
+                                        *ngIf="!customer.site">
+                                        {{customer.product_name}}
+                                    </td>
+
+                                    <!--企业有网站，显示第一个网站  域名-->
+                                    <td class="customer-content" 
+                                        *ngIf="customer.site && customer.site.length == 0">
+                                        -
+                                    </td>
+                                    <td class="customer-content" 
+                                        *ngIf="customer.site && customer.site.length > 0">
+                                        {{customer.site[0].domain}}
+                                    </td>
+                                    <!--除第一个其他网站 域名-->
+                                    <td class="customer-content"
+                                        *ngIf="!customer.site">
+                                        {{customer.domain}}
+                                    </td>
+
+                                    <!--企业有网站，显示第一个网站  开始时间-->
+                                    <td class="customer-content" 
+                                        *ngIf="customer.site && customer.site.length == 0">
+                                        -
+                                    </td>
+                                    <td class="customer-content" 
+                                        *ngIf="customer.site && customer.site.length > 0">
+                                        {{customer.site[0].starttime}}
+                                    </td>
+                                    <!--除第一个其他网站 开始时间-->
+                                    <td class="customer-content"
+                                        *ngIf="!customer.site">
+                                        {{customer.starttime}}
+                                    </td>
+
+                                    <!--企业有网站，显示第一个网站  结束时间-->
+                                    <td class="customer-content" 
+                                        *ngIf="customer.site && customer.site.length == 0">
+                                        -
+                                    </td>
+                                    <td class="customer-content" 
+                                        *ngIf="customer.site && customer.site.length > 0">
+                                        {{customer.site[0].endtime}}
+                                    </td>
+                                    <!--除第一个其他网站 结束时间-->
+                                    <td class="customer-content"
+                                        *ngIf="!customer.site">
+                                        {{customer.endtime}}
+                                    </td>
+
+                                    <!--企业有网站，显示第一个网站  运营时长-->
+                                    <td class="customer-content" 
+                                        *ngIf="customer.site && customer.site.length == 0">
+                                        -
+                                    </td>
+                                    <td class="customer-content" 
+                                        *ngIf="customer.site && customer.site.length > 0">
+                                        {{customer.site[0].stilltime}}天
+                                        <span class="color999">({{customer.site[0].amounttime}})</span>
+                                    </td>
+                                    <!--除第一个其他网站 运营时长-->
+                                    <td class="customer-content"
+                                        *ngIf="!customer.site">
+                                        {{customer.stilltime}}天
+                                        <span class="color999">({{customer.amounttime}})</span>
+                                    </td>
+
+                                    <td class="customer-content"
+                                        *ngIf="customer.site && customer.site.length == 0" noTitle>
+                                        <a href="javascript:;" class="approval-action" (click)="fnAddSite(customer)">
+                                            添加站点
+                                        </a>
+                                    </td>
+                                    <td class="customer-content"
+                                        *ngIf="customer.site && customer.site.length > 0" noTitle>
+                                        <a href="javascript:;" class="approval-action" (click)="fnToInfo(customer.site[0])">
+                                            管理
+                                        </a>
+                                    </td>
+                                    <td class="customer-content"
+                                        *ngIf="!customer.site" noTitle>
+                                        <a href="javascript:;" class="approval-action" (click)="fnToInfo(customer)">
+                                            管理
+                                        </a>
+                                    </td>
+
+                                </tr>                                
+                            </tbody>
+                        </table>
+                    </div>
+                    <app-riccio-spinners [type]="loadingType"
+										 [emptyText]="pageData['emptyText']"></app-riccio-spinners>
+                    <app-riccio-paginations
+                        [total]="pageData['total']"
+                        (pageValue)="fnPagination($event)"></app-riccio-paginations>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<show-detail (onEmit)="fnEditOrAdd($event)"></show-detail>
+
+<app-riccio-modal>
+    <div body [ngSwitch]="modalType">
+        <ng-template [ngSwitchCase]="'siteOp'">
+            <bsby-site-op></bsby-site-op> 
+        </ng-template>
+    </div>
+</app-riccio-modal>
+
+<bsby-customer-op></bsby-customer-op>

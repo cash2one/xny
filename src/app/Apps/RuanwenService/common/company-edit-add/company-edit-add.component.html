@@ -1,0 +1,51 @@
+<app-riccio-pbox [openSearch] = 'true' (emitSearch) = "pboxEmitSearch($event)"></app-riccio-pbox>
+
+<div class="edit-main">
+
+	<form class="gr-form-horizontal c-f">
+
+	    <div class="form-group c-f">
+	        <label class="col-gr-2 control-label  t-l">
+	            公司名称
+	        </label>
+	        <div class="col-gr-9 control-panel">
+	            <input name="name"  
+	                   class="form-control c-p"
+	                   readonly="readonly"
+	                   #nameEl
+	                   [(ngModel)]="companyData['name']"
+	                   placeholder="请选择公司" 
+	                   (click)="fnShowPbox('company',nameEl)"
+	                   style="">
+	        </div>
+	    </div>
+
+	    <div class="form-group c-f">
+	        <label class="col-gr-2 control-label  t-l">
+	            会员组
+	        </label>
+	        <div class="col-gr-9 control-panel">
+	            <input name="membersName"  
+	                   class="form-control c-p"
+	                   readonly="readonly"
+	                   #membersNameEl
+	                   [(ngModel)]="companyData['member_name']"
+	                   placeholder="请选择会员组" 
+	                   (click)="fnShowPbox('member',membersNameEl)"
+	                   style="">
+	        </div>
+	    </div>
+
+	    <div class="form-group c-f">
+	        <div class="col-gr-6 control-panel col-gr-ml-2">
+	            <riccio-button [normal]="'保存'"
+		        				   [disabled]="'保存中...'"
+		        				   [open]="btnType"
+		        				   (emitStatus)="fnAddOrder()"></riccio-button>
+	            <a href="javascript:;" class="gr-btn gr-btn-link" (click)="closer()">取消</a>
+	        </div>
+	    </div>
+
+	</form>
+
+</div>

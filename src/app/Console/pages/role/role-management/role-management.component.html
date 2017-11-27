@@ -1,0 +1,125 @@
+<!-- 右侧区域 -->
+<div class="gr-wrapper-table">
+	<div class="wrapper-table-top">
+		<div class="table-top-title">
+			<a href="javascript:;" 
+			   class="font18">
+			   角色管理
+			</a>
+		</div>
+	</div>
+
+	<div class="wrapper-content">
+		<div class="gr-special-table">
+			<table class="table table-hover gr-table">
+				<colgroup>
+					<col width="30">
+					<col width="60">
+					<col width="60">
+					<col width="120">
+					<col width="60">
+					<col width="60">
+				</colgroup>
+				<thead class="hand">
+				    <tr>
+				        <th *ngFor="let name of tableTitle">
+				            {{name}}
+				        </th>
+				    </tr>
+				</thead>
+			</table>
+			<div class="wrapper-table" *ngIf = "!loading">
+				<table class="table table-hover gr-table">
+					<colgroup>
+			    		<col width="30">
+						<col width="60">
+						<col width="60">
+						<col width="120">
+						<col width="60">
+						<col width="60">
+			    	</colgroup>
+					<tbody id="undetails">
+
+					    <tr *ngFor="let list of roleListData">
+					        <td class="td-checkbox" (click)="isSort=list.id">
+					            <span *ngIf = "!(isSort==list.id)">{{list.listorder}}</span>
+				            	<input type="text" 
+						               name="{{list.listorder}}"
+						               [(ngModel)]="list.listorder"
+				            		   style="width: 40px;outline: none" 
+				            		   *ngIf= "isSort==list.id" 
+				            		   autofocus
+				            		   onkeyup="this.value=this.value.replace(/\D/g,'')" 
+				            		   onafterpaste="this.value=this.value.replace(/\D/g,'')"
+				            		   (focus)="constIsSort = list.listorder"
+				            		   (blur)="fnSortList(list);isSort='-1'">
+					        </td>
+					        <td class="customer-content">
+					        {{list.groupname}}
+					        </td>
+					        <td class="customer-content">
+					        {{list.parent_id==0?'企业负责人':list.parentName}}
+					        </td>
+					        <td class="customer-content">
+					        {{list.content}}
+					        </td>
+					        <td class="customer-content">
+					        {{list.status==1?'正常':'禁用'}}
+					        </td>
+					        <td class="td-status">
+							    <a href="javascript:;" class="" (click)="fnShowModalEditRole(list)">编辑</a>
+								<a href="javascript:;" 
+								   #listEdit
+								   (click)="FnShowPbox($event,listEdit,list)">
+								   <i class="iconfont_console console-iconfontdown2"></i>
+								</a>
+					        </td>
+					    </tr>
+					    
+					</tbody>
+				</table>
+			</div>
+
+			<div class="loading-indicator" *ngIf = 'loading'>
+			    <div class="hor-center">
+			        <h4 class="ng-binding">
+			            正在努力加载中，请稍候
+			            <div class="loading-ellipsis">
+			                <div class="bounce1"></div>
+			                <div class="bounce2"></div>
+			              <div class="bounce3"></div>
+			            </div>
+			        </h4>
+			    </div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+	
+
+<app-riccio-pbox>
+	<div body [ngSwitch]="pboxOtherSymbol">
+		<ng-template [ngSwitchCase]="'selectRole'">
+			<app-role-select-role [roleId]="checkRoleInfo['id']"
+			                      [type]="'editRole'"></app-role-select-role>
+		</ng-template>
+	</div>
+</app-riccio-pbox>
+
+
+
+<app-riccio-modal>
+	<div body>
+		<app-role-add-or-edit [roleInfoName]="checkRoleInfo['groupname']"
+		                      [roleInfoId] = "checkRoleInfo['id']"
+		                      [roleSymbol]="'editRole'"
+		                      *ngIf = "checkRoleInfo['id']!=0"
+		                      (emitData)="fnOutputRoleAddEdit($event)"
+		                      (emitRefresh)="fnOutputRoleRefresh($event,'editRole')"></app-role-add-or-edit>		
+	</div>
+</app-riccio-modal>
+
+

@@ -1,0 +1,46 @@
+<form  class="form-horizontal c-f">
+
+        <div  class="form-group clearfix">
+            <label  class="col-sm-2 control-label line-40">问题名称：</label>
+            <div  class="col-sm-10 control-panel">
+                <input  class="form-control"
+                	    name="title"
+                	    placeholder="请输入标题"
+                	    [(ngModel)] = "DocObj['title']"
+                	    style="">
+            </div>
+        </div>
+
+        <div  class="form-group clearfix">
+            <label  class="col-sm-2 control-label line-40">帮助文档</label>
+            <div  class="col-sm-10 control-panel">
+                <input  class="form-control"
+                        name="item"
+                        readonly="readonly" 
+                        [(ngModel)] = "helpName"
+                        #itemEl
+                        (click)="fnShowDocHelpList(itemEl)"
+                        placeholder="请选择帮助文档"
+                        style="">
+            </div>
+        </div>
+
+        <div  class="form-group clearfix">
+            <label  class="col-sm-2 control-label line-40">是否推荐：</label>
+            <div  class="col-sm-10 control-panel" [ngStyle]="{'line-height':'40px'}">
+                <input class="gr-radio" name="t_status" type="radio" [(ngModel)]="DocObj.recommend" [value]="1" /> 是
+                <input class="gr-radio" name="t_status" type="radio" [(ngModel)]="DocObj.recommend" [value]="0" /> 否
+            </div>
+        </div>
+			
+
+    <div  class="form-group c-f footer-border projectTemplate">
+        <div  class="col-gr-6 col-gr-ml-2 control-panel c-f">
+                <riccio-button [normal] = "'确认'"
+                               [open] = "buttonType"
+                               [disabled] = "'修改中'"
+                               (emitStatus) = "acceptBtnEmit($event)"></riccio-button>
+                <a href="javascript:;" class="gr-btn gr-btn-link close" (click)="Close()">取消</a>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,29 @@
+<div class="tempDetail" 
+	[ngStyle]="{top:detailData.top+ 'px'}" 
+	*ngIf="isShow" [@rightIn]="'in'">
+	<div class="detailHead">
+		<span class="title color333">{{detailData.title}}</span>
+		<div class="tool" *ngIf="detailData.headBtn">
+			<div class="editOp">
+				<button class="editBtn iconfont_admin admin-edit"
+                    (click)="emit(1,$event)">编辑</button>
+			</div>
+			<div class="delOp">
+				<button class="delBtn iconfont_admin admin-shanchu1"
+                    (click)="emit(2,$event)">删除</button>
+			</div>
+		</div>
+	</div>
+	<div class="detailBody">
+        <div class="one" *ngFor="let one of detailData.showList">
+            <span class="key color999">{{one.name}} :</span>
+            <span class="val color666" *ngIf="!one.class && !one.img" [innerHTML]="one.value"></span>
+			<!--显示字体图标-->
+            <span *ngIf="one.class" class="val color666 iconfont_admin {{one.value}}"></span>
+			<!--显示图片-->
+			<img *ngIf="one.img && !one.noImg" class="val imgVal" [src]="one.value" (error)="noImg(one)">
+			<img *ngIf="one.img && one.noImg && one.imgImg" class="val imgVal" src="assets/img/apps_defulet.jpg">
+			<span *ngIf="one.img && one.noImg && one.imgIcon" class="val color666 iconfont_admin admin_tu"></span>
+        </div>
+    </div>
+</div>

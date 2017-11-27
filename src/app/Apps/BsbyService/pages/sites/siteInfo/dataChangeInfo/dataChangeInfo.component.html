@@ -1,0 +1,89 @@
+<div class="dataChangeInfo">
+    <div class="title">
+        <span class="name">网站数据变化</span>
+    </div>
+    <div class="main">
+        <div class="changeData before">
+            <div class="head">优化前</div>
+            <div class="body">
+                <div class="data">
+                    <span class="show">百度搜录量：</span>
+                    <div class="view">
+                        {{dataChangeInfo.seo_begin?dataChangeInfo.seo_begin.baidu:'-'}}
+                    </div>
+                </div>
+                <div class="data">
+                    <span class="show">百度反链量：</span>
+                    <div class="view">
+                        {{dataChangeInfo.seo_begin?dataChangeInfo.seo_begin.baidu_link:'-'}}
+                    </div>
+                </div>
+                <div class="data">
+                    <span class="show">360收录量：</span>
+                    <div class="view">
+                        {{dataChangeInfo.seo_begin?dataChangeInfo.seo_begin.s360:'-'}}
+                    </div>
+                </div>
+                <div class="data">
+                    <span class="show">百度权重：</span>
+                    <div class="view">
+                        {{dataChangeInfo.seo_begin?dataChangeInfo.seo_begin.baidu_pr:'-'}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="changeData after">
+            <div class="head">优化后</div> 
+            <div class="body">
+                <div class="data">
+                    <span class="show">百度搜录量：</span>
+                    <div class="view">
+                        <i class="iconfont_bsby bsby-shangsheng up"
+                            *ngIf="dataChangeInfo.seo_after && dataChangeInfo.seo_after.baiduFlag > 0"></i>
+                        <i class="iconfont_bsby bsby-xiajiang down"
+                            *ngIf="dataChangeInfo.seo_after && dataChangeInfo.seo_after.baiduFlag < 0"></i>
+                        <i class="iconfont_bsby bsby-chiping"
+                            *ngIf="dataChangeInfo.seo_after && dataChangeInfo.seo_after.baiduFlag == 0"></i>
+                        <span class="num">{{dataChangeInfo.seo_after?dataChangeInfo.seo_after.baidu:'-'}}</span>
+                    </div>
+                </div>
+                <div class="data">
+                    <span class="show">百度反链量：</span>
+                    <div class="view">
+                        <i class="iconfont_bsby bsby-shangsheng up"
+                            *ngIf="dataChangeInfo.seo_after && dataChangeInfo.seo_after.baidu_linkFlag > 0"></i>
+                        <i class="iconfont_bsby bsby-xiajiang down"
+                            *ngIf="dataChangeInfo.seo_after && dataChangeInfo.seo_after.baidu_linkFlag < 0"></i>
+                        <i class="iconfont_bsby bsby-chiping"
+                            *ngIf="dataChangeInfo.seo_after && dataChangeInfo.seo_after.baidu_linkFlag == 0"></i>
+                        <span class="num">{{dataChangeInfo.seo_after?dataChangeInfo.seo_after.baidu_link:'-'}}</span>
+                    </div>
+                </div>
+                <div class="data">
+                    <span class="show">360收录量：</span>
+                    <div class="view">
+                        <i class="iconfont_bsby bsby-shangsheng up"
+                            *ngIf="dataChangeInfo.seo_after && dataChangeInfo.seo_after.s360Flag > 0"></i>
+                        <i class="iconfont_bsby bsby-xiajiang down"
+                            *ngIf="dataChangeInfo.seo_after && dataChangeInfo.seo_after.s360Flag < 0"></i>
+                        <i class="iconfont_bsby bsby-chiping"
+                            *ngIf="dataChangeInfo.seo_after && dataChangeInfo.seo_after.s360Flag == 0"></i>
+                        <span class="num">{{dataChangeInfo.seo_after?dataChangeInfo.seo_after.s360:'-'}}</span>
+                    </div>
+                </div>
+                <div class="data">
+                    <span class="show">百度权重：</span>
+                    <div class="view">
+                        <i class="iconfont_bsby bsby-shangsheng up"
+                            *ngIf="dataChangeInfo.seo_after && dataChangeInfo.seo_after.baidu_prFlag > 0"></i>
+                        <i class="iconfont_bsby bsby-xiajiang down"
+                            *ngIf="dataChangeInfo.seo_after && dataChangeInfo.seo_after.baidu_prFlag < 0"></i>
+                        <i class="iconfont_bsby bsby-chiping"
+                            *ngIf="dataChangeInfo.seo_after && dataChangeInfo.seo_after.baidu_prFlag == 0"></i>
+                        <span class="num">{{dataChangeInfo.seo_after?dataChangeInfo.seo_after.baidu_pr:'-'}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

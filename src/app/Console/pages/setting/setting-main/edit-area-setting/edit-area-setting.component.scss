@@ -1,0 +1,16 @@
+.control-panel{
+	padding-right: 0;
+}
+
+.select-location{
+	position: relative;
+	input{
+		cursor: pointer;
+	}
+	i{
+		position: absolute;
+		right: 10px;
+		top: 8px;
+		color: #d9d9d9;
+	}
+}

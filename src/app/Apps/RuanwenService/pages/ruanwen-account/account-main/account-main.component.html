@@ -1,0 +1,118 @@
+<app-riccio-pbox>
+    <div body> 
+        <app-riccio-datepickers (callDatepickersData)="fnEmitDataPicker($event)"
+                                [type]="dateType"></app-riccio-datepickers>
+    </div>
+</app-riccio-pbox>
+<div class="account-main incomeExpense">
+	
+	<div class="gr-wrapper-table tableList">
+
+	    <div class="wrapper-table-top tableTop">
+	        <div class="headLeft col-sm-12">
+	            <div class="control-panel select-cp col-sm-2" (click)="fnShowPbox(typeBtn)">
+	                <i class="down iconfont_ruanwen ruanwen-downBlock"></i>
+	                <div class="select color666" #typeBtn>
+	                    {{searchData.extra==0?'全部':searchData.extra==1?'软文':'代写'}}
+	                </div>
+	            </div>
+	            <!--金额筛选-->
+	            <div class="control-panel select-cp col-sm-1">
+	                <div class="countPar">
+	                    <input type="text" class="count form-control" name="left" 
+	                    		[(ngModel)]="searchData['amount'][0]"
+	                        (keyup)="resolveChargeInput(0)"> 
+	                </div>
+	            </div>
+	            <span class="word">-</span>
+	            <div class="control-panel select-cp col-sm-1">
+	                <div class="countPar">
+	                    <input type="text" class="count form-control" name="right" 
+	                    		[(ngModel)]="searchData['amount'][1]"
+	                        (keyup)="resolveChargeInput(1)"> 
+	                </div>
+	            </div>
+	            <!--时间筛选-->
+	            <div class="control-panel select-cp col-sm-2" (click)="fnShowDate(startDate,'start')">
+	                <i class="down iconfont_ruanwen ruanwen-xuanzeshijian"></i>
+	                <div class="select color666" #startDate>{{searchData['time'][0]}}</div>
+	            </div>
+	            <span class="word">至</span>
+	            <div class="control-panel select-cp col-sm-2" (click)="fnShowDate(endDate,'end')">
+	                <i class="down iconfont_ruanwen ruanwen-xuanzeshijian"></i>
+	                <div class="select color666" #endDate>{{searchData['time'][1]}}</div>
+	            </div>
+	            <button class="recent c-p" [ngClass]="{'active':sevenClick}" (click)="fnRecentSeven()">
+                    最近7天
+                </button>
+                <button class="recent c-p" [ngClass]="{'active':monthClick}" (click)="fnRecentThirty()">
+                    最近30天
+                </button>
+	            <button class="gr-btn gr-btn-primary searchBtn" (click)="fnGetAccountItem()">
+	                搜索
+	            </button>
+	        </div>
+	    </div>
+
+		<div class="wrapper-content">
+			<!-- 所有员工列表 -->
+			<table class="table table-hover gr-table">
+				<colgroup>
+		    		<col width="80">
+		    		<col width="80">
+		    		<col width="80">
+		    		<col width="80">
+		    		<col width="80">
+		    	</colgroup>
+				<thead class="hand">
+				    <tr>
+				        <th *ngFor="let name of tableTitle">
+				            {{name}}
+				        </th>
+				    </tr>
+				</thead>
+			</table>
+			<div class="wrapper-table">
+				<table class="table table-hover gr-table" *ngIf = "loadingType=='hide'">
+					<colgroup>
+			    		<col width="80">
+			    		<col width="80">
+			    		<col width="80">
+			    		<col width="80">
+			    		<col width="80">
+			    	</colgroup>
+					<tbody id="undetails">
+					    <tr *ngFor = "let list of accountItem">
+					        <td class="customer-content">
+							{{list.companyname}}
+					        </td>
+					        <td class="customer-content">
+								<span class="accountAmount {{list.amount > 0?'add':'reduce'}}">
+									{{list.amount > 0?'+ ¥ '+list.amount:'- ¥ '+ -list.amount}}
+								</span>
+					        </td>
+					        <td class="customer-content">
+							{{list.extra==1?'软文':'代写'}}
+					        </td>
+					        <td class="customer-content" >
+							{{list.username}}
+					        </td>
+					        <td class="customer-content" >
+							{{list.created_at}}
+					        </td>
+					    </tr>
+					    
+					</tbody>
+				</table>
+
+				<!-- loading组件 -->
+				<app-riccio-spinners [emptyText]="'暂无消费纪录'"
+									 [type]="loadingType"></app-riccio-spinners>
+			</div>
+
+			<app-riccio-paginations [total]="totalPage" (pageValue)="fnEmitPage($event)"></app-riccio-paginations>
+
+		</div>
+	</div>	
+
+</div>

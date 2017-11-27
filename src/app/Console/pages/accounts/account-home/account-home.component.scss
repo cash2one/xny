@@ -1,0 +1,48 @@
+@import '../account.component.scss';
+@import '../../../../Public/theme/common/variable.scss';
+
+.home{
+    .balance{
+        height: 100px;
+        line-height: 100px;
+        padding: 0 50px;
+        border: 1px solid $headBorderColor;
+        margin: 15px;
+        .word{
+
+        }
+        .value{
+            font-size: 18px;
+            font-weight: 600;
+            color:$moneyColor;
+        }
+        .recharge{
+            margin-left: 20px;
+            padding: 5px 20px;
+        }
+    }
+    .consume{
+        position: absolute;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        top: 134px;
+        bottom: 0px;
+        .title{
+            padding-left: 10px;
+            border-left: 3px solid $textColorLink;
+            height: 20px;
+            line-height: 20px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        .main{
+            .tableList{
+                left: 0px;
+                top: 35px;
+                box-shadow: none;
+                border: 1px solid $headBorderColor;
+            }
+        }
+    }
+}

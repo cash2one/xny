@@ -1,0 +1,148 @@
+@import '../../../../../Public/theme/common/variable.scss';
+@import '../config-main.value.scss';
+@import '../../../../../Public/theme/common/keyframes.scss';
+
+$tableHeadOpBtnBg:#848484;
+
+.ckedanger{
+    #{'/deep/'}{
+        .cke_inner{
+            border:1px solid $buttonColorDanger !important;
+            box-shadow: 0 0 5px 0 $buttonColorDanger !important;
+        }
+    }
+}
+
+.ued{
+    #{'/deep/'}{
+        .edui-editor{
+            width:100% !important;
+        }
+    }
+}
+
+.uedanger{
+    #{'/deep/'}{
+        .edui-editor{
+            border: 1px solid $buttonColorDanger !important;
+            box-shadow: 0 0 5px 0 $buttonColorDanger !important;
+        }
+    }
+}
+
+.modal-content{
+    .module-header{
+        .flex-panel{
+            height:30px;
+            margin-top:11px;
+        }
+    }
+    .module-body{
+        top: 114px;
+        bottom: 30px;
+        .tempList{
+            .customer-list{
+                .flyLeftContent{
+                    top: -114px;
+                }
+                .lc-table{
+                    .table-head{
+                        tr{
+                            th{
+                                &:nth-child(1){
+                                    &:after{
+                                        display: none;
+                                    }
+                                }
+                                &:nth-child(2){
+                                    &:before{
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .table-body{
+                    }
+                }
+            }
+        }
+    }
+}
+
+.configModal{
+    .testBase{
+        width:100%;
+        .testHead{
+            height:20px;
+            line-height: 20px;
+            font-size: 12px;
+            .title{
+                display: block;
+                border-left:2px solid $themeColor;
+                padding-left:10px;
+            }
+        }
+        .testBody{
+            margin-top:20px;
+            label{
+                font-size: 12px;
+                font-weight: 400;
+            }
+            label,
+            input{
+                display: inline-block;
+            }
+            input,
+            textarea{
+                border-radius:5px;
+                background-color: $formCPBg;
+                border: 1px solid $formCPBorder;
+                color:$contentNarmalColor;
+                outline: none;
+                padding-left:30px;
+                height:100%;
+            }
+            .ft{
+                width:100%;
+                height:38px;
+                line-height: 38px;
+                label{
+                    width:15%;
+                }
+                input{
+                    width:80%;
+                }
+            }
+            .fta{
+                label{
+                    width:15%;
+                    vertical-align: top;
+                    padding-top:15px;
+                }
+                .control-panel{
+                    display: inline-block;
+                    width: 80%;
+                }
+                margin-top:20px;
+            }
+            .send{
+                margin-top:30px;
+                height:36px;
+                margin-left:15%;
+                .sendBtn{
+                    cursor: pointer;
+                    border:none;
+                    color:#fff;
+                    outline: none;
+                    height:inherit;
+                    width:150px;
+                    padding-left:10px;
+                    padding-right:10px;
+                    background: $themeColor;
+                    border-radius:5px;
+                }
+            }
+        }
+    }
+}

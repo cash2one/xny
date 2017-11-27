@@ -1,0 +1,127 @@
+@import "../gongdan.common.scss";
+
+.submitStepFour{
+  background-color: #FFF;
+  margin: 16px;
+  border-radius:5px;
+  border: 1px solid #eaeaea;
+  .remind{
+    .remind-header {
+      border-bottom: 1px solid #eaeaea;
+      padding: 16px 36px;
+      background-color: #f8f8f8;
+      span {
+        color: #ff6700;
+        padding-right: 20px;
+      }
+      span:first-child {
+        color: #818181;
+      }
+    }
+    .remind-body{
+      padding: 30px 20px;
+      border-bottom: 1px solid #eaeaea;
+    }
+  }
+  .submit{
+    .submit-header{
+      border-bottom: 1px solid #eaeaea;
+      padding: 16px 36px;
+      background-color: #f8f8f8;
+      span{
+        padding-bottom: 17px;
+        border-bottom: 1px solid #447bd4;
+      }
+    }
+    .submit-body{
+      padding: 36px 0px;
+      .form-group{
+        margin: 14px 0px;
+        .left{
+          width:20%;
+          text-align: right;
+          .red{
+            color: red;
+          }
+          .unNeed{
+            color: #aaaaaa;
+          }
+        }
+        .right{
+          width: 79%;
+          .blue{
+            color: #447bd4;
+          }
+          .grey{
+            color: #aaaaaa;
+            font-size: 12px;
+          }
+          .radio{
+            margin-right: 40px;
+          }
+          textarea{
+            width: 70%;
+            height:120px;
+            border: 1px solid #dddddd;
+            background-color: #fafafa;
+            padding: 10px 10px;
+            resize : none;
+          }
+          .phone,.email{
+            border: 1px solid #dddddd;
+            background-color: #fafafa;
+            padding: 10px 10px;
+            width: 240px;
+          }
+          button{
+            cursor: pointer;
+          }
+          button:nth-child(2){
+            border:1px solid #447bd4;
+            background-color: #FFF;
+            color: #447bd4;
+            margin-right: 10px;
+            padding: 1px 20px;
+          }
+          button:nth-child(3){
+            background-color: #cccccc;
+            color: #FFF;
+            border: 1px solid #cccccc;
+            border-radius: 3px;
+            padding: 0px 5px;
+            margin-right: 10px;
+            i{
+              position: relative;
+              top: 1px;
+            }
+          }
+          button:nth-child(4){
+            background-color: #447bd4;
+            color: #FFF;
+            border-radius: 3px;
+            border: 1px solid #447bd4;
+            padding: 0px 5px;
+            i{
+              position: relative;
+              top: 1px;
+            }
+          }
+          button:nth-child(1){
+            background-color: #447bd4;
+            color: #FFF;
+            padding: 5px 36px;
+            border: 1px solid #447bd4;
+            border-radius: 3px;
+          }
+        }
+      }
+    }
+  }
+}
+
+label{
+  font-weight: 500;
+}
+.danger{
+  border: 1px solid red !important;
+}

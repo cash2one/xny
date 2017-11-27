@@ -1,0 +1,80 @@
+<!-- 右侧区域 -->
+<div class="gr-wrapper-table">
+	<!-- 主体页面 -->
+	<div class="wrapper-table-top">
+		<div class="table-top-title">
+			<a href="javascript:;" 
+			   class="font18">
+			   无负责人的部门
+			</a>
+			<span class="font12 color999">(<em>{{total}}</em>个)</span>
+		</div>
+	</div>
+	<div class="wrapper-content">
+
+		<!-- 未设置部门负责人的列表 -->
+		<table class="table table-hover gr-table">
+			<colgroup>
+	    		<col width="60">
+	    		<col width="60">
+	    		<col width="180">
+	    		<col width="180">
+	    	</colgroup>
+			<thead class="hand">
+			    <tr>
+			        <th *ngFor="let name of tableTitle">
+			            {{name}}
+			        </th>
+			    </tr>
+			</thead>
+		</table>
+		<div class="wrapper-table" *ngIf = "!loading">
+			<table class="table table-hover gr-table">
+				<colgroup>
+		    		<col width="60">
+		    		<col width="60">
+		    		<col width="180">
+		    		<col width="180">
+		    	</colgroup>
+				<tbody id="undetails">
+
+				    <tr *ngFor = "let list of noAdminList">
+				        <td class="customer-content">
+						{{list.name}}
+				        </td>
+				        <td class="customer-content">
+						{{list.parent_name}}
+				        </td>
+				        <td class="customer-content">
+						{{list.created_at}}
+				        </td>
+				        <td class="td-status ">
+				            <a href="javascript:;" 
+					           #SetAdmin
+				               class="selectDepartment" 
+				               (click)="FnSetAdmin(list,SetAdmin,$event)"><i class="iconfont_console console-shezhis"></i>设置部门负责人</a>
+				        </td>
+				    </tr>
+				    
+				</tbody>
+			</table>
+		</div>
+
+	    <div class="loading-indicator" *ngIf = 'loading'>
+	        <div class="hor-center">
+	            <h4 class="ng-binding">
+	                正在努力加载中，请稍候
+	                <div class="loading-ellipsis">
+	                    <div class="bounce1"></div>
+	                    <div class="bounce2"></div>
+	                  <div class="bounce3"></div>
+	                </div>
+	            </h4>
+	        </div>
+	    </div>
+
+		<app-riccio-paginations [total]="total"
+		                        (pageValue)="fnOutputPageValue($event)"></app-riccio-paginations>
+		
+	</div>
+</div>

@@ -1,0 +1,18 @@
+<div class="loading-indicator" *ngIf = "type!='hide'">
+    <div class="hor-center">
+        <h4 class="" *ngIf = "type=='show'">
+            正在努力加载中，请稍候
+            <div class="loading-ellipsis">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+        </h4>
+        <h4 class="" *ngIf = "type=='empty'">
+            <span class="">
+                <i class="{{iconfont}}"></i>
+                {{emptyText}}
+            </span>
+        </h4>
+    </div>
+</div>

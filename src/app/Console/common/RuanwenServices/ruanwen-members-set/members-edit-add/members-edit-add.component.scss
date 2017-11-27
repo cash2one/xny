@@ -1,0 +1,21 @@
+.editAdd-main{
+	.describe{
+		height: 300px;
+	}
+}
+
+.tipColor{
+	color:#FF6600;
+}
+
+ul.form-ul{
+	position: relative;
+	li.form-li{
+		display: inline-block;
+		span{
+			display: inline-block;
+			float: left;
+			line-height: 40px
+		}
+	}
+}

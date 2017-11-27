@@ -1,0 +1,27 @@
+@import '../../../../../Public/theme/apps-common/variable.scss';
+@import '../../../bsbyService.common.scss';
+$doing:#F4C92D;
+$success:#7EC856;
+$danger:#F37263;
+
+.opProduct{
+    .productForm{
+        .form-group{
+            .control-label{
+                vertical-align: top;
+            }
+            .control-panel{
+                .tip{
+                    display: block;
+                    padding: 10px 0;
+                    color:$bodyFadeColor;
+                }
+                textarea{
+                    height: 80px;
+                    resize: none;
+                    padding: 10px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,11 @@
+<div class="riccio-browse" *ngIf = "isShow" [@scale]="scaleStatu" #browse>
+	
+	<div class="browse-main">
+		<a href="javascript:;" class="close" (click)="closeView()"><i class="iconfont_common  common-iconfontquxiao"></i></a>
+		<a href="javascript:;" class="lookSrc" (click)="toSrc()">查看原图</a>
+		<div class="browse-img" (click)="fnClose($event)">
+			<img src="{{src}}" alt="" [ngStyle]="{'max-width':maxWidth+'px'}" id="browseImg">
+		</div>
+	</div>
+
+</div>

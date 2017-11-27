@@ -1,0 +1,22 @@
+@import "../../../../Public/theme/common/variable.scss";
+
+.selectDepartment{
+    font-weight: bolder;
+    i{
+    	display: inline-block;
+    	color: $textColorLink !important;
+    }
+}
+
+
+.gr-wrapper-table{
+	left: 15px;
+	right: 10px;
+}
+
+.wrapper-content{
+	padding-top: 25px;
+	margin-top: 5px;
+	border-top: 1px solid #eee;
+	border-radius: 0px;
+}

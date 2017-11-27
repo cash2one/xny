@@ -1,0 +1,85 @@
+<!-- pbox提示组件 -->
+<!-- <app-riccio-pbox>
+	<div body>
+		
+	</div>
+</app-riccio-pbox>
+ -->
+<!-- 内容 -->
+<div class="selected-main">
+	
+	<div class="header clearfix">
+		<div class="title f-l">
+			<i class="iconfont_ruanwen  "></i>
+			<span>已选资源列表</span>
+		</div>
+		<div class="info f-r">
+			<span>已选择资源(<em class="total">{{cartItem.length}}</em>)</span>
+			<span>预计总金额<em class="content-price">¥{{totalPrice}}元</em></span>
+			<button class="gr-btn gr-btn-primary" (click)="fnGoOnAddResource()">继续添加资源</button>
+		</div>
+	</div>
+
+	<!-- 新闻媒体的表格 -->
+	<div class="gr-wrapper-table">
+
+		<div class="wrapper-content">
+			<!-- 所有员工列表 -->
+			<table class="table table-hover gr-table">
+				<colgroup>
+		    		<col width="200">
+		    		<col width="80">
+		    		<col width="60">
+		    	</colgroup>
+				<thead class="hand">
+				    <tr>
+				        <th *ngFor="let name of tableTitle">
+				            {{name}}
+				        </th>
+				    </tr>
+				</thead>
+			</table>
+			<div class="wrapper-table" *ngIf = "spinnerType=='hide'">
+				<table class="table table-hover gr-table">
+					<colgroup>
+			    		<col width="200">
+			    		<col width="80">
+			    		<col width="60">
+			    	</colgroup>
+					<tbody id="undetails">
+					    <tr *ngFor = "let list of cartItem">
+					        <td class="customer-content">
+							{{list.media_name}}
+					        </td>
+					        <td class="customer-content">
+								<span class="content-price">¥{{list.media_price}}元</span>
+					        </td>
+					        <td class="td-status">
+					        	<div class="table-edit">
+					        		<ul class="clearfix">
+					        			<li>
+					        				<a href="javascript:;" (click)="fnShowInfo(list)">
+					        					<i class="iconfont_ruanwen ruanwen-ZHicon-"></i>
+					        				</a>
+					        			</li>
+					        			<li #DeleteEl>
+					        				<a href="javascript:;" (click)="fnDelete(list,DeleteEl,$event)">
+					        					<i class="iconfont_ruanwen ruanwen-shanchu"></i>
+					        				</a>
+					        			</li>
+					        		</ul>
+					        	</div>
+					        </td>
+					    </tr>
+					    
+					</tbody>
+				</table>
+	
+			</div>
+
+			<app-riccio-spinners [type]='spinnerType' [emptyText]="'无资源信息，请返回选择媒体资源'"></app-riccio-spinners>
+
+		</div>
+	</div>
+
+</div>

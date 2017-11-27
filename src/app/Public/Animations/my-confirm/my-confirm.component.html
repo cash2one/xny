@@ -1,0 +1,76 @@
+<div class="pbox pbox-open">
+    <ul class="pop-menu">
+test
+<!-- 		  <ng-template [ngSwitchCase]="'Tasks'">
+            <li class="pbox-trigger">
+                <a href="javascript:;" class="" (click)="boardViewData.symbol='editName'">重命名</a>
+            </li>
+            <li class="pbox-trigger">
+                <a href="javascript:;" class="">归档已完成任务</a>
+            </li>
+            <li class="pbox-trigger">
+                <a href="javascript:;" class="" (click)="boardViewData.symbol='delete'">删除列表</a>
+            </li>
+
+            <li class="pbox-trigger tasksSort">
+                <a href="javascript:;" class="">任务排序</a>
+
+				<ul class="pop-menu top left pop-Tasks">
+				    <li class="" 
+				    	*ngFor = "let list of boardShowData.TasksSort.data"
+				    	(click)="FnTasksOrder(list)">
+				    	<a href="javascript:;" class="">
+				    	{{list.name}}
+				    	<i class="iconfont_common  common-gou1 f-r"   
+				    	   *ngIf="boardShowData.TasksSort.isCheck==list.id"></i>
+				    	</a>
+				    </li>
+				</ul>
+            </li>
+
+		  </ng-template>
+
+		  <ng-template [ngSwitchCase]="'Board'">
+            <li class="pbox-trigger">
+                <a href="javascript:;" class="">看板视图的内容</a>
+            </li>
+		  </ng-template>
+
+		  <ng-template [ngSwitchCase]="'editName'">
+		    <div class="pbox-header">
+		    	<a href="javascript:;" class="pbox-close"><i class="lcfont lc-close"></i></a>
+		        <h3 class="pbox-title">重命名</h3>
+		    </div>
+		    <div class="pbox-body w-360">
+		        <form class="form-horizontal" name="editEntryForm">
+		            <div class="form-group">
+		                <input name="entryName" 
+		                	   class="form-control" 
+		                	   placeholder="列表名称"
+		                	   #ReviseName
+		                	   value = "{{boardViewData.BoardTasksData.name}}">
+		            </div>
+		            <div class="form-group">
+		                <button type="button" class="btn btn-primary" (click)="FnSaveReviseName(ReviseName.value)">保存</button> 
+		                <a class="btn btn-link" (click)="boardViewData.symbol='Tasks'">取消</a>
+		            </div>
+		        </form>
+		    </div>
+		  </ng-template>
+
+		  <ng-template [ngSwitchCase]="'delete'">
+			 <div class="pbox-header">
+			    <h3 class="pbox-title">确认删除</h3>
+			</div>
+			<div class="sure-card pbox-body w-360">
+			    <p class="">删除列表后，列表下的所有任务将会一并删除，你确定要删除列表({{boardViewData.BoardTasksData.name}})吗?</p>
+			    <button type="button" 
+			    	    class="btn btn-danger"
+			    	    [disabled] = "boardShowData.TasksDelete.text=='删除'?false:true"
+			    	    (click)="FnDeleteTasksList();boardShowData.TasksDelete.text='删除中...'">{{boardShowData.TasksDelete.text}}</button> 
+			    <a class="btn btn-link" (click)="boardViewData.symbol='Tasks'">取消</a>
+			</div>
+		  </ng-template>
+ -->
+    </ul>
+</div>

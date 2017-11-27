@@ -1,0 +1,58 @@
+.header-title{
+	height: 50px;
+	border-bottom: 1px solid #EAEFF1;
+	line-height: 50px;
+	padding-left: 20px;
+    background-color: #fff;
+	.title{
+		font-size: 14px;
+	}
+}
+
+.articles-main{
+	position: relative;
+    width: 100%;
+    height: calc(100% - 100px);
+    top: 0;
+    bottom: 50px;
+    overflow-y: auto;
+    background-color: #fff;
+}
+
+
+.writing-articles{
+    border-bottom: 1px solid #EAEFF1;
+    margin-top: 20px;
+    margin-left: 20px;
+    position: absolute;
+    top: 0;
+    bottom: -300px;
+    left: 0;
+    .form-group{
+        // line-height: 40px;
+        .reference{
+            resize:none;
+            height: 220px;
+        }
+        .control-label{
+            text-align: right;
+            font-weight: 400;
+        }
+    }
+}
+
+
+.price{
+    color: #ff0000 !important;
+}
+
+.downBlock{
+    position: absolute;
+    right: 30px;
+    top: 0px;
+}
+
+
+.text-line{
+    line-height: 40px;
+}

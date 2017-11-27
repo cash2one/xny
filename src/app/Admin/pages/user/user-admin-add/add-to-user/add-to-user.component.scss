@@ -1,0 +1,74 @@
+@import "../../../../../Public/theme/common/variable.scss";
+
+.mobile-select{
+	.gr-select{
+		i{
+			position: absolute;
+		    right: -10px;
+		    top: 10px;
+		    color: #999
+		}
+	}
+	select.select{
+		-webkit-appearance: none;
+	    -moz-appearance: none;
+	    appearance: none;
+	    padding-right: 34px;
+	    position: relative;
+	    width: 130px;
+	    border-radius: 3px 0 0 3px;
+	    z-index: 0;
+	    &:focus{
+	    	box-shadow:none !important;
+	    }
+	}
+}
+
+
+
+.selectDepartment{
+	left: 30px;
+    top: 8px;
+    &.selectDepartmentOther{
+	    outline: none;
+	    background-color: #fbfbfb;
+	    border-radius: 3px;
+	    border: 1px solid #eaeff1;
+	    padding: 4px 16px;
+	    color: #555;
+	    transition: all 0.25s;
+	    font-size: 12px;
+    }
+}
+
+
+
+.selectStatus{
+	height: 40px;
+	line-height: 40px;
+	a{
+		color: #333;
+	    display: inline-block;
+	    margin: 0 10px;
+	}
+}
+
+ul.manager-ul{
+	li.manager-ul-li{
+	    background-color: #E5F1FF;
+	    padding: 0 10px;
+	    line-height: 24px;
+	    display: inline-block;
+	    margin:0 5px 5px 0;
+	    i{
+	    	cursor: pointer;
+	    	color: $textColorLink;
+	    }
+	}
+}
+
+.search{
+  padding: 8px 15px ;
+  position: relative;
+  left: -15px;
+}

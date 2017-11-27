@@ -1,0 +1,57 @@
+<div class="gr-window-scroll" *ngIf = "open">
+    <div class="openBox-Main"
+         style="z-index: 150;"></div>
+         
+
+    <div class="modal-content" 
+         [@flyInOut]="'in'" 
+         *ngIf = "open">
+        <div class="">
+            <div class="modal-header">
+              <a href="javascript:;" class="modal-close" (click)="Close()">
+                    <i class="lcfont xm-close iconfont_common common-iconfontcha"></i>
+                </a>
+                <h3 class="modal-title">裁剪图片</h3>
+            </div>
+            <div class="modal-body">
+                <div class="">
+
+                    <!-- 内容content区域 -->
+					
+				    <div>
+				     
+					     <img-cropper [image]="data1" 
+								      #cropper
+					                  [settings]="cropperSettings1" 
+					                  (onCrop)="cropped($event)"></img-cropper>
+					     <span class="result" *ngIf="data1.image" >
+					     	预览:
+					        <img [src]="data1.image" 
+					             [width]="croppedWidth" 
+					             [height]="croppedHeight">
+					    </span>
+				    
+
+				    </div>
+
+
+                    <div class="member-action">
+
+                        <button class="gr-btn gr-btn-primary gr-btn-success reChoose">重新选择</button>
+	
+						<input type="file"
+							   #cropperInput
+						       accept="image/gif,image/png,image/jpeg,image/jpg,image/bmp" 
+						       class="cropperInput" 
+						       (change)="fileChangeListener($event)">
+
+                        <button class="gr-btn gr-btn-primary gr-btn-success" (click)="FnEmitData()">开始上传</button>
+                        <a class="gr-btn gr-btn-link" (click)="Close()">取消</a>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

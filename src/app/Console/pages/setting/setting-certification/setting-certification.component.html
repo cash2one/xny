@@ -1,0 +1,275 @@
+<div class="gr-wrapper-table">
+	
+	<!-- 标题 -->
+	<div class="gr-content-title">
+		<span class="">企业认证</span>
+	</div>
+
+	<!-- 分块的内容区域 -->
+	<div class="gr-overflow-y">
+		<!-- 企业主页设置 -->
+		<div class="setting-content clearfix noborderbottom" *ngIf = "isAuth==0||isAuth==3">
+			
+			<!-- 认证失败的提示信息 -->
+			<div class="setting-auth-fail" *ngIf = "isAuth==3">
+				<div class="auth-fail-content">
+					<span>认证未通过：{{authFailTipText}}</span>
+				</div>
+			</div>
+
+			<div class="content-lettle-title clearfix">
+				<h3 class="f-l font16 nomargin">主体信息</h3>
+			</div>
+			
+			
+			<!-- 认证内容区域 -->
+			<form class="gr-form-horizontal c-f">
+
+			    <div class="form-group c-f">
+			        <label class="col-gr-2 control-label t-r">
+			            企业名称:
+			        </label>
+			        <div class="col-gr-6 control-panel">
+			            <input name="company_name" 
+			            	   [(ngModel)]="companyAuthData['company_name']" 
+			                   class="form-control"
+			                   placeholder=""   
+			                   style="">
+			        </div>
+			    </div>
+
+			    <div class="form-group c-f">
+			        <label class="col-gr-2 control-label t-r">
+			            法人姓名:
+			        </label>
+			        <div class="col-gr-6 control-panel">
+			            <input name="name"  
+					           [(ngModel)]="companyAuthData['name']" 
+			                   class="form-control"
+			                   placeholder=""   
+			                   style="">
+			        </div>
+			    </div>
+				
+				<!-- 图片上传 -->
+				<div class="form-group c-f uploadSetting">
+			        <label class="col-gr-2 control-label t-r">
+			            <span class="iconColorNormal">法人证件</span>
+			            <span class="color999 f-r">身份证正面</span>
+			        </label>
+			        <div class="col-gr-5 control-panel">
+			            <div class="uploadImg p-a">
+			            	<div class="noImg"></div>
+			            	<div class="uploadImgHover" *ngIf = "companyAuthData['card_on']!=''">
+			            		<input type="file" 
+					                   name="" 
+					                   ng2FileSelect 
+					                   accept="image/gif,image/png,image/jpeg,image/jpg,image/bmp"
+								       [uploader]="cardOn"
+								       (change)="fnOutputUploader($event,'cardOn')"
+								       class="uploadInputHover">
+								<span style="line-height: 80px"><a href="javascript:;">重新上传</a></span>
+								<span style="line-height: 30px">
+									<a href="javascript:;" (click)="fnShowBrowseImg('card_on')">预览</a>
+								</span>
+			            	</div>
+			            	<img src="{{companyAuthData['card_on']}}" 
+			            	     alt="" 
+			            	     *ngIf = "companyAuthData['card_on']!=''">
+			            </div>
+			            <input type="file" 
+			                   name="" 
+			                   ng2FileSelect 
+			                   accept="image/gif,image/png,image/jpeg,image/jpg,image/bmp"
+						       [uploader]="cardOn" 
+						       *ngIf = "companyAuthData['card_on']==''"
+						       (change)="fnOutputUploader($event,'cardOn')" 
+			                   class="uploadInput">
+			        </div>
+			        <div class="col-gr-5 control-panel">
+			            示例
+			            <div class="cardOn">
+			            	<img src="assets/img/card_on.jpg" alt="">
+			            </div>
+			        </div>
+			    </div>
+
+				
+				<div class="form-group c-f uploadSetting">
+			        <label class="col-gr-2 control-label t-r">
+			            <span class="iconColorNormal">法人证件</span>
+			            <span class="color999 f-r">身份证反面</span>
+			        </label>
+			        <div class="col-gr-5 control-panel">
+			            <div class="uploadImg p-a">
+			            	<div class="noImg"></div>
+			            	<div class="uploadImgHover" *ngIf = "companyAuthData['card_back']!=''">
+			            		<input type="file" 
+					                   name="" 
+					                   ng2FileSelect 
+					                   accept="image/gif,image/png,image/jpeg,image/jpg,image/bmp"
+								       [uploader]="cardBack"
+								       (change)="fnOutputUploader($event,'cardBack')"
+								       class="uploadInputHover">
+								<span style="line-height: 80px"><a href="javascript:;">重新上传</a></span>
+								<span style="line-height: 30px">
+									<a href="javascript:;" (click)="fnShowBrowseImg('card_back')">预览</a>
+								</span>
+			            	</div>
+			            	<img src="{{companyAuthData['card_back']}}" 
+			            	     alt=""
+			            	     *ngIf = "companyAuthData['card_back']!=''">
+			            </div>
+			            <input type="file" 
+			                   name="" 
+			                   ng2FileSelect 
+			                   accept="image/gif,image/png,image/jpeg,image/jpg,image/bmp"
+						       [uploader]="cardBack" 
+						       *ngIf = "companyAuthData['card_back']==''"
+						       (change)="fnOutputUploader($event,'cardBack')" 
+			                   class="uploadInput">
+			        </div>
+			        <div class="col-gr-5 control-panel">
+			            示例
+			            <div class="cardBack">
+			            	<img src="assets/img/card_back.jpg" alt="">
+			            </div>
+			        </div>
+			    </div>
+
+
+			    <div class="form-group c-f uploadSetting">
+			        <label class="col-gr-2 control-label t-r">
+			            <span class="iconColorNormal">营业执照</span>
+			        </label>
+			        <div class="col-gr-5 control-panel">
+			            <div class="uploadImg p-a">
+			            	<div class="noImg"></div>
+			            	<div class="uploadImgHover" *ngIf = "companyAuthData['license']!=''">
+			            		<input type="file" 
+					                   name="" 
+					                   ng2FileSelect 
+					                   accept="image/gif,image/png,image/jpeg,image/jpg,image/bmp"
+								       [uploader]="license"
+								       (change)="fnOutputUploader($event,'license')"
+								       class="uploadInputHover">
+								<span style="line-height: 80px"><a href="javascript:;">重新上传</a></span>
+								<span style="line-height: 30px">
+									<a href="javascript:;" (click)="fnShowBrowseImg('license')">预览</a>
+								</span>
+			            	</div>
+			            	<img src="{{companyAuthData['license']}}" 
+			            	     alt=""
+			            	     *ngIf = "companyAuthData['license']!=''">
+			            </div>
+			            <input type="file" 
+			                   name="" 
+			                   ng2FileSelect 
+			                   accept="image/gif,image/png,image/jpeg,image/jpg,image/bmp"
+						       [uploader]="license"
+						       *ngIf = "companyAuthData['license']==''"
+						       (change)="fnOutputUploader($event,'license')" 
+			                   class="uploadInput">
+			        </div>
+			        <div class="col-gr-5 control-panel">
+			            示例
+			            <div class="License">
+			            	<img src="assets/img/license.jpg" alt="">
+			            </div>
+			        </div>
+			    </div>
+
+
+				<div class="form-group c-f">
+			        <label class="col-gr-2 control-label t-r">
+			            营业执照号:
+			        </label>
+			        <div class="col-gr-6 control-panel">
+			            <input name="lisense_code" 
+			            	   [(ngModel)]="companyAuthData['lisense_code']" 
+			                   class="form-control"
+			                   placeholder=""   
+			                   style="">
+			        </div>
+			    </div>
+
+
+
+			    <div class="form-group c-f">
+			        <label class="col-gr-2 control-label t-r">
+			            短信验证码:
+			        </label>
+			        <div class="col-gr-3 control-panel getCodeSMSInput p-r">
+			            <input name="code"
+			                   [(ngModel)]="companyAuthData['code']" 
+			                   class="form-control"
+			                   placeholder=""   
+			                   style="">
+			        </div>
+			        <div class="col-gr-3 control-panel">
+			            <button type="button" 
+			                    class="gr-btn gr-btn-primary getCodeSMS"
+			                    disabled="{{smsTimeData==0?'':'disabled'}}" 
+			                    (click)="fnGetSmsCode()">{{smsTimeData==0?'获取验证码':smsTimeData+'秒后重新获取'}}</button>
+			        </div>
+			    </div>
+
+			    <div class="form-group c-f">
+			        <div class="col-gr-10 col-gr-ml-2">
+			            <p class="color666">
+			            	验证短信将发送到你绑定的手机：+86-{{adminPhone}}，请注意查收
+			            </p>
+			        </div>
+			    </div>
+
+
+			    <div class="form-group c-f">
+			        <div class="col-gr-3 col-gr-ml-2">
+			            <riccio-button [normal]="'提交验证'" 
+			                           [disabled]="'验证中...'" 
+			                           [open]="isDisabledButton"
+			                           (emitStatus)='fnOutputButtonData($event)'></riccio-button>
+			        </div>
+			    </div>
+
+			</form>
+
+		</div>
+	
+
+		<!-- 认证成功 -->
+		<div class="setting-auth auth-success" *ngIf = "isAuth==1">
+		    <div class="form-group c-f">
+		        <label class="col-gr-1 control-label t-r">
+		            <i class="iconfont_console console-chenggong2icon"></i>
+		        </label>
+		        <div class="col-gr-6 control-panel">
+		            <h1 class="title font18">您已经通过企业认证！</h1>
+		            <p class="font12">认证企业名称：{{companyInfo['company_name']}}</p>
+		        </div>
+		    </div>
+		</div>
+
+
+		<!-- 认证中 -->
+		<div class="setting-auth auth-ing" *ngIf = "isAuth==2">
+		    <div class="form-group c-f">
+		        <label class="col-gr-1 control-label t-r">
+		            <i class="iconfont_console console-chenggong2icon"></i>
+		        </label>
+		        <div class="col-gr-6 control-panel">
+		            <h1 class="title font18">您的认证申请已经提交，我们将在2-3个工作日审核，请耐心等待！</h1>
+		            <p class="font12">认证企业名称：{{companyInfo['company_name']}}</p>
+		        </div>
+		    </div>
+		</div>
+	</div>
+
+</div>
+
+
+<!-- 图片预览组件 -->
+<app-riccio-browse></app-riccio-browse>
+
+<!-- loading -->
+<app-riccio-loading></app-riccio-loading>

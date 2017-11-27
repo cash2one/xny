@@ -1,0 +1,24 @@
+.TasksModelNav{
+	width: 100px;
+    bottom: 0;
+    top: 0;
+    position: fixed;
+    left: 60px;
+    z-index: 1;
+    background-color: transparent;
+    text-align: right;
+	.nav-main{
+	    position: absolute;
+	    top: 50%;
+	    transform: translateY(-50%);
+	    li{
+    	    background-color: #999;
+		    height: 30px;
+		    margin: 5px 0;
+		    padding: 0 5px;
+	    }
+	    li a{
+	    	color: #fff;
+	    }
+	}
+}

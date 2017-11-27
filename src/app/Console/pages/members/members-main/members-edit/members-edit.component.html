@@ -1,0 +1,225 @@
+<form class="gr-form-horizontal c-f">
+
+    <div class="form-group c-f">
+        <label class="col-gr-2 control-label label-required t-r">
+            联系方式
+        </label>
+        <div class="col-gr-9 control-panel">
+            <input name="phone"  
+                   class="form-control"
+                   [ngClass]="{'danger':danger['phone']}"
+                   [(ngModel)]="postAddData['phone']"
+                   (blur)="fnAllBlurEle('phone')"
+                   (focus)="danger['phone']=false"
+                   maxlength="11"
+                   placeholder="请输入对方的联系方式"   
+                   style="">
+        </div>
+    </div>
+
+    <div class="form-group c-f">
+        <label class="col-gr-2 control-label label-required t-r">
+            姓名
+        </label>
+        <div class="col-gr-9 control-panel">
+            <input name="real_name"  
+                   class="form-control" 
+                   [ngClass]="{'danger':danger['real_name']}"
+                   [(ngModel)]="postAddData['real_name']"
+                   (blur)="fnAllBlurEle('real_name')"
+                   (focus)="danger['real_name']=false"
+                   placeholder="请输入对方的真实姓名"   
+                   style="">
+        </div>
+    </div>
+
+    <div class="form-group c-f">
+        <label class="col-gr-2 control-label label-required t-r">
+            邮箱
+        </label>
+        <div class="col-gr-9 control-panel">
+            <input name="email"  
+                   class="form-control" 
+                   [ngClass]="{'danger':danger['email']}"
+                   [(ngModel)]="postAddData['email']"
+                   (blur)="fnAllBlurEle('email')"
+                   (focus)="danger['email']=false"
+                   placeholder="请输入对方的邮箱"   
+                   style="">
+        </div>
+    </div>
+
+    <div class="form-group c-f">
+        <label class="col-gr-2 control-label label-required t-r">
+            主属部门
+        </label>
+        <div class="col-gr-9 control-panel">
+            <input name=""  
+                  [ngClass]="{'danger':danger['department_main']}"
+                  (focus)="danger['department_main']=false"
+                   class="form-control" 
+                   placeholder=""
+                   readonly="readonly"   
+                   style="">
+            
+            <div class="p-a selectDepartment">
+              <ul class="manager-ul">
+                <li style="display: inline-block;" 
+                    [ngClass]="{'manager-ul-li':departmentMainName!==''}">
+                  <a href="javascript:;" 
+                     class=""
+                     #selectDepartmentMain
+                     (click)="fnShowPbox('departmentMain',selectDepartmentMain,$event)">
+                     <i class="iconfont_console console-jiahao" *ngIf = "departmentMainName===''"></i>{{departmentMainName===''?'选择主属部门':departmentMainName}}
+                  </a>
+                  <i class="iconfont_console console-iconfontquxiao" 
+                        *ngIf = "departmentMainName!==''"
+                        (click)="fnCloseDepartmentMain()"></i>
+                </li>
+              </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-group c-f">
+        <label class="col-gr-2 control-label t-r">
+            附属部门
+        </label>
+        <div class="col-gr-9 control-panel">
+            <div class="selectDepartment selectDepartmentOther">
+              <ul class="manager-ul">
+                <li  class="manager-ul-li" *ngFor = "let list of departmentOtherName;let i = index">
+                  <a href="javascript:;" 
+                   class="">
+                   {{list.name}}
+                   <i class="iconfont_console console-iconfontquxiao" (click)="fnCloseDepartmentOther(list)"></i></a>
+                </li>
+                <li style="display: inline-block;">
+                  <a href="javascript:;" 
+                   class=""
+                   #selectDepartmentOther
+                   (click)="fnShowPbox('departmentOther',selectDepartmentOther,$event)"><i class="iconfont_console console-jiahao"></i>选择附属部门</a>
+                </li>
+              </ul>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="form-group c-f">
+        <label class="col-gr-2 control-label t-r">
+            直属上级
+        </label>
+        <div class="col-gr-9 control-panel">
+            <input name=""
+                   class="form-control" 
+                   placeholder=""
+                   readonly="readonly"   
+                   style="">
+            <div class="p-a selectDepartment">
+              <ul class="manager-ul">
+                <li style="display: inline-block;" [ngClass]="{'manager-ul-li':parentAdmin!==''}">
+                  <a href="javascript:;" 
+                     class=""
+                     #selectParentAdmin
+                     (click)="fnShowPbox('parentAdmin',selectParentAdmin,$event)">
+                     <i class="iconfont_console console-jiahao" *ngIf = "parentAdmin===''"></i>{{parentAdmin===''?'选择直属上级':parentAdmin}}
+                  </a>
+                  <i class="iconfont_console console-iconfontquxiao" 
+                        *ngIf = "parentAdmin!==''"
+                        (click)="fnCloseParentAdmin()"></i>
+                </li>
+              </ul>
+            </div>
+            
+        </div>
+    </div>
+
+
+    <div class="form-group c-f">
+        <label class="col-gr-2 control-label t-r">
+            性别
+        </label>
+        <div class="col-gr-9 control-panel">
+            <div class="selectSex">
+                <a href="javascript:;" 
+                   (click)="postAddData['sex']=1" 
+                   class="gr-radio {{postAddData['sex']==1?'active':''}}" ><span></span>男</a>
+                <a href="javascript:;" 
+                   (click)="postAddData['sex']=2" 
+                   class="gr-radio {{postAddData['sex']==2?'active':''}}" ><span></span>女</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group c-f">
+        <label class="col-gr-2 control-label t-r">
+            工号
+        </label>
+        <div class="col-gr-9 control-panel">
+            <input name="employeecode"  
+                   class="form-control" 
+                   [(ngModel)]="postAddData['employeecode']"
+                   placeholder="请输入对方的工号"   
+                   style="">
+        </div>
+    </div>
+
+
+    <div class="form-group c-f">
+        <label class="col-gr-2 control-label t-r">
+            职务
+        </label>
+        <div class="col-gr-9 control-panel">
+            <input name="positionname"  
+                   class="form-control" 
+                   [(ngModel)]="postAddData['positionname']"
+                   placeholder="请输入对方的职务"   
+                   style="">
+        </div>
+    </div>
+
+
+    <div class="form-group c-f">
+        <label class="col-gr-2 control-label t-r">
+            入职日期
+        </label>
+        <div class="col-gr-9 control-panel">
+            <input name="jointime"  
+                   class="form-control" 
+                   [(ngModel)]="postAddData['jointime']"
+                   placeholder=""   
+                   style="">
+        </div>
+    </div>
+
+
+    <div class="form-group c-f">
+        <label class="col-gr-2 control-label t-r">
+            生日
+        </label>
+        <div class="col-gr-9 control-panel">
+            <input name="birthday"  
+                   class="form-control" 
+                   [(ngModel)]="postAddData['birthday']"
+                   placeholder=""   
+                   style="">
+        </div>
+    </div>
+
+    <div class="form-group c-f">
+        <div class="col-gr-6 col-gr-ml-2">
+            <button type="button" 
+                    class="gr-btn gr-btn-primary" 
+                    disabled="{{btnData.disabled==true?'disabled':''}}" 
+                    (click)="fnAddMembers()">{{btnData.text}}</button>
+            <a href="javascript:;" class="gr-btn gr-btn-link" (click)="Close()">取消</a>
+        </div>
+    </div>
+
+
+
+</form>

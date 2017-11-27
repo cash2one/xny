@@ -1,0 +1,45 @@
+
+<div class="view-items lv1" 
+     *ngFor = "let list of treeChildren">
+     <a class="view-title {{list['riccioSelected']==true?'riccioSelected':''}}" (click)="FnObtain(list)">
+        <i class="iconfont_common  common-xia color999"
+           style="margin-right: 5px;"
+           *ngIf = "list[childrenName]?list[childrenName].length>0:false"
+           (click)="handleDropDown(list)"
+           [ngStyle]="{'transform':list.isCheck===true?'rotate(-90deg)':'rotate(0deg)'}"></i>
+        <i class="iconfont_common {{icon}} color999"></i>
+        <span class="gr-disabled-link" *ngIf = "list['riccioDisabled']===true; else normal">{{list[titleName]}}</span>
+        <ng-template #normal>
+          <span class="authority-label-text f-l"
+                [ngStyle]="{'width':pbox==true?'auto':'100%'}"
+                *ngIf = "disabledId!=list['id']; else disabledObtain">{{list[titleName]}}</span>
+          <ng-template #disabledObtain>
+            <span class="gr-disabled-link">{{list[titleName]}}</span>
+          </ng-template>
+        </ng-template>
+        <a href="javascript:;"
+          class="pboxTitle" 
+          #treeEl
+           *ngIf = "pbox"
+           (click)="$event.stopPropagation();FnShowPbox($event,list,treeEl)">
+          <i class="iconfont_common  common-iconfontdown2"></i>
+        </a>
+
+    </a>
+    <ul class="authority-check" [@accordion]="list.isCheck===true?'out':'in'">
+    	
+	    <app-tree-view *ngIf = "list[childrenName]?list[childrenName].length>0:false"
+                       [treeChildren] = 'list[childrenName]'
+                       [childrenName] = 'childrenName'
+                       [titleName]    = 'titleName'
+                       [open]         = 'open'
+                       [pbox]         = 'pbox'
+                       [pboxOptions]  = 'pboxOptions'
+                       [pboxPosition] = 'pboxPosition'
+                       [icon]         = 'icon'
+                       [disabledId]   = 'disabledId'
+                       [hasChildrenNoChoose] = 'hasChildrenNoChoose'
+                       (parentData)   = 'FnObtain($event)'
+                       (pboxActive)   = 'fnPbox($event)'></app-tree-view>
+    </ul>
+</div>

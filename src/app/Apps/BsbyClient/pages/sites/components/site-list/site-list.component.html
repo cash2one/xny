@@ -1,0 +1,97 @@
+<div class="siteList bsbyCommon">
+    <div class="head">
+        <div class="title">
+            <i class="iconfont_bsby bsby-wangzhan"></i>
+            <span>网站列表</span>
+        </div>
+    </div>
+
+    <div class="body">
+        <div class="bodyHead">
+            <div>
+                <button class="likeBtn" (click)="fnShowSort(sortBtn)" #sortBtn>
+                    {{rangeName ? rangeName : '排序'}}
+                    <i class="iconfont_bsby bsby-down"></i>
+                </button>
+            </div>
+        </div>
+        <div class="bodyMain">
+            <div class="gr-wrapper-table siteTable tableList">
+                <div class="wrapper-content"> 
+                    <table class="table table-hover gr-table" tableTitle>
+                        <colgroup>
+                            <col width="100">
+                            <col width="80">
+                            <col width="60">
+                            <col width="50">
+                            <col width="60">
+                            <col width="70">
+                            <col width="70">
+                            <col width="50"> 
+                        </colgroup>
+                        <thead class="hand">
+                            <tr>
+                                <th *ngFor = "let title of siteListTitles">
+                                    {{title}}
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                    <div class="wrapper-table" *ngIf = "loadingType=='hide'">
+                        <table class="table hover table-hover gr-table">
+                            <colgroup>
+                                <col width="100">
+                                <col width="80">
+                                <col width="60">
+                                <col width="50">
+                                <col width="60">
+                                <col width="70">
+                                <col width="70">
+                                <col width="50"> 
+                            </colgroup>
+                            <tbody #detailTB>
+                                <tr *ngFor = "let site of siteList" tableTitle>
+                                    <td class="customer-content first">
+                                        <span class="domain">{{site.domain}}</span>
+                                        <span class="competition">{{site.competition == 1?'普通竞争行业':'激烈竞争行业'}}</span>
+                                    </td>
+                                    <td class="customer-content">
+                                        {{site.product_name}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{site.executor_user}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{site.service_user}}
+                                    </td>
+                                    <td class="customer-content">
+                                        <span class="statu" 
+                                            [ngClass]="{'success':site.status == 1,'danger':site.status == 2,'doing':site.status == 3}"></span>
+                                        {{site.status == 1?'执行中':(site.status == 2?'已停止':'待执行')}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{site.starttime}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{site.endtime}}
+                                    </td>
+                                    <td class="customer-level" noTitle> 
+                                        <a href="javascript:;" class="approval-action" (click)="fnToInfo(site)">
+                                            管理
+                                        </a>
+                                    </td>
+                                </tr>                   
+                            </tbody>
+                        </table>
+                    </div>
+                    <app-riccio-spinners [type]="loadingType"
+										 [emptyText]="pageData.emptyText"></app-riccio-spinners>
+                    <app-riccio-paginations
+                        [total]="pageData['total']"
+                        (pageValue)="fnPagination($event)"></app-riccio-paginations>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

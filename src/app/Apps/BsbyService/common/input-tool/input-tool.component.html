@@ -1,0 +1,24 @@
+<div class="inputTool">
+    <div class="files">
+        <a href="javascript:;" class="item" *ngFor="let file of filesList;let i = index"
+            (click)="download(file.url)">
+            <i *ngIf="!file.isImg" class="icon iconfont_bsby bsby-fujian"></i>
+            <img *ngIf="file.isImg" src="{{file.url | fileUrlPipe}}">
+            <span title="{{file.name}}" class="word">{{file.name}}</span>
+            <i class="del iconfont_bsby bsby-iconfontquxiao" (click)="del(i)"></i>
+        </a>
+    </div>
+    <div class="tools">
+        <button class="tool" (click)="fnShowUpload()">
+            <i class="iconfont_bsby bsby-fujian"></i>
+        </button>
+        <button class="tool" disabled>
+            <i class="iconfont_bsby bsby-biaoqing"></i>
+        </button>
+    </div>
+</div>
+<input type="file"
+    ng2FileSelect [uploader]="fileUploader"
+    #fileUpload
+    class="fileUpload" 
+    (change)="fnFileChnage()">

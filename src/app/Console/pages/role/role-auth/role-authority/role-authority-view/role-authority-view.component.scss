@@ -1,0 +1,66 @@
+@import "../../../../../Console-variable.scss";
+
+.view-items{
+	&.lv0{
+		padding-left: 20px;
+	}
+	&.lv1{
+		padding-left: 20px;
+	}
+	&.lv2{
+		padding-left: 40px;
+	}
+	&.lv3{
+		padding-left: 60px;
+	}
+	&.lv4{
+		padding-left: 80px;
+	}
+	&.lv5{
+		padding-left: 100px;
+	}
+	&.lv6{
+		padding-left: 120px;
+	}
+}
+
+i{
+	color: #E4E4E4;
+    font-weight: normal;
+	&.console-check1{
+		color:$textColorLink;
+	}
+	&.forbid{
+		color: #aaa !important;
+	}
+}
+
+label.authority-check{
+	display: block !important;
+	cursor: pointer;
+	span.authority-label-text{
+		color: #999;
+	}
+}
+
+
+
+.content-title{
+	width: 100%;
+	background-color: #F2F2F2;
+	padding-left: 15px;
+	height: 36px;
+	line-height: 36px;
+	label.authority-check{
+		cursor: pointer;
+	}
+}
+.content-view{
+	border: 1px solid #F2F2F2;
+	padding:8px 0 5px 15px;
+
+	label.authority-check{
+		display: block !important;
+	}
+	
+}

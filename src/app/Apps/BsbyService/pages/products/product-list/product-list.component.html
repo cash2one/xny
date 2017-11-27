@@ -1,0 +1,123 @@
+<div class="productList bsbyCommon">
+    <div class="head">
+        <div class="title">
+            <i class="iconfont_bsby bsby-chanpinjishufangan"></i>
+            <span>产品列表</span>
+        </div>
+         <div class="action">
+            <button class="gr-btn gr-btn-primary bsbyBtn addBtn" (click)="fnAddProduct()">
+                <i class="iconfont_bsby bsby-jia"></i>
+                添加产品
+            </button>
+        </div>
+
+        <app-riccio-pop-up-right></app-riccio-pop-up-right>
+    </div>
+    <div class="body">
+        <div class="bodyMain">
+            <div class="gr-wrapper-table tableList">
+                <div class="wrapper-table-top tableTop">
+                    <div class="searchProduct">
+                        <bsby-search-input
+                            [placeholder]="'请输入产品名称关键词'"
+                            [(ngModel)]="searchParam.name"
+                            (searchEmit)="getProductList()"></bsby-search-input>
+                    </div>
+                </div>
+
+                <div class="wrapper-content"> 
+                    <table class="table table-hover gr-table" tableTitle>
+                        <colgroup>
+                            <col width="35">
+                            <col width="60">
+                            <col width="50">
+                            <col width="70">
+                            <col width="70">
+                            <col width="70">
+                            <col width="70">
+                            <col width="70">
+                            <col width="60"> 
+                        </colgroup>
+                        <thead class="hand">
+                            <tr>
+                                <th class="checkAll" noTitle>
+                                    <a href="javascript:;" class="customer-check" (click)="fnShowPopUp('all')">
+                                        <i class="iconfont_bsby  {{isAllCheck === false?'bsby-check':'check bsby-check1'}}"></i>
+                                    </a>
+                                </th>
+                                <th *ngFor = "let title of productListTitles">
+                                    {{title}}
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                    <div class="wrapper-table" *ngIf = "loadingType=='hide'">
+                        <table class="table hover table-hover gr-table">
+                            <colgroup>
+                                <col width="35">
+                                <col width="60">
+                                <col width="50">
+                                <col width="70">
+                                <col width="70">
+                                <col width="70">
+                                <col width="70">
+                                <col width="70">
+                                <col width="60"> 
+                            </colgroup>
+                            <tbody>
+                                <tr *ngFor="let product of productList" tableTitle>
+                                    <td class="customer-select" noTitle>
+                                        <a href="javascript:;" class="customer-check" (click)="fnShowPopUp('one',product)">
+                                            <i class="iconfont_bsby  {{product['isCheck']===false?'bsby-check':'check bsby-check1'}}"></i>
+                                        </a>
+                                    </td>
+                                    <td class="customer-content">
+                                        {{product.name}}
+                                    </td>
+                                    <td class="customer-content">
+                                        <span class="statu" 
+                                            [ngClass]="{'success':product.status == 1,'danger':product.status == 2,'null':!product.status}"></span>
+                                        {{product.status == 1?'正常':(product.status == 2?'禁用':'未知')}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{product.core_num == 0?'不限':product.core_num}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{product.long_num == 0?'不限':product.long_num}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{product.brand_num == 0?'不限':product.brand_num}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{product.count}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{product.created_at}}
+                                    </td>
+                                    <td class="customer-level" noTitle>
+                                        <a href="javascript:;" class="approval-action" (click)="fnShowEdit(product)">
+                                            编辑
+                                        </a>
+                                        <a href="javascript:;" class="approval-action" (click)="fnShowDel(product,showDel,$event)" #showDel>
+                                            删除
+                                        </a>
+                                    </td>
+                                </tr>            
+                            </tbody>
+                        </table>
+                    </div>
+                    <app-riccio-spinners [type]="loadingType"
+                                        [emptyText]="pageData.emptyText"></app-riccio-spinners>
+                    <app-riccio-paginations
+                        [total]="pageData['total']"
+                        (pageValue)="fnPagination($event)"></app-riccio-paginations>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-bsby-service-product-op
+    (productFormEmit)="fnProductOpEmit($event)">
+</app-bsby-service-product-op>

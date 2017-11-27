@@ -1,0 +1,140 @@
+<div class="demands bsbyCommon">
+    <div class="head">
+        <div class="title">
+            <i class="iconfont_bsby bsby-taolun"></i>
+            <span>需求沟通</span>
+        </div>
+        <div class="action">
+            <button class="gr-btn gr-btn-primary bsbyBtn addBtn" (click)="fnAddDemand()">
+                <i class="iconfont_bsby bsby-jia"></i>
+                提交需求
+            </button>
+        </div>
+    </div>
+    <div class="body">
+        <div class="bodyHead" *ngIf="siteLoadingType == 'hide'">
+            <div class="title">
+                <span class="name">{{siteInfo.domain}}</span>
+            </div>
+            <div class="subTitle">
+                 {{siteInfo.company_name}}
+            </div>
+        </div>
+        <div class="bodyMain" *ngIf="siteLoadingType == 'hide'">
+            <div class="peoples">
+                <div class="team">
+                    <div class="name">
+                        <span class="name">实施团队：</span>
+                    </div>
+                    <div class="show" *ngIf="roleLoadingType == 'hide' && roleInfo.length > 0">
+                        <div class="one" *ngFor="let role of roleInfo">
+                            {{role.name}}：<span class="value">{{role.user_name}}</span>
+                        </div>
+                    </div>
+                    <div class="show" *ngIf="roleLoadingType == 'hide' && roleInfo.length == 0">
+                        <div class="one">
+                            暂无数据
+                        </div>
+                    </div>
+                    <app-riccio-spinners [type]="roleLoadingType"></app-riccio-spinners>
+                </div>
+                <div class="service">
+                    <div class="name">
+                        <span>客服对接：</span>
+                    </div>  
+                    <div class="show" *ngIf="siteInfo.service_user">
+                        <div class="one">
+                            顾问客服：<span class="value">{{siteInfo.service_user.real_name}}</span>
+                        </div>
+                        <div class="one">
+                            手机：<span class="value">{{siteInfo.service_user.phone}}</span>
+                        </div>
+                        <div class="one">
+                            QQ：<span class="value">{{siteInfo.service_user.qq}}</span>
+                        </div>
+                    </div>
+                    <div class="show" *ngIf="!siteInfo.service_user">
+                        <div class="one">
+                            暂无数据
+                        </div>
+                    </div>
+                </div>
+                <div class="customer">
+                    <div class="name">
+                        <span>客户对接：</span>
+                    </div>
+                    <div class="show" *ngIf="siteInfo.company_user">
+                        <div class="one">
+                            对接人：<span class="value">{{siteInfo.company_user.real_name}}</span>
+                        </div>
+                        <div class="one">
+                            手机：<span class="value">{{siteInfo.company_user.phone}}</span>
+                        </div>
+                        <div class="one">
+                            QQ：<span class="value">{{siteInfo.company_user.qq}}</span>
+                        </div>
+                        <div class="one">
+                            邮箱：<span class="value">{{siteInfo.company_user.email}}</span>
+                        </div>
+                    </div>
+                    <div class="show" *ngIf="!siteInfo.company_user">
+                        <div class="one">
+                            暂无数据
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="commentParent">
+                 <div class="comment">
+                    <div class="container">
+                        <div class="commentHead">沟通记录</div>
+                        <ul class="commentUl" *ngIf="demandLoadingType == 'hide'">
+                            <li class="commentLi" *ngFor="let demand of demandInfo" (mouseenter)="demand.del = true"
+                            (mouseleave)="demand.del = false">
+                                <div class="thumb">
+                                    <i class="iconfont_bsby bsby-touxiang"></i>
+                                </div>
+                                <div class="main">
+                                    <div class="mainHead">
+                                        <span class="name">{{demand.username}}</span>
+                                        <span class="time">[{{demand.created_at}}]：</span>
+                                        <a class="del" href="javascript:;" *ngIf="demand.del" (click)="fnShowDel(demand.id,showDel,$event)" #showDel>[ 删除 ]</a>
+                                    </div>
+                                    <div class="mainBody">
+                                        <span [innerHTML]="demand.content"></span> 
+                                        <div class="files" *ngIf="demand.images && demand.images.length > 0">
+                                            <span class="title">
+                                                <i class="iconfont_bsby bsby-fujian"></i>
+                                                附件
+                                            </span>
+                                            <a href="javascript:;" class="file" *ngFor="let file of demand.images"
+                                                (click)="download(file.url)">
+                                                <i *ngIf="!file.isImg" class="icon iconfont_bsby bsby-fujian"></i>
+                                                <img *ngIf="file.isImg" src="{{file.url | fileUrlPipe}}">
+                                                <span title="{{file.name}}" class="word">{{file.name}}</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <app-riccio-spinners [type]="demandLoadingType"
+                            [emptyText]="pageData.emptyText"></app-riccio-spinners>
+                    </div>
+                    <app-riccio-paginations
+                        [total]="pageData['total']"
+                        (pageValue)="fnPagination($event)"></app-riccio-paginations>
+                </div>
+            </div>
+        </div>
+        <app-riccio-spinners [type]="siteLoadingType"></app-riccio-spinners>
+    </div>
+</div>
+
+<app-riccio-modal>
+    <div body>
+        <app-bsby-client-demand-add *ngIf="showAdd"
+            (demandFormEmit)="addDemand($event)">
+        </app-bsby-client-demand-add>
+    </div>
+</app-riccio-modal>

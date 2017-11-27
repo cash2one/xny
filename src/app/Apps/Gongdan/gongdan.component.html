@@ -1,0 +1,28 @@
+<link rel="stylesheet" type="text/css" [href]="windowUrl">
+
+<!-- 头部导航 -->
+<app-riccio-top-navbar [navName] = "appInfo['name']"
+					   [userName] = "userInfo['user_info']['name']+'('+userInfo['company_userinfo']['real_name']+')'"
+					   [navMenu] = 'topNavMenuData'
+					   [notifyCount] = "userInfo['notify']"
+                       [companyName] = "userInfo['company_userinfo']['name']"
+                       [companyMenu] = "comMenu"
+					   [logoSrc] = "resolveFileString(userInfo['company_userinfo']['logo'])"></app-riccio-top-navbar>
+
+
+<div class="gr-main">
+
+    <app-riccio-app-left-menu [leftData]="leftMenuData"></app-riccio-app-left-menu>
+	
+	<!-- 二级菜单路由 -->
+	<!-- <app-ruanwen-secound-menu *ngIf = "!(secoundType=='release/')&&!(secoundType=='add/article')&&!(secoundType=='order/process')"
+							  [title]="menuSecoundTitle"
+							  [menuList] = 'menuSecoundList'
+							  style="height: 100%;"></app-ruanwen-secound-menu> -->
+
+	<div class="gongdan-contant">
+		<router-outlet></router-outlet>
+	</div>
+
+</div>
+

@@ -1,0 +1,66 @@
+<div class="gr-window-scroll">
+  <div class="openBox-Main" 
+       style="z-index: 150;"></div>
+       
+
+  <div class="modal-content" [@flyInOut]="'in'">
+      <div class="ng-scope ng-isolate-scope">
+          <div class="modal-header">
+          	<a href="javascript:;" class="modal-close" (click)="Close()">
+                  <i class="lcfont xm-close iconfont_console console-iconfontcha"></i>
+              </a>
+              <h3 class="modal-title">添加成员</h3>
+          </div>
+          <div class="modal-body">
+
+<!--             <ul class="modal-tab">
+                <li [ngClass]="{'active':TabSymbol==='members'}">
+                  <a href="javascript:;" class="" (click)="TabSymbol='members'">添加成员</a>
+                </li>
+                <li class="divider"></li>
+                <li [ngClass]="{'active':TabSymbol==='phone'}">
+                  <a href="javascript:;" class="" (click)="TabSymbol='phone'">通过手机邀请</a>
+                </li>
+                <li class="divider"></li>
+                <li [ngClass]="{'active':TabSymbol==='email'}">
+                  <a href="javascript:;" class="" (click)="TabSymbol='email'">通过邮箱邀请</a>
+                </li>
+                <li class="divider"></li> -->
+<!--                 <li [ngClass]="{'active':TabSymbol==='link'}">
+                  <a href="javascript:;" class="" (click)="TabSymbol='link'">通过链接邀请</a>
+                </li> -->
+            <!-- </ul> -->
+            
+            <div class="tab-content" [ngSwitch]="TabSymbol">
+              
+              <ng-template [ngSwitchCase]="'members'">
+                <app-add-to-members (callData)="fnOutputMembers($event)" 
+                                    (emitUserId)="codeSmsUserId = $event"
+                                    (emitUserPhone)="codeSmsUserPhone = $event"></app-add-to-members>
+              </ng-template>
+
+              <ng-template [ngSwitchCase]="'phone'">
+                <app-add-to-phone (callData)="fnOutputMembers($event)"></app-add-to-phone>
+              </ng-template>
+
+              <ng-template [ngSwitchCase]="'email'">
+                <app-add-to-email (callData)="fnOutputMembers($event)"></app-add-to-email>
+              </ng-template>
+
+              <ng-template [ngSwitchCase]="'link'">
+                <app-add-to-link></app-add-to-link>
+              </ng-template>
+
+            </div>
+
+          </div>
+      </div>
+  </div>
+</div>
+
+<app-riccio-modal>
+  <div body>
+      <app-add-code-sms [codeUserId] = 'codeSmsUserId'
+                        [userPhone] = 'codeSmsUserPhone'></app-add-code-sms>
+  </div>
+</app-riccio-modal>

@@ -1,0 +1,40 @@
+<div  class="Details-main" *ngIf = "isShow" [@rightIn]="'in'" (click)="isShow=true">
+	<div class="details-head">
+		<div class="head-top clearfix">
+			<div class="avatar f-l">
+				<span class="thumb f-l"><i class="iconfont_console console-users"></i></span>
+				<span class="name">{{detailsData.real_name}}</span>
+			</div>
+			<!-- <div class="head-operating f-r">
+				<a href="javascript:;"><i class="iconfont_console console-edit"></i>编辑</a>
+				<a href="javascript:;"><i class="iconfont_console console-more"></i>更多</a>
+			</div> -->
+		</div>
+		<div class="head-neck clearfix">
+			<div class="neck-time f-l">
+				<span>入职时间:</span>
+				{{detailsData.jointime}}
+			</div>
+			<div class="neck-number f-l">
+				<span>工号:</span>
+				{{detailsData.employeecode}}
+			</div>
+		</div>
+	</div>
+	<div class="details-content">
+		<ul class="item item-ul">
+			<li class="item-li clearfix" *ngFor = "let list of detailsTitle">
+				<span class="title col-gr-2">{{list.title}}:</span>
+				<span class="value col-gr-10">{{list.value=='sex'
+											    ?detailsData[list.value]==1
+											    ?'男'
+											    :'女'
+											    :detailsData[list.value]}}</span>
+			</li>
+		</ul>
+	</div>
+
+	<div class="closeBox" (click)="Close()">
+		<i class="iconfont_console console-youceguanbi"></i>
+	</div>
+</div>

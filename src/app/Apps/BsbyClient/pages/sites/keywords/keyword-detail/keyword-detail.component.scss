@@ -1,0 +1,36 @@
+@import '../../../../../../Public/theme/apps-common/variable.scss';
+@import '../../../../bsbyClient.common.scss';
+$doing:#F4C92D;
+$success:#7EC856;
+$danger:#F37263;
+
+.keywordDetail{
+    .body{
+        .bodyMain{
+            top: 50px;
+            .keywordDetailTable{
+                .headLeft{
+                    padding-left: 0px;
+                    padding-right: 0px;
+                    .search{
+                        height: 38px;
+                        line-height: 38px;
+                    }
+                    .word{
+                        float: left;
+                    }
+                    .bsbyBtn{
+                        position: relative;
+                        top: -2px;
+                    }
+                }
+                .ing{
+                    background-color:$success;
+                }
+                .stop{
+                    background-color:$bodyFadeColor;
+                }
+            }
+        }
+    }
+}

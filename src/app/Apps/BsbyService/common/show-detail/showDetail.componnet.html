@@ -1,0 +1,29 @@
+<div class="tempDetail" 
+	[ngStyle]="{top:detailData.top+ 'px'}" 
+	*ngIf="isShow" [@rightIn]="'in'">
+	<div class="detailHead">
+		<span class="title color333">{{detailData.title}}</span>
+		<div class="tool" *ngIf="detailData.headBtn">
+			<div class="editOp">
+				<button class="editBtn iconfont_bsby bsby-edit"
+                    (click)="emit(1,$event)">编辑</button>
+			</div>
+		</div>
+	</div>
+	<div class="detailBody">
+        <div class="one" *ngFor="let one of detailData.showList">
+			<div class="title" *ngIf="one.title">
+				{{one.title}}
+			</div>
+			<div class="main" *ngFor="let data of one.data">
+				<span class="key color999">{{data.name}} :</span>
+				<span class="val color666" *ngIf="!data.class && !data.img" [innerHTML]="data.value"></span>
+				<!--显示字体图标-->
+				<span *ngIf="data.class" class="val color666 iconfont {{data.value}}"></span>
+				<!--显示图片-->
+				<img *ngIf="data.img && !data.noImg" class="val imgVal" [src]="data.value" (error)="noImg(data)">
+				<i class="val color666 noImg iconfont" [ngClass]="{'bsby-touxiang':data.icoType === 'user','bsby-tu':data.icoType === 'com'}" *ngIf="data.noImg"></i>
+			</div>
+        </div>
+    </div>
+</div>

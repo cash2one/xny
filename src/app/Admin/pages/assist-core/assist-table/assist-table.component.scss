@@ -1,0 +1,21 @@
+.site-content{
+	position: relative;
+    background-color: #fff;
+    width: calc(100% - 270px);
+    top: 16px;
+    left: 250px;
+    height: calc(100% - 30px);
+    border-radius: 2px;
+    .module-header{
+    	padding: 0 20px;
+        .lettle-font{
+            font-size: 14px;
+            margin-left: 10px;
+            display: inline-block;
+        }
+    }
+    .gr-wrapper-table{
+	    left: 0;
+	    top: 60px;
+    }
+}

@@ -1,0 +1,12 @@
+<div class="breadcrumb" >
+	<span class="{{iconfont}}" [ngStyle]="{'font-size':fontSize + 'px'}"></span>
+	<ul>
+		<li *ngFor="let bread of breadData;let i = index" [ngStyle]="{'font-size':fontSize + 'px'}">
+			<a *ngIf="!(i == breadData.length -1)" [routerLink]="bread.routerLink">
+				{{bread.name}}
+			</a>
+			<span *ngIf="!(i == breadData.length -1)"> / </span>
+			<span *ngIf="i == breadData.length -1" class="title-color">{{bread.name}}</span>
+		</li>
+	</ul>
+</div>

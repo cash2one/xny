@@ -1,0 +1,28 @@
+<div class="openBox-Main"
+	 (click)="CloseBack()"
+     style="z-index: 150"></div>
+
+<div class="user-details" [@rightIn]="'in'">
+	<div class="content-title">
+		<span>插件详情</span>
+        <a href="javascript:;" class="f-r" (click)="CloseBack()">
+            <i class="iconfont_admin  admin-iconfontcha"></i>
+        </a>
+	</div>
+	
+	<div class="modal-body">
+        <form  class="form-horizontal c-f">
+
+        		<div  class="form-group c-f "
+        			  *ngFor="let list of AppHeaderData">
+                    <label  class="col-sm-2 control-label line-40">{{list.name}}:</label>
+
+                    <div  class="col-sm-10 control-panel">
+                        <span> {{AppData[list.action]}} </span> 
+                        
+                    </div>
+                </div>
+        </form>
+    </div>
+
+</div>

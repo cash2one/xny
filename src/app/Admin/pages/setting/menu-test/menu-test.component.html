@@ -1,0 +1,28 @@
+<div class="modal-content">
+  <div class="module-header">
+    <div class="breadcrumb">
+      <app-riccio-breadcrumb
+        [iconfont]="'iconfont_admin admin-gengduo1'"
+        [breadData]="breadData"></app-riccio-breadcrumb>
+    </div>
+  </div>
+  <div class="module-body">
+    <div class="application-list">
+      <ul class="">
+        <li class="application-item clearfix" *ngFor="let app of appList">
+          <div class="application-logo">
+            <img [src]="app.thumb_icon_40x40" *ngIf="app.thumb_icon_40x40 != ''">
+            <img src="assets/img/apps_defulet.jpg" alt="" *ngIf="app.thumb_icon_40x40 == ''">
+          </div>
+          <div class="application-word">
+            <div class="application-name">{{app.name}}</div>
+            <div class="application-desc">
+              {{app.desc}}
+            </div>
+          </div>
+          <button class="application-test" (click)="test(app.model,app.id)">立即体检</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,106 @@
+<div class="modal-dialog" #Modal>
+    <div class="modal-content">
+        <div>
+            <div class="modal-body">
+                <form class="form-horizontal c-f">
+                    <div class="form-group c-f " *ngFor="let list of AppCenterShow">
+                        <label class="col-sm-3 control-label line-40"
+                            [ngClass]="{'label-required':list.action == 'model' || list.action == 'name'}">
+                            {{list.name}}:
+                        </label>
+                        <div class="col-sm-9 control-panel">
+                            <input class="form-control" name="{{list.action}}" placeholder="{{list.ph}}" 
+                                [(ngModel)]="AddEditData[list.action]" *ngIf="list.type==='input'"
+                                type="{{list.action === 'listorder'?'number':'text'}}"
+                                [ngClass]="{'danger':list.danger,'col-gr-9':list.action === 'iconfont'}" (focus)="list.danger=false">
+                            <!--上传缩略图-->
+                            <div class="thumb" *ngIf="list.action==='thumb'">
+                                <img class="preview" [src]="showThumb" (error)="noImg('thumb')" alt="">
+                                <div class="options"> 
+                                    <div class="op" *ngIf="!isThumb">
+                                        上传缩略图
+                                        <input type="file"
+                                                ng2FileSelect 
+                                                [uploader]="uploader"
+                                                accept="image/gif,image/png,image/jpeg,image/jpg,image/bmp"
+                                                (change)="changedThumb($event,'thumb')" 
+                                                class="upload">
+                                    </div>
+                                    <div class="op" *ngIf="isThumb">
+                                        重新上传缩略图
+                                        <input type="file"
+                                                ng2FileSelect 
+                                                [uploader]="uploader"
+                                                accept="image/gif,image/png,image/jpeg,image/jpg,image/bmp"
+                                                (change)="changedThumb($event,'thumb')" 
+                                                class="upload">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="thumb" *ngIf="list.action==='thumb_icon'">
+                                <img class="preview" [src]="showThumbIcon" (error)="noImg('icon')" alt="">
+                                <div class="options"> 
+                                    <div class="op" *ngIf="!isThumbIcon">
+                                        上传缩略图
+                                        <input type="file"
+                                                ng2FileSelect 
+                                                [uploader]="uploaderIcon"
+                                                accept="image/gif,image/png,image/jpeg,image/jpg,image/bmp"
+                                                (change)="changedThumb($event,'icon')" 
+                                                class="upload">
+                                    </div>
+                                    <div class="op" *ngIf="isThumb">
+                                        重新上传缩略图
+                                        <input type="file"
+                                                ng2FileSelect 
+                                                [uploader]="uploaderIcon"
+                                                accept="image/gif,image/png,image/jpeg,image/jpg,image/bmp"
+                                                (change)="changedThumb($event,'icon')" 
+                                                class="upload">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="iconLink col-gr-3" *ngIf="list.action === 'iconfont'"> 
+                                <!--预览  如果有-->
+                                <i class="iconfont_admin  {{AddEditData[list.action]}}"></i>
+                                <a target="_blank" href="http://www.iconfont.cn/">挑选图标</a>
+                            </span>
+
+                            <!--应用简介-->
+                            <textarea class="f-ta form-control" placeholder="{{list.ph}}" 
+                                name="{{list.action}}" [(ngModel)]="AddEditData[list.action]" 
+                                    *ngIf="list.action==='desc'" rows="3" ></textarea>
+
+                            <!--应用详情-->
+                            <ueditor name="{{list.action}}" class="f-ta form-control ueditor"
+                                *ngIf="list.action==='content' && uedShow"
+                                required
+                                [(ngModel)]="AddEditData[list.action]"
+                                [config]="ueditorConf">
+                            </ueditor>
+
+                            <div class="xm-select p-r" *ngIf="list.type==='select'">
+                                <select class="form-control select" #action name="{{list.action}}" 
+                                    [ngClass]="{'danger':list.danger}" [(ngModel)]="AddEditData[list.action]"
+                                    (focus)="list.danger=false" >
+                						<option  *ngFor = "let listOption of list.option"
+                								 value="{{listOption.value}}">
+                                                 {{listOption.name}}</option>
+                                    </select>
+                                <i class="iconfont_admin  admin-xiangxia"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group c-f footer-border projectTemplate">
+                        <div class="col-sm-4 col-sm-offset-3 control-panel c-f">
+                            <button class="btn saveBtn gr-btn btn-primary pull-right f-r" type="submit"
+                                [disabled]="!ShowText.status" (click)="FnAddOrEdit()">{{ShowText.btn}}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

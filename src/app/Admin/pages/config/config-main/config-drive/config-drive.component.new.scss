@@ -1,0 +1,48 @@
+@import '../config-main.value.scss';
+
+.modal-content{
+    .modal-body{
+        left:-40px;
+        top:50px;
+        form{
+            .form-group{
+                margin-left:0px;
+                .control-label{
+                    text-align: right;
+                    padding:0;
+                    font-size: 12px;
+                    color:$contentNarmalColor;
+                    font-weight: 400;
+                }
+                .control-panel{
+                    padding-left:20px;
+                    select,input{
+                        background-color: $formCPBg;
+                        color:$contentNarmalColor;
+                        border: 1px solid $formCPBorder;
+                        outline: none;
+                        box-shadow: none;
+                    }
+                    .xm-select{
+                        position: relative;
+                        .urlTitle{
+                            position: absolute;
+                            right:-80px;
+                            top:10px;
+                            font-size: 12px;
+                            color:#999;
+                        }
+                    }
+                }
+                .cp-save{
+                    padding-left:20px;
+                    .pull-right{
+                        background-color: $themeColor;
+                        font-size: 12px;
+                        width:100%;
+                    }
+                }
+            }
+        }
+    }
+}

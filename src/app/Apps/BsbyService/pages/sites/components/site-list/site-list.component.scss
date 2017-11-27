@@ -1,0 +1,97 @@
+@import '../../../../../../Public/theme/apps-common/variable.scss';
+@import '../../../../bsbyService.common.scss';
+$doing:#F4C92D;
+$success:#7EC856;
+$danger:#F37263;
+
+.siteList{
+    .siteTable{
+        .tableTop{
+            padding: 14px 20px 14px 0px;
+            line-height: 28px;
+            color: #999;
+            position: relative;
+            .headLeft{
+                padding: 0 125px 0 60px;
+                width: 100%;
+                .title{
+                    position: absolute;
+                    left: 2px;
+                    float: left !important;
+                }
+                .scene{
+                    background: #eee;
+                    margin-left: 8px;
+                    border-radius: 3px;
+                    float: left;
+                    overflow: hidden;
+                    a{
+                        padding: 0 15px;
+                        display: inline-block;
+                        float: left;
+                        position: relative;
+                        color: #333;
+                    }
+                    &.active{
+                        a{
+                            background-color: $textColorLink;
+                            color: #fff;
+                        }
+                    }
+                }
+                .scenes{
+                    float: left !important;
+                    .scene{
+                        i{
+                            background: #ddd;
+                            cursor: pointer;
+                            color: #666;
+                            padding: 0 5px;
+                            height: 100%;
+                            float: left;
+                            display: none;
+                            font-size: 14px;
+                            display: block;
+                            &:hover{
+                                background: #ccc;
+                            }
+                        }
+                    }
+                }
+            }
+            .headRight{
+                padding-left: 30px;
+                position: absolute;
+                right: 20px;
+                .likeBtn{
+                    i{
+                        position: relative;
+                        top: 2px;
+                    }
+                }
+            }
+        }
+        .customer-content{
+            .statu{
+                display: inline-block;
+                height: 8px;
+                width: 8px;
+                border-radius: 50%;
+            }
+        }
+        .first{
+            padding: 10px !important;
+            line-height: 20px !important;
+            .domain,
+            .competition{
+                display: block;
+            }
+            .competition{
+                color: $bodyFadeColor;
+            }
+        }
+        th{
+            padding: 0 10px 0 10px !important;
+        }
+    }
+}

@@ -1,0 +1,79 @@
+.view-items{
+	position: relative;
+	&.lv0{
+		padding-left: 20px;
+	}
+	&.lv1{
+		padding-left: 20px;
+	}
+	&.lv2{
+		padding-left: 40px;
+	}
+	&.lv3{
+		padding-left: 60px;
+	}
+	&.lv4{
+		padding-left: 80px;
+	}
+	&.lv5{
+		padding-left: 100px;
+	}
+	&.lv6{
+		padding-left: 120px;
+	}
+	.authority-check{
+		overflow: hidden;
+		font-size: 0;
+	}
+	a.view-title{
+	    color: #000;
+	    height: 40px;
+	    display: flex;
+	    margin: 1px 0;
+	    line-height: 40px;
+	    box-sizing: border-box;
+	    width: 100%;
+	    padding: 0 10px 0 10px;
+	    cursor: pointer;
+		font-size: 12px;
+		span{
+			display: inline-block;
+			margin: 0 5px;
+		}
+		& i{
+			display: inline-block;
+			float: left;
+			transition:transform 0.35s;
+		}
+		&:hover{
+			background-color: #eaeaea;
+		}
+		&:active{
+			background-color: #eaeaea;
+		}
+		&.active{
+			background-color: #eaeaea;
+		}
+		& .pboxTitle{
+			color: #666;
+			i{
+				display: none;
+			}
+		}
+		&:hover > .pboxTitle i{
+			display: inline-block;
+		}
+		&.riccioSelected{
+			background-color: #eaeaea;
+		}
+	}
+}
+
+//默认禁用A标签样式
+.gr-disabled-link{
+	color: #ccc !important;
+	cursor: not-allowed !important;
+	i{
+		color: #ccc !important
+	}
+}

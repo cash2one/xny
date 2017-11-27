@@ -1,0 +1,78 @@
+<div class="gr-wrapper-table">
+	
+	<!-- 标题 -->
+	<div class="gr-content-title">
+		<span class="">企业标识</span>
+	</div>
+
+	<!-- 分块的内容区域 -->
+	<div class="gr-overflow-y">
+		<!-- 企业主页设置 -->
+		<div class="setting-content clearfix">
+			<div class="content-lettle-title clearfix">
+				<h3 class="f-l font16 nomargin">企业主页设置</h3>
+			</div>
+			<div class="content-img-logo clearfix">
+				<div class="logo-title col-gr-2"><span class="f-r" style="line-height: 100px">主页logo</span></div>
+				<div class="logo-img col-gr-2">
+					<div class="img">
+						<img alt="星牛云" 
+						     #img_logo 
+						     src="{{imgLogoURL}}" 
+						     *ngIf = "imgLogoURL!=''"
+						     style="width: 100px;height: 100px">
+					</div>
+				</div>
+				<div class="logo-text col-gr-8"><p style="line-height: 90px">建议上传PNG透明无底色反白logo，图片大小不能超过1M</p></div>
+			</div>
+			<div class="content-button col-gr-2 col-sm-offset-2 p-r">
+				<button class="gr-btn gr-btn-primary">上传logo</button>
+				<input type="file" 
+				       ng2FileSelect 
+				       [uploader]="uploader"
+				       accept="image/gif,image/png,image/jpeg,image/jpg,image/bmp"
+				       (change)="selectedFileOnChangedLogo($event)" 
+				       class="upload">
+			</div>
+		</div>
+
+		<!-- 企业外部登录页设置 -->
+		<!-- <div class="setting-content clearfix noborderbottom">
+			<div class="content-lettle-title clearfix">
+				<h3 class="f-l font16 nomargin">修改企业信息</h3>
+			</div>
+			<div class="content-img-logo clearfix">
+				<div class="logo-title col-gr-2"><span class="f-r" style="line-height: 70px">登录页logo</span></div>
+				<div class="logo-img col-gr-10">
+					<div class="img" style="width: 240px">
+						<img alt="grsaas" 
+						     src="{{imgLoginLogoURL}}"
+						     *ngIf = "imgLoginLogoURL!=''"
+						     #img_login_logo
+						     style="width: 240px;height: 100px">
+					</div>
+					<p style="margin-top: 10px;">建议上传240*70大小的PNG图片,大小不超过1M</p>
+				</div>
+			</div>
+			<div class="content-button col-gr-2 col-sm-offset-2 p-r">
+				<button class="gr-btn gr-btn-primary">上传logo</button>
+				<input type="file" 
+				       ng2FileSelect 
+				       [uploader]="uploaderLogin" 
+				       accept="image/gif,image/png,image/jpeg,image/jpg,image/bmp"
+				       (change)="selectedFileOnChangedLoginLogo($event)" 
+				       class="upload">
+			</div>
+		</div> -->
+	</div>
+
+</div>
+
+
+
+<app-riccio-modal>
+	<div body>
+	
+	</div>
+</app-riccio-modal>
+

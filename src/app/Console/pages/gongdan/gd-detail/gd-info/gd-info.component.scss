@@ -1,0 +1,36 @@
+@import "../../gongdan.common.scss";
+.remind-body{
+  padding: 16px 28px;
+  .stepBar{
+    margin: 22px 0px;
+  }
+  .issueDesc{
+    margin: 14px 0;
+    padding: 24px 26px;
+    border: 1px solid #cee0fb;
+    background-color: #fafafa;
+    .issueTitle{
+      padding: 12px 0;
+    }
+    .issueContent{
+      padding: 12px 0;
+      ul{
+        li{
+          display: inline-block;
+          margin-right: 98px;
+        }
+      }
+    }
+    .issueRight{
+      margin-top: 36px;
+      cursor: pointer;
+      .close{
+        color: #447bd4;
+      }
+      .delete{
+        color: #ff6700;
+        margin-left: 25px;
+      }
+    }
+  }
+}

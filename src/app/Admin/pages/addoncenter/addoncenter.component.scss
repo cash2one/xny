@@ -1,0 +1,82 @@
+#app-container{width:auto;padding-bottom:50px;transition:margin-right .5s}
+#app-container .app__content,#app-container .page-content{width:auto}
+#app-container .app-inner{margin:10px;padding:15px;min-width:750px;}
+#app-footer{position:absolute;bottom:0;height:40px;width:100%}
+#app-container-top:empty{padding:0;margin:0;display:none}
+
+.app__content,.page-content{width:850px;zoom:1}
+.app__content:after,.page-content:after{content:"";display:table;clear:both}
+#app-container .app__content,#app-container .page-content{width:auto}
+
+.ump-dashboard .zent-alert{margin-bottom:10px}
+.ump-dashboard .application-list{display:none;margin-bottom:20px;opacity:1;-webkit-animation:enterIn .2s ease-out;animation:enterIn .2s ease-out;-webkit-animation-fill-mode:forwards;animation-fill-mode:forwards}
+.ump-dashboard .application-list h3{font-size:14px;color:#333;margin-bottom:10px;font-weight:700}
+.ump-dashboard .application-list ul{margin-left:-15px}
+.ump-dashboard .application-list.animation-order-1{-webkit-animation-delay:.02s;animation-delay:.02s}
+.ump-dashboard .application-list.animation-order-2{-webkit-animation-delay:.04s;animation-delay:.04s}
+.ump-dashboard .application-list.animation-order-3{-webkit-animation-delay:.06s;animation-delay:.06s}
+.ump-dashboard .application-list.animation-order-4{-webkit-animation-delay:.08s;animation-delay:.08s}
+.ump-dashboard .application-item{float:left;width:240px;margin-left:15px;margin-bottom:20px;background:#f8f8f8}
+.ump-dashboard .application-item.latest,.ump-dashboard .application-item.recommend{position:relative;background:#fff5cb}
+.ump-dashboard .application-item.latest:before,.ump-dashboard .application-item.recommend:before{content:"";position:absolute;top:0;right:0;width:36px;height:17px;text-align:center;line-height:17px;background:#ff4343;color:#fff}
+.ump-dashboard .application-item.latest:hover,.ump-dashboard .application-item.recommend:hover{background:#fff1b8}
+.ump-dashboard .application-item.recommend:before{content:"\63A8\8350"}
+.ump-dashboard .application-item.latest:before{content:"\6700\65B0"}
+.ump-dashboard .application-item a{zoom:1;display:block;padding:10px}
+.ump-dashboard .application-item a:after{content:"";display:table;clear:both}
+.ump-dashboard .application-item:hover{background:#f2f2f2}
+.ump-dashboard .application-item.unhover:hover{background:#f8f8f8}
+.ump-dashboard .application-item img{width:173px;height:52px}
+.ump-dashboard .application-logo{float:left;width:40px;height:40px;border-radius:4px}
+.ump-dashboard .application-logo img{width:40px;height:40px;vertical-align:bottom}
+.ump-dashboard .application-desc,.ump-dashboard .application-name{margin-left:50px}
+.ump-dashboard .application-name{font-size:14px;height:24px;line-height:24px;vertical-align:bottom;color:#333;font-weight:700}
+.ump-dashboard .application-name .application-tips{font-size:12px;margin-left:5px;color:#ff8419;vertical-align:bottom}
+.ump-dashboard .application-desc{font-size:12px;height:16px;line-height:16px;vertical-align:top;color:#999;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
+
+.module-header { height: 50px; padding: 0; border-bottom: 1px solid #f3f3f3; position: relative;}
+.module-header .header-grow .title { -webkit-box-flex:0; -ms-flex-positive:0; flex-grow:0; display:flex; display:-ms-flexbox; display:-webkit-flex; -ms-flex-direction:row; flex-direction:row }
+.module-header .header-grow .title .channel-icon, .module-header .header-grow .title .icon { -webkit-box-flex:0; -ms-flex-positive:0; flex-grow:0; min-width:25px }
+.module-header .header-grow .title .channel-icon { margin-top:10px }
+.module-header .header-grow .title .text { -webkit-box-flex:1; -ms-flex-positive:1; flex-grow:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:400px }
+.module-header .header-grow .title .arrow { -webkit-box-flex:0; -ms-flex-positive:0; flex-grow:0 }
+.module-header .header-grow .secondary-text { -webkit-box-flex:1; -ms-flex-positive:1; flex-grow:1 }
+.module-header .header-grow .project-secondary-text { padding-right:307px }
+.module-header .header-grow .channel-secondary-text { padding-right:212px }
+.module-header .header-grow .flex-panel { -webkit-box-flex:0; -ms-flex-positive:0; flex-grow:0; white-space:nowrap }
+.module-header a.active, .module-header a:focus, .module-header a:hover { text-decoration:none }
+.module-header .title { line-height:50px; font-size:18px; float:left }
+.module-header .title a:focus, .module-header .title a:hover { color:#0d0d0d }
+.module-header .title .fa-angle-down { margin-left:5px }
+.module-header .title .xm-avatar { width:24px; height:24px; border-radius:3px; margin-right:5px; outline:0 }
+.module-header .title .lcfont { font-size:20px }
+.module-header .title .xm-dashboard-o, .module-header .title .xm-share { font-size:24px; margin-right:5px }
+.module-header .title .fa-bookmark, .module-header .title .xm-delegated-o, .module-header .title .xm-following-o, .module-header .title .xm-project-private, .module-header .title .xm-project-public, .module-header .title .xm-trash-o { font-size:20px; margin-right:5px }
+.module-header .title .count { color:#aaa; font-size:12px; margin-left:5px; vertical-align:3px }
+.module-header .secondary-text { float:left; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; display:block; line-height:50px; padding:0 16px; color:#c1c1c1; font-size:14px }
+.xm-tabs li.secondary, .module-header .flex-panel { float:right }
+.module-header .absolute-panel { position:absolute; right:0 }
+.module-header .flex-panel a { display:inline-block; padding:10px; margin:0 5px; vertical-align:middle; color:#8f8f8f }
+.section-body ul li, .toc-section { margin-bottom:2px }
+.module-header .flex-panel a:hover { color:#696969 }
+.module-header .flex-panel a i { font-size:20px }
+.module-header .flex-panel .btn-group { margin-top:10px }
+
+
+.site-content{
+	position: relative;
+	padding:0  25px;
+    top: 0;
+    height: 100%;
+    overflow-y: auto;
+}
+
+span.application-background{
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	background-color: #01d772;
+	text-align: center;
+	line-height: 40px;
+	color: #fff;
+}

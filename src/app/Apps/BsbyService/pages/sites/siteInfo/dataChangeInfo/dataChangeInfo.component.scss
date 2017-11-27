@@ -1,0 +1,84 @@
+@import '../siteInfo.common.scss';
+@import '../../../../bsbyService.common.scss';
+
+$header:#F5F6FA;
+
+$beforeColor:#4E9CF3;
+$afterColor:#FF7F23;
+
+.dataChangeInfo{
+    width: 100%;
+    .title{
+        padding-left: 20px;
+        border-left: 3px solid $textColorLink;
+        height: 20px;
+        line-height: 20px;
+        margin-bottom: 20px;
+        display: inline-block;
+        .name{
+            font-size: 13px;
+        }
+    }
+    .main{
+        .changeData{
+            width: 49%;
+            border: 1px solid $headBorderColor;
+            .head{
+                height: 30px;
+                line-height: 30px;
+                text-align: center;
+                background-color: $header;
+            }
+            .body{
+                padding: 15px 15px;
+                .data{
+                    height: 24px;
+                    line-height: 24px;
+                    margin: 8px 0;
+                    margin-left: 1%;
+                    .view{
+                        float: right;
+                        color:#fff;
+                        border-radius: 5px;
+                        text-align: center;
+                        position: relative;
+                        min-width: 40px;
+                        padding: 0 10px;
+                    }
+                }
+            }
+           
+        }
+        .before{
+            display: inline-block;
+            .body{
+                .data{
+                    .view{
+                        background: $beforeColor;
+                    }
+                }
+            }
+        }
+        .after{
+            float: right;
+            .body{
+                .data{
+                    .view{
+                        i{
+                            position: absolute;
+                            left: -20px;
+                            color:gray;
+                            &.up{
+                                color:$success;
+                            }
+                            &.down{
+                                color:$danger;
+                            }
+                        }
+                        background: $afterColor;
+                    }
+                }
+            }
+        }
+    }
+}

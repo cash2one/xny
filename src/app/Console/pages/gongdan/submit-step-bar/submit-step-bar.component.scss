@@ -1,0 +1,48 @@
+.stepBar{
+  .picture{
+    li{
+      display: inline-block;
+    }
+    li:nth-child(odd){
+
+    }
+    li:nth-child(even){
+      width: 28%;
+      margin: 0px -4px;
+      img{
+        width: 100%;
+      }
+    }
+    li:first-child{
+      margin-left: 5.6%;
+    }
+    li:last-child{
+
+    }
+  }
+  .desc{
+    li{
+      display: inline-block;
+      font-size: 13px;
+      color: #aaaaaa;
+      text-align: center;
+      margin-top: 10px;
+    }
+    li:nth-child(1){
+      margin-left: calc(11% - 104px);
+    }
+    li:nth-child(2){
+      margin-left: calc(27% - 78px);
+    }
+    li:nth-child(3){
+      margin-left: calc(29% - 78px);
+    }
+    li:nth-child(4){
+      margin-left: calc(30% - 110px);
+    }
+  }
+}
+
+.isActive{
+  color: #447bd4 !important;
+}

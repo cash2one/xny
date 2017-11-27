@@ -1,0 +1,168 @@
+<show-detail></show-detail>
+<app-riccio-notifications></app-riccio-notifications>
+
+<app-user-op></app-user-op>
+<app-admin-user-add *ngIf="addAdminUser.isShow" (callBackData)="receiveUserAdd($event)"></app-admin-user-add>
+
+<div class="site-content">
+    <div class="module-header">
+        <div class="breadcrumb">
+            <app-riccio-breadcrumb
+                [iconfont]="'iconfont_admin admin-guanli'"
+                [breadData]="breadData"></app-riccio-breadcrumb>
+        </div>
+        <!-- <div class="title">
+            <span class="iconfont_admin  admin-guanli"></span>
+            <span class="routerLink" *ngIf="userType == 'adminuser'" routerLink='/Admin/appcenter/list'> 应用管理 / </span>
+            <span class="routerLink" *ngIf="userType =='adminuser'" routerLink='/Admin/appcenter/Admin'> 总控制中心 / </span>
+            
+            <span [ngClass]="{'title-color':userType == 'adminuser'}">{{menuDataOnly.title}}</span>
+        </div> -->
+        <div *ngIf="userType == 'adminuser'" class="flex-panel">
+            <ul class="nav nav-pills lc-tabs" role="tablist">
+                <li class="rightTab">
+                    <a class="" href="javascript:;" (click)="fnSelectUser()">成员管理</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="module-body">
+        <div class="modal-content">
+            <div class="module-header">
+                <div class="title">
+                    <span class="title-w title-active"><a href="javascript:;">{{menuDataOnly.subTitle}}</a></span>
+                </div>
+                <button class="btn btn-primary btn-sm f-r" *ngIf="userType == 'user'" (click)="fnShowAddUser()">添加员工</button>
+                <div class="selectUser" *ngIf="userType == 'adminuser'">
+                    <i class="iconfont_admin  admin-adduser"></i>
+                    <a href="javascript:;" (click)="fnShowAddAdminUser()">添加成员</a>
+                </div>
+            </div>
+            <div class="module-body table-scroll-p">
+                <div class="tempList">
+                    <div class="integration-header">
+                        <form class="form-horizontal">
+                            <div class="control-panel select-cp col-sm-2">
+                                <i class="down iconfont_admin admin-down1"></i>
+                                <div class="select color666" #rangeBtn (click)="fnRange($event,rangeBtn)">{{rangeVal}}</div>
+                            </div>
+                            <div class="control-panel col-sm-4">
+                                <div class="search-container">
+                                    <input type="input" name='userSearchName' class="form-control" placeholder="输入成员姓名、用户名、手机号" [(ngModel)]="userSearchParams.other"
+                                        autocomplete="false" (keyup)="fnKeySearchUser($event)" (blur)="fnBlurSearchUser()">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="customer-list">
+                        <!-- 从上侧弹出的组件样式 -->
+                        <div class="flyLeftContent" *ngIf="FlyLeftData.isShow" [@flyTop]="'in'">
+                            <div class="content-text">已选择<span>{{FlyLeftData.number}}</span>项</div>
+                            <ul class="content-list">
+                                <li *ngFor="let list of FlyLeftData.showText">
+                                    <a href="javascript:;" #checkStatu (click)="fnChangeCheck(list.type,checkStatu,$event)">{{list.name}}</a>
+                                </li>
+                            </ul>
+                            <a href="javascript:;" class="f-r up-hide" (click)="fnCheckAll(false)"><span><i class="iconfont_admin  admin-up"></i></span></a>
+                        </div>
+                        <table class="table table-hover lc-table" tableTitle>
+                            <colgroup>
+                                <col width="35">
+                                <col width="50">
+                                <col width="50">
+                                <col width="100">
+                                <col width="80">
+                                <col width="120">
+                                <col width="40">
+                                <col width="60">
+                                <col width="120">
+                                <col width="80">
+                            </colgroup>
+                            <thead class="hand table-head">
+                                <tr>
+                                    <th class="checkAll" noTitle>
+                                        <a href="javascript:;" class="customer-check" (click)="fnCheckAll(!allCheck)">
+                                            <i class="iconfont_admin  {{allCheck===false?'admin-check':'admin-check1'}}">
+                                            </i>
+                                        </a>
+                                    </th>
+                                    <th *ngFor="let title of userTitle">
+                                        {{title}}
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <app-my-loading *ngIf="isLoading"></app-my-loading>
+                        <div class="table-scroll">
+                            <table class="table table-hover lc-table">
+                                <colgroup>
+                                    <col width="35">
+                                    <col width="50">
+                                    <col width="50">
+                                    <col width="100">
+                                    <col width="80">
+                                    <col width="120">
+                                    <col width="40">
+                                    <col width="60">
+                                    <col width="120">
+                                    <col width="80">
+                                </colgroup>
+                                <tbody class="table-body" *ngIf="!isLoading" #clickTb>
+                                    <tr *ngFor="let list of UserData.data" (click)="fnShowDetail(list)" tableTitle>
+                                        <td class="customer-select" noTitle>
+                                            <a href="javascript:;" class="customer-check" (click)="fnCheckUser(list,$event)">
+                                                <i class="iconfont_admin  {{list['isCheck']===false?'admin-check':'admin-check1'}}">
+                                                </i>
+                                            </a>
+                                        </td>
+                                        <td class="customer-content">
+                                            <i class="noImg iconfont_admin admin-touxiang" *ngIf="list.noImg || !list.thumb"></i>
+											<img class="thumb" *ngIf="!list.noImg && list.thumb" [src]="list.thumb" (error)="noImg(list)">
+                                        </td>
+                                        <td class="customer-content">
+                                            {{userType == 'adminuser'?list.real_name:list.real_name}}
+                                        </td>
+                                        <td class="customer-content">
+                                            {{list.mobile}}
+                                        </td>
+                                        <td class="customer-content">
+                                            {{userType == 'adminuser'?list.name:list.name}}
+                                        </td>
+                                        <td class="customer-content">
+                                            {{list.email}}
+                                        </td>
+                                        <td class="customer-content">
+                                            {{list.sex === 1?'男':'女'}}
+                                        </td>
+                                        <td class="customer-content">
+                                            <span class="status" [ngClass]="{'statuYes':list.status == 1,'statuNo':list.status == 2}"></span>                                            {{list.status==1?'启用':'禁用'}}
+                                        </td>
+                                        <td class="customer-content">
+                                            {{list.created_at}}
+                                        </td>
+
+                                        <td class="customer-level" noTitle>
+                                            <a href="javascript:;" class="approval-action" *ngIf="userType == 'user'" (click)="fnEditUser(list,$event)">
+                                                编辑
+                                            </a>
+                                            <a href="javascript:;" class="approval-action" (click)="fnShowChangeStatus(list,statusBtn,$event)" #statusBtn>
+                                                {{list.status==1?'禁用':'启用'}}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <app-riccio-paginations class="page"
+                            [pboxData]="pageParam['pboxData']"
+                            [total]="pageParam['total']"
+                            (pageValue)="fnPagination($event)">
+                        </app-riccio-paginations>
+                    </div>
+                </div>
+            </div>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

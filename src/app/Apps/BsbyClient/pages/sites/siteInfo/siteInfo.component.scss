@@ -1,0 +1,56 @@
+@import '../../../../../Public/theme/apps-common/variable.scss';
+@import './siteInfo.common.scss';
+
+.siteInfo{
+    .head{
+        .title{
+            .siteListChoose{
+                display: inline-block;
+                padding: 0px 20px;
+                height: 36px;
+                line-height: 31px;
+                border: 1px solid #efefef;
+                border-radius: 5px;
+                margin-left: 24px;
+                cursor: pointer;
+                i{
+                    padding-right: 0px;
+                    position: relative;
+                    top: 2px;
+                    left: 10px;
+                }
+            }
+        }
+    }
+    .body{
+        .bodyHead{
+            .subTitle{
+                .compiti{
+                    color:$clickColor;
+                }
+            }
+        }
+        .bodyMain{
+            position: relative;
+            top: 0px;
+            .desc{
+                margin-top: 20px;
+            }
+            .datachange{
+                 width: 49%;
+                 margin-top: 20px;
+                 display: inline-block;
+                 vertical-align: top;
+            }
+            .discuss{
+                width: 49%;
+                padding-left: 20px;
+                margin-top: 20px;
+                display: inline-block;
+            }
+            .keyword{
+                margin-top: 20px;
+            }
+        }
+    }
+}

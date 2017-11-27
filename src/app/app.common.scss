@@ -1,0 +1,84 @@
+
+@import "./Public/theme/common/variable.scss";
+#{'/deep/'}{
+    //常用的灰色
+    .color333{color: #333}
+    .color666{color: #666}
+    .color999{color: #999}
+
+    // iconfont颜色
+    .iconColorNormal{color: $buttonColorNormal}
+
+    // 常用间距
+    .right5{right: 5px;}
+    .right10{right: 10px;}
+    .right15{right: 15px;}
+    .right20{right: 20px;}
+    .right25{right: 25px;}
+    .right30{right: 30px;}
+    .right35{right: 35px;}
+    .right40{right: 40px;}
+    .right45{right: 45px;}
+    .right50{right: 50px;}
+
+    .left5{left: 5px;}
+    .left10{left: 10px;}
+    .left15{left: 15px;}
+    .left20{left: 20px;}
+    .left25{left: 25px;}
+    .left30{left: 30px;}
+    .left35{left: 35px;}
+    .left40{left: 40px;}
+    .left45{left: 45px;}
+    .left50{left: 50px;}
+
+    .top5 {top: 5px;}
+    .top10{top: 10px;}
+    .top15{top: 15px;}
+    .top20{top: 20px;}
+    .top25{top: 25px;}
+    .top30{top: 30px;}
+    .top35{top: 35px;}
+    .top40{top: 40px;}
+    .top45{top: 45px;}
+    .top50{top: 50px;}
+
+    .bottom5 {bottom: 5px;}
+    .bottom10{bottom: 10px;}
+    .bottom15{bottom: 15px;}
+    .bottom20{bottom: 20px;}
+    .bottom25{bottom: 25px;}
+    .bottom30{bottom: 30px;}
+    .bottom35{bottom: 35px;}
+    .bottom40{bottom: 40px;}
+    .bottom45{bottom: 45px;}
+    .bottom50{bottom: 50px;}
+
+    // 常用字体大小
+    .font12{font-size: 12px;}
+    .font13{font-size: 13px;}
+    .font14{font-size: 14px;}
+    .font15{font-size: 15px;}
+    .font16{font-size: 16px;}
+    .font17{font-size: 17px;}
+    .font18{font-size: 18px;}
+
+    //取消margin或padding
+    .nomargin{margin: 0px !important};
+    .nopadding{padding: 0px !important};
+
+    //栈格元素
+    .col-gr-1, .col-gr-10, .col-gr-11, .col-gr-12, .col-gr-2, .col-gr-3, .col-gr-4, .col-gr-5, .col-gr-6, .col-gr-7, .col-gr-8, .col-gr-9 { position:relative; min-height:1px; padding-left:15px; padding-right:15px;float:left}
+    .col-gr-12 { width:100% !important }
+    .col-gr-11 { width:91.66666667% !important }
+    .col-gr-10 { width:83.33333333% !important }
+    .col-gr-9 { width:75% !important }
+    .col-gr-8 { width:66.66666667% !important }
+    .col-gr-7 { width:58.33333333% !important }
+    .col-gr-6 { width:50% !important }
+    .col-gr-5 { width:41.66666667% !important }
+    .col-gr-4 { width:33.33333333% !important }
+    .col-gr-3 { width:25% !important }
+    .col-gr-2 { width:16.66666667% !important }
+    .col-gr-1 { width:8.33333333% !important }
+}

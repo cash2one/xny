@@ -1,0 +1,17 @@
+<div class="item-main clearfix">
+	
+	<div class="item-title col-gr-1">
+		<span>已选择:</span>
+	</div>
+
+	<div class="item-list col-gr-11">
+		<ul class="item-ul">
+			<li class="item-ul-li" *ngFor = "let list of chooseList">
+				<span class="type-title">{{list.title}}:</span>
+				<span class="type-choose">{{list.value}}<i class="iconfont_ruanwen ruanwen-quxiao" (click)="fnDeleteChoose(list)"></i></span>
+			</li>
+		</ul>
+
+	</div>
+
+</div>

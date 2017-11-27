@@ -1,0 +1,11 @@
+<p>删除该角色后其所有子角色的权限也一并删除</p>
+<div class="form-group c-f">
+    <div class="">
+        <riccio-button [normal]="'确认'" 
+                       [disabled] = "'删除中...'" 
+                       [open]="disabledBtnOpen" 
+                       [status]="'danger'"
+                       (emitStatus)="fnDelete()"></riccio-button>
+        <a href="javascript:;" class="gr-btn gr-btn-link" (click)="closeView()">取消</a>
+    </div>
+</div>

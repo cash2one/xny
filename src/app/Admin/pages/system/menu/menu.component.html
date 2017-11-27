@@ -1,0 +1,147 @@
+<link rel="stylesheet" type="text/css" [href]="windowUrl"> 
+
+<div class="openBox-Main" *ngIf="ShowConfirm.isShow" (click)="ShowConfirm.isShow=!ShowConfirm.isShow" style="z-index: 150"></div>
+<show-detail></show-detail>
+<app-riccio-notifications></app-riccio-notifications>
+
+<div class="site-content">
+	<div class="module-header">
+		<div class="breadcrumb">
+			<app-riccio-breadcrumb
+				[iconfont]="'iconfont_admin admin-guanli'"
+				[breadData]="breadData"></app-riccio-breadcrumb>
+		</div>
+	</div>
+
+	<button class="refresh" [ngClass]="{'animate':refresh}" (click)="FnGetMenuEdit(routerModel,routerCid,routerStatus)">
+		<i class="iconfont_admin  admin-sx"></i>
+	</button>
+
+	<div class="module-body">
+		<div class="modal-content">
+			<div class="module-header">
+				<div class="title">
+					<!--<span class="title-w">菜单列表</span>-->
+					<span class="title-w" [ngClass]="{'title-active':goModelType === 'menu'}"><a href="javascript:;" (click)="fnGoModel('menu')">菜单列表</a></span>
+					<span class="title-w" [ngClass]="{'title-active':goModelType === 'tab'}" *ngIf="routerModel!='Console'&&routerModel!='Admin'">
+						<a href="javascript:;" (click)="fnGoModel('tab')">配置选项卡</a>
+					</span>
+				</div>
+				<button class="btn btn-primary btn-sm f-r" (click)="fnAddSystem()">{{addTitle}}</button>
+			</div>
+
+			<div class="module-body table-scroll-p">
+				<div class="tempList">
+					<div class="customer-list">
+						<table class="table table-hover lc-table" tableTitle>
+							<colgroup>
+								<col width="35">
+								<col width="120">
+								<col width="30">
+								<col width="100">
+								<col width="80">
+								<col width="100">
+								<col width="40">
+								<col width="30">
+								<col width="30">
+								<col width="100">
+							</colgroup>
+							<thead class="hand table-head">
+								<tr>
+									<th *ngFor="let title of titleList">
+										{{title}}
+									</th>
+								</tr>
+							</thead>
+						</table>
+						<div class="table-scroll">
+							<table class="table table-hover lc-table">
+								<colgroup>
+									<col width="35">
+									<col width="120">
+									<col width="30">
+									<col width="100">
+									<col width="80">
+									<col width="100">
+									<col width="40">
+									<col width="30">
+									<col width="30">
+									<col width="100">
+								</colgroup>
+								<app-my-loading *ngIf="loading.bool"></app-my-loading>
+								<tbody class="table-body" *ngIf="!loading.bool" #clickTb>
+									<tr *ngFor="let list of MenuEditData" (click)="fnShowDetail(list)" tableTitle>
+										<td class="customer-director" (click)="isSort=list.id;$event.stopPropagation()">
+											<span *ngIf="!(isSort==list.id)">{{list.sort}}</span>
+											<input type="number" name="{{list.sort}}" [(ngModel)]="list.sort" *ngIf="isSort==list.id" autofocus
+											onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" (blur)="fnSortMenu(list);isSort='-1'">
+										</td>
+										<td class="customer-name">
+											<span class="color999">{{'&nbsp;&nbsp;&nbsp;│ '.repeat(list.level-2<0?0:list.level-2)+(list.level==1? '':list.isEnd? '&nbsp;&nbsp;&nbsp;└─ ': '&nbsp;&nbsp;&nbsp;├─ ')}}</span>
+											<span>{{list.name}}</span>
+										</td>
+										<td class="customer-content">
+											{{list.model}}
+										</td>
+										<td class="customer-content">
+											{{list.path}}
+										</td>
+										<td class="customer-content">
+											{{list.url}}
+										</td>
+										<td class="customer-content">
+											{{list.is_left==1?'左侧菜单':list.is_left==2?'主内容右上切换菜单':list.is_left==3?'企业控制台应用配置选项卡':''}}
+										</td>
+										<td class="customer-content">
+											<i class="iconfont_{{iconGroup}} {{list.fonticon}}"></i>
+										</td>
+										<td class="customer-content">
+											{{list.status==1?'显示':'隐藏'}}
+										</td>
+										<td class="customer-content">
+											{{list.type==1?'权限':'菜单'}}
+										</td>
+
+										<td class="customer-level" noTitle>
+											<a href="javascript:;" class="approval-action" (click)="fnShowEdit(list,$event)">编辑</a>
+											<a href="javascript:;" class="approval-action" (click)="fnAddChilrenMenu(list,$event)">添加子菜单</a>
+											<a href="javascript:;" class="approval-action" #delMenu (click)="fnShowDel($event,delMenu,list)">删除</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<router-outlet></router-outlet>
+
+		<!-- <app-system-details></app-system-details> -->
+
+		<div class="pbox pbox-open" *ngIf="ShowConfirm.isShow" [ngStyle]="{'left':ShowConfirm.position.left+'px','top':ShowConfirm.position.top+'px'}">
+			<ul class="pop-menu">
+
+				<div class="pbox-header">
+					<h3 class="pbox-title">确认删除该菜单？</h3>
+				</div>
+				<div class="sure-card pbox-body w-360">
+					<p class=""></p>
+					<button type="button" class="btn btn-danger" (click)="FnDeleteMenu()">删除</button>
+					<a class="btn btn-link" (click)="ShowConfirm.isShow=!ShowConfirm.isShow">取消</a>
+				</div>
+
+			</ul>
+		</div>
+
+	</div>
+</div>
+
+<app-riccio-modal>
+	<div body [ngSwitch]='showType'>
+		<ng-template [ngSwitchCase]="'add-to'">
+			<app-add-to></app-add-to>
+		</ng-template>
+	</div>
+</app-riccio-modal>

@@ -1,0 +1,14 @@
+<div class="tempDetail" 
+	[ngStyle]="{top:detailData.top+ 'px'}" 
+	*ngIf="isShow" [@rightIn]="'in'">
+	<div class="detailHead">
+		<span class="title color333">{{detailData.title}}</span>
+	</div>
+	<div class="detailBody">
+        <div class="one" *ngFor="let data of detailData.showList">
+			<span class="key color999">{{data.name}} :</span>
+			<span class="val color666" [innerHTML]="data.value"
+				[ngClass]="{'add':data.class === true,'redure':data.class === false,'money':data.class === true || data.class === false}"></span>
+        </div>
+    </div>
+</div>

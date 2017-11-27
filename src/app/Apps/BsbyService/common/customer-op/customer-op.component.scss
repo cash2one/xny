@@ -1,0 +1,237 @@
+@import '../../../../Public/theme/apps-common/variable.scss';
+
+.tabs{
+    text-align: center;
+    margin-bottom: 20px;
+    a{
+        font-size: 12px;
+        color:rgba(0,0,0,0.2);
+        transition: all 0.5s;
+        &.active{
+            font-size: 14px;
+            color:$textColorLink;
+        }
+    }
+    span{
+        display: inline-block;
+        width: 1px;
+        height: 25px;
+        background-color: rgba(0,0,0,0.2);
+        margin: 0 10px;
+        vertical-align: middle;
+    }
+}
+.opCustomer{
+    .selectCustomer{
+        .tableList{
+            position: relative;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            th,
+            td{
+                &:nth-child(2){
+                    text-align: center !important;
+                }
+                &:nth-child(1){
+                    padding: 0 50px !important;
+                }
+            }
+            tr{
+                .isCheck{
+                    display: none;
+                }
+                &.active{
+                    background-color:$tableTrHover;
+                    .isCheck{
+                        position: absolute;
+                        display: block;
+                        left: 20px;
+                        color:$textColorLink;
+                    }
+                }
+            }
+            .tableTop{
+                height: initial;
+                line-height: initial;
+            }
+            .search{
+                width: 280px;
+                height: 36px;
+            }
+            .showNowSelect{
+                padding: 12px 0;
+            }
+            .wrapper-content{
+                height: 340px;
+            }
+        }
+        .addBtn{
+            width: 20%;
+            margin-top: 20px;
+        }
+    }
+    .opCustomerForm{
+        display: block;
+        .title{
+            display: block;
+            border-left: 2px solid $textColorLink;
+            padding-left: 10px;
+            margin: 10px 20px 30px 20px;
+        }
+        .f-select{
+            .selectDef{
+                color:#a2a2a2;
+            }
+            .form-control{
+                cursor: pointer;
+                line-height: 36px;
+                padding: 0px;
+                padding-left: 16px;
+                position: relative;
+            }
+            .control-label{
+                vertical-align: top;
+            }
+            .down{
+                color:#999;
+                float: right;
+                margin-right: 8px;
+                height: 36px;
+                line-height: 36px;
+                right: 0px !important;
+            }
+        }
+        .f-pos{
+            .pos{
+                width: 30%;
+                display: inline-block;
+                &:nth-child(2){
+                    margin-left:4%;
+                    margin-right: 4%;
+                }
+            }
+        }
+        .addBtn{
+            margin-top: 10px;
+            margin-left: 5px;
+            color:#fff;
+        }
+    }
+}
+
+
+
+.modal-dialog{
+    width: 600px;
+}
+  
+.modal-content {
+    border: 0;
+    width: 600px;
+    border-radius: 5px;
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.4);
+    padding: 0 30px;
+    position: absolute;
+    z-index: 9000;
+    left: 50%;
+    margin: 30px 0 30px 0;
+    margin-left: -300px;
+    background-color: #fff;
+}
+
+.modal-header {
+    padding: 20px 0 16px;
+    border-bottom: solid 1px #f3f3f3
+}
+
+.modal-header h3 {
+    font-size: 18px;
+    color: #333;
+    font-weight: 500;
+    margin: 0
+}
+
+.modal-header .modal-close {
+    float: right;
+    color: #8f8f8f
+}
+
+.modal-header .modal-close:hover {
+    text-decoration: none;
+    color: #696969
+}
+
+.modal-body {
+    padding: 20px 0
+}
+
+.modal-body .sure-card p {
+    color: #333;
+    font-size: 15px
+}
+
+.modal-footer {
+    padding: 15px 0
+}
+
+.modal-tab {
+    margin: 0;
+    padding: 0;
+    display: -webkit-box;
+    display: flex;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    -ms-flex-direction: row;
+    flex-direction: row
+}
+
+.modal-tab li {
+    list-style-type: none;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -webkit-flex: 1;
+    text-align: center
+}
+
+.modal-tab li a {
+    color: #dee1e2;
+    font-size: 16px;
+}
+
+.modal-tab li a:focus,
+.modal-tab li a:hover {
+    color: #b5bcbe;
+    text-decoration: none
+}
+
+.modal-tab li.active a {
+    color: #6f8092
+}
+
+.modal-tab li.divider {
+    -webkit-box-flex: 0;
+    -ms-flex: 0;
+    flex: 0;
+    -webkit-flex: 0;
+    border-right: solid 1px #f3f3f3
+}
+
+@media (min-width:940px) {
+    .modal-lg {
+        width: 900px
+    }
+}
+
+.gr-window-scroll{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 100%;
+    z-index: 2000;
+    overflow-y: auto;
+    background-color: rgba(0,0,0,.3);
+}

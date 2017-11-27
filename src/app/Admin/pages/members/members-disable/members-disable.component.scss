@@ -1,0 +1,17 @@
+@import '../../../Admin.value.scss';
+
+.selectDepartment{
+    i{
+    	display: inline-block;
+    	color: $themeColor !important;
+    }
+}
+
+
+.gr-wrapper-table{
+	left: 15px;
+	right: 10px;
+	.wrapper-content{
+		justify-content:initial
+	}
+}

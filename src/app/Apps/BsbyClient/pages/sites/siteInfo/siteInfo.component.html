@@ -1,0 +1,42 @@
+<div class="siteInfo bsbyCommon">
+    <div class="head">
+        <div class="title">
+            <i class="iconfont_bsby bsby-wangzhan"></i>
+            <span>网站详情</span>
+            <div class="siteListChoose color999" (click)="showSiteList(showSiteListEl)" #showSiteListEl>
+                {{siteShowDomain}}
+                <i class="down iconfont_bsby bsby-down"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="body">
+        <div class="bodyHead" *ngIf="loadingType == 'hide'">
+            <div class="title">
+                <span class="name">{{baseInfo.domain}}</span>
+            </div>
+            <div class="subTitle">
+                 当前站点被判定为：
+                 <span class="compiti">
+                     {{baseInfo.competition == 1?'‘普通竞争行业’':'‘激烈竞争行业’'}}
+                 </span>
+            </div>
+        </div>
+        <div class="bodyMain" *ngIf="loadingType == 'hide'">
+            <site-base-info [baseInfo]="baseInfo"></site-base-info>
+            <div class="desc">
+                <site-desc-info [descInfo]="baseInfo"></site-desc-info>
+            </div>
+            <div class="datachange">
+                <site-datachange-info [dataChangeInfo]="baseInfo"></site-datachange-info>
+            </div>
+            <div class="discuss">
+                <site-discuss-info [siteInfo]="baseInfo"></site-discuss-info>
+            </div>
+            <div class="keyword">
+                <site-keyword-info></site-keyword-info>
+            </div>
+        </div>
+        <app-riccio-spinners [type]="loadingType"></app-riccio-spinners>
+    </div>
+</div>

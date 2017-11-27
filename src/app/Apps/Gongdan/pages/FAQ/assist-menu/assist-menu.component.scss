@@ -1,0 +1,61 @@
+@import '../../../../../Public/theme/common/variable.scss';
+
+.gr-nav-tree{
+    width: 220px;
+    background-color: #fff;
+    border-radius: 4px;
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    bottom: 15px;
+    .nav-tree-title{
+        padding: 10px 10px 10px 20px;
+        line-height: 30px;
+        .select-title{
+        	color: $textColorTitle;
+            font-size: 16px;
+        }
+    }
+    .nav-tree-content{
+        position: absolute;
+        bottom: 0px;
+        top: 43px;
+        width: 220px;
+        overflow-y: hidden;
+        display: flex;
+        flex-direction: column;
+        .tree-content-tip{
+            line-height: 2;
+            padding: 0 0 0 30px;
+            text-align: left;
+            font-size: 12px;
+            margin-bottom: 5px;
+            height: 34px;
+            line-height: 34px;
+            &.tip-blue{
+            	background-color: #e7f0ff;
+            	& a{
+                	color: #94bbd8;
+            	}
+            }
+            &.tip-red{
+            	background-color: #fee8db;
+            	& a{
+                	color: #d98372;
+            	}
+            }
+            & i{
+                color: #ff6654;
+            }
+        }
+        .tree-content-view{
+            overflow-y: auto;
+            overflow-x: auto;
+            height: 100%;
+            .tree-content-view-done{
+            	width: 200px;
+            	overflow: hidden;
+            }
+        }
+    }
+}

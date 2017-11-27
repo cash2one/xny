@@ -1,0 +1,219 @@
+<base target="_blank">
+<!-- pbox显示组件 -->
+<app-riccio-pbox></app-riccio-pbox>
+
+<!-- tip提示组件 -->
+<app-riccio-popovers [aspect]="'top'">
+  <div #tip>拒稿原因: {{popoversText}}</div>
+</app-riccio-popovers>
+
+<div class="executory-main">
+	
+	<div class="normal" *ngIf = "spinnerType=='hide'">
+		<div class="header">
+			<p>您选择了以下资源媒体为您服务</p>
+		</div>
+
+		<div class="number-info">
+			<ul class="info-ul">
+				<li class="info-ul-li">
+					<span class="title">资源数: <em>{{orderInfo.total_count}}</em>个</span>
+				</li>
+				<li class="info-ul-li">
+					<span class="title">总消费: ¥<em class="num-price font16">{{orderInfo.final_amount}}</em>元</span>
+				</li>
+				<li class="info-ul-li">
+					<span class="title">发布中: <em class="num-blue font16">{{numberInfoStatus.release}}</em>个</span>
+				</li>
+				<li class="info-ul-li">
+					<span class="title">已完成: <em class="num-green font16">{{numberInfoStatus.complete}}</em>个</span>
+				</li>
+				<li class="info-ul-li">
+					<span class="title">已拒稿: <em class="num-price font16">{{numberInfoStatus.refuse}}</em>个</span>
+				</li>
+				<li class="info-ul-li">
+					<span class="title">已取消: <em class="font16">{{numberInfoStatus.cancel}}</em>个</span>
+				</li>
+			</ul>
+		</div>
+
+		<div class="order-list">
+
+			<!-- 执行中的订单列表 -->
+			<div class="gr-wrapper-table" [ngClass]="{'bottom80':executoryViewType=='executoryDraft'?true:false}">
+
+				<div class="wrapper-content">
+					<!-- 所有员工列表 -->
+					<table class="table table-hover gr-table">
+						<colgroup>
+				    		<col width="80">
+				    		<col width="80">
+				    		<col width="80">
+				    		<col width="80">
+				    		<col width="80">
+				    		<col width="40">
+				    	</colgroup>
+						<thead class="hand">
+						    <tr>
+						        <th *ngFor="let name of tableTitle">
+						            {{name}}
+						            <a href="javascript:;" *ngIf = "name==='订单状态'&&executoryViewType=='executory'"
+						            					   (click)="fnRefreshOrderStatus('all')">
+						            	<i class="iconfont_ruanwen ruanwen-shuaxin1"></i>
+						            </a>
+						        </th>
+						    </tr>
+						</thead>
+					</table>
+					<div class="wrapper-table">
+						<table class="table table-hover gr-table">
+							<colgroup>
+					    		<col width="80">
+					    		<col width="80">
+					    		<col width="80">
+					    		<col width="80">
+					    		<col width="80">
+					    		<col width="40">
+					    	</colgroup>
+							<tbody id="undetails">
+							    <tr *ngFor = "let list of orderInItem">
+							        <td class="customer-content">
+									{{executoryViewType=='executory'?list.article_key:'-'}}
+							        </td>
+							        <td class="customer-content">
+									{{list.media_name}}
+							        </td>
+							        <td class="customer-content">
+										<a href="{{list.article_url}}" target="_blank" *ngIf = "executoryViewType=='executory'">
+											{{list.article_url}}
+										</a>
+										<span *ngIf = "executoryViewType!='executory'">-</span>
+							        </td>
+							        <td class="customer-content">
+										<span class="price">¥{{list.article_cost}}元</span>
+							        </td>
+							        <td class="customer-content order-status" *ngIf = "executoryViewType==='executory'">
+							        	<span class="status {{list.article_status==0
+																?'yellow'
+																:list.article_status==1
+																?'green'
+																:list.article_status==2
+																?'red'
+																:list.article_status==3
+																?'ash'
+																:''}}"></span>
+										{{list.article_status==0
+										?'发布中'
+										:list.article_status==1
+										?'已完成'
+										:list.article_status==2
+										?'已拒稿'
+										:list.article_status==3
+										?'已取消'
+										:''}}
+
+										<!-- 发布中的状态才有刷新按钮 -->
+										<a href="javascript:;" 
+											*ngIf = "list.article_status==0"
+											class="{{list.is_refres==true?'show':'hide'}}" 
+										   (click)="fnRefreshOrderStatus('list',list)">
+											<i class="iconfont_ruanwen  {{list.is_refres==true?'ruanwen-shuaxin':'ruanwen-shuaxin1'}}"></i>
+										</a>
+
+										<!-- 已拒稿的状态才有这个提示 -->
+										<span *ngIf = "list.article_status==2"
+											  [riccioPopovers]='tip'
+											  (mouseenter)="popoversText=list.article_remark"
+											  class="status-tip">
+											<i class="iconfont_ruanwen ruanwen-wenhao text-yellow"></i>
+										</span>
+
+							        </td>
+							        <td class="customer-content order-status"
+							        	*ngIf = "executoryViewType=='executoryDraft'">
+							        	未派单
+							        </td>
+							        <td class="td-status" 
+							        	*ngIf = "executoryViewType=='executory'"
+							        	[ngSwitch]="list.article_status">
+							        	<a href="{{list.article_url}}" 
+							        	   target="_blank"
+							        	   *ngIf = "list.article_status==1">
+				        					查看
+				        				</a>
+				        				<a href="javascript:;" 
+				        				   target="_blank"
+				        				   class="color999" 
+				        				   *ngIf = "list.article_status!=1">
+				        					查看
+				        				</a>
+										
+										<ng-template [ngSwitchCase]='0'>
+											<a href="javascript:;" class="color999">
+				        					重发
+					        				</a>
+										</ng-template>
+
+										<ng-template [ngSwitchCase]='1'>
+											<a href="javascript:;" (click)="fnAgainRelease(list)">
+				        					重发
+					        				</a>
+										</ng-template>
+
+										<ng-template [ngSwitchCase]='2'>
+											<a href="javascript:;" (click)="fnAgainRelease(list)">
+					        					重发
+					        				</a>
+					        				<a href="javascript:;" 
+					        					*ngIf = "list.article_status==0||list.article_status==2"
+					        					#pboxEl
+					        					(click)="fnShowPboxMore(pboxEl,$event,list)">
+					        					<i class="iconfont_ruanwen ruanwen-iconset0421"></i>
+					        				</a>
+										</ng-template>
+
+										<ng-template [ngSwitchCase]='3'>
+											<a href="javascript:;" (click)="fnAgainRelease(list)">
+				        					重发
+					        				</a>
+					        				<a href="javascript:;" 
+				        					*ngIf = "list.article_status==0||list.article_status==2"
+				        					#pboxEl
+				        					(click)="fnShowPboxMore(pboxEl,$event,list)">
+					        					<i class="iconfont_ruanwen ruanwen-iconset0421"></i>
+					        				</a>
+										</ng-template>
+				        				
+							        </td>
+
+							        <td class="td-status" 
+							        	*ngIf = "executoryViewType=='executoryDraft'">
+							        	-
+							        </td>
+							    </tr>
+							    
+							</tbody>
+						</table>
+			
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="save-resource t-c" *ngIf = "executoryViewType==='executoryDraft'">
+		<button class="gr-btn gr-btn-primary" (click)="fnGoToExecutory()">修改资源并支付</button>
+	</div>
+
+	<div class="hide">
+		<app-riccio-spinners [type]='spinnerType' [emptyText]="'暂无此订单信息！'"></app-riccio-spinners>
+	</div>
+
+
+</div>
+
+
+<!-- 软文订单信息 -->
+<app-ruanwen-order-info [orderInfo]="orderInfo"></app-ruanwen-order-info>

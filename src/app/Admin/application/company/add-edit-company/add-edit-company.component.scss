@@ -1,0 +1,114 @@
+.modal-dialog{
+    width: 600px;
+    padding:0 30px;
+}
+.modal-content{
+    margin-top: 10px;
+    .modal-header {
+        padding: 20px 0 16px;
+        border-bottom: solid 1px #f3f3f3;
+        h3 {
+            font-size: 18px;
+            color: #333;
+            font-weight: 500;
+            margin: 0
+        }
+        .modal-close {
+            float: right;
+            color: #8f8f8f
+        }
+        .modal-close:hover {
+            text-decoration: none;
+            color: #696969
+        }
+    }
+    .modal-body{
+        padding: 20px 0;
+        .drive-list{
+            position: relative;
+            left: -25px;
+            .file-list-header{
+                display: flex;
+                .file-name{
+                    flex:1;
+                    font-size: 15px;
+                }
+            }
+            .file-item{
+                box-sizing: border-box;
+                border-bottom: 1px solid #f3f3f3;
+                color: #4e545f;
+                font-size: 12px;
+                font-weight: normal;
+                &:hover{
+                    background-color: #fbfbfb;
+                }
+                .file-name{
+                    flex:1;
+                    padding-right: 0;
+                }
+                .file-size{
+                    flex:1;
+                    a:hover{
+                        text-decoration: underline !important; 
+                    }
+                }
+            }
+        }
+    }
+    select.select{
+        appearance:none;
+        padding-right: 34px;
+    }
+    form.form-horizontal{
+        .form-group{
+            max-width: 520px;
+            button.save{
+                margin-right: 20px;
+            }
+            a.close{
+                line-height: 50px;
+                color: #666;
+            }
+            .sex-button{
+                height: 40px;
+                line-height: 40px;
+                i{
+                    font-size: 27px;
+                }
+                a{
+                    color: #ccc;
+                    &.man{
+                        color: #69d0d1
+                    }
+                    &.woman{
+                        color: #F99
+                    }
+                }
+            }
+        }
+    }
+    .accordion-panel{
+        &.h5{
+            font-size: 16px;
+            font-weight: 700;
+            margin: 0;
+            color: #4e545f;
+        }
+        &.p{
+            margin-top: 10px;
+            margin-bottom: 10px;
+            color: #b5bec9;
+            line-height: 180%;
+            font-size: 15px;
+        }
+    }
+    .xm-select{
+        i{
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            color: #666;
+        }
+    }
+}

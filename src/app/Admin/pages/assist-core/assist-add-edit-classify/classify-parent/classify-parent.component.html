@@ -1,0 +1,22 @@
+<div class="parent-main">
+<!--   
+  @Input() public tree:Array<any>;   //需要展示的数据
+  @Input() public children:string;   //需要往下遍历的子集key值
+  @Input() public name:string;       //需要显示的字段key值
+  @Input() public open:boolean;      //是否默认打开
+  @Input() public pbox:boolean;      //是否有下拉框给予选择
+  @Input() public pboxOptions:any[]; //下拉框选项列表 
+  @Input() public pboxPosition:any;  //下拉框选项的偏移量
+  @Input() public icon:string;       //字体图标
+  @Input() public disabledId:string|number       //需要显示禁用状态的数据ID
+  @Input() public disabledChildren:boolean       //是否连同所有的子集也全部禁用
+  @Input() public selectedData:any[]             //传入已经选过的数组，要求数组里面必须有唯一表示符id
+  @Output() public parentData:EventEmitter<any>;  //返回的数据
+  @Output() public pboxActive:EventEmitter<any>  // 代表点击了下拉
+ -->
+	<app-riccio-tree [tree] = 'helpList'
+	                 [children] = "'chilren'"
+	                 [name] = "'name'"
+	                 (parentData) = 'fnAcceptData($event)'></app-riccio-tree>
+
+</div>

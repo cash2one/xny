@@ -1,0 +1,36 @@
+@import '../../../../../Public/theme/apps-common/variable.scss';
+
+$headBorderColor:#efefef;
+$textColor:#797979;
+
+.customer{
+    .body{
+        .bodyHead{
+            height: 60px;
+            line-height: 60px;
+            border-bottom: none;
+            .search{
+                height: 70%;
+                padding:0px;
+                display: inline-block;
+            }
+        }
+        .bodyMain{
+            top:120px;
+        }
+    }
+    .customerList{
+        table{
+            .customerName{
+                border-right: 1px solid $headBorderColor;
+            }
+            tr{
+                .customerName{
+                    &:hover{
+                        background: $tableTrHover;
+                    }
+                }
+            }
+        }
+    }
+}

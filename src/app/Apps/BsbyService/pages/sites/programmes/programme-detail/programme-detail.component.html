@@ -1,0 +1,42 @@
+<div class="programmeDetail bsbyCommon">
+    <div class="head">
+        <div class="title">
+            <i class="iconfont_bsby bsby-fangan-copy"></i>
+            <span>执行方案详情</span>
+        </div>
+    </div>
+    <div class="body">
+        <div class="bodyMain" *ngIf="loadingType == 'hide'">
+            <form class="gr-form-horizontal programmeDetailForm">
+                <div class="form-group title f-i">
+                    <label class="control-label color666 col-gr-1">
+                        方案标题：
+                    </label>
+                    <div class="control-panel col-gr-11">
+                        <input class="form-control" [ngModelOptions]="{standalone: true}" [ngModel]="programmeInfo.title" readonly>
+                    </div>
+                </div>
+                <div class="form-group content f-i">
+                    <label class="control-label color666 col-gr-1">
+                        方案内容：
+                    </label>
+                    <div class="control-panel col-gr-11">
+                        <app-bsby-ueditor
+                            [ngModelOptions]="{standalone: true}"
+                            [config]="ueditorConf"
+                            [(ngModel)]="programmeInfo.content"></app-bsby-ueditor>
+                    </div>
+                </div>
+                <div class="form-group mark f-i">
+                    <label class="control-label color666 col-gr-1">
+                        备注：
+                    </label>
+                    <div class="control-panel col-gr-11">
+                        <textarea class="form-control" [ngModelOptions]="{standalone: true}" [ngModel]="programmeInfo.vote" readonly></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <app-riccio-spinners [type]="loadingType"></app-riccio-spinners>
+    </div>
+</div>

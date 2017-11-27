@@ -1,0 +1,158 @@
+<div class="baseInfo">
+    <div class="left">
+        <div class="siteInfo">
+            <div class="head">
+                <div class="statu">
+                    <div class="value" [ngClass]="{'doing':baseInfo.status == 3,'success':baseInfo.status == 1,'danger':baseInfo.status == 2}">
+                        <span>{{baseInfo.status == 1?'执行中':(baseInfo.status == 2?'已停止':'待执行')}}</span>
+                    </div>
+                    <span class="show">状态</span>
+                </div>
+                <div class="keyword">
+                    <div class="value">
+                        <span title="{{baseInfo.keyword_run?baseInfo.keyword_run:0}}">{{baseInfo.keyword_run?baseInfo.keyword_run:0}}</span>
+                    </div>
+                    <span class="show">当前正常关键词</span>
+                </div>
+                <div class="days">
+                    <div class="value">
+                        <span title="{{baseInfo.stilltime?baseInfo.stilltime:0}}">{{baseInfo.stilltime?baseInfo.stilltime:0}}</span>
+                    </div>
+                    <span class="show">已优化天数</span>
+                </div>
+            </div>
+            <div class="foot">
+                <div class="product">
+                    <span class="title">产品方案：</span>                    
+                    <span class="value">{{baseInfo.product_name}}</span> 
+                </div>
+                <div class="start">
+                    <span class="title">开始时间：</span>
+                    <span class="value">{{baseInfo.starttime}}</span>        
+                </div>
+                <div class="end">
+                    <span class="title">结束时间：</span>   
+                    <span class="value">{{baseInfo.endtime}}</span>  
+                </div>
+            </div>
+        </div>
+        <div class="siteUser">
+            <div class="block excUser">
+                <div class="head">
+                    <span class="title">实施团队</span>
+                </div>
+                <div class="body">
+                    <div *ngIf="roleLoadingType == 'hide'">
+                        <div class="role" *ngFor="let role of roleInfo">
+                            {{role.name}}：<span class="value" [ngClass]="{'excDanger':!role.user_name}">{{role.user_name?role.user_name:'未设置'}}</span>
+                        </div>
+                    </div>
+                    <app-riccio-spinners [type]="roleLoadingType"></app-riccio-spinners>
+                </div>
+            </div>
+            <div class="block noBorder serviceUser">
+                <div class="head">
+                    <span class="title">专属客服</span>
+                </div>
+                <div class="body">
+                    <div class="name">
+                        <span class="value" *ngIf="baseInfo.service_user">
+                            {{baseInfo.service_user.real_name}}
+                        </span>
+                        <span *ngIf="baseInfo.service_user">
+                            {{baseInfo.service_user.positionname}}
+                        </span>
+                    </div>
+                    <div class="info">
+                         手机：<span class="value">
+                                {{baseInfo.service_user?(baseInfo.service_user.phone?baseInfo.service_user.phone:'未填写'):'未填写'}}
+                             </span>
+                    </div>
+                    <div class="info">
+                         QQ：<span class="value">
+                                {{baseInfo.service_user?(baseInfo.service_user.qq?baseInfo.service_user.qq:'未填写'):'未填写'}}
+                            </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="siteCom">
+            <div class="head">{{baseInfo.company_name}}</div>
+            <div class="body">
+                <div class="info">
+                    负责对接人：<span class="value">{{baseInfo.company_user.real_name}}</span>
+                    {{baseInfo.company_user.positionname}}
+                </div>
+                <div class="info">
+                    手机：<span class="value">{{baseInfo.company_user.phone?baseInfo.company_user.phone:'未填写'}}</span>
+                </div>
+                <div class="info">
+                    QQ：<span class="value">{{baseInfo.company_user.qq?baseInfo.company_user.qq:'未填写'}}</span>
+                </div>
+                <div class="info">
+                    邮箱：<span class="value">{{baseInfo.company_user.email?baseInfo.company_user.email:'未填写'}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <div class="siteMain">
+            <div class="block base">
+                <div class="head">
+                    <span class="title">基本信息</span>
+                    <span class="mgr">
+                        <a target="_blank" href="http://{{baseInfo.domain}}">访问</a>
+                    </span>
+                </div>
+                <div class="body">
+                    <div class="role">
+                            公司名称：<span class="value">{{baseInfo.company_name}}</span>
+                    </div>
+                    <div class="role">
+                            网站域名：<span class="value">{{baseInfo.domain}}</span>
+                    </div>
+                    <div class="role">
+                            服务方式：<span class="value">{{baseInfo.service_type == 1?'首次开通':'续费'}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="block noBorder account">
+                <div class="head">
+                    <span class="title">账号信息</span>
+                    <span class="mgr">
+                        <a target="_blank" href="http://{{baseInfo.domain_admin}}">访问</a>
+                    </span>
+                </div>
+                <div class="body">
+                    <div class="role">
+                        后台访问地址：<span class="value">{{baseInfo.domain_admin}}</span>
+                    </div>
+                    <div class="role">
+                        账号：<span class="value">{{baseInfo.domain_user}}</span>
+                    </div>
+                    <div class="role">
+                        密码：<span class="value">
+                                {{showDomainPassword?baseInfo.domain_password:'******'}}
+                            </span>
+                        <a href="javascript:;" class="look" (click)="showDomainPassword = !showDomainPassword"><i class="iconfont_bsby bsby-yanjing"></i></a>
+                    </div>
+                    <div class="role">
+                        FTP连接地址：<span class="value">{{baseInfo.ftp_address}}</span>
+                    </div>
+                    <div class="role">
+                        端口：<span class="value">{{baseInfo.ftp_port}}</span>
+                    </div>
+                    <div class="role">
+                        FTP账号：<span class="value">{{baseInfo.ftp_user}}</span>
+                    </div>
+                    <div class="role">
+                        FTP密码：<span class="value" *ngIf="baseInfo.ftp_password">
+                                    {{showFtpPassword?baseInfo.ftp_password:'******'}}
+                                </span>
+                                <a href="javascript:;" *ngIf="baseInfo.ftp_password" class="look" (click)="showFtpPassword = !showFtpPassword"><i class="iconfont_bsby bsby-yanjing"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

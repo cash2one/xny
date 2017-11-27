@@ -1,0 +1,82 @@
+<form class="gr-form-horizontal c-f" *ngIf = "!loading">
+
+    <div class="form-group c-f">
+        <label class="col-gr-2 control-label label-required t-r">
+            角色名称
+        </label>
+        <div class="col-gr-9 control-panel">
+            <input name="groupname"  
+                   class="form-control"
+                   [(ngModel)]="postRoleData['groupname']"
+                   (focus)="dangerShow=false"
+                   [ngClass]="{'danger':dangerShow}"
+                   placeholder="请输入角色名称"
+                   style="">
+        </div>
+    </div>
+
+    <div class="form-group c-f">
+        <label class="col-gr-2 control-label label-required t-r">
+            父级角色
+        </label>
+        <div class="col-gr-9 control-panel">
+            <input name=""
+                   class="form-control" 
+                   placeholder=""
+                   readonly="readonly"   
+                   style="">
+
+            <div class="p-a selectDepartment">
+              <ul class="manager-ul">
+                <li style="display: inline-block;" 
+                    [ngClass]="{'manager-ul-li':parentName!==''}">
+                  <a href="javascript:;" 
+                     class=""
+                     #selectParentName
+                     (click)="fnShowPbox('parentName',selectParentName,$event)">
+                     <i class="iconfont_console console-jiahao" *ngIf = "parentName===''"></i>{{parentName===''?'选择父级角色':parentName}}
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-group c-f">
+        <label class="col-gr-2 control-label t-r">
+            描述
+        </label>
+        <div class="col-gr-9 control-panel">
+            <input name="note"  
+                   [(ngModel)]="postRoleData['content']"
+                   class="form-control"
+                   placeholder="请输入描述"
+                   style="">
+        </div>
+    </div>
+
+    <div class="form-group c-f">
+        <div class="col-gr-6 col-gr-ml-2">
+            <riccio-button [normal]="btnData.normal" 
+                           [disabled] = "btnData.disabled" 
+                           [open]="disabledBtnOpen" 
+                           (emitStatus)="fnAddEdit($event)"></riccio-button>
+            <a href="javascript:;" class="gr-btn gr-btn-link" (click)="closeView()">取消</a>
+        </div>
+    </div>
+
+</form>
+
+<div class="loading-indicator" *ngIf = 'loading'>
+    <div class="hor-center">
+        <h4 class="ng-binding">
+            正在努力加载中，请稍候
+            <div class="loading-ellipsis">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+              <div class="bounce3"></div>
+            </div>
+        </h4>
+    </div>
+</div>

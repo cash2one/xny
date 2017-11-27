@@ -1,0 +1,56 @@
+@import '../message.component.scss';
+@import '../../../../Public/theme/common/variable.scss';
+
+.common{
+    .message-common{
+        position: absolute;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        top: 10px;
+        bottom: 10px;
+        .title{
+            padding-left: 10px;
+            border-left: 3px solid $textColorLink;
+            height: 20px;
+            margin-top: 15px;
+            line-height: 20px;
+            margin-bottom: 15px;
+            display: inline-block;
+            a{
+                border: 1px solid;
+                padding: 5px;
+                margin-left: 20px;
+            }
+        }
+        .main{
+            .tableList{
+                left: 0px;
+                top: 60px;
+                box-shadow: none;
+                border: 1px solid $headBorderColor;
+                .flag{
+                    display: inline-block;
+                    height: 8px;
+                    width: 8px;
+                    background: $textColorLink;
+                    border-radius: 50%;
+                    box-shadow: 0px 0px 6px lighten($textColorLink,10);
+                    margin-right: 5px;
+                }
+                .read{
+                    color:#b0b0b0;
+                    .flag{
+                        display: none;
+                    }
+                }
+                .msgTitle{
+                    &:hover{
+                        color:$textColorLink;
+                        border-bottom: 1px solid;
+                    }
+                }
+            }
+        }
+    }
+}

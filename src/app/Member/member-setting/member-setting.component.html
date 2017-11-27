@@ -1,0 +1,100 @@
+<div class="members-setting">
+    <form class="gr-form-horizontal c-f">
+
+        <div class="form-group c-f">
+            <label class="col-gr-2 control-label t-r color999">
+                帐号:
+            </label>
+            <div class="col-gr-9 control-panel setting-mobile" >
+                <div>{{settingData['mobile']}}</div>
+            </div>
+        </div>
+
+        <div class="form-group c-f">
+            <label class="col-gr-2 control-label t-r color999">
+                真实姓名:
+            </label>
+            <div class="col-gr-9 control-panel">
+                <input name="phone"  
+                        class="form-control"
+                        [(ngModel)]="settingData['real_name']"
+                        style="">
+            </div>
+        </div>
+
+        <div class="form-group c-f">
+            <label class="col-gr-2 control-label t-r color999">
+                QQ:
+            </label>
+            <div class="col-gr-9 control-panel">
+                <input name="real_name"  
+                        class="form-control" 
+                        [(ngModel)]="settingData['qq']"
+                        style="">
+            </div>
+        </div>
+
+        <div class="form-group c-f">
+            <label class="col-gr-2 control-label t-r color999">
+                邮箱:
+            </label>
+            <div class="col-gr-9 control-panel">
+                <input name="email"  
+                        class="form-control" 
+                        [(ngModel)]="settingData['email']"
+                        style="">
+            </div>
+        </div>
+
+        <div class="form-group c-f">
+            <label class="col-gr-2 control-label t-r color999">
+                性别:
+            </label>
+            <div class="col-gr-9 control-panel sex">
+                <div class="selectSex color">
+                    <a href="javascript:;" 
+                        (click)="settingData['sex']=1" 
+                        class="gr-radio {{settingData['sex']==1?'active':''}}"><span></span>男</a>
+                    <a href="javascript:;" 
+                        (click)="settingData['sex']=2" 
+                        class="gr-radio {{settingData['sex']==2?'active':''}}"><span></span>女</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group c-f thumb">
+            <label class="col-gr-2 control-label t-r color999">
+                头像:
+            </label>
+            <div class="col-gr-9 control-panel" style="line-height: 45px;">
+                <div class="setting-thumb f-l">
+                    <img src="{{thumbImg}}" 
+                            *ngIf = "errorImg == false"
+                            alt="" 
+                            (error)="errorImg = true" 
+                            width="45">
+                    <img src="assets/img/thumb.png" 
+                            *ngIf = "errorImg == true"
+                            alt=""
+                            width="45">
+                </div>
+                <a href="javascript:;" (click)="fnClickCropper()">修改</a>
+                <input type="file"
+                        #cropperInput
+                        accept="image/gif,image/png,image/jpeg,image/jpg,image/bmp" 
+                        class="cropperInput" 
+                        (change)="fnCut($event)">
+            </div>
+        </div>
+
+        <div class="form-group c-f">
+            <div class="col-gr-10 col-gr-ml-2">
+                    <riccio-button [normal]="'确认修改'"
+                                    [disabled]="'修改中...'"
+                                    [open]="isBtn"
+                                    (emitStatus)='fnSaveEdit($event)'></riccio-button>
+            </div>
+        </div>
+
+    </form>
+</div>

@@ -1,0 +1,31 @@
+
+<app-tree-department-view [AllTreeData]="AllTreeData" 
+                          [nodeKey] = "nodeKey"
+                          [childrenKey] = "childrenKey"
+                          [childrenName] = "childrenName"
+                          [symbol]   = "symbol"
+						  *ngIf = "AllTreeData.length>0; else loading">
+</app-tree-department-view>
+
+<ng-template #loading>
+    <div class="loading-indicator">
+        <div class="hor-center">
+            <h4 class="ng-binding" *ngIf = "loadingBool">
+                正在努力加载中，请稍候
+                <div class="loading-ellipsis">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                  <div class="bounce3"></div>
+                </div>
+            </h4>
+
+            <h4 class="ng-binding" *ngIf = "!loadingBool">
+                <div class="empty-panel text-center">
+                    <img src="assets/img/empty-member.png">
+                    <br><span class="tips ng-binding">未设置部门</span>
+                </div>
+            </h4>
+
+        </div>
+    </div>
+</ng-template>

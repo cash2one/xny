@@ -1,0 +1,27 @@
+<div class="modal-content">
+  <div class="module-header">
+    <div class="breadcrumb">
+      <app-riccio-breadcrumb
+        [iconfont]="'iconfont_admin admin-gengduo1'"
+        [breadData]="breadData"></app-riccio-breadcrumb>
+    </div>
+  </div>
+  <div class="module-body">
+    <div class="result-message">
+      <div class="result-header">
+        体检结果：{{count}}
+      </div>
+      <ul class="result-body">
+        <li *ngFor="let company of companyList">
+          <span class="company-name">{{company.name}}</span>
+          <span class="menu-diff">(菜单相差<span>{{company.count}}</span>个)</span>
+          <button class="result-compare" [routerLink]="['/Admin/setting/more/test/result/model/'+appModel+'/app_id/'+appId+'/cid/'+company.id]">比对</button>
+        </li>
+        <div class="testFinish" *ngIf="testFinish">
+          体检完成
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>
+

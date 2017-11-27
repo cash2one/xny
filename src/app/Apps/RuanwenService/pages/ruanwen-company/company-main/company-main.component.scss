@@ -1,0 +1,39 @@
+.header-title{
+	height: 50px;
+	border-bottom: 1px solid #EAEFF1;
+	line-height: 50px;
+	.title{
+		font-size: 14px;
+	}
+}
+.list-search{
+	border-bottom: 1px solid #EAEFF1;
+    margin-top: 20px;
+	ul.search-ul{
+		li.search-ul-li{
+			display: inline-block;
+			.form-group{
+				.control-label{
+					margin-right: 10px;
+				}
+				.control-panel{
+					margin-right: 10px;
+				}
+			}
+		}
+	}
+}
+
+.company-main{
+	position: relative;
+	height: 100%;
+	width: 100%;
+	padding:0 20px;
+}
+
+
+.gr-wrapper-table{
+	top: 150px;
+	left: 20px;
+	right: 20px;
+}

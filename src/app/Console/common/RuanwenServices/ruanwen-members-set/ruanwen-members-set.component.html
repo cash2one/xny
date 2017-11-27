@@ -1,0 +1,87 @@
+
+<app-riccio-pbox></app-riccio-pbox>
+
+<app-riccio-modal>
+	<div body>
+		<app-members-edit-add [type]="editAddType"
+							  [memberData]="memberData"
+							  [write_price]="write_price"
+							  (emitClose)="fnEmitClose($event)"
+							  (emitSuccess)="$event=='success'?fnGetMemberItem():''"
+							  [memberId]='memberId'></app-members-edit-add>
+	</div>
+</app-riccio-modal>
+
+<div class="members-main">
+	
+	<div class="header clearfix">
+		<button class="gr-btn gr-btn-primary f-l" (click)="fnAdd()">添加会员组</button>
+	</div>
+	
+	<div class="gr-wrapper-table">
+
+		<div class="wrapper-content">
+			<!-- 所有员工列表 -->
+			<table class="table table-hover gr-table">
+				<colgroup>
+		    		<col width="80">
+		    		<col width="80">
+		    		<col width="80">
+		    		<col width="80">
+		    		<col width="80">
+		    	</colgroup>
+				<thead class="hand">
+				    <tr>
+						<th *ngFor="let name of tableTitle" [title]="name">
+				            {{name}}
+				        </th>
+				    </tr>
+				</thead>
+			</table>
+			<div class="wrapper-table">
+				<table class="table table-hover gr-table" *ngIf = "loadingType=='hide'">
+					<colgroup>
+			    		<col width="80">
+			    		<col width="80">
+			    		<col width="80">
+			    		<col width="80">
+			    		<col width="80">
+			    	</colgroup>
+					<tbody id="undetails">
+					    <tr *ngFor = "let list of memberItem">
+							<td class="customer-content" [title]="list.id">
+							{{list.id}}
+					        </td>
+							<td class="customer-content" [title]="list.name">
+							{{list.name}}
+					        </td>
+							<td class="customer-content" [title]="list.discount + '折'">
+							{{list.discount}}折
+					        </td>
+							<td class="customer-content" [title]="list.describe">
+							{{list.describe}}
+					        </td>
+					        <td class="customer-content" >
+								<a href="javascript:;" 
+								  (click)="fnEdit(list)">
+									编辑
+								</a>
+								<!-- <a href="javascript:;"
+									#delEl 
+									(click)="fnDel(list,delEl,$event)">
+									删除
+								</a> -->
+					        </td>
+					    </tr>
+					    
+					</tbody>
+				</table>
+
+				<!-- loading组件 -->
+				<app-riccio-spinners [emptyText]="'无会员组数据'"
+									 [type]="loadingType"></app-riccio-spinners>
+			</div>
+
+		</div>
+	</div>
+</div>

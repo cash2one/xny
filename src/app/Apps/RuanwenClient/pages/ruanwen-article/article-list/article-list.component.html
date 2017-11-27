@@ -1,0 +1,128 @@
+
+<!-- <app-riccio-pbox>
+	<div body> 
+		是否删除该文章
+	</div>
+</app-riccio-pbox>
+ -->
+
+<div class="order-list">
+
+	<!-- 列表头部信息 -->
+	<app-ruanwen-list-header [statusValue]="statusValue"
+							 [header]="'软文列表'"
+							 [btnText] = "'撰写文章'"
+							 [searchTitle] = "'标题内容'"
+							 [statusTitle]="'发布状态'"
+							 (emitSearch)="fnEmitListHeader($event)"
+							 (emitBtn) = 'fnEmitListHeaderBtn($event)'></app-ruanwen-list-header>
+
+	<div class="article-main">
+		<div class="gr-wrapper-table">
+
+			<div class="wrapper-content">
+				<!-- 所有员工列表 -->
+				<table class="table table-hover gr-table">
+					<colgroup>
+			    		<col width="80">
+			    		<col width="80">
+			    		<col width="50">
+			    		<col width="50">
+			    		<col width="40">
+			    	</colgroup>
+					<thead class="hand">
+					    <tr>
+					        <th *ngFor="let name of tableTitle">
+					            {{name}}
+					        </th>
+					    </tr>
+					</thead>
+				</table>
+				<div class="wrapper-table" *ngIf = "loadingType=='hide'">
+					<table class="table table-hover gr-table">
+						<colgroup>
+				    		<col width="80">
+				    		<col width="80">
+				    		<col width="50">
+				    		<col width="50">
+				    		<col width="40">
+				    	</colgroup>
+						<tbody id="undetails">
+						    <tr *ngFor = "let list of articleItem">
+						    	<td class="customer-content">
+								{{list.title}}
+						        </td>
+						        <td class="customer-content">
+								{{list.order_number}}
+						        </td>
+						        <td class="customer-content">
+							        <span class="status {{list.status==1
+															  ?'yellow'
+															  :list.status==2
+															  ?'green'
+															  :list.status==3
+															  ?'ash'
+															  :''}}"></span>
+									{{list.status==1
+									?'进行中'
+									:list.status==2
+									?'已完成'
+									:list.status==3
+									?'草稿'
+									:''}}
+						        </td>
+						        <td class="customer-content" >
+								{{list.created_at}}
+						        </td>
+						        <td class="td-status" [ngSwitch]="list.status">
+									
+									<ng-template [ngSwitchCase]="1">
+										<a href="javascript:;" 
+						        	   	   class="color999">发布</a>
+										<a href="javascript:;" 
+							        	   class="color999">编辑</a>
+										<a href="javascript:;" 
+							        	   class="color999">删除</a>
+									</ng-template>
+
+									<ng-template [ngSwitchCase]="2">
+										<a href="javascript:;" 
+						        	   	   class="color999">发布</a>
+										<a href="javascript:;" 
+							        	   class="color999">编辑</a>
+										<a href="javascript:;" 
+							        	   class="color999">删除</a>
+									</ng-template>
+
+									<ng-template [ngSwitchCase]="3">
+										<a href="javascript:;" 
+						        	   	   class=""
+						        	   	   (click)="fnRelease(list)">发布</a>
+										<a href="javascript:;" 
+							        	   class=""
+							        	   (click)="fnEdit(list)">编辑</a>
+										<a href="javascript:;" 
+							        	   class=""
+							        	   #deleteEl
+							        	   (click)="fnDel(list,deleteEl,$event)">删除</a>
+									</ng-template>
+						        	
+						        </td>
+						    </tr>
+						    
+						</tbody>
+					</table>
+
+				</div>
+
+				<!-- loading组件 -->
+				<app-riccio-spinners [emptyText]="'暂无文章列表'"
+									 [type]="loadingType"></app-riccio-spinners>
+
+				<app-riccio-paginations [total]="totalPage" [page]="page" (pageValue)="fnEmitPage($event)"></app-riccio-paginations>
+
+			</div>
+		</div>
+	</div>
+
+</div>

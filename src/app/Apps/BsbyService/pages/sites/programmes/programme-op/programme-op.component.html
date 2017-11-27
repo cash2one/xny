@@ -1,0 +1,50 @@
+<div class="programmeOp bsbyCommon">
+    <div class="head">
+        <div class="title">
+            <i class="iconfont_bsby bsby-fangan-copy"></i>
+            <span>{{typeTitle}}</span>
+        </div>
+    </div>
+    <div class="body">
+        <div class="bodyMain" *ngIf="editLoadingType == 'hide'">
+            <form class="gr-form-horizontal addProgrammeForm" [formGroup]="programmeForm" (ngSubmit)="fnOpProgramme()">
+                <div class="form-group title f-i">
+                    <label class="control-label label-required color666 col-gr-1">
+                        方案标题：
+                    </label>
+                    <div class="control-panel col-gr-11">
+                        <input name="title" class="form-control" autocomplete="off"
+                            [formControl]="ctrlProgramme.title" [(ngModel)]="programmeData.title"
+                            [ngClass]="{'danger':!ctrlProgramme.title.valid && ctrlProgramme.title.touched}">
+                    </div>
+                </div>
+                <div class="form-group content f-i">
+                    <label class="control-label label-required color666 col-gr-1">
+                        方案内容：
+                    </label>
+                    <div class="control-panel col-gr-11">
+                        <app-bsby-ueditor
+                            [config]="ueditorConf"
+                            [formControl]="ctrlProgramme.content"
+                            [(ngModel)]="programmeData.content" #contentUed></app-bsby-ueditor>
+                    </div>
+                </div>
+                <div class="form-group mark f-i">
+                    <label class="control-label color666 col-gr-1">
+                        备注：
+                    </label>
+                    <div class="control-panel col-gr-11">
+                        <textarea class="form-control" autocomplete="off"
+                            [formControl]="ctrlProgramme.vote"
+                            [(ngModel)]="programmeData.vote"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group f-btn col-gr-3 col-gr-ml-1">
+                    <button type="submit" class="gr-btn gr-btn-primary addBtn" [disabled]="!programmeForm.valid">{{btnTitle}}</button>
+                </div>
+            </form>
+        </div>
+        <app-riccio-spinners [type]="editLoadingType"></app-riccio-spinners>
+    </div>
+</div>

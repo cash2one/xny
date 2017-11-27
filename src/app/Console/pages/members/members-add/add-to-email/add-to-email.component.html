@@ -1,0 +1,107 @@
+<div class="Description-title">
+    <span class="color999">通过邮箱给企业成员发送注册当前企业的邀请链接（有效期7天），你可以拷贝企业通讯录批量输入邮箱。</span>
+</div>
+
+
+<div class="Description-content">
+    
+    <div class="content-tab">
+        <a href="javascript:;" [ngClass]="{'color666':TabSymbol!=='OneByOne'}" (click)="TabSymbol = 'OneByOne'">逐个添加</a>
+        <a href="javascript:;" [ngClass]="{'color666':TabSymbol!=='batch'}" (click)="TabSymbol = 'batch'">批量添加</a>
+    </div>
+
+    <div class="content-view" [ngSwitch]="TabSymbol">
+
+        <ng-template [ngSwitchCase]="'OneByOne'">
+            <form class="gr-form-horizontal c-f">
+
+                <div class="form-group c-f">
+                    <label class="col-sm-1 control-label t-r">
+                        邮箱
+                    </label>
+                    <div class="col-sm-7 control-panel mobile-number">
+                        <input name="FirstEmail"  
+                               class="form-control" 
+                               placeholder="请输入对方的邮箱"
+                               [ngClass]="{'danger':FirstEmailData['danger']}"
+                               [(ngModel)]="FirstEmailData['email']"
+                               (focus)="FirstEmailData['danger']=false"
+                               style="">
+                    </div>
+                    <div class="col-sm-3 control-panel">
+                        <input name="FirstName"  
+                               class="form-control" 
+                               placeholder="备注名称"  
+                               [(ngModel)]="FirstEmailData['name']" 
+                               style="">
+                    </div>
+                </div>
+
+                <div class="form-group c-f" *ngFor="let list of PostEmailAddData;let i = index">
+                    <label class="col-sm-1 control-label t-r">
+                        邮箱
+                    </label>
+                    <div class="col-sm-7 control-panel mobile-number">
+                        <input name="addEmail{{i}}"  
+                               class="form-control" 
+                               placeholder="请输入对方的邮箱"
+                               [ngClass]="{'danger':list['danger']}"
+                               [(ngModel)]="list['email']"
+                               (focus)="list['danger']=false"
+                               style="">
+                    </div>
+                    <div class="col-sm-3 control-panel">
+                        <input name="addName{{i}}"  
+                               class="form-control" 
+                               placeholder="备注名称"
+                               [(ngModel)]="list['name']"
+                               style="">
+                    </div>
+                    <a href="javascript:;" class="gr-btn p-a right10" (click)="FnDelEmail(list,i)"><i class="iconfont_console console-shanchu"></i></a>
+                </div>
+
+                <div class="form-group c-f">
+                    <div class="col-sm-4 col-sm-offset-8">
+                        <a href="javascript:;" class="gr-btn" (click)="FnAddMore()"><i class="iconfont_console console-jiahao"></i>邀请更多</a>
+                    </div>
+                </div>
+
+            </form>
+        </ng-template>
+
+        <ng-template [ngSwitchCase]="'batch'">
+            <form class="gr-form-horizontal c-f">
+
+                <div class="form-group c-f">
+                    <label class="col-sm-1 control-label t-r">
+                        邮箱
+                    </label>
+                    <div class="col-sm-7 control-panel">
+                        <textarea name="batchValue" 
+                                  class="form-control" 
+                                  [ngClass]="{'danger':batchDanger}"
+                                  (focus)="batchDanger=false"
+                                  placeholder="邮箱地址 | 备注名称" 
+                                  [(ngModel)]="batchValue"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group c-f">
+                    <div class="col-sm-6 col-sm-offset-1">
+                        <span href="javascript:;" class="color666">一行一个</span>
+                    </div>
+                </div>
+
+            </form>
+        </ng-template>
+
+        <div class="form-group c-f">
+            <div class="col-sm-6 col-sm-offset-1">
+                <button type="button" class="gr-btn gr-btn-primary" disabled="{{BtnData.disabled?'disabled':''}}" (click)="FnPostEamil()">{{BtnData.name}}</button>
+                <a href="javascript:;" class="gr-btn gr-btn-link">取消</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>

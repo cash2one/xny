@@ -1,0 +1,61 @@
+@import '../../Console-variable.scss';
+
+.gr-wrapper-table{
+	top: 69px;
+	left: 15px;
+	right: 10px;
+	background-color: #fff;
+	border-radius: 5px;
+	padding:15px 0 0 30px;
+	.gr-content-title{
+		margin-right: 30px;
+	}
+}
+
+
+.setting-content{
+	padding: 25px 30px 25px 0;
+	border-bottom: 1px solid #EAEFF1;
+	margin-right: 30px;
+	.content-lettle-title{
+		padding: 10px 0;
+		a{
+			font-size: 16px;
+		}
+	}
+	.content-img-logo{
+		margin-bottom:20px;
+		.logo-title{
+			span{
+				color: $textColorLink;
+			}
+		}
+		.logo-img{
+			.img{
+				width: 100px;
+			    height: 100px;
+			    border: 1px solid #F2F2F2;
+			    background-color: #F2F2F2;
+			    overflow: hidden;
+			}
+			p{
+				font-size: 14px;
+				color: #ccc;
+			}
+		}
+		.logo-text{
+			p{
+				font-size: 14px;
+				color: #ccc;
+			}
+		}
+	}
+	p.content-p{
+		font-size: 14px;
+		color: $textColorTitle;
+		margin-bottom: 15px;
+	}
+	button{
+
+	}
+}

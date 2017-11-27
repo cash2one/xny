@@ -1,0 +1,16 @@
+<div class="tree-content">
+
+        <app-tree-view [treeChildren] = 'tree'
+        	       [childrenName] = 'children'
+        	       [titleName]    = 'name'
+        	       [open]         = 'open'
+        	       [pbox]         = 'pbox'
+        	       [pboxOptions]  = 'pboxOptions'
+        	       [pboxPosition] = 'pboxPosition'
+        	       [icon]         = 'icon'
+        	       [disabledId]   = 'disabledId'
+                       [hasChildrenNoChoose] = 'hasChildrenNoChoose'
+			(parentData)   = 'FnObtain($event)'
+			(pboxActive) = 'fnPbox($event)'></app-tree-view>
+
+</div>

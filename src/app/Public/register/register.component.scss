@@ -1,0 +1,173 @@
+
+a{
+	text-decoration: none;
+	display: flex !important;
+	justify-content: center;
+}
+
+img{
+	padding: 0;
+	margin: 0;
+}
+
+a span{
+	line-height: 60px;
+	color: #484848;
+}
+.m-w-560{
+	margin:6% auto 0 auto;
+}
+
+.card-body{
+	width: 459px;
+}
+
+.form-signin{
+	margin-top: 40px;
+	.form-group{
+		.sub-title{
+			margin-bottom: 12px;
+			color: #aaa
+		}
+		.sub-major{
+			color: #f99;
+			margin-right: 5px;
+		}
+		.sub-Terms{
+			a i.common-check1{
+				color: #25d5d4 !important;
+			}
+			span{
+				color: #aaa;
+				line-height: 25px;
+				a{	
+					display: inline !important;
+					color: #25d5d4;
+				}
+			}
+		}
+		.sub-buttom{
+			span a{
+				display: inline !important;
+			}
+		}
+		&.code{
+			input{
+				width: 65%;
+				border-right: 0;
+				border-radius: 3px 0 0 3px;
+			}
+			button{
+			    width: 35%;
+			    height: 44px;
+			    border-radius: 0 3px 3px 0;
+			    font-weight: bold;
+		        padding: 8px 0;
+			}
+		}
+		&.mobile{
+		    select.select{
+		        appearance:none;
+		        padding-right: 34px;
+	            position: relative;
+			    height: 44px;
+			    width: 130px;
+			    border-radius: 3px 0 0 3px;
+			    z-index: 0;
+			    &:focus{
+		    	    border: 1px solid #343434 !important;
+				    box-shadow: none !important;
+				    background-color: #fff;
+				    z-index: 2;
+			    }
+		    }
+		    .xm-select{
+		    	position: relative;
+		    	height: 44px;
+		        i{
+		            position: absolute;
+		            top: 10px;
+		            right: 15px;
+		            color: #666;
+		        }
+		    }
+			.mobile-select{
+				width: 30%;
+				height: 44px;
+			}
+			input{
+				position: relative;
+				z-index: 1;
+				width: 70%;
+			}
+		}
+	}
+}
+.form-signin .form-group:nth-of-type(1){
+	margin-top: 20px;
+}
+
+.form-signin .form-group input{
+	padding: 0;
+	min-width: 150px;
+	outline: none;
+	transition: all 0.2s;
+}
+.form-signin .form-group input:focus{
+	border: 1px solid #343434;
+	box-shadow: none;
+}
+
+.form-signin #loginButton{
+	width: 100%;
+	background-color: #25d5d4;
+	border: 0;
+	height: 44px;
+	color: #fff;
+	font-size: 18px;
+	cursor: pointer;
+	border-radius: 4px;
+}
+.form-signin #loginButton:hover{
+	opacity: 0.8
+}
+.sub-title a{
+	color: #484848;
+}
+
+.card-header{
+	border-bottom: none !important;
+}
+/*忘记密码*/
+.sub-title a{
+	display: inline !important;
+}
+
+/*错误提示*/
+.alert.alert-danger{
+	border-left: 5px solid #f1867e;
+	border-radius: 3px;
+	font-size: 14px;
+}
+
+.team-logo-default{
+  border: 1px solid #eaeff1 !important;
+}
+
+/*登录按钮样式*/
+#loginButton{
+	outline: none;
+}
+
+.login-main{
+	position: relative;
+	.m-w-560{
+		position:absolute;
+		left: 50%;
+		transform:translateX(-50%);
+		.text-gr{
+			color: #f56d62;
+			font-size: 15px;
+		}
+	}
+}

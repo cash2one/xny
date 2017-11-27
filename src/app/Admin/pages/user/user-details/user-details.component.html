@@ -1,0 +1,60 @@
+<div class="openBox-Main"
+	 (click)="CloseBack()"
+     style="z-index: 150"></div>
+
+
+<div class="user-details" [@rightIn]="'in'">
+	<div class="content-title">
+		<span>编辑员工</span>
+		<a href="javascript:;" class="f-r"><i class="iconfont_admin  admin-iconfontcha"></i></a>
+	</div>
+	<div class="content-form">
+		<form  class="form-horizontal c-f">
+
+				<div  class="form-group c-f "
+					  *ngFor="let list of ShowDetailsData">
+		            <label  class="col-sm-2 control-label line-40">{{list.name}}:</label>
+		            <div  class="col-sm-10 control-panel">
+		                <input  class="form-control" 
+		                	    name="{{list.action}}" 
+		                	    placeholder="{{list.name}}" 
+		                	    style=""
+		                        [(ngModel)]="DetailsData[list.action]"
+		                        *ngIf="list.type==='input'"
+		                        [readonly]="list.action==='parentid'?true:false">
+		                <div class="thumb-img" *ngIf = "list.type==='img'">
+		                	<img  *ngIf="DetailsData[list.action]" src="{{DetailsData[list.action]}}" alt="" width="40px" height="40px">
+
+		                	<div *ngIf="!DetailsData[list.action]" class="xm-avatar xm-avatar-40">
+                                <span class="xm-avatar-def" style="background-color: #ef7ba4;">
+                                    <div class="">{{ DetailsData.name.substr(0,1).toUpperCase( ) }}</div>
+                                </span>
+                            </div>
+
+		                </div>
+		                <div class="sex-button" *ngIf = "list.type==='button'">
+		                	<a href="javascript:;" 
+		                	   class="" 
+		                	   [ngClass]="{'man':DetailsData[list.action]==1}"
+		                	   (click)="DetailsData[list.action]=1">
+		                	   <i class="iconfont_admin  admin-nan"></i></a>
+		                	<a href="javascript:;" 
+		                	   class="" 
+		                	   [ngClass]="{'woman':DetailsData[list.action]==2}"
+		                	   (click)="DetailsData[list.action]=2">
+		                	   <i class="iconfont_admin  admin-ttpodicon"></i></a>
+		                </div>
+		            </div>
+		        </div>
+
+		    <div  class="form-group c-f footer-border">
+		        <div  class="col-sm-6 control-panel c-f">
+		            	<a href="javascript:;" class="f-r close" (click)="CloseBack()">取消</a>
+		            	<button  class="btn btn-primary pull-right f-r save" 
+		            			 type="submit" 
+		            			 (click)="FnSaveEdit()">保存</button>
+		        </div>
+		    </div>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,40 @@
+<div class="layer loading" *ngIf="loadings.type === 'layer' && isShow" [@smallBig]="'in'">
+    <div class="main">
+        <div class="loading-indicator">
+            <div class="hor-center">
+                <h4 class="ng-binding">
+                    {{loadings.message}}
+                    <div class="loading-ellipsis">
+                        <div class="bounce1"></div>
+                        <div class="bounce2"></div>
+                        <div class="bounce3"></div>
+                    </div>
+                </h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="base" #baseLoading
+    [ngStyle]="{'width':baseStyle.width + 'px','left':baseStyle.left+'px','top':baseStyle.top+'px'}">
+    <div class="loading-indicator" 
+        *ngIf = "loadings.type === 'base' && isShow" >
+        <div class="hor-center">
+            <h4 class="" *ngIf = "loadings.baseType == 'loading'">
+                正在努力加载中，请稍候
+                <div class="loading-ellipsis">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+            </h4>
+            <h4 class="" *ngIf = "loadings.baseType == 'empty'">
+                <span class="">
+                    <i class="{{iconfont}}"></i>
+                    {{emptyText}}
+                </span>
+            </h4>
+        </div>
+    </div>
+</div> 
+

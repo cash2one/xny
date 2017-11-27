@@ -1,0 +1,205 @@
+@import '../../../../../Public/theme/common/variable.scss';
+@import '../config-main.value.scss';
+@import '../../../../../Public/theme/common/keyframes.scss';
+
+$tableHeadOpBtnBg:#848484;
+
+$audit1:#F4C92D;
+$audit2:#7EC856;
+$audit3:#F37263;
+
+.modal-content{
+    .module-header{
+        .flex-panel{
+            height:30px;
+            margin-top:11px;
+        }
+    }
+    .module-body{
+        top: 114px;
+        bottom: 30px;
+        .tempList{
+            .customer-list{
+                .flyLeftContent{
+                    top: -114px;
+                }
+                .lc-table{
+                    .op{
+                        background:transparent;
+                        color:$tableHeadOpBtnBg;
+                        border:none;
+                        outline: none;
+                        cursor: pointer;
+                    }
+                    .refresh{
+                        display: inline-block;
+                        font-size: 12px;
+                        line-height: 2;
+                    }
+                    .table-head{
+                        tr{
+                            th{
+                                &:nth-child(1){
+                                    &:after{
+                                        display: none;
+                                    }
+                                }
+                                &:nth-child(2){
+                                    &:before{
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .table-body{
+                        tr{
+                            &:hover{
+                                .op{
+                                    display: inline-block;
+                                }
+                            }
+                        }
+                        .audit{
+                            .auditShow{
+                                position: relative;
+                                .status{
+                                    position: absolute;
+                                    left:-30%;  
+                                    top:50%;  
+                                    margin:-4px 0 0 -4px;
+                                    height:8px;
+                                    width:8px;
+                                    border-radius: 50%;
+                                    background-color:transparent;
+                                }
+                                .status1{
+                                    background-color: $audit1;
+                                }
+                                .status2{
+                                    background-color: $audit2;
+                                }
+                                .status3{
+                                    background-color: $audit3;
+                                }
+                            }
+                            .op,
+                            .refresh{
+                                position: absolute;
+                                right:-30%;  
+                                top:50%;  
+                                margin:-6px 0 0 -6px;
+                                height:12px;
+                                width:12px;
+                                &:before{
+                                    position: absolute;
+                                    top:-50%;
+                                    left:40%;
+                                }
+                            }
+                            .refresh{
+                                &:before{
+                                    @include setAnimation(
+                                        rotate360
+                                    )
+                                }
+                            }
+                            .op{
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.configModal{
+    .testBase{
+        width:100%;
+        .testHead{
+            height:20px;
+            line-height: 20px;
+            font-size: 12px;
+            .title{
+                display: block;
+                border-left:2px solid $themeColor;
+                padding-left:10px;
+            }
+        }
+        .testBody{
+            margin-top:20px;
+            label{
+                font-size: 12px;
+                font-weight: 400;
+            }
+            label,
+            input{
+                display: inline-block;
+            }
+            input{
+                border-radius:5px;
+                background-color: $formCPBg;
+                border: 1px solid $formCPBorder;
+                color:$contentNarmalColor;
+                outline: none;
+                padding-left:20px;
+                height:100%;
+            }
+            .ft{
+                width:100%;
+                height:38px;
+                line-height: 38px;
+                label{
+                    width:15%;
+                }
+                input{
+                    width:80%;
+                }
+            }
+            .tpBase{
+                margin-top:20px;
+                label{
+                    width:15%;
+                    vertical-align: top;
+                }
+                .child{
+                    display: inline-block;
+                    width:80%;
+                    .childOne{
+                        margin-top:20px;
+                        &:nth-child(1){
+                            margin-top:0px;
+                        }
+                        label{
+                            width:15%;
+                            vertical-align: middle;
+                        }
+                        input{
+                            width:84%;
+                            height:38px;
+                        }
+                    }
+                }
+            }
+            .send{
+                margin-top:30px;
+                height:36px;
+                margin-left:15%;
+                .sendBtn{
+                    cursor: pointer;
+                    border:none;
+                    color:#fff;
+                    outline: none;
+                    height:inherit;
+                    width:150px;
+                    padding-left:10px;
+                    padding-right:10px;
+                    background: $themeColor;
+                    border-radius:5px;
+                }
+            }
+        }
+    }
+}

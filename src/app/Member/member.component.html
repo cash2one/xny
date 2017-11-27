@@ -1,0 +1,26 @@
+<div class="container-fill">
+    <app-riccio-top-navbar
+        [userName] = "userInfo['name']+'('+loginInfo['company_userinfo']['real_name']+')'"
+        [companyName] = "loginInfo['company_userinfo'].name"
+        [companyMenu] = "comMenu"
+        [notifyCount]="loginInfo['notify']"></app-riccio-top-navbar>
+
+    <div class="site-main">
+        <app-riccio-app-left-menu 
+            [leftData]="leftMenuData"
+            (menuEmit)="fnGetMenu($event)"></app-riccio-app-left-menu>
+        <div class="site-nav-right">
+            <div class="gr-navbar-title topMenu">
+                <div class="navbar-text">
+                    <i class="iconfont_common {{nowMenu.fonticon}}"></i>
+                    <span>{{nowMenu.name}}</span>
+                </div>
+            </div>
+            <div class="route">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-riccio-pbox></app-riccio-pbox>

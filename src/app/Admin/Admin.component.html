@@ -1,0 +1,151 @@
+<!-- <link rel="stylesheet" type="text/css" href="../../../iconfont/admin/iconfont.css"> -->
+<link rel="stylesheet" type="text/css" [href]="windowUrl"> 
+<div class="main-layout">
+	<div class="app-nav-area">
+		<div class="top-area">
+			<a href="javascript:;" class="team-logo pbox-trigger">
+				<img src="assets/img/nav_logo.png" width="40">
+				总后台
+			</a>
+		</div>
+		<div class="middle-area">
+			<ul>
+				<!-- <li *ngFor="let list of menulist.data" x[ngClass]="{'active':MenuSymbol==list.id}"> -->
+				<li *ngFor="let list of menulist.data" routerLinkActive="active">
+					<!-- <a href="javascript:;" title="" [routerLink]="['/Admin/'+list.path]" >  -->
+					<a href="javascript:;" 
+					   title=""
+					   routerLink="{{list.url==='menu'?'config':list.url}}"
+					   (click)="FnSelectMenu(list)"> 
+					<!-- <a href="javascript:;" 
+					   title=""
+					   routerLink="{{list.url==='menu'?'config':list.url}}">  -->
+					<i class="iconfont_admin  {{list.fonticon?list.fonticon:'admin-page'}}"></i>
+					</a>
+					<span class="nav-tooltip">{{list.name}}</span>
+				</li>
+			</ul>
+		</div>
+		<div class="bottom-area">
+			<a class="pic-area pbox-trigger" href="javascript:" (click)="openBox = !openBox;">
+				<div class="xm-avatar xm-avatar-40">
+					<span class="xm-avatar-def" style="background-color: rgb(243, 139, 63);">
+						<div class="">超</div>
+					</span>
+				</div>
+			</a>
+		</div>
+	</div>
+	<!-- 二级导航路由 -->
+	<div class="main-layout sec-nav">
+
+		<div class="main-body" [class.hidden]="!isShowChildrenMenu" #mainBody>
+
+				<div class="main-body-side" #mainBodySide>
+					<div class="header">
+						<span class="title">{{menuTitle}}</span>
+						<div class="more"></div>
+					</div>
+					<div class="body-list">
+
+							<div class="toc-section" *ngFor = 'let list of menuListChildren.data'>
+
+								<div class="section-header"
+									 routerLinkActive="active">
+									<a href="javascript:;" 
+									   class="expand-icon"
+									   [style.transform]="list['is_down']?list.is_left=='1'?'rotate(0deg)':'rotate(-90deg)':'false'">
+										<i class="iconfont_admin  {{list['is_down']?'admin-chevron-down':list.fonticon?list.fonticon:'admin-page'}}"></i>
+									</a>
+									<a *ngIf="!list['is_down']" 
+									    href="javascript:;" 
+									    class="title"
+									    routerLink="{{list.url}}">{{list.name}}</a>
+									<a *ngIf="list['is_down']" 
+									    href="javascript:;"
+									    (click)="list.is_left=list.is_left=='1'?'2':'1'"
+									    class="title">{{list.name}}</a>
+								</div>
+
+								<div class="" *ngIf = "list['is_down']" 
+								     style="overflow: hidden;"
+									 [@accordion]="list.is_left=='1'?'in':'out'">
+									<div class="section-body showhidden" 
+										 style="height:40px;" 
+										 [ngStyle]="{'display':listChild.is_left!=2?'block':'none'}"
+										 *ngFor = "let listChild of list.chilren">
+										<ul *ngIf = "listChild.is_left!=2">
+											<li>
+												<a class="section-item" 
+												   href="javascript:;" 
+												   routerLinkActive="active"
+												   routerLink="{{listChild.url}}">
+													<i class="iconfont_admin  {{listChild.fonticon?listChild.fonticon:'admin-page'}}"></i>
+													{{listChild.name}}
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+							</div>
+							
+					</div>
+
+					<!-- 伸缩展开特效 -->
+					<div class="viewFramework-product-navbar-collapse {{navbar===true?'active':''}}">
+						<div class="product-navbar-collapse-inner" (click)="FnNavber()">
+						    <div class="product-navbar-collapse-bg"></div>
+						    <div class="product-navbar-collapse">
+							    <span><i class="iconfont_admin  admin-collapse-right"></i></span>
+						    </div>
+						</div>
+					</div>
+				</div>
+		</div>
+
+		<!-- 二级菜单往下的路由 -->
+        <router-outlet ></router-outlet>
+
+	</div>
+</div>
+
+<!-- 用户资料小弹窗 -->
+<div class="openBox-Main" *ngIf="openBox" (click)="openBox = !openBox">
+	<div class="pbox pbox-open" style="bottom: 15px; left: 51px;box-shadow: 0 0 24px rgba(0,0,0,.18);">
+		<ul class="pop-menu pop-menu--nav">
+			<li>
+				<a href="javascript:;" target="_lcsite" (click)="showModify()">
+					<i class="iconfont_admin  xm-setting-o"></i>
+					帐号资料设置
+				</a>
+			</li>
+			<li class="divider"></li>
+			<li class="">
+				<a href="javascript:;" (click)="FnLoginOut()">
+					<i class="iconfont_admin  xm-exit-o"></i>
+					登出当前帐号
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+
+<!-- <app-my-confirm></app-my-confirm> -->
+<!-- 弹窗提示 -->
+<!-- <app-my-prompt-box *ngIf="showBoxText" [showBoxText]="showBoxText"></app-my-prompt-box> -->
+
+<!-- 弹出层视图 -->
+<app-my-elastic-layer [(showElasticData)]="showElastic"></app-my-elastic-layer>
+
+<app-riccio-select-members *ngIf = "isShowRiccioSelect"></app-riccio-select-members>
+
+<!-- <app-riccio-pbox></app-riccio-pbox> -->
+<app-riccio-notifications></app-riccio-notifications>
+
+<!-- 选择成员列表 -->
+<app-riccio-select-members></app-riccio-select-members>
+
+<app-riccio-pbox></app-riccio-pbox>
+

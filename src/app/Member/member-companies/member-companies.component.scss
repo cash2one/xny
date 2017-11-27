@@ -1,0 +1,58 @@
+@import "../../Public/theme/common/variable.scss";
+.main-content{
+    height: 100%;
+    padding: 20px 30px;
+    overflow-y:auto;
+    .content-company-list{
+        margin-top:20px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        .company-info{
+            width: 270px;
+            cursor: pointer;
+            margin-bottom: 30px;
+            margin-right: 30px;
+            border: 1px solid #e8e8e8;
+            border-top: 2px solid $textColorLink;
+            box-sizing: border-box;
+            padding: 20px 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            .info-other{
+                font-size: 12px;
+                color: #c9c9c9;
+            }
+            .info-modify{
+                visibility:hidden;
+                font-size:12px;
+            }
+            &:hover .info-modify{
+                visibility: visible;
+            }
+        }
+    }
+}
+.gr-search{
+	width: 300px;
+	height: 30px;
+	box-shadow: none;
+	border: 1px solid #f3f3f3;
+    border-radius: 3px;
+    font-size: 16px;
+    padding: 0px 18px;
+    background-color: #fbfbfb;
+    outline: none;
+    appearance:none;
+    position: relative;
+    cursor: pointer;
+    font-size: 12px;
+    &:focus{
+    	border-color: $textColorLink;
+	    outline: 0;
+	    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(105,208,209,.6);
+    }
+}

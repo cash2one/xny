@@ -1,0 +1,29 @@
+<div class="grouping-main">
+	
+	<div class="title">
+		客服分组
+	</div>
+
+	<div class="content">
+		<div class="group {{activeType == -2 ?'orange':'blue'}}" *ngIf = "firstNumber != 0">
+			<a href="javascript:;" (click)="fnEmitType('first');activeType = -2">
+				<span>{{firstNumber}}</span>
+				个分组未设置管理员
+			</a>
+		</div>
+		<div class="group {{activeType == -1 ?'orange':'blue'}}" *ngIf = "secondNumber != 0">
+			<a href="javascript:;" (click)="fnEmitType('second');activeType = -1">
+				<span>{{secondNumber}}</span>
+				个成员未设置客服分组
+			</a>
+		</div>
+		<div class="list-group">
+			<ul>
+				<li class="group {{activeType == i ?'gray':''}}" *ngFor = "let list of listData;let i = index">
+					<a href="javascript:;" (click)="fnEmitGrouping(list);activeType = i">{{list['name']}}</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+</div>

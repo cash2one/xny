@@ -1,0 +1,101 @@
+<div class="gr-wrapper-table">
+	
+	<!-- 个人资料 -->
+	<div class="gr-content-title">
+		<span class="">个人资料</span>
+	</div>
+
+	<!-- 个人资料 -->
+	<div class="gr-overflow-y">
+
+		<!-- 个人资料 -->
+		<div class="setting-content noborderbottom clearfix">
+
+			<span class="gr-alert gr-alert-warn">
+				这里的资料是当前企业相关的个人信息
+			</span>
+
+			<form class="gr-form-horizontal c-f">
+
+			    <div class="form-group c-f">
+			        <label class="col-gr-2 control-label t-r">
+			            性别:
+			        </label>
+			        <div class="col-gr-9 control-panel">
+			            <div class="selectSex color">
+			                <a href="javascript:;" 
+			                   (click)="profileData['sex']=1" 
+			                   class="gr-radio {{profileData['sex']==1?'active':''}}"><span></span>男</a>
+			                <a href="javascript:;" 
+			                   (click)="profileData['sex']=2" 
+			                   class="gr-radio {{profileData['sex']==2?'active':''}}"><span></span>女</a>
+			            </div>
+			        </div>
+			    </div>
+
+				<div class="form-group c-f">
+			        <label class="col-gr-2 control-label t-r">
+			            邮箱:
+			        </label>
+			        <div class="col-gr-6 control-panel">
+			            <input name="email" 
+			                   class="form-control"
+			                   [(ngModel)]="profileData.email"
+							   placeholder="输入邮箱">
+			        </div>
+			    </div>
+
+			    <!-- <div class="form-group c-f">
+			        <label class="col-gr-2 control-label t-r">
+			            生日:
+			        </label>
+			        <div class="col-gr-6 control-panel">
+			            <input name="lisense_code" 
+			                   class="form-control"
+			                   placeholder=""   
+			                   style="">
+			        </div>
+			    </div> -->
+
+			    <div class="form-group c-f">
+			        <label class="col-gr-2 control-label t-r">
+			            联系方式:
+			        </label>
+			        <div class="col-gr-6 control-panel">
+			            <input name="phone" 
+			                   class="form-control"
+							   maxlength="11" 
+							   minlength="11"
+			                   [(ngModel)]="profileData.phone"
+			                   placeholder="输入联系方式">
+			        </div>
+			    </div>
+
+			    <div class="form-group c-f">
+			        <label class="col-gr-2 control-label t-r">
+			            QQ:
+			        </label>
+			        <div class="col-gr-6 control-panel">
+			            <input name="qq" 
+			                   class="form-control"
+			                   [(ngModel)]="profileData.qq"
+			                   placeholder="输入qq号">
+			        </div>
+			    </div>
+
+				<div class="form-group c-f">
+					<div class="col-gr-3 col-gr-ml-2">
+				        <riccio-button [normal]="'确认修改'"
+				        			   [disabled]="'修改中...'"
+				        			   [open]='btnData'
+				        			   (emitStatus)="fnEditMemberInfo($event)"></riccio-button>
+			        </div>
+			    </div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+</div>

@@ -1,0 +1,71 @@
+.modal-content{
+  padding: 0 25px;
+  min-width: 1000px;
+  .module-header{
+    height: 60px;
+    line-height: 60px;
+    border-bottom: 1px solid #F3F3F3;
+  }
+  .module-body{
+    .application-list{
+      margin-top: 20px;
+      .application-item{
+        margin-right: 10px;
+        display: inline-block;
+        padding: 10px;
+        background-color: #F8F8F8;
+        width: 32%;
+        margin-bottom: 10px;
+        .application-logo{
+          float: left;
+          width: 40px;
+          height: 40px;
+          text-align: center;
+          line-height: 40px;
+          color: #fff;
+          border-radius: 4px;
+          img{
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .application-word{
+          float: left;
+          height: 40px;
+          line-height: 40px;
+          margin-left: 10px;
+          width: 54%;
+          .application-name{
+            font-size: 14px;
+            height: 23px;
+            line-height: 23px;
+            vertical-align: bottom;
+            color: #333;
+            font-weight: 700;
+          }
+          .application-desc{
+            font-size: 12px;
+            height: 16px;
+            line-height: 16px;
+            width: 100px;
+            vertical-align: top;
+            color: #999;
+            white-space: nowrap;
+            text-overflow:ellipsis;
+            overflow: hidden;
+          }
+        }
+        .application-test{
+          float: right;
+          color: #FFF;
+          background-color: #669DFF;
+          border: 0px solid #FFF;
+          border-radius: 3px;
+          padding: 6px 15px;
+          margin-top: 5px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

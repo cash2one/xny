@@ -1,0 +1,155 @@
+
+<!-- 找回密码弹窗 -->
+<app-riccio-modal>
+    <div body>
+        <form class="gr-form-horizontal c-f">
+
+            <div class="form-group c-f">
+                <label class="col-gr-2 control-label label-required t-r">
+                    新密码:
+                </label>
+                <div class="col-gr-9 control-panel p-r">
+                    <input name="password" 
+                           [type]="lookType['psw']==false?'password':'text'"
+                           class="form-control"
+                           [(ngModel)]="newPsw['password']"
+                           placeholder="请输入新密码且不少于6位"
+                           style="">
+                    <i class="iconfont_common p-a c-p {{lookType['psw']==false?'common-lahei':'common-yanjing'}}" (click)="lookType['psw'] = !lookType['psw']"></i>
+                </div>
+            </div>
+
+            <div class="form-group c-f">
+                <label class="col-gr-2 control-label label-required t-r">
+                    确认密码:
+                </label>
+                <div class="col-gr-9 control-panel p-r">
+                    <input name="password_confirmation"  
+                           [type]="lookType['conPsw']==false?'password':'text'"
+                           class="form-control"
+                           [(ngModel)]="newPsw['password_confirmation']"
+                           placeholder="请重新输入新密码"
+                           style="">
+                    <i class="iconfont_common p-a c-p {{lookType['conPsw']==false?'common-lahei':'common-yanjing'}}" (click)="lookType['conPsw'] = !lookType['conPsw']"></i>
+                </div>
+            </div>
+
+            <div class="form-group c-f">
+                <div class="col-gr-6 col-gr-ml-2">
+                    <riccio-button [normal]="'确认修改'" 
+                                   [disabled] = "'修改中...'" 
+                                   [open]="disabledBtnOpen" 
+                                   (emitStatus)="modifyPsw($event)"></riccio-button>
+                    <a href="javascript:;" class="gr-btn gr-btn-link" (click)="closeView()">取消</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</app-riccio-modal>
+
+<div class="login-main">
+    
+    <div class="wrap">
+        <h2 class="title">找回密码</h2>
+        <div class="form-controller">
+            <form class="form-signin w5c-form form-horizontal m-t-20 " method="post">
+                <div class="input-box">
+                    <label class="user"></label>
+                    <input type="text" 
+                           name="mobile" 
+                           class="input" 
+                           placeholder="请输入手机号"
+                           [(ngModel)]="findpwdData['mobile']" >
+                </div>
+                <div class="input-box">
+                    <label class="pwd"></label>
+                    <input type="text" 
+                           name="code" 
+                           class="input code" 
+                           maxlength="4" 
+                           placeholder="请输入验证码"
+                           [(ngModel)]="findpwdData['code']">
+                            <div class="codeSMS">
+                                <button type="button"
+                                        class="submit"
+                                        [disabled] = "smsTimeData!=0?'disabled':''" 
+                                        (click)="fnGetSmsCode()">{{smsTimeData==0?'获取验证码':smsTimeData+'秒后重新获取'}}</button>
+                            </div>
+                </div>
+                <div class="text">
+                    <a href="javascript:;" (click)="FnGologin()">返回登录</a>
+                </div>
+                <button type="submit"  
+                        class="submit" 
+                        id="loginButton" 
+                        [disabled] = "btnType.disabled==true?'disabled':''" 
+                        (click)="handleFindpwd()">{{btnType.text}}</button>
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        <span class="footer-text">Copyright © 2004-{{nowYearTime}} 国人在线36099.com 版权所有</span>
+        <!-- <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备05088445号</a> -->
+    </div>
+
+
+
+<!--     <div class="m-w-560">
+        <div class="logo">
+            <a href="#" title="grzhixing">
+                <img class="" alt="grsaas" src="assets/img/grsaas-logo.png">
+                <span class="team-text"></span></a>
+        </div>
+        <div class="single-card">
+            <div class="card-header">
+            	找回密码
+            </div>
+                <div class="card-body">
+                    <div>
+                    <span class="sub-title">请输入需要找回密码的手机号</span>
+                        <form class="form-signin w5c-form form-horizontal m-t-20 " method="post">
+            
+                            <div class="form-group">
+                                <input type="text"  
+                                       name="mobile"  
+                                       maxlength="11" 
+                                       [(ngModel)]="findpwdData['mobile']" 
+                                       class="form-control valid"  
+                                       placeholder="请输入手机号">
+                            </div>
+                            <div class="form-group clearfix">
+                                <input type="text" 
+                                       name="code"  
+                                       maxlength="4" 
+                                       [(ngModel)]="findpwdData['code']" 
+                                       class="form-control valid col-gr-8" 
+                                       placeholder="请输入验证码">
+                                <div class="col-gr-4 control-panel">
+                                    <button type="button"
+                                            [ngStyle]="{'background-color':'#25d5d4'}"
+                                            class="gr-btn gr-btn-primary getCodeSMS"
+                                            [disabled] = "smsTimeData!=0?'disabled':''" 
+                                            (click)="fnGetSmsCode()">{{smsTimeData==0?'获取验证码':smsTimeData+'秒后重新获取'}}</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit"  
+                                            class="btn btn-primary btn-block btn-lg" 
+                                            id="loginButton" 
+                                            [disabled] = "btnType.disabled==true?'disabled':''" 
+                                            (click)="handleFindpwd()">{{btnType.text}}</button>
+                            </div>
+                            <div class="form-group clearfix">
+                                <div class="sub-buttom f-l">
+                                    <span><a href="javascript:;" 
+                                    (click)="FnGologin()">返回登录</a></span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+        </div>
+    </div> -->
+
+</div>

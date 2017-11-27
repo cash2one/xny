@@ -1,0 +1,39 @@
+<!-- <link rel="stylesheet" href="https://unpkg.com/@salesforce-ux/design-system/assets/styles/salesforce-lightning-design-system.min.css"> -->
+<!-- <link rel="stylesheet" href='assets/datapickerFonts/dataPicker.css'> -->
+<div class="datepickers" 
+	 [@smallBig]="'in'">
+
+	 <div class="datepicker">
+			<ngl-datepicker [(date)]="date" 
+				[dayNamesShort] = 'dayNamesShort'
+				[dayNamesLong] = 'dayNamesLong'
+				[monthNames] = 'monthNames'
+				class="slds-box slds-box--x-small"
+				#ngdate
+				(click)="FnChechDate($event)"></ngl-datepicker>
+	 </div>
+
+
+<!-- 用于替代select的按钮样式 -->
+<div class = "selectYear" 
+	 (click)="FnSelectYear()">{{selectYearData.data.name}}</div>
+
+
+<!-- 选择时间 -->
+<app-select-time (callTimeData)="FnGetTimeData($event)"></app-select-time>
+
+
+
+<!-- 选择月份 -->
+<app-select-month *ngIf = "selectMonthData.isShow"
+				  (callMonthName)="FnGetMonthData($event)"
+				  [selectMonthData]="selectMonthData"></app-select-month>
+
+
+<!-- 选择年份 -->
+<app-select-year *ngIf = "selectYearData.isShow"
+				 (callYearName)="FnGetYearData($event)"
+				 [selectYearData]="selectYearData"></app-select-year>
+
+</div>
+

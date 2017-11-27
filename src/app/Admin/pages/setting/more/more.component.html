@@ -1,0 +1,41 @@
+<div class="modal-content">
+  <div class="module-header">
+    <div class="breadcrumb">
+      <app-riccio-breadcrumb
+        [iconfont]="'iconfont_admin admin-gengduo1'"
+        [breadData]="breadData"></app-riccio-breadcrumb>
+    </div>
+  </div>
+  <div class="module-body">
+    <div class="application-list">
+      <ul class="">
+        <li class="application-item clearfix" [routerLink]="['/Admin/setting/more/test']" style="width: 236.25px;">
+          <a href="javascript:;">
+            <div class="application-logo">
+              <i class="iconfont_admin  admin-liebiao"></i>
+            </div>
+            <div class="application-word">
+              <div class="application-name">菜单体检</div>
+              <div class="application-desc">
+                检测企业菜单是否正常
+              </div>
+            </div>
+          </a>
+        </li>
+        <li class="application-item clearfix" [routerLink]="['/Admin/assist/main']" style="width: 236.25px;">
+          <a href="javascript:;">
+            <div class="application-logo">
+              <i class="iconfont_admin  admin-liebiao"></i>
+            </div>
+            <div class="application-word">
+              <div class="application-name">帮助中心</div>
+              <div class="application-desc">
+                帮助中文文档设置
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

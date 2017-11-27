@@ -1,0 +1,78 @@
+<div class="account-main">
+	<span class="gr-alert gr-alert-success">
+		这里是软文街代理接口信息配置，请勿随意更改
+	</span>
+
+	<form class="gr-form-horizontal c-f">
+
+	    <div class="form-group c-f">
+	        <label class="col-gr-2 control-label  t-l">
+	            用户名
+	        </label>
+	        <div class="col-gr-9 control-panel">
+	            <input name="username"  
+	                   class="form-control"
+	                   [(ngModel)]="postData['username']"
+	                   placeholder="请输入用户名" 
+	                   style="">
+	        </div>
+	    </div>
+
+	    <div class="form-group c-f">
+	        <label class="col-gr-2 control-label  t-l">
+	            用户密码
+	        </label>
+	        <div class="col-gr-9 control-panel p-r">
+	            <input name="password"  
+	                   class="form-control"
+	                   [(ngModel)]="postData['password']"
+	                   placeholder="请输入用户密码"
+	                   [type] = "pswShowOrHide==true?'text':'password'"
+	                   style="">
+	            <span class="p-a showEye" (click)="pswShowOrHide=!pswShowOrHide">
+	            	<i class="iconfont_console {{pswShowOrHide==true?'console-yanjing':'console-lahei'}}"></i>
+	            </span>
+	        </div>
+	    </div>
+
+	    <div class="form-group c-f">
+	        <label class="col-gr-2 control-label  t-l">
+	            秘钥ID
+	        </label>
+	        <div class="col-gr-9 control-panel">
+	            <input name="appid"  
+	                   class="form-control"
+	                   [(ngModel)]="postData['appid']"
+	                   placeholder="请输入秘钥ID" 
+	                   style="">
+	        </div>
+	    </div>
+
+	    <div class="form-group c-f">
+	        <label class="col-gr-2 control-label  t-l">
+	            折扣
+	        </label>
+	        <div class="col-gr-9 control-panel">
+	            <input name="discount"  
+	                   class="form-control"
+	                   maxlength="5" 
+	                   onkeyup="this.value=this.value.replace(/[^\d.]/g,'')"  
+	                   onafterpaste="this.value=this.value.replace(/\D/g,'')"
+	                   [(ngModel)]="postData['discount']"
+	                   placeholder="请输入折扣" 
+	                   style="">
+	        </div>
+	    </div>
+	    <div class="form-group c-f">
+	        <div class="col-gr-6 control-panel col-gr-ml-2">
+	            <riccio-button [normal]="'保存'"
+		        				   [disabled]="'保存中...'"
+		        				   [open]="btnType"
+		        				   (emitStatus)="saveAdd()"></riccio-button>
+	        </div>
+	    </div>
+
+	</form>
+	
+
+</div>

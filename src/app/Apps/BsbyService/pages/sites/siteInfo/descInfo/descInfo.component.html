@@ -1,0 +1,64 @@
+<div class="descInfo">
+    <div class="title">
+        <span class="name">网站信息</span>
+        <span class="mgr">
+            <a target="_blank" href="javascript:;" (click)="fnRefresh()">
+                <i class="iconfont_bsby bsby-refreshing" [ngClass]="{'active':isRefresh}"></i>
+            </a>
+        </span>
+    </div>
+    <div class="main">
+        <div class="gr-wrapper-table tableList">
+            <div class="wrapper-content"> 
+                <table class="table table-hover gr-table" tableTitle>
+                    <colgroup>
+                        <col width="80">
+                        <col width="200">
+                    </colgroup>
+                    <thead class="hand">
+                        <tr>
+                            <th *ngFor = "let title of tableTitles">
+                                {{title}}
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+
+                <div class="wrapper-table">
+                    <table class="table table-hover gr-table">
+                        <colgroup>
+                            <col width="80">
+                            <col width="200">
+                        </colgroup>
+                        <tbody class="desc" tableTitle>
+                            <tr>
+                                <td class="customer-content">
+                                    标题
+                                </td>
+                                <td class="customer-content show">
+                                    {{descInfo.title}}
+                                </td>
+                            </tr>  
+                            <tr>
+                                <td class="customer-content">
+                                    关键词
+                                </td>
+                                <td class="customer-content show">
+                                    {{descInfo.keyword}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="customer-content">
+                                    描述
+                                </td>
+                                <td class="customer-content show">
+                                    {{descInfo.description}}
+                                </td>
+                            </tr>                    
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

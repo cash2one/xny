@@ -1,0 +1,60 @@
+@import '../../../Admin.value.scss';
+
+.site-content{
+    padding-left:25px;
+    padding-right:25px;
+    color:#666;
+    .module-header{
+        height:54px;
+        .title{
+            height:100%;
+            line-height: 54px;
+            font-size:14px;
+            .iconfont_admin{
+                padding:3px;
+                font-size:13px;
+            }
+        }
+        .flex-panel{
+            height:100%;
+            margin:0px;
+            .nav-pills{
+                height:inherit;
+                li{
+                    height:inherit;
+                    a{
+                        height:inherit;
+                        line-height: 54px;
+                        padding:0;
+                        padding-left:8px;
+                        padding-right:8px;
+                        font-size: 14px;
+                        color:$headNavNormalColor;
+                    }
+                    border-color: $headNavNormalColor;
+                }
+                .active{
+                    a{
+                        color:$themeColor !important;
+                    }
+                    border-color: $themeColor !important;
+                } 
+            }
+        }
+    }
+    #{'/deep/'} .module-body{
+        .modal-content{
+            // margin:0px;
+            .module-header{
+                height:56px;
+                .titleTag{
+                    margin-top:19px;
+                    color:$contentNarmalColor;
+                    font-size: 14px;
+                    border-left:2px solid $themeColor;
+                    padding-left:8px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,354 @@
+<div class="gr-content-wrap" #FnAllElement>
+
+	<div class="gr-nav-tree">
+
+		<div class="nav-tree-title">
+            <div class="select-title font18">角色管理</div>
+            <i class="iconfont_admin  "></i>
+		</div>
+
+		<div class="nav-tree-content">
+			<div class="tree-content-tip {{mutualData.NoRole.color===true?'tip-blue':'tip-red'}}"
+			     *ngIf = "mutualData.NoRole.length>0">
+				 <i class="iconfont_admin  admin-tanhao1" *ngIf = "!mutualData.NoRole.color"></i>
+				<a href="javascript:;"
+				   (click)="FnGetNoRole();mutualData.NoRole.color = true">{{mutualData.NoRole.length}}个员工未设置角色</a>
+			</div>
+			<div class="tree-content-view"
+			     *ngIf = "treeLoading === 2">
+			     <div class="tree-content-view-done">
+					<app-riccio-tree [tree] = 'RoleData.dataList'
+									 [children] = "'chilren'"
+									 [name] = "'groupname'"
+									 [pbox] = 'true'
+									 [pboxOptions] = 'RoleData.pboxOptions'
+									 [pboxPosition] = "{'left':85}"
+									 [icon]  = "'common-jiaoseguanli'"
+									 (parentData) = "CallTreeData($event)"
+									 (pboxActive)="pboxActive($event)"></app-riccio-tree>
+				 </div>
+			</div>
+			<div *ngIf="treeLoading === 1">
+			    <div class="loading-indicator">
+			        <div class="hor-center">
+			            <h4 class="ng-binding">
+			                正在努力加载中，请稍候
+			                <div class="loading-ellipsis">
+			                    <div class="bounce1"></div>
+			                    <div class="bounce2"></div>
+			                  <div class="bounce3"></div>
+			                </div>
+			            </h4>
+			        </div>
+			    </div>
+			</div>
+			<div *ngIf="treeLoading === 0">
+			    <div class="loading-indicator">
+			        <div class="hor-center">
+			            <h4 class="ng-binding">
+							角色列表为空
+			            </h4>
+			        </div>
+			    </div>
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<!-- 右侧区域 -->
+	<div class="gr-wrapper-table" [ngSwitch]="mutualData.tabSwitch">
+		<!-- 通用顶部的从左侧弹出的组件 -->
+		<app-riccio-pop-up-right></app-riccio-pop-up-right>
+		<!-- 主体页面 -->
+		<div class="wrapper-table-top">
+			<div class="table-top-title">
+				<a href="javascript:;"
+				   class="font16"
+				   *ngIf = "mutualData.NoRole.color==false; else headingTitle"
+				   #titlePbox
+				   (click)="fnShowPbox('selectClickTitle',$event,titlePbox)">
+					{{mutualData.presentRole.title}}
+					<i class="iconfont_admin  admin-down1"></i>
+				</a>
+				<ng-template #headingTitle>
+					<a href="javascript:;"
+					   class="font18">
+						{{mutualData.presentRole.title}}
+					</a>
+				</ng-template>
+				<span class="count font12 color999">(<em>{{mutualData.presentRole.length}}</em>人)</span>
+			</div>
+			<div class="table-top-directions f-l" *ngIf="RoleUserData.getUserListObj['id']!='-1'">
+				<span class="font12 color999">{{checkRoleInfo.content?'说明：':''}}</span>
+				<span class="font12 color999">{{checkRoleInfo.content}}</span>
+			</div>
+			<div class="table-top-button f-r"
+				*ngIf="!isTop">
+				<ul class="table-ul clearfix">
+					<li class="table-ul-li f-l">
+						<i class="iconfont_admin  admin-adduser"></i>
+						<a href="javascript:;" (click)="fnAddRoleUser()">添加权限人</a>
+					</li>
+					<li class="table-ul-li f-l">
+						<i class="iconfont_admin  admin-more"></i>
+						<a href="javascript:;"
+						   #more
+						   (click)="fnShowPbox('more',$event,more)">更多</a>
+					</li>
+				</ul>
+			</div>
+			<div class="table-top-button f-r"
+				*ngIf="isTop">
+				<ul class="table-ul clearfix">
+					<li class="table-ul-li f-l">
+						<i class="iconfont_admin  admin-adduser"></i>
+						<a href="javascript:;" (click)="fnAddRoleUser()">关联成员</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="wrapper-tabLab" *ngIf = "!mutualData.NoRole.color">
+
+			<div class="gr-navbar-title RoleTitleTab">
+				<div class="navbar-menu f-l">
+					<ul class="menu-ul clearfix">
+						<li class="menu-ul-li f-l {{mutualData.tabSwitch==0?'active':''}}"><a href="javascript:;" (click)="mutualData.tabSwitch=0">角色成员</a></li>
+						<li class="menu-ul-li f-l {{mutualData.tabSwitch==1?'active':''}}"><a href="javascript:;" (click)="mutualData.tabSwitch=1">功能授权</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+		<ng-template [ngSwitchCase]="0">
+
+			<div class="wrapper-filter clearfix">
+				 <form class="form-horizontal">
+					<div class="control-panel select-cp col-sm-2">
+						<i class="down iconfont_admin admin-down1"></i>
+						<div class="select color666" #rangeBtn (click)="fnRange($event,rangeBtn)">{{rangeName}}</div>
+					</div>
+					<div class="control-panel col-sm-3">
+						<div class="search-container">
+							<input type="input" name='userSearchName' class="form-control" placeholder="输入姓名、用户名"
+								autocomplete="false"
+								[(ngModel)]="RoleUserData.getUserListObj.name" (keyup)="fnKeySearch($event)" (blur)="fnBlurSearch()">
+						</div>
+					</div>
+				</form>
+
+
+			</div>
+			<div class="wrapper-content roleTableContent"
+			     [ngStyle]="{'top':mutualData.NoRole.color==true?'119px':'170px'}">
+
+				<table class="table table-hover gr-table" tableTitle>
+					<colgroup>
+			    		<col width="20">
+			    		<col width="50">
+			    		<col width="50">
+			    		<col width="60">
+			    		<col width="60">
+			    		<col width="80">
+			    		<col width="60">
+			    		<col width="60">
+			    	</colgroup>
+					<thead class="hand">
+					    <tr>
+					        <th class="th-checkbox" noTitle>
+					            <a href="javascript:;"
+					               *ngIf = "RoleUserData.getUserListObj['id']!='0'"
+					               (click)="FnShowPopUp('','all')"
+					               class="customer-check">
+					                <i class="iconfont_admin  {{allCheckIs==true?'admin-check1 iconColorNormal':'admin-check'}}"></i>
+					            </a>
+					            <a href="javascript:;"
+						           class="customer-check"
+					               *ngIf = "RoleUserData.getUserListObj['id']=='0'">
+					               	<i class="iconfont_admin  admin-check1"></i></a>
+					        </th>
+					        <th *ngFor = "let name of mutualData['tableTitle']">
+					        	{{name}}
+					        </th>
+					    </tr>
+					</thead>
+				</table>
+
+				<div class="wrapper-table" *ngIf = "!loading">
+					<!-- 角色成员列表 -->
+					<table class="table table-hover gr-table">
+						<colgroup>
+				    		<col width="20">
+				    		<col width="50">
+				    		<col width="50">
+				    		<col width="60">
+				    		<col width="60">
+				    		<col width="80">
+				    		<col width="60">
+				    		<col width="60">
+				    	</colgroup>
+						<tbody id="undetails">
+
+						    <tr *ngFor = "let list of RoleUserData.dataList" tableTitle>
+						        <td class="td-checkbox" noTitle>
+						            <a href="javascript:;"
+						               *ngIf = "RoleUserData.getUserListObj['id']!='0'"
+						               class="customer-check gr-checkbox"
+						               (click)="FnShowPopUp(list)">
+						                <i class="iconfont_admin  {{list.isCheck==true?'admin-check1':'admin-check'}}">
+						                </i>
+						            </a>
+						            <a href="javascript:;"
+						               *ngIf = "RoleUserData.getUserListObj['id']=='0'"
+						               class="customer-check">
+						                <i class="iconfont_admin  admin-check1">
+						                </i>
+						            </a>
+						        </td>
+								<td class="customer-content">
+									<i class="noImg iconfont_admin admin-touxiang" *ngIf="list.noImg || !list.thumb"></i>
+									<img class="thumb" width="30" *ngIf="!list.noImg && list.thumb" src="{{list.thumb}}" (error)="noImg(list)">
+								</td>
+						        <td class="customer-content">
+						        {{list.real_name}}
+						        </td>
+						        <td class="customer-content">
+						        {{list.phone}}
+						        </td>
+						        <td class="customer-content" >
+						        {{list.name}}
+						        </td>
+						        <td class="customer-content" >
+						        {{list.email}}
+						        </td>
+						        <td class="customer-content" >
+						        {{list.sex==1?'男':'女'}}
+						        </td>
+						        <td class="td-status"
+						            *ngIf = "RoleUserData.getUserListObj['id']!='0'; else disabledBtn" noTitle>
+									<a href="javascript:;"
+									   *ngIf = "RoleUserData.getUserListObj['id']!='-1'"
+									   (click)="FnDeleteRoleUser(list)">移除</a>
+									<a href="javascript:;"
+									   *ngIf = "RoleUserData.getUserListObj['id']=='-1'"
+									   #assignRole
+									   (click)="fnShowModel('assignRole',$event,assignRole,list)">
+									   	分配角色
+									   </a>
+						        </td>
+						        <ng-template #disabledBtn>
+							        <td class="td-status" noTitle>
+										<a href="javascript:;" class="color999">移除</a>
+							        </td>
+						        </ng-template>
+						    </tr>
+
+						</tbody>
+
+					</table>
+				</div>
+
+			    <div class="loading-indicator" *ngIf = 'loading'>
+			        <div class="hor-center">
+			            <h4 class="ng-binding">
+			                正在努力加载中，请稍候
+			                <div class="loading-ellipsis">
+			                    <div class="bounce1"></div>
+			                    <div class="bounce2"></div>
+			                  <div class="bounce3"></div>
+			                </div>
+			            </h4>
+			        </div>
+			    </div>
+
+				<!-- 分页组件 -->
+				<app-riccio-paginations [total]="pageTotal"
+										[pboxData]="[20,100,200]"
+				                        (pageValue)="fnOutputPage($event)"></app-riccio-paginations>
+			</div>
+		</ng-template>
+
+		<!--授权-->
+		<ng-template [ngSwitchCase]="1">
+			 <app-role-auth [RoleAuthData]="RoleAuthData.data"
+						   [routerInfo]="routerInfo"
+						   [roleInfo]="checkRoleInfo"></app-role-auth>
+		</ng-template>
+
+	</div>
+
+</div>
+
+<app-riccio-select-members
+	[isShow]="selectMemberData.isShow"
+	[leftData]="selectMemberData.leftData"
+	[rightData]="selectMemberData.rightData"
+	(close)="fnSelectMemberClose()"
+	(pageValue)="fnMoreRoleUser($event)"
+	(emitData)="addRoleUser($event)"
+	(searchValue)="fnSearchRoleUser($event)"
+	[nextPage]="selectMemberData.nextPage">
+</app-riccio-select-members>
+
+
+<app-riccio-pbox>
+	<div body [ngSwitch]="pboxOtherSymbol">
+		<ng-template [ngSwitchCase]="'selectRole'">
+			<app-role-select-role [roleId]="checkRoleInfo['id']"
+								  [routerInfo]="routerInfo"
+			                      [type]="riccioModalSymbol"></app-role-select-role>
+		</ng-template>
+	</div>
+</app-riccio-pbox>
+
+<app-riccio-modal>
+	<div body [ngSwitch]="riccioModalSymbol">
+		<ng-template [ngSwitchCase]="'deleteRole'">
+			<app-role-delete [deleteId]="checkRoleInfo['id']"
+							 [routerInfo]="routerInfo"
+			                 (emitData)="fnOutputRoleDelete($event)"></app-role-delete>
+		</ng-template>
+		<ng-template [ngSwitchCase]="'deleteRoleUser'">
+			<app-role-delete-userlist [roleId]="checkRoleInfo['id']"
+									  [userid]="checkMemberInfo"
+									  [routerInfo]="routerInfo"
+			                 	      (emitData)="fnOutputRoleDeleteUser($event)"></app-role-delete-userlist>
+		</ng-template>
+		<ng-template [ngSwitchCase]="'addRole'">
+			<app-role-add-or-edit [roleInfoName]="checkRoleInfo['groupname']"
+			                      [roleInfoId] = "checkRoleInfo['id']"
+								  [roleSymbol]="'addRole'"
+								  [routerInfo]="routerInfo"
+			                      [roleRules]="''"
+			                      (emitData)="fnOutputRoleAddEdit($event)"
+			                      (emitRefresh)="fnOutputRoleRefresh($event,'addRole')"></app-role-add-or-edit>
+		</ng-template>
+		<ng-template [ngSwitchCase]="'moreRole'">
+			<app-role-add-or-edit [roleInfoName]="checkRoleInfo['groupname']"
+			                      [roleInfoId] = "checkRoleInfo['id']"
+								  [roleSymbol]="'addRole'"
+								  [routerInfo]="routerInfo"
+			                      [roleRules]="checkRoleInfo['id']"
+			                      (emitData)="fnOutputRoleAddEdit($event)"
+			                      (emitRefresh)="fnOutputRoleRefresh($event,'addRole')"></app-role-add-or-edit>
+		</ng-template>
+		<ng-template [ngSwitchCase]="'editRole'">
+			<app-role-add-or-edit [roleInfoName]="checkRoleInfo['groupname']"
+			                      [roleInfoId] = "checkRoleInfo['id']"
+								  [roleSymbol]="'editRole'"
+								  [routerInfo]="routerInfo"
+			                      [roleRules]="''"
+			                      (emitData)="fnOutputRoleAddEdit($event)"
+			                      (emitRefresh)="fnOutputRoleRefresh($event,'editRole')"></app-role-add-or-edit>
+		</ng-template>
+		<ng-template [ngSwitchCase]="'assignRole'">
+			<app-admin-members-set-role [SetRoleData]='checkMemberInfo'
+								  [routerInfo]="routerInfo"
+			                      (emitData)="fnOutputAssignRole($event)"></app-admin-members-set-role>
+		</ng-template>
+
+	</div>
+</app-riccio-modal>

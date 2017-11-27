@@ -1,0 +1,48 @@
+<div class="wrapper-table-bottom">
+	<div class="datatable-page">
+		<!-- <div class="summary-tip f-l">
+			<span class="ico-radius ico-radius-g"></span><em>正常</em>
+			<span class="ico-radius ico-radius-d"></span><em>禁止</em>
+		</div> -->
+		<div class="page-box pagination-table-wrapper f-r">
+			<!-- <span class="pagination-showline-wrapper">显示行数</span>
+		    <div class="pagition-select-box"> 
+			    <span class="pagition-title-wrapper" 
+			          #pboxLine
+			          (click)="fnShowPbox($event,pboxLine)">       
+				    <span class="pagition-select-title">{{limit}}</span> 
+				    <i class="iconfont_common  common-chevron-down"></i> 
+				</span>
+		    </div> -->
+		    <span class="pagination-range-wrapper">
+		    	<span class="fs-pagination-from pagination-hlight">{{limitTextLeft}}</span>
+		    	<span class="pagination-hlight">-</span>
+		    	<span class="fs-pagination-to pagination-hlight">{{limitTextRight}}</span>
+		    	<span class="pagination-hlight">条/</span>
+		    	<span>共</span>
+		    	<span class="fs-pagination-total">{{total}}</span>
+		    	<span>条</span>
+		    </span>
+	    	<span class="pagination-prenext-wrapper">   
+		    	<button class="fs-pagination" disabled="{{page==1?'disabled':''}}" 
+		    	      (click)="fnParent()">上一页</button> 
+		    	<button class="fs-pagination" disabled="{{limit*page>=total?'disabled':''}}" 
+		    	      (click)="fnNext()">下一页</button>
+		    </span>
+	    	<span class="pagination-pageto-wrapper">   
+		    	<span class="goto-text">前往</span> 
+		    	<span class="pagination-pageto-box">       
+			    	<input type="text"
+			    	       #pageValue
+					       onkeyup="this.value=this.value.replace(/\D/g,'')" 
+					       (change)="page = total>0?pageValue.value:1;pageChangeLimitText();emitPageValue()"
+			    	       class="pagination-pageto-input" 
+			    	       name="page"
+			    	       [ngModel]="page">   
+			    </span> 
+		    	<span>页</span>
+	    	</span>
+		</div>
+
+	</div>
+</div>

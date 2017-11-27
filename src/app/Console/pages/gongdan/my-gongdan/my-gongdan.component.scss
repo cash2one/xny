@@ -1,0 +1,65 @@
+.myGongdan{
+  background-color: #FFF;
+  margin: 16px;
+  border-radius:5px;
+  border: 1px solid #eaeaea;
+  .remind {
+    .remind-header {
+      border-bottom: 1px solid #eaeaea;
+      padding: 16px 36px;
+      background-color: #f8f8f8;
+      span {
+        color: #ff6700;
+        padding-right: 20px;
+      }
+      span:first-child {
+        color: #818181;
+      }
+    }
+    .remind-body{
+      padding: 30px 28px 80px;
+      .content-header{
+        margin: 10px 0;
+        label{
+          span{
+            font-size: 14px;
+            font-weight: 500;
+          }
+          input{
+            padding: 5px 10px;
+            border: 1px solid #dddddd;
+            background-color: #fafafa;
+          }
+        }
+        button{
+          background-color: #447BD4;
+          border: 1px solid #447BD4;
+          color: #FFF;
+          padding: 5px 24px;
+          border-radius: 5px;
+        }
+      }
+      .content-body{
+        table{
+          border-top: 1px solid #DDDDDD;
+          width: 100%;
+          tr{
+            th,td{
+              padding: 10px 0px;
+              text-align: center;
+            }
+            th:nth-child(1){width: 10%};
+            th:nth-child(2){width: 25%};
+            th:nth-child(3){width: 10%};
+            th:nth-child(4){width: 15%};
+            th:nth-child(5){width: 10%};
+            th:nth-child(6){width: 10%};
+          }
+          tr:nth-child(odd){
+            background-color: #F8F8F8;
+          }
+        }
+      }
+    }
+  }
+}

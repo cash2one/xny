@@ -1,0 +1,48 @@
+@import '../../../Console-variable.scss';
+
+.wrapper-table-top{
+	border-bottom: 1px solid #eee;
+	line-height: 58px !important;
+}
+
+#undetails{
+	i.thumb{
+		font-size: 24px;
+		color: #ccc;
+	}
+}
+
+.showTip{
+	top:85px;
+}
+
+.gr-content-wrap{
+	.tip{
+		background: #fff;
+		margin: 14px 0 0px 15px;
+		border-radius: 3px;
+		border-top-right-radius: 0px;
+		border-bottom-right-radius: 0px;
+		padding: 10px;
+	}
+}
+
+.gr-nav-tree,
+.gr-wrapper-table{
+	border-radius: 3px;
+}
+
+.wrapper-tabLab{
+	.RoleTitleTab{
+		border-bottom: none;
+		height: 52px;
+		.menu-ul{
+			height: 52px;
+			.menu-ul-li{
+				&.active{
+					height: 52px;
+				}
+			}
+		}
+	}
+}

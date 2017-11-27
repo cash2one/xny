@@ -1,0 +1,31 @@
+.record{
+  .record-header{
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+    background-color: #f8f8f8;
+    padding: 12px 36px;
+    span{
+      border-bottom: 1px solid #447bd4;
+      padding-bottom:13px;
+    }
+  }
+  .recordBody{
+    padding: 16px 28px;
+    ul li{
+      border-bottom: 1px dashed #e5e5e5;
+      padding: 15px 0;
+      .record-right{
+        margin-top: 8px;
+        margin-left: 8px;
+        div{
+          margin-top: 5px;
+          margin-bottom: 5px;
+          img{
+            margin-left: 5px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

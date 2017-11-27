@@ -1,0 +1,131 @@
+<div class="module-body">
+    <div class="modal-content">
+        <div class="module-header">
+            <div class="wrapper-table-top tableTop" *ngIf="type == 'all'">
+                <div class="headLeft col-sm-12">
+                    <div class="control-panel select-cp col-sm-2" >
+                        <i class="down iconfont_admin admin-down"></i>
+                        <div class="select color666" (click)="fnShowTypes(typeBtn)" #typeBtn>
+                            {{requestShow.type}}
+                        </div>
+                    </div>
+                    <div class="control-panel select-cp col-sm-3">
+                        <i class="down iconfont_admin admin-xuanzeshijian"></i>
+                        <div class="select color666" (click)="fnShowDate('start')" #startDate>
+                            {{requestShow.startDate}}
+                        </div>
+                    </div>
+                    <span class="word">至</span>
+                    <div class="control-panel select-cp col-sm-3" >
+                        <i class="down iconfont_admin admin-xuanzeshijian"></i>
+                        <div class="select color666" (click)="fnShowDate('end')" #endDate>
+                            {{requestShow.endDate}}
+                        </div>
+                    </div>
+                    <button class="recent" [ngClass]="{'active':sevenClick}" (click)="fnRecentSeven()">
+                        最近7天
+                    </button>
+                    <button class="recent" [ngClass]="{'active':monthClick}" (click)="fnRecentThirty()">
+                        最近30天
+                    </button>
+                    <button class="gr-btn gr-btn-primary searchBtn" (click)="getComAccountLog()">
+                        搜索
+                    </button>
+                </div>
+            </div>
+            <div class="title" *ngIf="type == 'one'">
+                <span class="title-w title-active"><a href="javascript:;">企业消费记录</a></span>
+            </div>
+            <button class="btn addBtn btn-primary btn-sm f-r"
+              *ngIf="type == 'one'" (click)="fnBack()">返回列表</button>
+        </div>
+        <div class="module-body table-scroll-p">
+            <div class="tempList">
+                <div class="customer-list">
+                    <table class="table table-hover lc-table" tableTitle>
+                        <colgroup>
+                            <col *ngIf="type == 'all'" width="130">
+                            <col width="130">
+                            <col width="100">
+                            <col width="80">
+                            <col width="50">
+                            <col width="50">
+                            <col width="50">
+                            <col width="50">
+                            <col width="50">
+                        </colgroup>
+                        <thead class="hand table-head">
+                            <tr>
+                                <th *ngFor="let title of consumeTitles">
+                                    {{title}}
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <div class="table-scroll">
+                        <table class="table table-hover lc-table">
+                            <colgroup>
+                                <col *ngIf="type == 'all'" width="130">
+                                <col width="130">
+                                <col width="100">
+                                <col width="80">
+                                <col width="50">
+                                <col width="50">
+                                <col width="50">
+                                <col width="50">
+                                <col width="50">
+                            </colgroup>
+                            <tbody class="table-body" *ngIf="loadingType == 'hide'"  #clickTb>
+                                <tr *ngFor="let account of accountList" tableTitle>
+                                    <td *ngIf="type == 'all'" class="customer-content">
+                                        {{account.companyname}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{account.pay_num}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{account.created_at}}
+                                    </td>
+                                    <td class="customer-content">
+                                        <span class="name">
+                                            {{account.processWord}}
+                                        </span>
+                                        <span class="action">
+                                            {{account.title}}
+                                        </span>
+                                    </td>
+                                    <td class="customer-content">
+                                        {{account.username}}
+                                    </td>
+                                    <td class="customer-content">
+                                        <span class="change"
+                                            [ngClass]="{'add':account.amount_type,'reduce':!account.amount_type}">
+                                            {{account.amount}}
+                                        </span> 
+                                    </td>
+                                    <td class="customer-content">
+                                        {{account.amount_now}}
+                                    </td>
+                                    <td class="customer-level" noTitle>
+                                        <a href="javascript:;" class="approval-action" (click)="fnShowDetail(account)">
+                                            详情
+                                        </a>
+                                    </td>
+                                </tr>   
+                            </tbody>
+                            <app-riccio-spinners [type]="loadingType"
+                            [emptyText]="'没有查询到符合条件的记录'"></app-riccio-spinners>
+                        </table>
+                    </div>
+                    <app-riccio-paginations
+                                [total]="pageParam['total']"
+                                (pageValue)="fnPagination($event)">
+                    </app-riccio-paginations>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<consume-show-detail></consume-show-detail>
+<app-riccio-pop-datePicker></app-riccio-pop-datePicker>

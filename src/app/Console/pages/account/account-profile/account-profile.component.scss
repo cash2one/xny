@@ -1,0 +1,20 @@
+.gr-form-horizontal{
+	.form-group{
+        width: 600px;
+        .control-label{
+            padding: 0;
+        }
+	}
+}
+
+.selectSex{
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+}
+
+.gr-alert{
+    width: 40%;
+    // margin-left: 8%;
+    margin-bottom: 20px;
+}

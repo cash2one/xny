@@ -1,0 +1,58 @@
+$bg:rgba(0,0,0,0.7);
+
+.popoversMain{
+	position: fixed;
+    // top: 50px;
+    border-radius: 4px;
+    z-index: 99999999;
+    // line-height: 24px;
+    background-color: $bg;
+    color: #fff;
+    text-align: left;
+    padding: 4px 12px;
+    max-width: 300px;
+    &.top:after{
+		content: '';
+	    position: absolute;
+	    border-top: 4px solid $bg;
+	    border-left: 4px solid transparent;
+	    border-right: 4px solid transparent;
+	    transform: translateX(-50%);
+	    bottom: -4px;
+	    left: 50%;
+    }
+    &.right:after{
+		content: '';
+	    position: absolute;
+	    border-top: 4px solid transparent;
+	    border-bottom: 4px solid transparent;
+	    border-right: 4px solid $bg;
+	    transform: translateY(-50%);
+	    top: 50%;
+	    left: -4px;
+    }
+    &.bottom:after{
+		content: '';
+	    position: absolute;
+	    border-bottom: 4px solid $bg;
+	    border-left: 4px solid transparent;
+	    border-right: 4px solid transparent;
+	    transform: translateX(-50%);
+	    top: -4px;
+	    left: 50%;
+    }
+    &.left:after{
+		content: '';
+	    position: absolute;
+	    border-top: 4px solid $bg;
+	    border-left: 4px solid transparent;
+	    border-right: 4px solid transparent;
+	    transform: translateX(-50%);
+	    bottom: -4px;
+	    left: 50%;
+    }
+	.popoverContent{
+		color: #fff;
+		display: block;
+	}
+}

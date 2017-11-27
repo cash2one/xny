@@ -1,0 +1,130 @@
+<app-riccio-notifications></app-riccio-notifications>
+
+<company-audit-detail></company-audit-detail>
+<app-riccio-browse></app-riccio-browse>
+
+<div class="site-content">
+    <div class="module-header">
+        <div class="title">
+            <span class="iconfont_admin  admin-guanli"></span>
+            <span>企业管理</span>
+        </div>
+        <div class="flex-panel">
+            <ul class="nav nav-pills lc-tabs" role="tablist">
+                <li class="rightTab" *ngFor="let menu of menuRight" routerLinkActive='active'>
+                    <a class="" href="javascript:;" [routerLink]="['/Admin/'+menu.url]">{{menu.name}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="module-body">
+        <div class="modal-content">
+            <div class="module-header">
+                <div class="title">
+                    <span class="title-w title-active"><a href="javascript:;">企业认证</a></span>
+                </div>
+            </div>
+            <div class="module-body table-scroll-p">
+                <div class="tempList">
+                    <div class="integration-header">
+                        <form class="form-horizontal">
+                            <div class="control-panel select-cp col-sm-2">
+                                <i class="down iconfont_admin admin-down1"></i>
+                                <div class="select color666" #rangeBtn (click)="fnRange($event,rangeBtn)">{{rangeVal}}</div>
+                            </div>
+                            <div class="control-panel col-sm-4">
+                                <div class="search-container">
+                                    <input type="input" name='userSearchName' class="form-control" placeholder="输入企业名称或营业执照" [(ngModel)]="userSearchParams.other"
+                                        autocomplete="false" (keyup)="fnKeySearchCom($event)" (blur)="fnBlurSearchCom()">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="customer-list">
+                        <!-- 从上侧弹出的组件样式 -->
+                        <div class="flyLeftContent" *ngIf="flyLeftData.isShow" [@flyTop]="'in'">
+                            <div class="content-text">已选择<span>{{flyLeftData.number}}</span>项</div>
+                            <ul class="content-list">
+                                <li *ngFor="let list of flyLeftData.showText">
+                                    <a href="javascript:;" #checkStatu (click)="fnChangeCheck(list.type,checkStatu,$event)">{{list.name}}</a>
+                                </li>
+                            </ul>
+                            <a href="javascript:;" class="f-r up-hide" (click)="fnCheckAll(false)"><span><i class="iconfont_admin  admin-up"></i></span></a>
+                        </div>
+                        <table class="table table-hover lc-table" tableTitle>
+                            <colgroup>
+                                <col width="35">
+                                <col width="100">
+                                <col width="100">
+                                <col width="60">
+                                <col width="50">
+                                <col width="100">
+                            </colgroup>
+                            <thead class="hand table-head">
+                                <tr>
+                                    <th class="checkAll" noTitle>
+                                        <a href="javascript:;" class="customer-check" (click)="fnCheckAll(!allCheck)">
+                                            <i class="iconfont_admin  {{allCheck===false?'admin-check':'admin-check1'}}">
+                                            </i>
+                                        </a>
+                                    </th>
+                                    <th *ngFor="let title of titleArr">
+                                        {{title}}
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <div class="table-scroll">
+                            <table class="table table-hover lc-table">
+                                <colgroup>
+                                    <col width="35">
+                                    <col width="100">
+                                    <col width="100">
+                                    <col width="60">
+                                    <col width="50">
+                                    <col width="100">
+                                </colgroup>
+                                <app-my-loading *ngIf="isLoading"></app-my-loading>
+                                <tbody class="table-body" *ngIf="!isLoading" #clickTb>
+                                    <tr *ngFor="let list of companyList" (click)="fnShowDetail(list)" tableTitle>
+                                        <td class="customer-select" noTitle>
+                                            <a href="javascript:;" class="customer-check" (click)="fnCheckUser(list,$event)">
+                                                <i class="iconfont_admin  {{list['isCheck']===false?'admin-check':'admin-check1'}}">
+                                                </i>
+                                            </a>
+                                        </td>
+                                        <td class="customer-content">
+                                            {{list.company_name}}
+                                        </td>
+                                        <td class="customer-content">
+                                            {{list.lisense_code}}
+                                        </td>
+                                        <td class="customer-content">
+                                            {{list.name}}
+                                        </td>
+                                        <td class="customer-content">
+                                            <span class="status" [ngClass]="{'statuYes':list.status == 2,'statuNo':list.status == 3,'statuLoad':list.status == 1}"></span> 
+                                            {{list.status == 1?'审核中':list.status == 2?'已通过':'未通过'}}
+                                        </td>
+                                        <td class="customer-content">
+                                            {{list.created_at}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <app-riccio-paginations class="page"
+                            [pboxData]="pageParam['pboxData']"
+                            [total]="pageParam['total']"
+                            (pageValue)="fnPagination($event)">
+                        </app-riccio-paginations>
+                    </div>
+                </div>
+            </div>
+
+            <router-outlet></router-outlet>
+            
+        </div>
+    </div>
+</div>

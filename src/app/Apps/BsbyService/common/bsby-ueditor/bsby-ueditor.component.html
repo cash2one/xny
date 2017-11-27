@@ -1,0 +1,8 @@
+<ueditor class="ued"
+        *ngIf="uedShow"
+        (onReady)="uedReady()"
+        [config]="config"
+        [(ngModel)]="values"
+        [ngClass]="{'uedanger':formControl?(formControl.touched && !formControl.valid):false}"
+        #contentUed>
+</ueditor>

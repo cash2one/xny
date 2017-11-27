@@ -1,0 +1,21 @@
+<div body class="opDemand">
+    <form class="gr-form-horizontal addDemandForm" [formGroup]="demandForm">
+        <div class="form-group f-i">
+            <div class="control-panel col-gr-12">
+                <textarea class="commentMain" rows="4" placeholder="输入沟通内容"
+                    [(ngModel)]="demandData.content"
+                    [formControl]="ctrlDemand.content"></textarea>
+            </div>
+            <div class="inputTool">
+                <app-bsby-client-input-tool
+                    [uploadUrl]="uploadUrl"
+                    (uploadEmit)="uploadEmit($event)"></app-bsby-client-input-tool>
+            </div>
+        </div>
+        
+        <div class="form-group f-btn col-gr-3">
+            <button (click)="addDemand()" class="gr-btn gr-btn-primary" 
+                [disabled]="!demandForm.valid || !addBtn.status">{{addBtn.text}}</button>
+        </div>
+    </form>
+</div>

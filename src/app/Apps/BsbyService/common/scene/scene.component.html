@@ -1,0 +1,122 @@
+<div class="scene" [@rightIn]="'in'"  *ngIf = "isShow">
+    <div class="modal-content">
+        <div class="modal-body gr-form-horizontal">
+            <div class="search">
+                <bsby-search-input
+                    [placeholder]="'请输入公司名称或域名'"
+                    [(ngModel)]="postSearchData.name"
+                    (searchEmit)="fnSearchCname()">
+                </bsby-search-input>
+                <a href="javascript:;" (click)="fnSceneClear()">清除全部</a>
+            </div>
+            <div class="conditions">
+                <div class="status">
+                    <div class="title">状态</div>
+                    <button class="option" *ngFor="let statu of status"
+                        [ngClass]="{'active':statu.active}"
+                        (click)="fnSelectOption('statu',statu)">
+                        {{statu.name}}
+                    </button>
+                </div>
+                <div class="products">
+                    <div class="title">产品方案</div>
+                    <div *ngIf="productLoadingType == 'hide'">
+                        <button class="option" *ngFor="let product of products"
+                            [ngClass]="{'active':product.active}"
+                            (click)="fnSelectOption('product',product)">
+                            {{product.name}}
+                        </button>
+                    </div>
+                    <app-riccio-spinners [type]="productLoadingType"></app-riccio-spinners>
+                </div>
+                <div class="excus">
+                    <div class="title">执行负责人</div>
+                    <button class="option" 
+                        [ngClass]="{'active':sceneShow.executor.active,'noActive':!sceneShow.executor.active}">
+                        {{sceneShow.executor.name}}
+                        <i *ngIf="sceneShow.executor.active && sceneConf.showExc" class="iconfont_bsby bsby-iconfontquxiao"
+                            (click)="fnDelExc()"></i>
+                    </button>
+                    <button class="option show" *ngIf="sceneConf.showExc" (click)="fnShowExc()">
+                        <i class="iconfont_bsby bsby-tianjiarenyuan"></i>
+                    </button>
+                </div>
+                <div class="services">
+                    <div class="title">客服</div>
+                    <button class="option"
+                        [ngClass]="{'active':sceneShow.service.active,'noActive':!sceneShow.service.active}">
+                        {{sceneShow.service.name}}
+                        <i *ngIf="sceneShow.service.active" class="iconfont_bsby bsby-iconfontquxiao"
+                            (click)="fnDelService()"></i>
+                    </button>
+                    <button class="option show" (click)="fnShowService()">
+                        <i class="iconfont_bsby bsby-tianjiarenyuan"></i>
+                    </button>
+                </div>
+                <div class="starttime">
+                    <div class="title">开始时间</div>
+                    <div class="selectTime" (click)="fnShowDate('start_f')" #startTimeFEl>
+                        <i class="down iconfont_bsby bsby-xuanzeshijian"></i>
+                        <div class="select color666">{{postData.starttime[0]?postData.starttime[0]:'选择开始时间'}}</div>
+                    </div>
+                    <span class="word">至</span>
+                    <div class="selectTime end" (click)="fnShowDate('start_s')" #startTimeSEl>
+                        <i class="down iconfont_bsby bsby-xuanzeshijian"></i>
+                        <div class="select color666">{{postData.starttime[1]?postData.starttime[1]:'选择开始时间'}}</div>
+                    </div>
+                </div>
+                <div class="endtime">
+                    <div class="title">结束时间</div>
+                    <div class="selectTime" (click)="fnShowDate('end_f')" #endTimeFEl>
+                        <i class="down iconfont_bsby bsby-xuanzeshijian"></i>
+                        <div class="select color666">{{postData.endtime[0]?postData.endtime[0]:'选择结束时间'}}</div>
+                    </div>
+                    <span class="word">至</span>
+                    <div class="selectTime end" (click)="fnShowDate('end_s')" #endTimeSEl>
+                        <i class="down iconfont_bsby bsby-xuanzeshijian"></i>
+                        <div class="select color666">{{postData.endtime[1]?postData.endtime[1]:'选择结束时间'}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="member-action">
+                <div class="sname" *ngIf="showSname">
+                    <div class="search">
+                        <input name="sname" autocomplete="off" 
+                            [(ngModel)]="postData.name"
+                            placeholder="请输入场景名称">
+                        <button class="gr-btn gr-btn-primary" [disabled]="!btnFlag.status" (click)="fnEmitData()">{{btnFlag.name}}</button>
+                        <button class="gr-btn gr-btn-danger" (click)="fnCancleSname()">取消</button>
+                    </div>
+                </div>
+                <button *ngIf="!showSname" class="gr-btn gr-btn-primary gr-btn-primary" 
+                    (click)="fnShowSname()">{{btnFlag.mainName}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-riccio-single-members
+    [membersList]="selectExcData.data"
+    [isShow]="selectExcData.isShow"
+    [header]="selectExcData.header"
+    [title]="selectExcData.title"
+    [keyName]="'real_name'"
+    [placeholder]="'输入姓名搜寻执行负责人'"
+    [nextPage]="selectExcData.nextPage"
+    (searchValue)="fnSearchExc($event)"
+    (close)="fnSelectExcClose()"
+    (emitData)="fnAddExc($event)">
+</app-riccio-single-members>
+
+<app-riccio-single-members
+    [membersList]="selectServiceData.data"
+    [isShow]="selectServiceData.isShow"
+    [header]="selectServiceData.header"
+    [title]="selectServiceData.title"
+    [keyName]="'real_name'"
+    [placeholder]="'输入姓名搜寻客服人员'"
+    [nextPage]="selectServiceData.nextPage"
+    (searchValue)="fnSearchService($event)"
+    (close)="fnSelectServiceClose()"
+    (emitData)="fnAddService($event)">
+</app-riccio-single-members>

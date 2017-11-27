@@ -1,0 +1,48 @@
+<div class="showMore" *ngIf="isShowMore">
+  <div class="more-head">
+    更多产品与服务问题
+  </div>
+  <div class="more-body clear">
+    <ul class="out">
+      <li class="outLi" *ngFor="let firstMenu of columnOne">
+        <div>{{firstMenu.name}}</div>
+        <ul class="inner">
+          <li *ngFor="let secondMenu of firstMenu.chilren" (click)="ask(secondMenu.id)">{{secondMenu.name}}</li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="out">
+      <li class="outLi" *ngFor="let firstMenu of columnTwo">
+        <div>{{firstMenu.name}}</div>
+        <ul class="inner">
+          <li *ngFor="let secondMenu of firstMenu.chilren">{{secondMenu.name}}</li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="out">
+      <li class="outLi" *ngFor="let firstMenu of columnThree">
+        <div>{{firstMenu.name}}</div>
+        <ul class="inner">
+          <li *ngFor="let secondMenu of firstMenu.chilren">{{secondMenu.name}}</li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="out">
+      <li class="outLi" *ngFor="let firstMenu of columnFour">
+        <div>{{firstMenu.name}}</div>
+        <ul class="inner">
+          <li *ngFor="let secondMenu of firstMenu.chilren">{{secondMenu.name}}</li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="out">
+      <li class="outLi" *ngFor="let firstMenu of columnFive">
+        <div>{{firstMenu.name}}</div>
+        <ul class="inner">
+          <li *ngFor="let secondMenu of firstMenu.chilren">{{secondMenu.name}}</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="iconfont_console console-up packUp" (click)="packup()" *ngIf="isShowMore == true"></div>
+</div>

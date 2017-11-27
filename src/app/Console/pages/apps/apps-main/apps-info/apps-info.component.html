@@ -1,0 +1,89 @@
+
+<div class="gr-wrapper-table">
+
+	<!-- 分块的内容区域 -->
+	<div class="gr-overflow-y">
+
+		<div class="apps-info-main">
+			
+			<!-- 头部 -->
+			<div class="info-details">
+				<div class="details-thumb">
+					<img src="{{appsInfoData.thumb?appsInfoData.thumb:'assets/img/apps_defulet.jpg'}}" alt="星牛云">
+				</div>
+				<div class="details-bottom">
+					<div class="details-text">
+						<strong>{{appsInfoData.name}}</strong>
+						<p>{{appsInfoData.desc}}</p>
+					</div>
+					<div class="details-button">
+						<riccio-button [normal]="'开通'" 
+									   [disabled]="'开通中...'"
+									   [open]="btnOpen"
+									   (emitStatus)="fnOutputBtn('openApps',$event)"
+						               *ngIf = "appsInfoData.appStatus==0"></riccio-button>
+						<riccio-button [normal]="'进入'"
+									   [disabled]="'进入'"
+									   [open]="true"
+									   (emitStatus)="fnOutputBtn('goToApps',$event)"
+						               *ngIf = "appsInfoData.appStatus==1"></riccio-button>
+					</div>
+				</div>
+			</div>
+
+			<!-- 底部选项卡 -->
+			<div class="wrapper-tabLab">
+
+				<div class="gr-navbar-title RoleTitleTab">
+					<div class="navbar-menu f-l">
+						<ul class="menu-ul clearfix">
+							<li class="menu-ul-li f-l {{tableSymbol=='info'?'active':''}}">
+							    <a href="javascript:;" (click)="tableSymbol = 'info'">应用详情</a>
+							</li>
+							<!-- <li class="menu-ul-li f-l {{tableSymbol=='成员管理'?'active':''}}">
+							    <a href="javascript:;" (click)="tableSymbol = '成员管理'">成员管理</a>
+							</li>
+							<li class="menu-ul-li f-l {{tableSymbol=='权限设置'?'active':''}}">
+							    <a href="javascript:;" (click)="tableSymbol = '权限设置'">权限设置</a>
+							</li> -->
+							<li class="menu-ul-li f-l {{list.url==tableSymbol?'active':''}}" 
+							    *ngFor="let list of appsTableData">
+							    <a href="javascript:;" (click)="selectTableSymbol(list)">{{list.name}}</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+		
+			</div>
+
+		</div>
+		
+		<div class="info-bottom" [ngSwitch]="appsInfoData['model']">
+			
+			<!-- 应用详情 -->
+			<div class="content" *ngIf="tableSymbol=='info'">
+				<div class="main" [innerHTML]="appsInfoData.content"></div>
+			</div>
+
+			<!-- 权限设置 -->
+			<app-role-main [showTip]="false" [model]="appsInfoData['model']" 
+					       *ngIf = "tableSymbol=='authorization'"></app-role-main>
+			<!-- 成员管理 -->
+			<app-apps-info-members [appsId]="appsInfoData['id']"
+								   [modelName] = "appsInfoData['model']" 
+							        *ngIf = "tableSymbol=='members'">
+			</app-apps-info-members>	
+
+			<!-- 软文服务端 -->
+			<ng-template [ngSwitchCase]="'RuanwenService'"> 
+				<app-ruanwen-account-set *ngIf = "tableSymbol=='set'"></app-ruanwen-account-set>
+				<app-ruanwen-members-set *ngIf = "tableSymbol=='member'"></app-ruanwen-members-set>
+			</ng-template>
+
+		</div>
+	
+	</div>
+
+</div>
+
+

@@ -1,0 +1,96 @@
+<div class="account home">
+    <div class="balance" *ngIf="mainLoadingType == 'hide'">
+        <span class="word">现金余额：</span>
+        <span class="value">¥ {{comInfo.amount}}</span>
+        <button class="gr-btn gr-btn-primary recharge" (click)="fnGoRecharge()">
+            充值
+        </button>
+    </div>
+    <div class="consume" *ngIf="mainLoadingType == 'hide'">
+        <div class="title">
+            <span class="name">近期消费记录</span>
+        </div>
+        <div class="main">
+            <div class="gr-wrapper-table tableList">
+                <div class="wrapper-content"> 
+                    <table class="table table-hover gr-table">
+                        <colgroup>
+                            <col width="160">
+                            <col width="80">
+                            <col width="80">
+                            <col width="80">
+                            <col width="100">
+                            <col width="80">
+                            <col width="80">
+                        </colgroup>
+                        <thead class="hand">
+                            <tr>
+                                <th *ngFor = "let title of consumeTitles" [title]="title">
+                                    {{title}}
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+    
+                    <div class="wrapper-table" *ngIf="loadingType == 'hide'">
+                        <table class="table hover table-hover gr-table">
+                            <colgroup>
+                                <col width="160">
+                                <col width="80">
+                                <col width="80">
+                                <col width="80">
+                                <col width="100">
+                                <col width="80">
+                                <col width="80">
+                            </colgroup>
+                            <tbody #clickTB>
+                                <tr *ngFor="let account of accountHome">
+                                    <td class="customer-content" [title]="account.pay_num">
+                                        {{account.pay_num}}
+                                    </td>
+                                    <td class="customer-content" [title]="account.created_at">
+                                        {{account.created_at}}
+                                    </td>
+                                    <td class="customer-content" [title]="account.processWord + '\n' + account.title">
+                                        <span class="name">
+                                            {{account.processWord}}
+                                        </span>
+                                        <span class="action">
+                                            {{account.title}}
+                                        </span>
+                                    </td>
+                                    <td class="customer-content" [title]="account.username">
+                                        {{account.username}}
+                                    </td>
+                                    <td class="customer-content" [title]="account.amount">
+                                        <span class="change"
+                                            [ngClass]="{'add':account.amount_type,'reduce':!account.amount_type}">
+                                            {{account.amount}}
+                                        </span> 
+                                    </td>
+                                    <td class="customer-content" [title]="account.amount_now">
+                                        {{account.amount_now}}
+                                    </td>
+                                    <td class="customer-level">
+                                        <a href="javascript:;" class="approval-action" (click)="fnShowDetail(account)">
+                                            详情
+                                        </a>
+                                        <a href="javascript:;" class="approval-action" (click)="fnShowMark(account)">
+                                            备注
+                                        </a>
+                                    </td>
+                                </tr>                
+                            </tbody>
+                        </table>
+                    </div>
+                    <app-riccio-spinners [type]="loadingType"></app-riccio-spinners>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <app-riccio-spinners [type]="mainLoadingType"></app-riccio-spinners>
+</div>
+
+<app-riccio-pbox></app-riccio-pbox>
+<show-detail></show-detail>
+<conosle-note (noteEmit)="noteSuccess($event)"></conosle-note>

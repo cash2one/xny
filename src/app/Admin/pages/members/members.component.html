@@ -1,0 +1,35 @@
+<div class="site-content" 
+    [ngClass]="{'consoleBg':isConsole,'noConsole':!isConsole}">
+    <div class="module-header">
+        <div class="breadcrumb">
+            <app-riccio-breadcrumb
+                [iconfont]="'iconfont_admin admin-guanli'"
+                [breadData]="breadcrumbData"></app-riccio-breadcrumb>
+        </div>
+        <div class="cname">
+            <i *ngIf="cname != ''" class="iconfont_admin admin-gongsi"></i>
+            <span>{{cname}}</span>
+        </div>
+        <div class="flex-panel" *ngIf="routerInfo.model === 'Console'">
+            <ul class="nav nav-pills lc-tabs" role="tablist">
+                <li class="rightTab" routerLinkActive='active'>
+                    <a href="javascript:;" routerLink="/Admin/members/list/model/{{routerInfo.model}}/cid/{{routerInfo.cid}}">员工管理</a>
+				</li>
+				<li class="rightTab" routerLinkActive='active'>
+                    <a href="javascript:;" routerLink="/Admin/members/disable/model/{{routerInfo.model}}/cid/{{routerInfo.cid}}">已禁用账号</a>
+				</li>
+				<li class="rightTab" routerLinkActive='active'>
+                    <a href="javascript:;" routerLink="/Admin/members/department/model/{{routerInfo.model}}/cid/{{routerInfo.cid}}">部门管理</a>
+                </li>
+            </ul>
+        </div>
+	</div>
+
+     <!-- <router-outlet></router-outlet>  -->
+    
+    <div class="main-lu">
+        <router-outlet></router-outlet> 
+    </div>
+</div>
+
+<app-riccio-pbox></app-riccio-pbox> 

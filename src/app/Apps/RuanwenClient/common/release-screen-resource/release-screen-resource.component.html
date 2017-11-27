@@ -1,0 +1,25 @@
+<div class="screen-main">
+		
+	<!-- 头部tag切换和搜索组件 -->
+<!-- 	<app-screen-type-header (emitTag)="fnEmitTag($event)"
+							(emitSearch)="fnEmitSearch($event)"></app-screen-type-header> -->
+
+	<!-- 筛选的类型 -->
+	<app-screen-type-item *ngFor = "let list of screenItemList"
+						  [itemList]="list.media_data"
+						  [itemTitle]="list.media_name"
+						  [itemId]="list.media_id"
+						  (emitData)="fnEmitTypeItem($event)"
+						  (emitChoose)="fnEmitItemPassOnChoose($event)"></app-screen-type-item>
+
+	<!-- 下拉框筛选 -->
+	<app-screen-type-select [itemList]="screenItemListOther"
+							(emitSelectData)='fnEmitTypeSelect($event)'
+							(emitChoose)="fnEmitSelectPassOnChoose($event)"></app-screen-type-select>
+
+	<!-- 已选择 -->
+	<app-screen-type-choose [title]="chooseTitle"
+							[value]="chooseValue"
+							(emitUnChooseData)="fnEmitUnChoose($event)"></app-screen-type-choose>
+
+</div>

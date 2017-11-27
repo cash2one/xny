@@ -1,0 +1,32 @@
+.header-title{
+	height: 50px;
+	border-bottom: 1px solid #EAEFF1;
+	line-height: 50px;
+	margin-left: 20px;
+	.title{
+		font-size: 14px;
+	}
+}
+
+.articles-main{
+	position: relative;
+    width: 100%;
+    height: calc(100% - 100px);
+    top: 0;
+    bottom: 50px;
+    overflow-y: auto;
+}
+
+
+.writing-articles{
+    border-bottom: 1px solid #EAEFF1;
+    margin-top: 20px;
+    margin-left: 20px;
+    position: absolute;
+    top: 0;
+    bottom: -300px;
+    left: 0;
+    .form-group{
+    	// width: 700px;
+    }
+}

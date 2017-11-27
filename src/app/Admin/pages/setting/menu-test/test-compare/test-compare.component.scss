@@ -1,0 +1,106 @@
+.modal-content {
+  padding: 0 25px;
+  min-width: 1000px;
+  .module-header {
+    height: 60px;
+    line-height: 60px;
+    border-bottom: 1px solid #F3F3F3;
+  }
+  .module-body{
+    padding-top: 7px;
+    .menu{
+      display: inline-block;
+      border: 1px solid #E9EDF0;
+      width: 40%;
+      height: 620px;
+      .menu-header{
+        color: #FFF;
+        background-color: #189FD9;
+        padding: 5px 15px;
+        font-size: 14px;
+      }
+      .menu-body{
+        height: 95%;
+        .menu-top{
+          height: 50%;
+          .menu-top-header{
+            width: 100%;
+            font-size: 14px;
+            padding: 5px 15px;
+            background-color: #F3F3F3;
+          }
+          .menu-top-body{
+            height: 90%;
+            overflow: auto;
+            padding: 10px 15px;
+            li{
+              list-style: none;
+              .deleteMenu{
+                color: red;
+                font-size: 14px;
+                float: right;
+                cursor: pointer;
+                height: 19px;
+              }
+            }
+            li:hover{
+              background-color: #FbFbFb;
+            }
+          }
+        }
+        .menu-bottom{
+          height: 50%;
+          .menu-bottom-header{
+            width: 100%;
+            font-size: 14px;
+            padding: 5px 15px;
+            background-color: #F3F3F3;
+          }
+          .menu-bottom-body{
+            height: 89%;
+            overflow: auto;
+            padding:10px 15px;
+            li{
+              list-style: none;
+              .deleteMenu{
+                color: red;
+                font-size: 14px;
+                float: right;
+                cursor: pointer;
+                height: 19px;
+              }
+            }
+            li:hover{
+              background-color: #FbFbFb;
+            }
+          }
+        }
+      }
+    }
+    .shuangyou{
+      display: inline-block;
+      font-size: 20px;
+      color: #A6A8A8;
+      width: 77px;
+      height: 26px;
+      text-align: center;
+      position: relative;
+      bottom: 271px;
+      cursor: pointer;
+    }
+    .shuangyou:hover{
+      font-size: 24px;
+      font-weight: 700;
+    }
+    .button-save{
+      display: block;
+      color: #FFF;
+      padding: 8px 38px;
+      background-color: #669DFF;
+      border-radius: 3px;
+      border:0px solid #FFF;
+      margin-top: 20px;
+      cursor:pointer;
+    }
+  }
+}

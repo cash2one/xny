@@ -1,0 +1,136 @@
+<div class="account incomeExpense">
+    <div class="gr-wrapper-table tableList">
+        <div class="wrapper-table-top tableTop">
+            <div class="headLeft col-sm-12">
+                <div class="control-panel select-cp col-sm-2" (click)="fnShowTypes(typeBtn)">
+                    <i class="down iconfont_console console-down"></i>
+                    <div class="select color666" #typeBtn>
+                        {{requestShow.type}}
+                    </div>
+                </div>
+                <!--金额筛选-->
+                <div class="control-panel select-cp col-sm-1">
+                    <div class="countPar">
+                        <input type="text" class="count form-control" [(ngModel)]="requestParam.amount[0]"
+                            (keyup)="resolveChargeInput(0)"> 
+                    </div>
+                </div>
+                <span class="word">-</span>
+                <div class="control-panel select-cp col-sm-1">
+                    <div class="countPar">
+                        <input type="text" class="count form-control" [(ngModel)]="requestParam.amount[1]"
+                            (keyup)="resolveChargeInput(1)"> 
+                    </div>
+                </div>
+                <!--时间筛选-->
+                <div class="control-panel select-cp col-sm-2" (click)="fnShowDate(startDate,'start')">
+                    <i class="down iconfont_console console-xuanzeshijian"></i>
+                    <div class="select color666" #startDate>{{requestShow.startDate}}</div>
+                </div>
+                <span class="word">至</span>
+                <div class="control-panel select-cp col-sm-2" (click)="fnShowDate(endDate,'end')">
+                    <i class="down iconfont_console console-xuanzeshijian"></i>
+                    <div class="select color666" #endDate>{{requestShow.endDate}}</div>
+                </div>
+                <button class="recent" [ngClass]="{'active':sevenClick}" (click)="fnRecentSeven()">
+                    最近7天
+                </button>
+                <button class="recent" [ngClass]="{'active':monthClick}" (click)="fnRecentThirty()">
+                    最近30天
+                </button>
+                <button class="gr-btn gr-btn-primary searchBtn" (click)="getIncomeExp()">
+                    <i class="iconfont_console console-icon_keyword"></i>
+                    搜索
+                </button>
+            </div>
+        </div>
+
+        <div class="wrapper-content incomeTable"> 
+            <table class="table table-hover gr-table">
+                <colgroup>
+                    <col width="160">
+                    <col width="80">
+                    <col width="80">
+                    <col width="80">
+                    <col width="100">
+                    <col width="80">
+                    <col width="80">
+                </colgroup>
+                <thead class="hand">
+                    <tr>
+                        <th *ngFor = "let title of incomeExpenseTitle" [title]="title">
+                            {{title}}
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+
+            <div class="wrapper-table" *ngIf= "loadingType == 'hide'">
+                <table class="table table-hover gr-table">
+                    <colgroup>
+                        <col width="160">
+                        <col width="80">
+                        <col width="80">
+                        <col width="80">
+                        <col width="100">
+                        <col width="80">
+                        <col width="80">
+                    </colgroup>
+                    <tbody #clickTB>
+                        <tr *ngFor="let income of incomeExps">
+                            <td class="customer-content" [title]="income.pay_num">
+                                {{income.pay_num}}
+                            </td>
+                            <td class="customer-content" [title]="income.created_at">
+                                {{income.created_at}}
+                            </td>
+                            <td class="customer-content" [title]="income.processWord + '\n' + income.title">
+                                <span class="name">
+                                    {{income.processWord}}
+                                </span>
+                                <span class="action">
+                                    {{income.title}}
+                                </span>
+                            </td>
+                            <td class="customer-content" [title]="income.username">
+                                {{income.username}}
+                            </td>
+                            <td class="customer-content" [title]="income.amount">
+                                <span class="change"
+                                    [ngClass]="{'add':income.amount_type,'reduce':!income.amount_type}">
+                                    {{income.amount}}
+                                </span> 
+                            </td>
+                            <td class="customer-content" [title]="income.amount_now">
+                                {{income.amount_now}}
+                            </td>
+                            <td class="customer-level">
+                                <a href="javascript:;" class="approval-action" (click)="fnShowDetail(income)">
+                                    详情
+                                </a>
+                                <a href="javascript:;" class="approval-action" (click)="fnShowMark(income)">
+                                    备注
+                                </a>
+                            </td>
+                        </tr>               
+                    </tbody>
+                </table>
+            </div>
+            <app-riccio-spinners [type]="loadingType"
+                                    [emptyText]="'没有查询到符合条件的记录'"></app-riccio-spinners>
+            <app-riccio-paginations
+                        [total]="pageParam['total']"
+                        (pageValue)="fnPagination($event)">
+            </app-riccio-paginations>
+        </div>
+    </div>
+</div>
+
+<app-riccio-pbox>
+    <div body> 
+        <app-riccio-datepickers (callDatepickersData)="fnEmitDataPicker($event)"
+                                [type]="dateType"></app-riccio-datepickers>
+    </div>
+</app-riccio-pbox>
+<show-detail></show-detail>
+<conosle-note (noteEmit)="noteSuccess($event)"></conosle-note>

@@ -1,0 +1,48 @@
+$moneyColor:#FF6600;
+$headBorderColor:#efefef;
+
+$successColor:#55BD47;
+$dangerColor:#FF6600;
+
+.account{
+    top: 68px;
+    left: 10px;
+    background: #fff;
+    border-radius: 5px;
+    position: absolute;
+    right: 10px;
+    bottom: 0px;
+    color:#666666;
+}
+.tableList{
+    left: 0px;
+    top: 35px;
+    box-shadow: none;
+    border: 1px solid $headBorderColor;
+    table{
+        .customer-content{
+            .name,
+            .action{
+                display: block;
+                line-height: 18px;
+            }
+            .name{
+                padding-top: 8px;
+            }
+            .action{
+                padding-bottom: 8px;
+                color:#ccc;
+                font-size: 12px;
+            }
+            .change{
+                font-weight: 700;
+                &.add{
+                    color:$successColor;
+                }
+                &.reduce{
+                    color:$dangerColor;
+                }
+            }
+        }
+    }
+}

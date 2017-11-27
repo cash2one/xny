@@ -1,0 +1,18 @@
+.datePicker{
+    z-index: 1001;
+    position: fixed;
+    background-color: #fff;
+    box-shadow: 0 0 25px rgba(0,0,0,0.2);
+    padding: 20px;
+    .closeBtn{
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        padding: 0;
+        border-radius: 50%;
+        background: transparent;
+        font-size: 20px;
+        right: -20px;
+        top: -20px;
+    }
+}

@@ -1,0 +1,58 @@
+<link rel="stylesheet" type="text/css" [href]="windowUrl"> 
+
+<app-riccio-top-navbar
+	[userName] = "userInfo.user_info.name+' ('+userInfo.company_userinfo.real_name+') '"
+	[notifyCount] = "userInfo.notify"
+	[companyName] = "userInfo.company_userinfo.name"
+    [companyMenu] = "comMenu"></app-riccio-top-navbar>
+
+<div class="gr-main bsby">
+
+    <app-riccio-app-left-menu [leftData]="leftMenuData"></app-riccio-app-left-menu>
+
+	<div class="gr-secound-menu" [ngStyle]="{'width':secMenuWidth}" *ngIf="menuData.secMenus.length > 0">
+		<div class="menu-title">
+			<span *ngIf="!showReturn">{{menuData.secMenusTitle}}</span> 
+			<a href="javascript:;" *ngIf="showReturn" (click)="fnBack()"
+				class="return iconfont_bsby bsby-return"></a>
+		</div>
+		<div class="menu-list">
+			<ul class="menu-ul">
+				<li class="menu-ul-li" *ngFor="let secMenu of menuData.secMenus"
+					routerLinkActive="active">
+					<a href="javascript:;" class="disabled" *ngIf="secMenu.disabled">
+						<i class="iconfont_bsby  {{secMenu.fonticon}}"></i>
+                        {{secMenu.name}}
+					</a>
+					<a href="javascript:;" *ngIf="!secMenu.disabled && !secMenu.newTarget" [routerLink]="secMenu.url">
+						<i class="iconfont_bsby  {{secMenu.fonticon}}"></i>
+                        {{secMenu.name}}
+                    </a>
+                    <a href="#/{{secMenu.url}}" target="_blank" *ngIf="secMenu.newTarget">
+						<i class="iconfont_bsby  {{secMenu.fonticon}}"></i>
+                        {{secMenu.name}}
+                    </a>
+				</li>
+			</ul>
+		</div>
+		<!-- 伸缩展开特效 -->
+		<div class="viewFramework-product-navbar-collapse" [ngClass]="{'close':openShrink == false}">
+			<div class="product-navbar-collapse-inner" (click)="fnNavber()">
+			    <div class="product-navbar-collapse-bg"></div>
+			    <div class="product-navbar-collapse">
+				    <span>
+				    	<i class="iconfont_common common-collapse-right"></i>
+				    </span>
+			    </div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="gr-contant">
+		<router-outlet></router-outlet>
+	</div>
+
+</div>
+
+<app-riccio-pbox></app-riccio-pbox>

@@ -1,0 +1,40 @@
+
+.datepickers{
+	position: fixed;
+	top: 30%;
+	left: 135px;
+	/*transform: translateY(-50%);*/
+	background-color: #fff;
+	z-index: 1250;
+	border-radius: .25rem;
+	border: 1px solid #d8dde6;
+	outline: none;
+}
+
+.slds-box.slds-box--x-small{
+	width: 310px;
+}
+
+i.iconfont_common{
+	font-size: 12px !important;
+}
+
+
+
+select{
+	font-size: 24px
+}
+
+/*年份样式*/
+.selectYear{
+	position: absolute;
+	right: 10px;
+	top: 14px;
+	cursor: pointer;
+    width: 29%;
+    padding: 5px 0;
+    text-align: center;
+}
+.selectYear:hover{
+	background-color: #f4f6f9
+}

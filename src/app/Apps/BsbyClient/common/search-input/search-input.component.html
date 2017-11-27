@@ -1,0 +1,7 @@
+<input type="text" 
+    class="search-input"
+    placeholder="{{placeholder}}"
+    autocomplete="false" 
+    [(ngModel)]="value"
+    (keyup)="fnSearch($event)" 
+    (blur)="fnBlurSearch()">

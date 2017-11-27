@@ -1,0 +1,19 @@
+<div class="item-main clearfix">
+	
+	<div class="item-title col-gr-1">
+		<span>{{itemTitle}}:</span>
+	</div>
+
+	<div class="item-list col-gr-11 {{more==true?'':'hideline'}}">
+		<ul class="item-ul" #itemUl>
+			<li class="item-ul-li {{activeType==name?'active':''}}" *ngFor = "let name of itemList" (click)="fnOutputItemData(name);activeType=name">
+				<span>{{name}}</span>
+			</li>
+		</ul>
+
+		<div class="more" (click)="more = !more">
+			<a href="javascript:;">{{more==true?'收起':'更多'}}</a>
+		</div>
+	</div>
+
+</div>

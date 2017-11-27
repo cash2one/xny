@@ -1,0 +1,86 @@
+<div class="modal-content">
+  <div class="module-header">
+    <div class="breadcrumb">
+      <app-riccio-breadcrumb
+        [iconfont]="'iconfont_admin admin-gengduo1'"
+        [breadData]="breadData"></app-riccio-breadcrumb>
+    </div>
+  </div>
+  <div class="module-body">
+    <div class="menu">
+      <div class="menu-header">
+        默认菜单（{{menuLeftLength}}）
+      </div>
+      <div class="menu-body">
+        <div class="menu-top">
+          <div class="menu-top-header">
+            左侧菜单
+          </div>
+          <div class="menu-top-body">
+            <ul [dragula]='"bag-first"'>
+              <li *ngFor="let list of defaultMenuShow" [value]="list.id" class="handle">
+                <span class="color999">{{'&nbsp;&nbsp;&nbsp;│ '.repeat(list.level-1<0?0:list.level-1)+(list.level >=1? '&nbsp;&nbsp;&nbsp;├─ ':'')}}</span>
+                <span>{{list.name}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="menu-bottom">
+          <div class="menu-bottom-header">
+            配置选项卡
+          </div>
+          <div class="menu-bottom-body">
+            <ul [dragula]='"bag-second"'>
+              <li *ngFor="let list of defaultTable" [value]="list.id" class="handle">
+                <span class="color999">{{'&nbsp;&nbsp;&nbsp;│ '.repeat(list.level-2<0?0:list.level-2)+(list.level >=2? '&nbsp;&nbsp;&nbsp;├─ ':'')}}</span>
+                <span>{{list.name}}</span>
+
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="iconfont_admin admin-shuangyou shuangyou" title="全部导入" (click)="allImport()"></span>
+    <div class="menu">
+      <div class="menu-header">
+        企业菜单（{{menuRightLength}}）
+      </div>
+      <div class="menu-body">
+        <div class="menu-top">
+          <div class="menu-top-header">
+            左侧菜单
+          </div>
+          <div class="menu-top-body" #myMenu [dragula]='"bag-first"'>
+            <ul [dragula]='"bag-first"'>
+              <li *ngFor="let list of myMenuFilter">
+                <div *ngIf="list.liIsShow">
+                  <span class="color999">{{'&nbsp;&nbsp;&nbsp;│ '.repeat(list.level-1<0?0:list.level-1)+(list.level >=1? '&nbsp;&nbsp;&nbsp;├─ ':'')}}</span>
+                  <span>{{list.name}}</span>
+                  <span *ngIf="list.deleteIsShow" (click)="deleteMenu(list.id)" class="iconfont_admin admin-cha deleteMenu"></span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="menu-bottom">
+          <div class="menu-bottom-header">
+            配置选项卡
+          </div>
+          <div class="menu-bottom-body" [dragula]='"bag-second"'>
+            <ul [dragula]='"bag-second"'>
+              <li *ngFor="let list of myTableShow">
+                <div *ngIf="list.liIsShow">
+                  <span class="color999">{{'&nbsp;&nbsp;&nbsp;│ '.repeat(list.level-2<0?0:list.level-2)+(list.level >=2? '&nbsp;&nbsp;&nbsp;├─ ':'')}}</span>
+                  <span>{{list.name}}</span>
+                  <span *ngIf="list.deleteIsShow" (click)="deleteMenu(list.id)" class="iconfont_admin admin-cha deleteMenu"></span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="button-save" (click)="save()" [routerLink]="['../../']">保存</button>
+  </div>
+</div>

@@ -1,0 +1,97 @@
+$loadingColor:#fbfbfb;
+
+.loading{
+    position: fixed;
+    top:0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    z-index: 99999;
+    .main{
+        position: absolute;
+        top:50%;
+        left:50%;
+        margin-top:-75px;
+        margin-left:-75px;
+        background:rgba(0,0,0,0.7);
+        border-radius: 10px;
+        padding:20px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        color:#fff;
+    }
+}
+
+@-webkit-keyframes infinite-ellipsis { 
+    0%, 100% {
+        -webkit-transform:scale(.4);
+        transform:scale(.4)
+    }
+    50% {
+        -webkit-transform:scale(1);
+        transform:scale(1)
+    }
+}
+@keyframes infinite-ellipsis { 
+    0%, 100% {
+        -webkit-transform:scale(.4);
+        transform:scale(.4)
+    }
+    50% {
+        -webkit-transform:scale(1);
+        transform:scale(1)
+    }
+}
+.loading-indicator { margin-top:20px; text-align:center; width:100%; margin-bottom:20px; flex: 1; }
+.loading-indicator h4 { font-size:14px;  }
+.loading-ellipsis>div { width:10px; height:10px; border-radius:100%; background-color:#fff; -webkit-animation:infinite-ellipsis 1s infinite ease-in-out; animation:infinite-ellipsis 1s infinite ease-in-out; -webkit-animation-fill-mode:both; animation-fill-mode:both }
+.color-label-0, .color-label-0:hover { background:#fff }
+.loading-ellipsis .bounce1 { -webkit-animation-delay:0s; animation-delay:0s }
+.loading-ellipsis .bounce2 { -webkit-animation-delay:.3s;
+animation-delay:.3s
+}
+.loading-ellipsis .bounce3 { -webkit-animation-delay:.6s;
+animation-delay:.6s
+}
+
+
+.base{
+    position: fixed;
+    z-index: 100;
+    color:#666;
+    .loading-ellipsis>div{
+        background: #484848 !important;
+    }
+}
+
+
+//base
+// @-webkit-keyframes infinite-ellipsis { 0%, 100% {
+// -webkit-transform:scale(.4);
+// transform:scale(.4)
+// }
+// 50% {
+// -webkit-transform:scale(1);
+// transform:scale(1)
+// }
+// }
+// @keyframes infinite-ellipsis { 0%, 100% {
+// -webkit-transform:scale(.4);
+// transform:scale(.4)
+// }
+// 50% {
+// -webkit-transform:scale(1);
+// transform:scale(1)
+// }
+// }
+// .loading-indicator { margin-top:20px; text-align:center; width:100%; margin-bottom:20px; flex: 1; }
+// .loading-indicator h4 { font-size:14px;  }
+// .loading-ellipsis>div { width:10px; height:10px; border-radius:100%; background-color:#484848; -webkit-animation:infinite-ellipsis 1s infinite ease-in-out; animation:infinite-ellipsis 1s infinite ease-in-out; -webkit-animation-fill-mode:both; animation-fill-mode:both }
+// .color-label-0, .color-label-0:hover { background:#fff }
+// .loading-ellipsis .bounce1 { -webkit-animation-delay:0s; animation-delay:0s }
+// .loading-ellipsis .bounce2 { -webkit-animation-delay:.3s;
+// animation-delay:.3s
+// }
+// .loading-ellipsis .bounce3 { -webkit-animation-delay:.6s;
+// animation-delay:.6s
+// }

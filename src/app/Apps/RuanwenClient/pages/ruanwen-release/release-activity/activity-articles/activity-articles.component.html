@@ -1,0 +1,64 @@
+<div class="article-list">
+
+	<!-- 列表头部信息 -->
+	<app-ruanwen-list-header [searchTitle] = "'标题内容'"
+							 [config]="'brief'"
+							 (emitSearch)="fnEmitListHeader($event)"></app-ruanwen-list-header>
+
+	<div class="activity-main">
+		<div class="gr-wrapper-table">
+
+			<div class="wrapper-content">
+				<!-- 所有员工列表 -->
+				<table class="table table-hover gr-table">
+					<colgroup>
+			    		<col width="80">
+			    		<col width="80">
+			    		<col width="50">
+			    	</colgroup>
+					<thead class="hand">
+					    <tr>
+					        <th *ngFor="let name of tableTitle">
+					            {{name}}
+					        </th>
+					    </tr>
+					</thead>
+				</table>
+				<div class="wrapper-table" *ngIf = "loadingType=='hide'">
+					<table class="table table-hover gr-table">
+						<colgroup>
+				    		<col width="80">
+				    		<col width="80">
+				    		<col width="50">
+				    	</colgroup>
+						<tbody id="undetails">
+						    <tr *ngFor = "let list of articleItem">
+						    	<td class="customer-content">
+								{{list.title}}
+						        </td>
+						        <td class="customer-content" >
+								{{list.created_at}}
+						        </td>
+						        <td class="td-status">
+									<a href="javascript:;" 
+									   (click)="fnEmitData(list)"
+					        	   	   class="">选择</a>
+						        </td>
+						    </tr>
+						    
+						</tbody>
+					</table>
+
+				</div>
+
+				<!-- loading组件 -->
+				<app-riccio-spinners [emptyText]="'暂无草稿文章列表'"
+									 [type]="loadingType"></app-riccio-spinners>
+
+				<app-riccio-paginations [total]="totalPage" (pageValue)="fnEmitPage($event)"></app-riccio-paginations>
+
+			</div>
+		</div>
+	</div>
+
+</div>

@@ -1,0 +1,75 @@
+<div class="lc-date-picker">
+	<div class="picker-footer">
+
+
+		<table class="uib-timepicker" *ngIf = "TimerDate.TimeShow">
+			<!-- 填写时间 -->
+		    <tbody>
+
+		        <tr class="t-c" (click)="FnAddTime($event)">
+		            <td class="uib-increment hours">
+		            	<a class="btn btn-link" tabindex="-1">
+		            		<i class="iconfont_common  common-up"></i>
+		            	</a>
+		            </td>
+		            <td>&nbsp;</td>
+		            <td class="uib-increment minutes">
+		            	<a class="btn btn-link" tabindex="-1">
+		            		<i class="iconfont_common  common-up"></i>
+		            	</a>
+		            </td>
+		            <td class=""></td>
+		        </tr>
+
+		        <tr>
+		            <td class="form-group uib-time hours">
+		                <input type="text" 
+		                	   placeholder="HH" 
+		                	   class="form-control t-c" 
+		                	   maxlength="2" 
+		                	   tabindex="0"
+		                	   [(ngModel)]="TimerDate.HH"
+		                	   (blur)="FnBlurText($event)">
+		            </td>
+		            <td class="uib-separator">：</td>
+		            <td class="form-group uib-time minutes">
+		                <input type="text" 
+		                	   placeholder="MM" 
+		                	   class="form-control t-c" 
+		                	   maxlength="2" 
+		                	   tabindex="0"
+		                	   [(ngModel)]="TimerDate.MM"
+		                	   (blur)="FnBlurText($event)">
+		            </td>
+		        </tr>
+
+		        <tr class="t-c" (click)="FnLessTime($event)">
+		            <td class="uib-decrement hours">
+		            	<a class="btn btn-link" tabindex="-1">
+		            		<i class="iconfont_common  common-down1"></i>
+		            	</a>
+		            </td>
+		            <td>&nbsp;</td>
+		            <td class="uib-decrement minutes">
+		            	<a class="btn btn-link" tabindex="-1">
+		            		<i class="iconfont_common  common-down1"></i>
+		            	</a>
+		            </td>
+		            <td class=""></td>
+		        </tr>
+		    </tbody>
+		</table>
+
+		<div class="setTimeShow" *ngIf = "!TimerDate.TimeShow">
+			<a href="javascript:;"
+			   (click)="TimerDate.TimeShow = !TimerDate.TimeShow">设置时间</a>
+		</div>
+
+		<!-- 确定按钮和清除按钮 -->
+		<div class="control-panel c-f f-r" 
+			 style="padding-top: 20px;">
+	    	<button class="gr-btn gr-btn-primary pull-right" type="submit" (click)="FnDetermine()">确定</button>
+			<a class="gr-btn gr-btn-link pull-right" style="cursor: pointer;" (click)="FnCloseTime()">清除</a>
+		</div>
+	</div>
+</div>

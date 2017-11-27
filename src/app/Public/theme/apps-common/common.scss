@@ -1,0 +1,574 @@
+@import './variable.scss';
+
+$grSecMenuWidth:180px;
+
+//链接a标签
+a{ color:$textColorLink }
+
+
+//常用的灰色
+.color333{color: #333}
+.color666{color: #666}
+.color999{color: #999}
+
+// iconfont颜色
+.iconColorNormal{color: $buttonColorNormal}
+
+// 文本居中
+.textCenter{text-align: center;}
+
+// 常用间距
+.right5{right: 5px;}
+.right10{right: 10px;}
+.right15{right: 15px;}
+.right20{right: 20px;}
+.right25{right: 25px;}
+.right30{right: 30px;}
+.right35{right: 35px;}
+.right40{right: 40px;}
+.right45{right: 45px;}
+.right50{right: 50px;}
+
+.left5{left: 5px;}
+.left10{left: 10px;}
+.left15{left: 15px;}
+.left20{left: 20px;}
+.left25{left: 25px;}
+.left30{left: 30px;}
+.left35{left: 35px;}
+.left40{left: 40px;}
+.left45{left: 45px;}
+.left50{left: 50px;}
+
+.top5 {top: 5px;}
+.top10{top: 10px;}
+.top15{top: 15px;}
+.top20{top: 20px;}
+.top25{top: 25px;}
+.top30{top: 30px;}
+.top35{top: 35px;}
+.top40{top: 40px;}
+.top45{top: 45px;}
+.top50{top: 50px;}
+
+.bottom5 {bottom: 5px;}
+.bottom10{bottom: 10px;}
+.bottom15{bottom: 15px;}
+.bottom20{bottom: 20px;}
+.bottom25{bottom: 25px;}
+.bottom30{bottom: 30px;}
+.bottom35{bottom: 35px;}
+.bottom40{bottom: 40px;}
+.bottom45{bottom: 45px;}
+.bottom50{bottom: 50px;}
+
+// 常用字体大小
+.font12{font-size: 12px;}
+.font13{font-size: 13px;}
+.font14{font-size: 14px;}
+.font15{font-size: 15px;}
+.font16{font-size: 16px;}
+.font17{font-size: 17px;}
+.font18{font-size: 18px;}
+
+//取消margin或padding
+.nomargin{margin: 0px !important};
+.nopadding{padding: 0px !important};
+
+//栈格元素
+.col-gr-1, .col-gr-10, .col-gr-11, .col-gr-12, .col-gr-2, .col-gr-3, .col-gr-4, .col-gr-5, .col-gr-6, .col-gr-7, .col-gr-8, .col-gr-9 { position:relative; min-height:1px; padding-left:15px; padding-right:15px;float:left}
+.col-gr-12 { width:100% }
+.col-gr-11 { width:91.66666667% }
+.col-gr-10 { width:83.33333333% }
+.col-gr-9 { width:75% }
+.col-gr-8 { width:66.66666667% }
+.col-gr-7 { width:58.33333333% }
+.col-gr-6 { width:50% }
+.col-gr-5 { width:41.66666667% }
+.col-gr-4 { width:33.33333333% }
+.col-gr-3 { width:25% }
+.col-gr-2 { width:16.66666667% }
+.col-gr-1 { width:8.33333333% }
+.col-gr-right-12 { right:100%}
+.col-gr-right-11 { right:91.66666667%}
+.col-gr-right-10 { right:83.33333333%}
+.col-gr-right-9 { right:75%}
+.col-gr-right-8 { right:66.66666667%}
+.col-gr-right-7 { right:58.33333333%}
+.col-gr-right-6 { right:50%}
+.col-gr-right-5 { right:41.66666667%}
+.col-gr-right-4 { right:33.33333333%}
+.col-gr-right-3 { right:25%}
+.col-gr-right-2 { right:16.66666667%}
+.col-gr-right-1 { right:8.33333333%}
+.col-gr-right-0 { right:auto}
+.col-gr-left-12 { left:100%}
+.col-gr-left-11 { left:91.66666667%}
+.col-gr-left-10 { left:83.33333333%}
+.col-gr-left-9 { left:75%}
+.col-gr-left-8 { left:66.66666667%}
+.col-gr-left-7 { left:58.33333333%}
+.col-gr-left-6 { left:50%}
+.col-gr-left-5 { left:41.66666667%}
+.col-gr-left-4 { left:33.33333333%}
+.col-gr-left-3 { left:25%}
+.col-gr-left-2 { left:16.66666667%}
+.col-gr-left-1 { left:8.33333333%}
+.col-gr-left-0 { left:auto}
+.col-gr-ml-12 { margin-left:100%}
+.col-gr-ml-11 { margin-left:91.66666667%}
+.col-gr-ml-10 { margin-left:83.33333333%}
+.col-gr-ml-9 { margin-left:75%}
+.col-gr-ml-8 { margin-left:66.66666667%}
+.col-gr-ml-7 { margin-left:58.33333333%}
+.col-gr-ml-6 { margin-left:50%}
+.col-gr-ml-5 { margin-left:41.66666667%}
+.col-gr-ml-4 { margin-left:33.33333333%}
+.col-gr-ml-3 { margin-left:25%}
+.col-gr-ml-2 { margin-left:16.66666667%}
+.col-gr-ml-1 { margin-left:8.33333333%}
+.col-gr-ml-0 { margin-left:0}
+
+
+// 阿里云左侧伸缩展开的特效样式
+.viewFramework-product-navbar-collapse{position:absolute;right:0;top:50%;width:25px;height:50px;z-index:3;-o-transition:all 0.2s ease;-ms-transition:all 0.2s ease;-moz-transition:all 0.2s ease;-webkit-transition:all 0.2s ease;transform:rotateY(180deg)}
+.viewFramework-product-navbar-collapse:hover .product-navbar-collapse{left:0}
+.viewFramework-product-navbar-collapse:hover .product-navbar-collapse-bg{border-bottom:8px solid transparent;border-left:20px solid #ccc;border-top:8px solid transparent}
+.viewFramework-product-navbar-collapse .product-navbar-collapse-inner{top:-50%;position:relative;overflow:hidden}
+.viewFramework-product-navbar-collapse .product-navbar-collapse{height:50px;position:relative;left:-7px;text-align:center;cursor:pointer;-o-transition:all 0.1s ease,0.1s ease;-ms-transition:all 0.1s ease,0.1s ease;-moz-transition:all 0.1s ease,0.1s ease;-webkit-transition:all 0.1s ease,0.1s ease}
+.viewFramework-product-navbar-collapse .product-navbar-collapse>span{font-size:15px;line-height:50px;vertical-align:text-top}
+.viewFramework-product-navbar-collapse .product-navbar-collapse-bg{width:0;height:50px;position:absolute;top:0;left:0;border-bottom:9px solid transparent;border-left:13px solid #ccc;border-top:9px solid transparent;-o-transition:all 0.1s ease,0.1s ease;-ms-transition:all 0.1s ease,0.1s ease;-moz-transition:all 0.1s ease,0.1s ease;-webkit-transition:all 0.1s ease,0.1s ease;}
+.viewFramework-product-navbar-collapse .common-collapse-left{display:none}
+.viewFramework-product-navbar-collapse .common-collapse-right{display:inline}
+.viewFramework-product-col-1 .viewFramework-product-navbar-collapse{left:160px}
+.viewFramework-product-col-1 .viewFramework-product-navbar-collapse .product-navbar-collapse{right:-7px;left:auto}
+.viewFramework-product-col-1 .viewFramework-product-navbar-collapse .product-navbar-collapse>span{color:#546478}
+.viewFramework-product-col-1 .viewFramework-product-navbar-collapse .product-navbar-collapse-bg{right:0;left:auto;border-bottom:9px solid transparent;border-left:none;border-right:13px solid #f7f7f7;border-top:9px solid transparent}
+.viewFramework-product-col-1 .viewFramework-product-navbar-collapse .common-collapse-left{display:inline}
+.viewFramework-product-col-1 .viewFramework-product-navbar-collapse .common-collapse-right{display:none}
+.viewFramework-product-col-1 .viewFramework-product-navbar-collapse:hover .product-navbar-collapse{right:0;left:auto}
+.viewFramework-product-col-1 .viewFramework-product-navbar-collapse:hover .product-navbar-collapse-bg{border-bottom:8px solid transparent;border-left:none;border-right:20px solid #f7f7f7;border-top:8px solid transparent}
+
+.viewFramework-product-navbar-collapse{
+	&.close{
+		transform:rotateY(0deg);
+		right: -25px;
+	}
+	.active{
+		transform:rotateY(180deg);
+		display: inline-block;
+	}
+}
+
+.product-navbar-collapse{
+	span i{
+	    font-size: 16px;
+	    font-weight: bold;
+	    color: #546478;
+	}
+}
+
+/********************/ 
+
+//默认表单input框样式的颜色
+.gr-form-horizontal{
+	width: 100%;
+	.form-group{
+		margin-bottom: 10px;
+		.control-label{
+			line-height: 40px;
+		}
+    }
+    .form-control{
+		width: 100%;
+		outline: none;
+		background-color: #fbfbfb;
+		border-radius: 3px;
+		border: 1px solid #eaeff1;
+		padding: 4px 16px;
+		height: 40px;
+		font-size: 15px;
+		color: #555;
+		line-height: 1.42857143;
+		transition: all 0.25s;
+		font-size: 12px;
+		&:focus{
+		    box-shadow: 0 0 6px 0px #484848;
+		}
+		&.danger:focus{
+			box-shadow: none;
+		}
+	}
+	& .danger{
+	   border:1px solid $buttonColorDanger !important;
+	   box-shadow: 0 0 5px 0 $buttonColorDanger !important;
+	}
+}
+
+//默认按钮颜色和样式
+.gr-btn{
+    font-weight: 500;
+    border: 0;
+	display: inline-block;
+    margin-bottom: 0;
+    text-align: center;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    white-space: nowrap;
+    padding: 8px 36px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    -moz-user-select: none;
+    user-select: none;
+    outline: none;
+    &[disabled]{
+		cursor: not-allowed;
+		opacity: .8;
+		color: #fff !important;
+	    background-color: #ccc !important;
+    }
+    &.gr-btn-primary{
+    	color: #fff;
+	    background-color: $buttonColorNormal;
+    }
+    &.gr-btn-danger{
+    	color: #fff;
+	    background-color: $buttonColorDanger;
+    }
+    &.gr-btn-link{
+    	color: #999999;
+    	padding: 8px 25px;
+    }
+    &.gr-btn-info{
+    	background-color: $buttonColorInfo;
+    	color: #fff;
+    }
+    &.gr-btn-disabled{
+    	background-color: #ccc;
+    	color: #fff;
+    }
+    &.gr-btn-major{
+    	background-color: $buttonColorMajor;
+    	color: #fff;
+    }
+    
+}
+
+//默认单选框颜色和样式
+.gr-radio{
+    color: #333;
+    display: inline-block;
+    margin: 0 10px;
+    span{
+	    display: inline-block;
+	    width: 14px;
+	    height: 14px;
+	    background-color: #fff;
+	    border: 1px solid #333;
+	    border-radius: 50%;
+	    position: relative;
+	    top: 2px;
+	    margin-right: 2px;
+    }
+    &.active{
+    	& span:after{
+    		content: "";
+    		position: absolute;
+			width: 8px;
+			height: 8px;
+			background-color: #666;
+			border-radius: 50%;
+			left: 2px;
+			top: 2px;			
+    	}
+    }
+}
+
+//默认多选框样式
+.gr-checkbox{
+	i.iconfont_common{
+		color: #aaa;
+		&.common-check1{
+			color: $buttonColorNormal !important;
+		}
+	}
+}
+
+//默认单选框颜色和样式
+.gr-radio{
+    color: #333;
+    display: inline-block;
+    margin: 0 10px;
+    span{
+	    display: inline-block;
+	    width: 14px;
+	    height: 14px;
+	    background-color: #fff;
+	    border: 1px solid #333;
+	    border-radius: 50%;
+	    position: relative;
+	    top: 2px;
+	    margin-right: 2px;
+    }
+    &.active{
+    	& span:after{
+    		content: "";
+    		position: absolute;
+			width: 8px;
+			height: 8px;
+			background-color: #666;
+			border-radius: 50%;
+			left: 2px;
+			top: 2px;			
+    	}
+    }
+}
+//应用默认主题内容
+.gr-main{
+    display: flex;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+    height: 100%;
+    position: fixed;
+    overflow-y: auto;
+    top: 52px;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+}
+
+// 一级菜单
+.gr-menu{
+    min-width: 80px;
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
+    background-color: $black;
+    .gr-menu-ul{
+    	overflow-y:auto;
+    	overflow-x:hidden; 
+    	.gr-menu-ul-li{
+    		list-style: none;
+		    width: 100%;
+		    height: 40px;
+		    line-height: 40px;
+		    text-align: center;
+		    background-color:$menuLi;
+		    color: #fff;
+            cursor: pointer;
+			overflow: hidden;
+			transition: all .3s;
+			&.default{
+				background-color: #2d313c;
+			}
+			&:hover{
+				background-color: #2d313c;
+			}
+		    a{
+				color:#fff;
+				height: 100%;
+				width: 100%;
+				display: block;
+		    }
+		    &.active{
+			    background-color:$menuLiActive;
+			    // & a{
+			    // 	color: #333;
+			    // }
+		    }
+    	}
+    }
+}
+
+// 二级菜单
+.gr-secound-menu{
+	background-color: $secoundMenuBackground;
+    width: $grSecMenuWidth;
+    transition:all .35s;
+    height: 100%;
+    // overflow-y: hidden;
+    position: relative;
+    float: left;
+	.menu-title{
+		height: 60px;
+	    line-height: 60px;
+		font-size: 14px;
+		width: 100%;
+		overflow: hidden;
+	    span{
+	    	display: inline-block;
+	    	margin-left: 45px;
+	    }
+	}
+	.menu-list{
+	    width: 100%;
+	    height: calc(100% - 60px);
+	    bottom: 0;
+	    top: 0;
+	    position: relative;
+	    overflow-y: auto;
+		.menu-ul{
+			overflow-y:auto; 
+			height: 100%;
+			.menu-ul-li{
+				width: 100%;
+			    height: 40px;
+			    line-height: 40px;
+				text-align: left;
+				transition: all .5s;
+				overflow: hidden;
+				&:hover{
+					background-color: #F4F6F8;
+				}
+			    a{
+			    	color: #444;
+					font-size: 12px;
+					padding-left: 5px;
+					height: 100%;
+					width: 100%;
+					display: block;
+					padding-left: 25px;
+					padding-right:25px;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					i{
+						padding-right: 7px;
+						color:#999
+					}
+			    }
+			    &.active{
+			    	background-color: #fff;
+			    }
+			}
+		}
+	}
+}
+
+.gr-contant{
+	width: 100%;
+	padding:0 25px 0 25px;
+}
+
+
+
+
+// checkbox的动画样式
+$checked-color: #fff;
+$checked-bg:rgb(101,141,181);
+$unchecked-color: #cfcece;
+$unchecked-bg:rgb(249,249,249);
+$checkbox-height: 16px;
+$background-color:#fff;
+$font-color:#dcdcdc;
+$duration: .4s;
+
+.gr-checkbox-label{
+  height: $checkbox-height;
+  width: $checkbox-height;
+  background: $unchecked-bg;
+  border: 1px solid $unchecked-color;
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  transition: border-color ease $duration/2;
+  -moz-transition: border-color ease $duration/2;
+  -o-transition: border-color ease $duration/2;
+  -webkit-transition: border-color ease $duration/2;
+  cursor: pointer;
+  &::before,&::after{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+    height: 0;
+    width: $checkbox-height * 0.1;
+    background: $checked-color;
+    display: inline-block;
+    -moz-transform-origin: left top;
+    -ms-transform-origin: left top;
+    -o-transform-origin: left top;
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+    content: '';
+    -webkit-transition: opacity ease 0.5s;
+    -moz-transition: opacity ease 0.5s;
+    transition: opacity ease 0.5s;
+  }
+  &::before{
+    top:$checkbox-height * 0.76;
+    left: $checkbox-height * 0.31;
+    -moz-transform: rotate(-135deg);
+    -ms-transform: rotate(-135deg);
+    -o-transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+  }
+  &::after {
+    top: $checkbox-height * .45;
+    left: $checkbox-height * 0;
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+}
+.gr-checkbox + .gr-checkbox-label,
+.gr-checkbox-label.checked{
+
+  background: $checked-bg;
+  border-color:$checked-bg;
+  &::after{
+    border-color:$checked-color;
+    height: $checkbox-height * .35;
+    -moz-animation: dothabottomcheck $duration/2 ease 0s forwards;
+    -o-animation: dothabottomcheck $duration/2 ease 0s forwards;
+    -webkit-animation: dothabottomcheck $duration/2 ease 0s forwards;
+    animation: dothabottomcheck $duration/2 ease 0s forwards;
+  }
+
+  &::before{
+    border-color:$checked-color;
+    height: $checkbox-height * 1;
+    -moz-animation: dothatopcheck $duration ease 0s forwards;
+    -o-animation: dothatopcheck $duration ease 0s forwards;
+    -webkit-animation: dothatopcheck $duration ease 0s forwards;
+    animation: dothatopcheck $duration ease 0s forwards;
+  }
+
+}
+@-moz-keyframes dothabottomcheck{
+  0% { height: 0; }
+  100% { height: $checkbox-height *0.35; }
+}
+
+@-webkit-keyframes dothabottomcheck{
+  0% { height: 0; }
+  100% { height: $checkbox-height *0.35; }
+}
+
+@keyframes dothabottomcheck{
+  0% { height: 0; }
+  100% { height: $checkbox-height *0.35;  }
+}
+
+@keyframes dothatopcheck{
+  0% { height: 0; }
+  50% { height: 0; }
+  100% { height: $checkbox-height * 0.7; }
+}
+@-webkit-keyframes dothatopcheck{
+  0% { height: 0; }
+  50% { height: 0; }
+  100% { height: $checkbox-height * 0.7; }
+}
+@-moz-keyframes dothatopcheck{
+  0% { height: 0; }
+  50% { height: 0; }
+  100% { height: $checkbox-height * 0.7; }
+}

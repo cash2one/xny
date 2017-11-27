@@ -1,0 +1,109 @@
+.cart-main{
+    position: fixed;
+    z-index: 1;
+    top: 52px;
+    right: 0;
+    bottom: 0;
+    width: 360px;
+    background-color: #fff;
+    border-left: 5px solid #333333;
+    transition:all .35s;
+	transform:translateX(100%);
+    &.moveout{
+    	transform:translateX(0)
+    }
+    .cart-btn{
+    	position: absolute;
+	    background-color: #373D41;
+	    width: 50px;
+	    height: 170px;
+	    left: -50px;
+	    top: 50%;
+	    margin-top: -85px;
+	    color: #fff;
+	    padding: 20px;
+	    cursor: pointer;
+	    i{
+	    	margin-left: -3px;
+	    }
+	    span{
+	    	display: inline-block;
+	    	margin-top: 10px;
+	    }
+	    span.total{
+	    	font-weight: bold;
+		    display: inline-block;
+		    background-color: #fff;
+		    color: #ff0000;
+		    width: 18px;
+		    height: 18px;
+		    text-align: center;
+		    line-height: 18px;
+		    border-radius: 50%;
+		    margin: 5px 0 0 -2px;
+		    white-space:nowrap;
+	    }
+    }
+    .cart-item{
+    	display: flex;
+	    flex-direction: column;
+	    justify-content: space-between;
+	    height: 100%;
+    	.item-top-title{
+    		height: 50px;
+	    	width: 100%;
+	    	background-color: #EFEFEF;
+	    	line-height: 50px;
+	    	font-size: 14px;
+	    	padding: 0 10px;
+    	}
+    	.item-list{
+			height: 100%;
+			overflow-y: auto;
+			ul.cart-ul{
+				li.cart-ul-li{
+					width: calc( 100% - 20px );
+				    border-bottom: 1px dashed #EAEFF1;
+				    margin: 0 10px;
+					.content{
+					    display: flex;
+					    justify-content: space-between;
+				        padding: 15px 30px;
+						line-height: 32px;
+						.pirce{
+							color: #ff0000;
+						}
+						.delete{
+							cursor: pointer;
+							i{
+								color: #aaa;
+							}
+							&:hover{
+								i{
+									color: #333;
+								}
+							}
+						}
+					}
+				}
+			}
+    	}
+    	.item-bottom-info{
+    		border-top: 1px solid #EAEFF1;
+    		padding: 15px 30px;
+			button{
+				width: 100%;
+				margin-top: 15px;
+			}
+			.pirce-info{
+				.pirce{
+					color: #ff0000;
+					font-size: 14px;
+					font-weight: bolder;
+					display: inline-block;
+					margin-left: 10px;
+				}
+			}
+    	}
+    }
+}

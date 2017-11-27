@@ -1,0 +1,137 @@
+<div class="elasticScrollo" *ngIf="showElasticData.isShow">
+	<div class="elasticLayerMain">
+		<div class="layerDialog" [@flyInOut]="'in'">
+			<div class="layerContent">
+
+					<!-- 个人资料修改 -->
+					<!-- <app-modify></app-modify> -->
+					
+				<div [ngSwitch]="showElasticData.viewSwitch">
+				  <ng-template [ngSwitchCase]="'reset-password'">
+
+					  <!-- 重置密码 -->
+				  	<!-- <app-reset-password></app-reset-password> -->
+
+				  </ng-template>
+				  <ng-template [ngSwitchCase]="'modify'">
+
+				  	<!-- 个人资料修改 -->
+					<!-- <app-modify></app-modify> -->
+
+				  </ng-template>
+
+				  <ng-template [ngSwitchCase]="'create-project'">
+
+				  	<!-- 添加项目 -->
+					<!-- <app-create-project></app-create-project> -->
+
+				  </ng-template>
+
+				  <ng-template [ngSwitchCase]="'site-basic'">
+
+				  	<!-- 项目基本设置视图 -->
+					<!-- <app-site-basic></app-site-basic> -->
+
+				  </ng-template>
+
+				  <ng-template [ngSwitchCase]="'upload-attachment'">
+
+				  	<!-- 上传附件视图 -->
+					<!-- <app-upload-attachment></app-upload-attachment> -->
+
+				  </ng-template>
+
+            	  <ng-template [ngSwitchCase]="'add-to'">
+					
+					<!-- 添加父级菜单 -->
+					<!-- <app-add-to></app-add-to> -->
+
+            	  </ng-template>
+
+            	  <ng-template [ngSwitchCase]="'role-add-to'">
+					
+					<!-- 添加角色 -->
+					<!--<app-role-add-to></app-role-add-to>-->
+
+            	  </ng-template>
+            	  <ng-template [ngSwitchCase]="'user-add'">
+					
+					<!-- 添加员工 -->
+					<!--<app-user-add></app-user-add>-->
+
+            	  </ng-template>
+            	  <ng-template [ngSwitchCase]="'user-center-add'">
+					
+					<!-- 用户中心添加员工 -->
+					<app-user-center-add></app-user-center-add>
+
+            	  </ng-template>
+            	  <!-- 任务模板添加 -->
+            	  <ng-template [ngSwitchCase]="'task-add'">
+
+					<task-add></task-add>
+
+            	  </ng-template>
+
+            	  <!-- 插件添加 -->
+            	  <ng-template [ngSwitchCase]="'addoncenter-add'">
+
+					<app-addoncenter-add></app-addoncenter-add>
+
+				 </ng-template> 
+		
+
+            	  <ng-template [ngSwitchCase]="'add-edit-appcenter'">
+					<!-- 添加和编辑应用组件 -->
+					<!-- <app-add-edit-appcenter></app-add-edit-appcenter> -->
+
+            	  </ng-template>
+
+            	  <ng-template [ngSwitchCase]="'config-template-add'">
+					<!-- 添加SMS模版 -->
+					<!--<app-template-add></app-template-add>-->
+
+            	  </ng-template>
+
+            	  <ng-template [ngSwitchCase]="'mail-template-add'">
+					<!-- 添加邮箱模版 -->
+					<!--<app-mail-template-add></app-mail-template-add>-->
+
+            	  </ng-template>
+
+				  <ng-template [ngSwitchCase]="'config-rule-add'">
+					<!-- 添加SMS发送规则 -->
+					<!--<app-config-rule-add></app-config-rule-add>-->
+
+            	  </ng-template>
+
+				  <ng-template [ngSwitchCase]="'mail-rule-add'">
+					<!-- 添加邮件的发送规则 -->
+					<!--<app-mail-rule-add></app-mail-rule-add>-->
+
+            	  </ng-template>
+
+            	  <ng-template [ngSwitchCase]="'add-edit-company'">
+					<!-- 添加邮件的发送规则 -->
+					<!--<app-add-edit-company></app-add-edit-company>-->
+
+            	  </ng-template>
+
+				  <ng-template [ngSwitchCase]="'config-rule-bind'">
+					<!-- 绑定短信模板的组件 -->
+					<!--<app-config-rule-bind></app-config-rule-bind>-->
+
+            	  </ng-template>
+
+				  <ng-template ngSwitchDefault>ERROR</ng-template>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="elasticLayerCover"  *ngIf="showElasticData.isShow" [@fadeIn] = "'in'" (click)="showElasticData.isShow = !showElasticData.isShow" >
+</div>
+
+<app-my-prompt-small [(PromptSmall)]="PromptSmall" [@fadeIn]="'in'"></app-my-prompt-small>

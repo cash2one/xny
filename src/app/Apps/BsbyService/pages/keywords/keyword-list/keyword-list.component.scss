@@ -1,0 +1,18 @@
+@import '../../../../../Public/theme/apps-common/variable.scss';
+$doing:#F4C92D;
+$success:#7EC856;
+$danger:#F37263;
+
+.keywordList{
+    .body{
+        padding-bottom:50px;
+        .bodyMain{
+            top: 60px;
+            .keywordListTable{
+                .headLeft{
+                    padding-left: 0px;
+                }
+            }
+        }
+    }
+}

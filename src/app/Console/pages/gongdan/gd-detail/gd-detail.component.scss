@@ -1,0 +1,28 @@
+@import "../gongdan.common.scss";
+
+.label{
+  color: #aaaaaa;
+}
+
+.detail{
+  background-color: #FFF;
+  margin: 16px;
+  border-radius:5px;
+  border: 1px solid #eaeaea;
+  .remind{
+    .remind-header{
+      border-bottom: 1px solid #eaeaea;
+      padding: 16px 36px;
+      background-color: #f8f8f8;
+      span{
+        color: #ff6700;
+        padding-right: 20px;
+      }
+      span:first-child{
+        color: #818181;
+      }
+    }
+  }
+
+}
+

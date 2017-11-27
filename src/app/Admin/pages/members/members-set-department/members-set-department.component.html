@@ -1,0 +1,78 @@
+<div class="modal-body">
+
+    <div class="member-panel-title">
+        <p class="panel-name"><span>分配对象: {{MembersNameData.real_name}} </span>等{{MembersNameData.total}}人</p>
+        <p class="panel-note color999"><span class="">注:  </span>你选择了{{MembersNameData.total}}个用户，设置后将以新的部门为准,并且重新设置部门管理员</p>
+    </div>  
+
+    <div class="select-member-area">
+        <div class="row select-member-panel">
+            <div class="member-all">
+			
+                <div class="member-panel-header"><span class="">所有部门</span></div>
+
+                <div class="member-panel-body">
+                    <div class="department-list xm-tree" 
+                         style="" 
+                         *ngIf = "DepartmentList.length>0; else Treeloading">
+                    <app-riccio-tree [tree]         = 'DepartmentList'
+                                     [children]     = "'chilren'"
+                                     [name]         = "'name'"
+                                     [pbox]         = "false"
+                                     (parentData)   = 'FnObtain($event)'></app-riccio-tree>
+                    </div>                          
+                    <ng-template #Treeloading>
+                        <div class="loading-indicator">
+                            <div class="hor-center">
+                                <h4 class="ng-binding">
+                                    正在努力加载中，请稍候
+                                    <div class="loading-ellipsis">
+                                        <div class="bounce1"></div>
+                                        <div class="bounce2"></div>
+                                      <div class="bounce3"></div>
+                                    </div>
+                                </h4>
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+
+            <div class="member-arrow"><i class="iconfont_admin  admin-you"></i></div>
+
+            <div class="member-selected">
+
+                <div class="member-panel-header"><span class="">所选部门</span></div>
+
+                <div class="member-panel-body">
+                    <div>
+                        <ul>
+                            <li class="member"
+                                *ngFor = "let list of DepartmentRightData">
+                                <div class="xm-avatar xm-avatar-30 " 
+                                     title="grsaas" 
+                                     member="member" 
+                                     size="30" 
+                                     name="true">
+                                    <div class="xm-avatar-name">{{list['name']}}</div>
+                                </div>
+                                <span class="btn-link-remove f-r" 
+                                      (click)="FnDeleteRightData(list)">
+                                      <i class="iconfont_admin  admin-iconfontcha"></i>
+                                </span>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="member-action">
+
+            <button class="gr-btn gr-btn-primary" disabled="{{BtnData.disabled==true?'disabled':''}}"  (click)="FnSaveSet()">{{BtnData.text}}</button>
+            <a class="gr-btn gr-btn-link" (click)="Close()">取消</a>
+
+        </div>
+    </div>
+</div>

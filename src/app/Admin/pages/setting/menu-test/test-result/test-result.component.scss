@@ -1,0 +1,58 @@
+.modal-content {
+  padding: 0 25px;
+  min-width: 1000px;
+  .module-header {
+    height: 60px;
+    line-height: 60px;
+    border-bottom: 1px solid #F3F3F3;
+  }
+  .module-body{
+    .result-message{
+      border: 1px solid #E8EDF0;
+      position: absolute;
+      top:80px;
+      bottom:10px;
+      width: 92%;
+      .result-header{
+        border-bottom: 1px solid #E8EDF0;
+        background-color: #F5F7FB;
+        padding: 5px 15px;
+        font-size: 15px;
+      }
+      .result-body{
+        padding: 10px 15px;
+        overflow-y: auto;
+        height: 94%;
+        li{
+          border-bottom: 1px dashed #E8EDF0;
+          padding: 10px 0px;
+          .company-name{
+            font-size: 14px;
+          }
+          .menu-diff{
+            color: #B3B3B2;
+            font-size: 14px;
+            margin-left: 8px;
+            span{
+              color: red;
+            }
+          }
+          .result-compare{
+            float: right;
+            color: #FFF;
+            background-color: #669DFF;
+            padding: 5px 25px;
+            border:0px solid #FFF;
+            border-radius: 3px;
+            margin-top: -4px;
+            cursor: pointer;
+          }
+        }
+        .testFinish{
+          color: red;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

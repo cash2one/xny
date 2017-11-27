@@ -1,0 +1,97 @@
+<div class="account recharge">
+    <div class="main" *ngIf="mainLoadingType == 'hide'">
+        <div class="head">
+            <span>充值</span>
+        </div>
+        <div class="body">
+            <form class="gr-form-horizontal rechargeForm" [formGroup]="rechargeForm"
+                (ngSubmit)="fnGoCharge()">
+                <div class="form-group f-i">
+                    <label class="control-label color666 col-gr-2">
+                        账户可用余额：
+                    </label>
+                    <div class="control-panel money">
+                        <span class="value">{{comInfo.amount}}</span>
+                        <span>元</span>
+                    </div>
+                </div>
+                <div class="form-group selectAmount color">
+                    <a href="javascript:;" 
+                        (click)="rechargeData.charge = 1000" 
+                        class="gr-radio first {{rechargeData.charge == 1000?'active':''}}">
+                        <span></span>
+                        <label>¥ 1000</label>
+                    </a>
+                    <a href="javascript:;" 
+                        (click)="rechargeData.charge = 2000" 
+                        class="gr-radio {{rechargeData.charge == 2000?'active':''}}">
+                        <span></span>
+                        <label>¥ 2000</label>
+                    </a>
+                    <a href="javascript:;" 
+                        (click)="rechargeData.charge = 5000" 
+                        class="gr-radio {{rechargeData.charge == 5000?'active':''}}">
+                        <span></span>
+                        <label>¥ 5000</label>
+                    </a>
+                    <a href="javascript:;" 
+                        (click)="rechargeData.charge = 10000" 
+                        class="gr-radio {{rechargeData.charge == 10000?'active':''}}">
+                        <span></span>
+                        <label>¥ 10000</label>
+                    </a>
+                </div>
+                <div class="form-group f-i">
+                    <label class="control-label color666 col-gr-2">
+                        充值金额：
+                    </label>
+                    <div class="control-panel">
+                        <input name="charge" class="form-control" autocomplete="off" placeholder="请输入充值金额"
+                            (keydown)="resolveChargeInput()" (keyup)="resolveChargeInput()"
+                            [formControl]="ctrlRecharge.charge" [(ngModel)]="rechargeData.charge">
+                        <span>元</span>
+                    </div>
+                </div>
+    
+                <div class="f-btn col-gr-3 col-gr-ml-2">
+                    <button type="submit" class="gr-btn gr-btn-primary" [disabled]="!rechargeForm.valid">
+                        充值
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="help" *ngIf="mainLoadingType == 'hide'">
+        <span>
+        使用遇到问题？
+        
+        ·输入充值金额后，为什么无法成功充值？
+        答：大额充值会受到充值额度的限制，建议你分批进行充值，每次充值金额不超过10000元。
+        
+        ·充值成功了，为什么收支明细里没有记录？
+        答：充值金额是实时到账的，若收支明细中没有记录，可能是系统延时引起的，你可稍后查看。若超过一天仍未显示，请与客服联系。
+        </span>
+    </div>
+    <app-riccio-spinners [type]="mainLoadingType"></app-riccio-spinners>
+</div>
+
+<conosle-recharge
+    (rechargeEmit)="fnRechargeEmit()"></conosle-recharge>
+
+<app-riccio-modal>
+    <div body class="rechargeTip">
+        <div class="tip">
+            <span class="ico">
+                <i class="iconfont_console console-tanhao"></i>
+            </span>
+            <div class="show">
+                <span class="f">请您在新打开的页面上完成充值。</span>
+                <span class="s">充值完成后，根据您的情况点击下面按钮。</span>
+            </div>
+        </div>
+        <div class="member-action">
+            <button class="gr-btn gr-btn-primary success" (click)="successPay()">我已成功支付</button>
+            <button class="gr-btn help" (click)="successPay()">支付遇到问题 ？</button>
+        </div>
+    </div>
+</app-riccio-modal>

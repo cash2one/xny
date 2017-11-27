@@ -1,0 +1,55 @@
+<div class="cart-main {{moveout==true?'moveout':''}}" #cartEl>
+	
+	<!-- 购物车图标 -->
+	<div class="cart-btn" (click)="moveout=!moveout">
+		<i class="iconfont_ruanwen ruanwen-gouwuche"></i>
+		<span>购物车</span>
+		<span class="total">{{cartItem.length}}</span>
+	</div>
+
+	<!-- 购物车列表 -->
+	<div class="cart-item">
+
+		<div class="item-top-title">
+			<div class="left f-l">
+				<i class="iconfont_ruanwen ruanwen-gouwuche"></i>
+				购物车
+			</div>
+			<div class="right f-r">
+				<riccio-button [normal]="'一键清空'"
+							   [disabled]="'清空中...'"
+							   [open]="btnType"
+							   (emitStatus)="fnEmitBtn($event)"></riccio-button>
+			</div>
+		</div>
+	
+		<div class="item-list">
+			<ul class="cart-ul">
+				<li class="cart-ul-li" *ngFor = "let list of cartItem">
+					<div class="content">
+						<div class="title">{{list.media_name}}</div>
+						<div class="pirce">¥{{list.media_price}}元</div>
+						<div class="delete" (click)="fnPostDeleteCart(list)"><i class="iconfont_ruanwen ruanwen-shanchu"></i></div>
+					</div>
+				</li>
+			</ul>
+
+			<app-riccio-spinners [type]='spinnerType' [emptyText]="'无媒体数据'"></app-riccio-spinners>
+
+		</div>
+
+		<div class="item-bottom-info clearfix">
+			<div class="export f-l">
+				<i class="iconfont_ruanwen ruanwen-daochu"></i>
+				导出报价
+			</div>
+			<div class="pirce-info f-r">
+				<span>金额:</span>
+				<span class="pirce">¥{{totalPirce}}</span>
+			</div>
+			<button class="gr-btn gr-btn-primary" (click)="fnGotoDelivery()">立即投放</button>
+		</div>
+
+	</div>
+
+</div>

@@ -1,0 +1,63 @@
+
+<div class="modal-dialog" #Modal>
+
+    <!-- 创建项目 -->
+    <div class="modal-content">
+        <div>
+
+            <div class="modal-header">
+                <a href="javascript:;" class="modal-close" (click)="Close()">
+                    <i class="iconfont_admin  admin-iconfontcha"></i>
+                </a>
+                <h3 class="modal-title">{{ShowText.title}}</h3>
+            </div>
+            <div class="modal-body">
+                <form  class="form-horizontal c-f">
+
+                		<div  class="form-group c-f "
+                			  *ngFor="let list of titleAddShow">
+                            <label  class="col-sm-2 control-label line-40">{{list.name}}:</label>
+                            <div  class="col-sm-10 control-panel">
+                                <input  class="form-control"
+                                	    name="{{list.action}}"
+                                	    placeholder="{{list.name}}"
+                                	    style=""
+                                        [(ngModel)]="AddEditData[list.action]"
+                                        *ngIf="list.type==='input'"
+                                        [ngClass]="{'danger':list.danger}"
+                                        (focus)="list.danger=false">
+                                <div  class="xm-select p-r"
+                                	  *ngIf="list.type==='select'">
+                                    <select class="form-control select"
+                                    		ref-action
+                                    		name="list.action"
+                                            [ngClass]="{'danger':list.danger}"
+                                    		[(ngModel)]="AddEditData[list.action]"
+                                            (focus)="list.danger=false"
+                                    		(change)='AddEditData[list.action]=+(action.value)'>
+                						<option  class=""
+                								 value="{{listOption.id}}"
+                                                 selected="{{listOption['id']==AddEditData[list.action]?'selected':''}}"
+                								 *ngFor = "let listOption of list.option">{{listOption.name}}</option>
+                                    </select>
+                                    <i class="iconfont_admin  admin-xiangxia"></i>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    <div  class="form-group c-f footer-border projectTemplate">
+                        <div  class="col-sm-6 control-panel c-f">
+                                <a href="javascript:;" class="f-r close" (click)="Close()">取消</a>
+                            	<button  class="btn btn-primary pull-right f-r"
+                            			 type="submit"
+                                         style="margin-right: 20px;"
+                            			 (click)="FnAddOrEdit()">{{ShowText.btn}}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

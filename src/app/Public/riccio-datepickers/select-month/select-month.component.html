@@ -1,0 +1,14 @@
+
+
+<div class="select-month">
+	
+	<ul class="month-ul">
+		<li *ngFor = "let list of monthNames"
+			(click)="FnSelectName(list)">
+			<span [class.active]="selectMonthData.data.name===list.name">{{list.name}}</span>
+		</li>
+	</ul>
+
+
+
+</div>

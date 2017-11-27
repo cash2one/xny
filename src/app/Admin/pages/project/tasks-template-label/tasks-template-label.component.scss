@@ -1,0 +1,26 @@
+.module-header{
+    .title{
+        a{
+            cursor: pointer;
+            display: inline-block;
+            padding: 0 20px;
+            font-size: 16px;
+            border-radius: 0;
+            color: #6f8092;
+            height: 50px;
+            margin-right: 10px;
+            &.active{
+                border-bottom: 2px solid #69d0d1;
+                color: #69d0d1;
+                &:hover{
+                    border-bottom: 2px solid #69d0d1;
+                    color: #69d0d1
+                }
+            }
+            &:hover{
+                border-bottom: 2px solid #69d0d1;
+                color: #6f8092;
+            }
+        }
+    }
+}

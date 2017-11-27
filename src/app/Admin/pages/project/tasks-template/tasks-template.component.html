@@ -1,0 +1,188 @@
+<div class="site-content">
+    <div class="module-header">
+        <div class="title">
+            <span><a href="javascript:;" routerLinkActive='active' [routerLink]="['../../task/list']">任务列表</a></span>
+            <span><a href="javascript:;" routerLinkActive='active' [routerLink]="['../../task/taglist']">任务标签列表</a></span>
+        </div>
+        <div class="flex-panel">
+            <a href="javascript:;" class="f-r" [routerLink]="['../../appcenter/Project']">返回列表</a>
+        </div>
+    </div>
+
+    <div class="module-body">
+
+    <div class="customer-list">
+    	<!-- 从顶部左侧弹出的组件样式 -->
+        <div class="flyLeftContent" *ngIf = "FlyLeftData.isShow" [@flyTop]="'in'">
+            <div class="content-text">已选择<span>{{FlyLeftData.number}}</span>项</div>
+            <ul class="content-list">
+                <li *ngFor="let list of FlyLeftData.showText">
+                	<a href="javascript:;"  (click)="FunOperate(list.type,$event)">{{list.name}}</a>
+                </li>
+            </ul>
+            <a href="javascript:;" class="f-r up-hide" (click)="FnCheckAll(false)"><span><i class="iconfont_admin  admin-up"></i></span></a>
+
+        </div>
+
+
+    	<div class="integration-header">
+            <button class="btn btn-primary btn-sm f-r" 
+                            (click)="addTaskView()" 
+                            style="line-height: -1">添加模板</button>
+            <form >
+        		<div class="search-container"><i class="iconfont_admin  admin-search1"></i>
+        		    <input type="input" 
+                           name='UserSearchName'
+                           class="form-control" 
+                           placeholder="输入要搜索的任务列表名称" 
+                           #Tasksname>
+        		</div>
+        		<button type="submit" (click)="FnnameChange(Tasksname.value)">搜索</button>
+            </form>
+    	</div>
+
+    	<div  class="gola-list-screen c-f">
+    		<div  class="screen-list f-l edit">
+    			<label  class="f-l">标签</label>
+
+    			<div  class="f-l">
+    				<span>
+    					<a  href="javascript:;"  [ngClass]="getTaskData.tagid==0?'Edit':''"  (click)="FnTagChange(0)">不限</a>
+    				</span>
+    				<span *ngFor = "let list of TagListData">
+    					<a href="javascript:;"  [ngClass]="getTaskData.tagid==list.id?'Edit':''"
+    					   (click)="FnTagChange(list.id)" >{{list.name}}</a>
+    				</span>
+
+    			</div>	
+
+    		</div>
+    	</div>
+
+
+
+        <table class="table table-hover gr-table">
+            <thead class="hand">
+                <tr>
+                    <th>
+                        <a href="javascript:;" 
+                           class="customer-check"
+                           (click)="FnCheckAll(!allCheck)">
+                            <i class="iconfont_admin  {{allCheck===false?'admin-check':'admin-check1'}}"></i>
+                        </a>
+                    </th>
+                    <th *ngFor = "let list of headerList">
+                        {{list}}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor = "let list of TasksListData.data" (click)="FnShowDetails(list)" >
+                    <td class="customer-select">
+                        <a href="javascript:;" class="customer-check" (click)="FnCheckTasks(list)">
+                            <i class="iconfont_admin  {{list.isCheck===false?'admin-check':'admin-check1'}}" >
+                        </i>
+                        </a>
+                    </td>
+                    <td class="customer-content">{{list.id}}</td>
+                    <td class="customer-content realname"   routerLink="{{list.id}}"  style="outline: none;">
+                    {{list.name}}
+                    </td>
+                    <td class="customer-content"><i class="iconfont_admin  admin-pic"></i> </td>
+                    <td class="customer-content" >
+                    {{list.tag.name}}    
+                    </td>
+                    <td class="customer-content">
+                    {{list.status===1?'显示':'隐藏'}}
+                    </td>
+                    <td class="customer-level">
+                        <a href="javascript:;" class="approval-action" (click)="openEditView(list.id)"><i class="iconfont_admin  admin-edit"></i></a> 
+                    </td>
+                </tr>
+            </tbody>
+
+            
+        </table>
+
+        <div class="loading-indicator" *ngIf = "!TasksListData.data.length">
+            <div class="hor-center">
+                <h4 class="ng-binding" *ngIf = "!loadingText">
+                    正在努力加载中，请稍候
+                    <div class="loading-ellipsis">
+                        <div class="bounce1"></div>
+                        <div class="bounce2"></div>
+                      <div class="bounce3"></div>
+                    </div>
+                </h4>
+                <div *ngIf = "loadingText">
+                <!-- empty-content.png -->
+                    <img src="assets/img/empty-content.png" alt="" width="500">
+                    <p style="font-size: 16px">该标签还没有任务</p>
+                </div>
+            </div>
+        </div>
+
+    	<div class="myPagination" *ngIf = "TasksListData.data.length">
+    		<ngl-pagination [nextText]='nextText' 
+    						[previousText]='previousText'
+    						[perPage]='perPage'
+    						[lastText]='lastText'
+    						[firstText]='firstText'
+    						[(page)]="page" 
+    						[total]="total" 
+    						(pageChange)="FnPageChange($event)"
+    						limit="5" 
+    						boundaryNumbers="1" 
+    						boundaryLinks
+    						#pagination></ngl-pagination>
+
+    		<form class="myPagination-form">
+    			<div class="myPagination-goPage">
+    				<span>到</span>
+    				<input type="text" 
+    					   name="page" 
+    					   class="myPagination-input" 
+    					   #PageNumber 
+    					   maxlength='3'
+    					   onkeyup="value=value.replace(/[^\d]/g,'')" 
+    					   onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))">
+    				<span>页</span>
+    			</div>
+    			<button type="sumbit" class="slds-button slds-button--neutral myPagination-go" (click)="FnGoPage(PageNumber.value)">GO</button>
+    		</form>
+    	</div>
+
+    </div>
+
+
+
+    <div class="pbox pbox-open" 
+         *ngIf = "ShowDelete.isShow"
+         #deleteElm
+         [ngStyle]="{'left':ShowDelete.position.left+'px','top':ShowDelete.position.top+'px'}">
+        <ul class="pop-menu">
+
+                 <div class="pbox-header">
+                    <h3 class="pbox-title">确认删除</h3>
+                </div>
+                <div class="sure-card pbox-body w-360">
+                    <p class="">删除后不可恢复，确定要删除该任务列表吗？</p>
+                            <button type="button" 
+                            class="btn btn-danger"
+                            (click)="FnDeleteTask()">删除</button> 
+                    <a class="btn btn-link" (click)="ShowDelete.isShow = !ShowDelete.isShow">取消</a>
+                </div>
+
+        </ul>
+    </div>
+
+
+    <!-- 弹出修改角色权限的组件 -->
+    <app-task-edit *ngIf = "TaskEdit.isShow"
+                  (callSelectModel)="getSelectData($event)"
+                  (callShow)="getCloseBack($event)"
+                  [TaskId]="TaskEdit.roleId"></app-task-edit>
+
+    <router-outlet></router-outlet>
+    </div>
+</div>

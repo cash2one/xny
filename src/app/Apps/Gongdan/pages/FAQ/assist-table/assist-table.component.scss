@@ -1,0 +1,41 @@
+.site-content{
+    position: relative;
+    background-color: #fff;
+    width: calc(100% - 270px);
+    top: 16px;
+    left: 250px;
+    height: calc(100% - 30px);
+    border-radius: 2px;
+    .module-header{
+        padding: 0 20px;
+        line-height: 60px;
+        .lettle-font{
+            font-size: 14px;
+            margin-left: 10px;
+            display: inline-block;
+        }
+        .title{
+            line-height: 60px;
+            span{
+                font-size: 18px;
+                &.lettle-font{
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    .gr-wrapper-table{
+        left: 0;
+        top: 60px;
+        bottom: 38px;
+    }
+    .flex-panel{
+        display: flex;
+        height: 45px;
+        padding-top: 15px;
+        line-height: 30px;
+        button{
+            margin-right: 20px;
+        }
+    }
+}

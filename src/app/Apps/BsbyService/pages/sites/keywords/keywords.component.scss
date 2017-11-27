@@ -1,0 +1,49 @@
+@import '../../../../../Public/theme/apps-common/variable.scss';
+
+.tableList{
+    .headLeft{
+        padding-left: 0px;
+        .control-panel{
+            height: 60px !important;
+            &:nth-child(1){
+                padding-left: 0px;
+            }
+        }
+        .search{
+            height: 38px;
+            input{
+                height: 100%;
+                outline: none;
+                padding: 0 10px;
+                border-radius: 5px;
+                border: 1px solid #eaeff1;
+            }
+        }
+        .select-cp {
+            position: relative;
+            height: 38px;
+            padding: 10px;
+            .select{
+                border: 1px solid #eaeff1;
+                background: #fff;
+                padding-left:10px;
+                padding-right:20px;
+                border-radius: 5px;
+                text-align: left;
+                height: 38px;
+                line-height: 38px;
+                cursor: pointer;
+            }
+            .down{
+                position: absolute;
+                width: 30px;
+                color: rgba(0, 0, 0, 0.32);
+                font-size: 20px;
+                right: 10px;
+                z-index: 2;
+                height: 38px;
+                line-height: 38px;
+            }
+        }
+    }
+}

@@ -1,0 +1,141 @@
+<app-riccio-pbox></app-riccio-pbox>
+
+<!-- model提示组件 -->
+<app-riccio-modal>
+	<div body >
+		<app-activity-code [btnType]="codeBtnType"
+						   [close]="codeClose"
+						   [codeTypeApi]="'write'"
+						   [writeData]="postWriteData"
+		                   (emitCode)="fnEmitCode($event)"></app-activity-code>
+	</div>
+</app-riccio-modal>
+
+<div class="header-title clearfix">
+	<div class="title f-l">
+		<span>
+			<i class="iconfont_ruanwen ruanwen-applications"></i>
+		</span>
+		<span>
+			代写文章
+		</span>
+	</div>
+</div>
+
+<div class="articles-main">
+
+	<div class="writing-articles">
+		
+		<form class="gr-form-horizontal c-f">
+
+			<div class="form-group c-f">
+		        <label class="f-l control-label col-gr-2">
+		            标题
+		        </label>
+		        <div class="f-l control-panel col-gr-8" style="width: 400px !important;">
+		            <input name="title"  
+		                   class="form-control"
+		                   maxlength="30"
+		                   placeholder="无标题"   
+		                   #titleEl
+		                   (focus)="postWriteData['title']=titleEl.value=='无标题'?'':postWriteData['title']"
+		                   (blur)="postWriteData['title']=titleEl.value==''?'无标题':postWriteData['title']"
+		                   [(ngModel)]="postWriteData['title']"
+		                   style="">
+		        </div>
+		    </div>
+
+			<div class="form-group c-f">
+		        <label class="f-l control-label col-gr-2">
+		            内容
+		        </label>
+		        <div class="f-l control-panel col-gr-10">
+		            <app-ruanwen-ngxueditor [configType]="'basic'"
+		            						[uedContent]="uedContent"
+		            						(emitData)="fnEmitUeditor($event)"></app-ruanwen-ngxueditor>
+		        </div>
+		    </div>
+
+		    <div class="form-group c-f">
+		        <label class="f-l control-label col-gr-2">
+		            参考
+		        </label>
+		        <div class="f-l control-panel col-gr-8">
+		            <textarea name="reference" class="reference form-control" readonly="readonly">1、推广对象：一起飞（www.yiqifei.com），正文里添加一处网址；
+
+2、文章体裁：采访型/评论型/故事型/自由型（请选择1种），字数1000以上，要求原创；
+
+3、文章标题：含关键词“特价机票”；
+
+4、宣传要点：一起飞机票网，特价机票2折起，可预订全球200个国家机票，方便又实惠；
+
+5、若有其他要求请写清楚详细，不满意可以重新修改。
+
+6、若能提供一篇您认为不错的软文链接给我们，对我们的写作方向很有参考作用，写出的文章也能比较达到您预期的要求。</textarea>
+		        </div>
+		    </div>
+
+			<div class="form-group c-f text-line">
+		        <label class="f-l control-label col-gr-2">
+		            规格
+		        </label>
+		        <div class="f-l control-panel col-gr-8">
+		        	<label class="radio f-l" *ngFor = "let list of writePrice">
+		        		<div class="gr-radio {{postWriteData['article_type']==list['type']?'active':''}}"
+		        			 (click)="postWriteData['article_type']=list['type'];postWriteData['final_amount']=postWriteData['total_count']*list['price']">
+		        			 <span></span>
+		        			 {{list['name']}}</div>
+		        	</label>
+		        </div>
+		    </div>
+
+			<div class="form-group c-f">
+		        <label class="f-l control-label col-gr-2">
+		            篇数
+		        </label>
+		        <div class="f-l control-panel col-gr-2 c-p">
+		            <input name="totalCount"  
+		                   class="form-control"
+		                   readonly="readonly"
+		                   [(ngModel)]="pricePboxData['selectData']"
+		                   #priceEl
+		                   (click)="fnShowPboxPrice(priceEl,$event)" 
+		                   style="">
+		            <i class="iconfont_ruanwen ruanwen-downBlock downBlock"></i>
+		        </div>
+		    </div>
+
+			<div class="form-group c-f">
+		        <label class="f-l control-label col-gr-2">
+		            总额
+		        </label>
+		        <div class="f-l control-panel col-gr-2">
+		            <input name="finalAmount"  
+		                   class="form-control price"
+		                   readonly="readonly" 
+		                   style=""
+		                   [(ngModel)]="postWriteData['final_amount']">
+		        </div>
+		        <span>元</span>
+		    </div>
+
+			<div class="form-group c-f">
+		        <div class="col-gr-6 col-gr-ml-2">
+		            <riccio-button [normal]="'保存草稿'"
+		            			   [disabled]="'保存中...'"
+		            			   [open]="btnDraftType"
+		            			   [status]="'green'"
+		            			   [bg] = "'rgb(40, 183, 121)'"
+		            			   (emitStatus)="fnBtnSave($event,'draft')"></riccio-button>
+		            <riccio-button [normal]="'代写发布'"
+		            			   [disabled]="'发布中...'"
+		            			   [open]="btnNextType"
+		            			   (emitStatus)="fnBtnSave($event,'order')"></riccio-button>
+		        </div>
+		    </div>
+
+		</form>
+
+	</div>
+
+</div>

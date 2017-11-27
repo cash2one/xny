@@ -1,0 +1,46 @@
+export class detailsTitle{
+
+	data:any[]=[
+		{
+			title:'员工姓名',
+			value:'name'
+		},
+		{
+			title:'手机',
+			value:'phone'
+		},
+		{
+			title:'邮箱',
+			value:'email'
+		},
+		{
+			title:'主属部门',
+			value:'department_main'
+		},
+		{
+			title:'附属部门',
+			value:'department_name'
+		},
+		{
+			title:'直属上级',
+			value:'parent_name'
+		},
+		{
+			title:'性别',
+			value:'sex'
+		},
+		{
+			title:'职务',
+			value:'positionname'
+		},
+		{
+			title:'生日',
+			value:'birthday'
+		},
+		{
+			title:'角色',
+			value:'auth_group'
+		}
+	]
+
+}

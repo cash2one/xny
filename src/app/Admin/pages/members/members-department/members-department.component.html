@@ -1,0 +1,46 @@
+<!-- 右侧区域 -->
+<div class="gr-wrapper-table">
+	<div class="wrapper-table-top">
+		<div class="table-top-title">
+			<a href="javascript:;" 
+			   class="font18">
+			   部门管理
+			</a>
+		</div>
+	</div>
+
+	<div class="wrapper-tabLab">
+
+		<div class="gr-navbar-title RoleTitleTab">
+			<div class="navbar-menu f-l">
+				<ul class="menu-ul clearfix">
+					<li class="menu-ul-li f-l {{switchTabTable=='normal'?'active':''}}">
+						<a href="javascript:;" (click)="switchTabTable='normal';FnGetDeparmentList()">正常部门<em class="font12 color999"></em></a>
+					</li>
+					<li class="menu-ul-li f-l {{switchTabTable=='disable'?'active':''}}">
+						<a href="javascript:;" (click)="switchTabTable='disable';FnGetDeparmentList()">禁用部门<em class="font12 color999"></em></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+	
+	<div class="wrapper-content" [ngSwitch]="switchTabTable">
+		<!-- 正常部门 -->
+		<ng-template [ngSwitchCase]="'normal'">
+			<app-department-normal [departmentNormal]="departmentNormal"
+					[routerInfo]="routerInfo">
+			</app-department-normal>
+		</ng-template>
+		<!-- 禁用部门 -->
+		<ng-template [ngSwitchCase]="'disable'">
+			<app-department-disable [departmentDisable]="departmentDisable"
+				[routerInfo]="routerInfo">
+			</app-department-disable>
+		</ng-template>
+	</div>
+
+</div>
+
+	

@@ -1,0 +1,33 @@
+
+
+<div class="select-year">
+	
+	<div class="year-head">
+		
+		<button class="slds-button slds-button--common-container" 
+				type="button">
+			<i class="iconfont_common  common-xiangzuojiantou" 
+			   nglicon="left"
+			   (click)="FnAddYear()"></i>
+		</button>
+		<div class="year-title">{{yearNames[0].name}}-{{yearNames[19].name}}</div>
+		<button class="slds-button slds-button--common-container" 
+				type="button">
+			<i class="iconfont_common  common-xiangyoujiantou" 
+			   nglicon="right"
+			   (click)="FnLessYear()"></i>
+		</button>
+
+	</div>
+
+
+	<ul class="year-ul">
+		<li *ngFor = "let list of yearNames"
+			(click)="FnCheckYear(list)">
+			<span [class.active]="list.name==selectYearData.data.name">{{list.name}}</span>
+		</li>
+	</ul>
+
+
+
+</div>

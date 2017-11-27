@@ -1,0 +1,11 @@
+<div class="BoxPrompt-Main" *ngIf="PromptSmall.TipText">
+  <div class="Main-center" 
+  	   [style.right]="PromptSmall.TipPosition.right"
+  	   [style.top]="PromptSmall.TipPosition.top"
+  	   [@shake]="'in'">
+  	 <div class="BoxLeft TipBox-{{PromptSmall.TipClassName}}">
+	 <i class="iconfont_common   {{PromptSmall.TipClassName=='success'?'common-gou1':'common-jinggao'}}"></i>
+	  {{PromptSmall.TipText}}
+	  </div>
+  </div>
+</div>

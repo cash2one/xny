@@ -1,0 +1,24 @@
+@charset "UTF-8";
+@import '../../Admin.value.scss';
+
+.modal-content{
+    .module-header{
+        height: 60px;
+        .breadcrumb{
+            height: 60px;
+            line-height: 60px;
+        }
+    }
+    #app-container{
+        .app{
+            .app-inner{
+                margin-top:20px;
+                margin-left:0px;
+                padding: 0px;
+            }
+            .list-title{
+                font-size: 14px;
+            }
+        }
+    }
+}

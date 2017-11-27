@@ -1,0 +1,36 @@
+@import '../../../../../Public/theme/apps-common/variable.scss';
+@import './siteInfo.common.scss';
+
+.siteInfo{
+    .body{
+        .bodyHead{
+            .subTitle{
+                .compiti{
+                    color:$clickColor;
+                }
+            }
+        }
+        .bodyMain{
+            position: relative;
+            top: 0px;
+            .desc{
+                margin-top: 20px;
+            }
+            .datachange{
+                 width: 50%;
+                 margin-top: 20px;
+                 display: inline-block;
+            }
+            .discuss{
+                width: 49%;
+                padding-left: 20px;
+                margin-top: 20px;
+                display: inline-block;
+                vertical-align: top;
+            }
+            .keyword{
+                margin-top: 20px;
+            }
+        }
+    }
+}

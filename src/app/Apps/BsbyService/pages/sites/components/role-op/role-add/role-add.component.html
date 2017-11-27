@@ -1,0 +1,83 @@
+<!-- <div class="gr-window-scroll rolAdd" *ngIf = "isShow">
+    <div class="openBox-Main" 
+         (click)="fnClose()"
+         style="z-index: 150;"></div>
+         
+    <div class="modal-content" 
+        [@flyInOut]="'in'"
+         *ngIf = "isShow">
+        <div class="">
+            <div class="modal-header">
+              <a href="javascript:;" class="modal-close" (click)="fnClose()">
+                    <i class="lcfont xm-close iconfont_bsby bsby-iconfontquxiao"></i>
+                </a>
+                <h3 class="modal-title">添加角色</h3>
+            </div>
+            <div class="modal-body">
+                <form class="gr-form-horizontal addRoleForm" 
+                        [formGroup]="addRoleForm"
+                        (ngSubmit)="addRole()">
+                    <div class="form-group f-i">
+                        <label class="control-label color666 label-required col-gr-2">
+                            角色名称
+                        </label>
+                        <div class="control-panel col-gr-10">
+                            <input name="name" class="form-control" autocomplete="off" placeholder="角色名称"
+                                [formControl]="ctrlAddRole.name" [(ngModel)]="addRoleData.name"
+                                [ngClass]="{'danger':!ctrlAddRole.name.valid && ctrlAddRole.name.touched}">
+                        </div>
+                    </div>
+        
+                    <div class="form-group f-btn col-gr-3 col-gr-ml-2">
+                        <button type="submit" class="gr-btn gr-btn-primary" [disabled]="!addRoleForm.valid && addRoleFormBtn.status">
+                            {{addRoleFormBtn.text}}
+                        </button>
+                    </div> 
+                </form>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="gr-window-scroll rolAdd" *ngIf = "isShow">
+    <div class="openBox-Main" 
+            style="z-index: 150;"></div>
+            
+    <div class="modal-content" 
+            [@flyInOut]="'in'" 
+            *ngIf = "isShow">
+        <div class="">
+            <div class="modal-header">
+                <a href="javascript:;" class="modal-close" (click)="fnClose()">
+                    <i class="lcfont xm-close iconfont_bsby bsby-iconfontquxiao"></i>
+                </a>
+                <h3 class="modal-title">添加角色</h3>
+            </div>
+            <div class="modal-body">
+                <div class="select-com-area">
+                    <form class="gr-form-horizontal addRoleForm" 
+                            [formGroup]="addRoleForm"
+                            (ngSubmit)="addRole()">
+                        <div class="form-group f-i">
+                            <label class="control-label color666 label-required col-gr-2">
+                                角色名称
+                            </label>
+                            <div class="control-panel col-gr-10">
+                                <input name="name" class="form-control" autocomplete="off" placeholder="角色名称"
+                                    [formControl]="ctrlAddRole.name" [(ngModel)]="addRoleData.name"
+                                    [ngClass]="{'danger':!ctrlAddRole.name.valid && ctrlAddRole.name.touched}">
+                            </div>
+                        </div>
+            
+                        <div class="form-group f-btn col-gr-3 col-gr-ml-2">
+                            <button type="submit" class="gr-btn gr-btn-primary" [disabled]="!addRoleForm.valid && addRoleFormBtn.status">
+                                {{addRoleFormBtn.text}}
+                            </button>
+                        </div> 
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

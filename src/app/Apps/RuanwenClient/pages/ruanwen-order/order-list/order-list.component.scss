@@ -1,0 +1,30 @@
+.gr-wrapper-table{
+	left: 0px;
+	right: 0px;
+}
+
+
+.order-list{
+	width: 100%;
+	height: 100%;
+	padding: 0 20px;
+	position: relative;
+	.customer-content{
+		span.status{
+		    display: inline-block;
+		    width: 8px;
+		    height: 8px;
+		    border-radius: 4px;
+		}
+	}
+	.order-main{
+		position: relative;
+		height: calc(100% - 135px);
+		width: 100%;
+	}
+}
+
+
+.text-green{
+	color: #7cca4e
+}

@@ -1,0 +1,57 @@
+<div class="modal-content">
+	<div class="module-header">
+        <div class="f-l titleTag">
+            邮箱接口配置
+        </div>
+    </div>
+
+	<div class="modal-body">
+		<form class="form-horizontal c-f">
+			<div class="form-group c-f ">
+				<label class="col-sm-3 control-label line-40">接口驱动</label>
+				<div class="col-sm-9 control-panel interDrive">
+					<a href="javascript:;" (click)="tabShow='SMTP'"><i class="iconfont_admin  {{tabShow==='SMTP'?'admin-danxuan':'admin-danxuan1'}}"></i>SMTP驱动</a>
+					<a href="javascript:;" (click)="tabShow='shaiyun'"><i class="iconfont_admin  
+							{{tabShow==='shaiyun'?'admin-danxuan':'admin-danxuan1'}}"></i>赛云</a>
+				</div>
+			</div>
+
+			<div [ngSwitch]="tabShow">
+				<ng-template [ngSwitchCase]="'SMTP'">
+					<div class="form-group c-f " *ngFor="let list of showDataSMTP">
+						<label class="col-sm-3 control-label line-40">{{list.name}}</label>
+						<div class="col-sm-9 control-panel" [ngClass]="{'col-sm-3':list.short}">
+							<input class="form-control" name="{{list.name}}" 
+								placeholder="{{list.ph}}" 
+								[ngClass]="{'danger':red && !(SMTPData[list.action])}"
+							 	[(ngModel)]="SMTPData[list.action]" (focus)="red=false">
+							<span class="tip" [ngClass]="{'portTip':list.short}" *ngIf="list.tip">{{list.tip}}</span>
+						</div>
+					</div>
+				</ng-template>
+
+				<ng-template [ngSwitchCase]="'shaiyun'">
+					<div class="form-group c-f " *ngFor="let list of showDataShaiyun">
+						<label class="col-sm-3 control-label line-40">{{list.name}}</label>
+						<div class="col-sm-9 control-panel">
+							<input class="form-control" name="{{list.name}}" placeholder="{{list.ph}}" [ngClass]="{'danger':red && !(ShaiyunData[list.action])}"
+							 [(ngModel)]="ShaiyunData[list.action]" (focus)="red=false">
+						</div>
+					</div>
+				</ng-template>
+
+			</div>
+
+
+
+			<div class="form-group c-f footer-border projectTemplate">
+				<div class="col-sm-3"></div>
+				<div class="col-sm-4 control-panel c-f">
+					<button class="btn saveBtn btn-primary pull-right f-r" 
+						[disabled]="!btnStatus.status" type="submit" (click)="FnSaveMail();red=true">{{btnStatus.text}}</button>
+				</div>
+			</div>
+		</form>
+
+	</div>
+</div>

@@ -1,0 +1,108 @@
+<div class="submitStepFour" xmlns="http://www.w3.org/1999/html">
+  <div class="remind">
+    <div class="remind-header">
+      <span>我的工单提醒：</span>
+      <span>待您反馈（{{feedback}}）</span>
+    </div>
+    <div class="remind-body">
+      <app-submit-step-bar [step]="'4'"></app-submit-step-bar>
+    </div>
+  </div>
+  <div class="submit">
+    <div class="submit-header">
+      <span>提交工单</span>
+    </div>
+    <div class="submit-body clear">
+      <form class="gr-form-horizontal c-f">
+        <div class="form-group c-f clear">
+          <div class="left">
+            优先级：
+          </div>
+          <div class="right">
+            <label class="radio"><input type="radio" name="priority" checked="true" (click)="newGongdanData['is_important'] = 1">重要</label>
+            <label class="radio"><input type="radio" name="priority" (click)="newGongdanData['is_important'] = 0">一般</label>
+          </div>
+        </div>
+        <div class="form-group c-f clear">
+          <div class="left">
+            <span class="red">*</span>问题描述：
+          </div>
+          <div class="right">
+            <textarea name="issueDesc"
+                      class="form-control"
+                      placeholder="若提交密码或AccessKeys等信息，请通过“重要信息”方式添加，并在问题处理完毕后及时修改。"
+                      [(ngModel)]="newGongdanData['content']"
+                      (focus)="danger['content']=false"
+                      (blur)="fnGetFindDesc()"
+                      [ngClass]="{'danger':danger['content']}"
+            ></textarea>
+          </div>
+        </div>
+        <div class="form-group c-f clear">
+          <div class="left">
+            <span class="red">*</span>手机号：
+          </div>
+          <div class="right">
+            <input
+              name="phone"
+              type="text"
+              class="phone form-control"
+              placeholder="请添加处理完毕后及时修改。"
+              [(ngModel)]="newGongdanData['mobile']"
+              maxlength="11"
+              (blur)="fnGetFindMobile()"
+              (focus)="danger['mobile']=false"
+              [ngClass]="{'danger':danger['mobile']}">
+          </div>
+        </div>
+        <div class="form-group c-f clear">
+          <div class="left">
+            <span class="red">*</span>邮箱：
+          </div>
+          <div class="right">
+            <input
+              name="email"
+              class="email form-control"
+              type="email"
+              placeholder="请添加，问题处理完毕后及时修改。"
+              [(ngModel)]="newGongdanData['email']"
+              (focus)="danger['email']=false"
+              (blur)="fnGetFindEmail()"
+              [ngClass]="{'danger':danger['email']}">
+          </div>
+        </div>
+        <div class="form-group c-f clear">
+          <div class="left">
+            重要信息<span class="unNeed">（非必填项）</span>：
+          </div>
+          <div class="right">
+            <textarea
+              name="reason"
+              class="form-control"
+              [(ngModel)]="newGongdanData['reason']"
+              placeholder="若提交密码或AccessKeys等信息，请通过“重要信息”方式添加，并在问题处理完毕后及时修改">
+            </textarea>
+          </div>
+        </div>
+        <div class="form-group c-f clear">
+          <div class="right upload">
+            <span>可上传<span class="blue">5</span>个附件：</span>
+            <button>上传文件</button>
+            <button><i class="iconfont_console console-fuzhilianjie"></i>&nbsp;&nbsp;附件1&nbsp;&nbsp;<i class="iconfont_console console-weibiaoti2"></i></button>
+            <button><i class="iconfont_console console-fuzhilianjie"></i>&nbsp;&nbsp;附件2&nbsp;&nbsp;<i class="iconfont_console console-weibiaoti2"></i></button>
+          </div>
+        </div>
+        <div class="form-group c-f clear">
+          <div class="right">
+            <span class="grey">每个附件大小不得超过8M。附件支持的格式有:'jpg', 'bmp', 'png','gif','txt','rar','zip','doc','docx','ini','conf','eml','pdf', 'xlsx', 'xls'</span>
+          </div>
+        </div>
+        <div class="form-group c-f clear">
+          <div class="right">
+            <button class="submit" (click)="submit()">提&nbsp;&nbsp;&nbsp;交</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

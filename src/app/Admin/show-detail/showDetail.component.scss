@@ -1,0 +1,74 @@
+@import '../Admin.value.scss';
+
+.tempDetail{
+    position:fixed;
+    z-index: 99;
+    top:53px;
+    right:0px;
+    width:400px;
+    bottom:0px;
+    background-color: #fff;
+    border-right:none;
+    overflow:auto;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    .detailHead{
+        height:56px;
+        border-bottom:1px solid #DDDDDD;
+        margin-left:30px;
+        padding-right:30px;
+        line-height: 56px;
+        .title{
+            font-size: 16px;
+            float: left;
+        }
+        .tool{
+            float: right;
+            .editOp,
+            .delOp{
+                display: inline-block;
+                button{
+                    background: transparent;
+                    background: #fff;
+                    border: none;
+                    &:hover{
+                        cursor: pointer;
+                    }
+                    color:$themeColor;
+                    font-size: 12px;
+                    margin-left:10px;
+                    outline: none;
+                    &:before{
+                        padding-right:8px;
+                    }
+                }
+            }
+        }
+    }
+    .detailBody{
+        padding:20px 30px 20px 30px;
+        .one{
+            padding-top:15px;
+            font-size: 12px;
+            width:100%;
+            .key,
+            .val{
+                display: inline-block;
+            }
+            .key{
+                width:20%;
+                vertical-align: top;
+                text-align: right;
+            }
+            .val{
+                width:75%;
+                padding-left:10px;
+                img{
+                    max-width: 100%;
+                }
+            }
+            .imgVal{
+                width: 40px;
+            }
+        }
+    }
+}

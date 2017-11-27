@@ -1,0 +1,58 @@
+
+    <ul class="lc-tree" 
+        *ngFor = "let list of AllTreeData;let i = index;">
+
+        <li class="">
+        	<a class="lvl{{list.level}}" 
+               (click)="FnUnfolded(list)">
+        		<span class="expand-tree-icon" 
+        			[style.transform]="list.isAccordion==true?'rotate(0deg)':'rotate(-90deg)'">
+        			<i class="iconfont_common  common-chevron-down"></i> 
+        		</span>
+        		<span>
+        			<i class="iconfont_common  common-shichang"></i> 
+        		</span>
+        		<span class="title">
+        			<span class="">{{list[nodeKey]}}</span> 
+        			<span class="title-desc">( {{list[childrenKey].length}}人 )</span> 
+        		</span>
+        	</a>
+            <ul class="lc-tree" 
+                style="overflow: hidden"
+                 [@accordion]="list.isAccordion==false?'out':'in'">
+                <li class="">
+
+                    <div class="" *ngIf="list[childrenKey]">
+                        <!-- 此处判断是否还有二级列表 -->
+                        <a  class="lvl{{list.level}} member-item" 
+                            href="javascript:;" 
+                            *ngFor = "let UserList of list[childrenKey];let j = index"
+                            (click)="FnSelectUser(UserList)">
+                            <div class="xm-avatar 
+                                 xm-avatar-30 flex-se1" 
+                                 title="xjh" 
+                                 member="member" 
+                                 size="30" name="true" 
+                                 style=" margin-right: 5px;margin-left: 28px;">
+                                <span class="xm-avatar-def" style="background-color: rgb(239, 123, 164);">
+                                	<div class="">{{UserList[childrenName].slice(0,1)}}</div>
+                                </span>
+                                <div class="xm-avatar-name">{{UserList[childrenName]}}</div>
+                            </div>
+                            <i class="iconfont_common  common-gou1" *ngIf = "UserList.isCheck"></i>
+                        </a>
+
+                    </div>
+
+                    <!-- 此处判断是否还有下一级菜单   |  递归模板 -->
+                    <div class="" *ngIf = "list.chilren.length>0">
+                        <app-tree-department-view [AllTreeData]="list.chilren" 
+                                                  [nodeKey] = "nodeKey"
+                                                  [childrenKey] = "childrenKey"
+                                                  [symbol] = "symbol"
+                                                  [childrenName] = "childrenName"></app-tree-department-view>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ul>

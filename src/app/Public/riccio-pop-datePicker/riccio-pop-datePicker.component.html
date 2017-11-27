@@ -1,0 +1,9 @@
+<div class="datePicker" [@smallBig]="'in'" 
+    [ngStyle]="{'left':dateConfig.style.left+'px','top':dateConfig.style.top+'px','width':dateConfig.style.width+'px'}" 
+    *ngIf="dateShow" #datePicker>
+    <button class="btn closeBtn iconfont_bsby bsby-guanbi" (click)="close()"></button>
+    <app-riccio-datepickers
+        [initDate]="dateConfig.date"
+        (callDatepickersData)="getDate($event)">
+    </app-riccio-datepickers>
+</div>

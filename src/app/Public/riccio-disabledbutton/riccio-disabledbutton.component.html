@@ -1,0 +1,6 @@
+<button type="button" 
+        class="gr-btn {{status=='primary'?'gr-btn-primary':status=='danger'?'gr-btn-danger':status=='disabled'?'gr-btn-disabled':'gr-btn-primary'}}"
+        [ngStyle]="{'background':bg}"
+        disabled="{{btnData.disabled==true?'disabled':''}}"
+        (click)="fnCallBack()">{{btnData.text}}
+</button>

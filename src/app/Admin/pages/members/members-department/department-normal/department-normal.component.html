@@ -1,0 +1,117 @@
+<div class="gr-special-table">
+	<table class="table table-hover gr-table" tableTitle>
+		<colgroup>
+			<col width="30">
+			<col width="60">
+			<col width="60">
+			<col width="60">
+			<col width="200">
+			<col width="120">
+		</colgroup>
+		<thead class="hand">
+		    <tr>
+		        <th *ngFor="let name of tableTitle">
+		            {{name}}
+		        </th>
+		        <th class="th-checkbox">操作</th>
+		    </tr>
+		</thead>
+	</table>
+	<div class="wrapper-table" *ngIf = "!loading">
+		<table class="table table-hover gr-table">
+			<colgroup>
+	    		<col width="30">
+	    		<col width="60">
+	    		<col width="60">
+	    		<col width="60">
+	    		<col width="200">
+	    		<col width="120">
+	    	</colgroup>
+			<tbody id="undetails">
+
+			    <tr *ngFor="let list of departmentNormal" tableTitle>
+			        <td class="td-checkbox" (click)="isSort=list.id">
+			            <span *ngIf = "!(isSort==list.id)">{{list.listorder}}</span>
+		            	<input type="text" 
+				               name="{{list.listorder}}"
+		            		   [(ngModel)]="list.listorder"
+		            		   style="width: 40px;outline: none" 
+		            		   *ngIf= "isSort==list.id" 
+		            		   autofocus
+		            		   onkeyup="this.value=this.value.replace(/\D/g,'')" 
+		            		   onafterpaste="this.value=this.value.replace(/\D/g,'')"
+		            		   (focus)="constIsSort = list.listorder"
+		            		   (blur)="fnSortList(list);isSort='-1'">
+			        </td>
+			        <td class="customer-content">
+			        {{list.name}}
+			        </td>
+			        <td class="customer-content">
+			        {{list.parentname?list.parentname:'全公司'}}
+			        </td>
+			        <td class="customer-content">
+			        {{list.note}}
+			        </td>
+			        <td class="customer-content">
+			        {{list.created_at}}
+			        </td>
+			        <td class="td-status" noTitle>
+					    <a href="javascript:;" class="" (click)="fnShowModalEditDepartment(list)">编辑</a>
+						<a href="javascript:;" 
+						   #listEdit
+						   (click)="FnShowPbox($event,listEdit,list)">
+						   <i class="iconfont_admin  admin-iconfontdown2"></i>
+						</a>
+			        </td>
+			    </tr>
+			    
+			</tbody>
+		</table>
+	</div>
+
+	<div class="loading-indicator" *ngIf = 'loading'>
+	    <div class="hor-center">
+	        <h4 class="ng-binding">
+	            正在努力加载中，请稍候
+	            <div class="loading-ellipsis">
+	                <div class="bounce1"></div>
+	                <div class="bounce2"></div>
+	              <div class="bounce3"></div>
+	            </div>
+	        </h4>
+	    </div>
+	</div>
+</div>
+
+
+<!-- modal -->
+<app-riccio-modal>
+	<div body [ngSwitch]="riccioModalSymbol">
+		<ng-template [ngSwitchCase]="'create'">
+			<app-admin-department-create [departmentInfo]="departmentInfo" 
+								[symbol]="'edit'" 
+								[routerInfo]="routerInfo"
+								(callData)="fnOutPutCreateEdit($event)"
+								*ngIf = "departmentInfo"></app-admin-department-create>
+		</ng-template>
+		<ng-template [ngSwitchCase]="'disabled'">
+			<p>是否禁用 {{departmentInfo.name}} 部门</p>
+		</ng-template>
+		<ng-template [ngSwitchCase]="'delete'">
+			<p>是否删除 {{departmentInfo.name}} 部门</p>
+		</ng-template>
+	</div>
+</app-riccio-modal>
+
+
+<!-- pbox设置部门负责人 -->
+<app-riccio-pbox>
+	<div body [ngSwitch]="adminOrDepartment">
+		<ng-template [ngSwitchCase]="'admin'">
+			<app-admin-members-set-admin [routerInfo]="routerInfo"></app-admin-members-set-admin>
+		</ng-template>	
+		<ng-template [ngSwitchCase]="'department'">
+			<app-admin-members-set-department-main [routerInfo]="routerInfo"></app-admin-members-set-department-main>
+		</ng-template>	
+	</div>
+</app-riccio-pbox>

@@ -1,0 +1,7 @@
+<div class="popoversMain {{aspect}}"
+     [ngStyle]="{'left':position.left+'px','top':position.top+'px','transform':transform?'translateX(-50%)':'translateY(-50%)'}"  
+     *ngIf = "isShow"
+     #popoversMain>
+  <ng-content></ng-content>
+</div>
+

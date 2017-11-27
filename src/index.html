@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <title>星牛云</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+  <script type="text/javascript">
+
+    window['setting'] = {
+      //api请求接口前缀
+      'siteurl':'https://testsaas.36099.com/',
+      //资源版本 比如 .css?v=2017
+      'statics_version':'20170909',
+      //资源前缀。比如第三方域名
+      'fileurl':'https://testsaas.36099.com/',
+      //控制title名称的参数
+      'sitename':'星牛云'
+    }
+
+  </script>
+
+<body>
+
+  <div class="loading-indicator" id="loading">
+    <div class="loading">
+      <div class="coffee_cup"></div>
+      <div class="coffeeText">
+        <p>正在拼命加载中...</p>
+      </div>
+    </div>
+  </div>
+
+  <app-root>
+  </app-root>
+</body>
+
+<script>
+  var inter = setInterval(function () {
+    var session = sessionStorage.getItem('loading');
+    if (session != null) {
+      clearInterval(inter);
+      sessionStorage.removeItem('loading');
+      var LoadingObj = document.getElementById('loading');
+      LoadingObj.setAttribute('style', 'display:none');
+    }
+  }, 100)
+</script>
+
+</html>

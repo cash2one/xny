@@ -1,0 +1,13 @@
+<div class="BoxPrompt-Main"
+     [ngStyle]="{'right':data.position.right+'px','top':data.position.top+'px'}">
+
+  <div class="Main-center" [@rightIn]="'in'" *ngFor = "let list of showViewArr">
+  	 <div class="BoxLeft TipBox-{{list.status==='success'?'success':list.status==='danger'?'danger':''}}">
+		 <i class="iconfont_common  {{list.status==='success'?'common-chenggong2icon':list.status==='danger'?'common-jinggao':''}}"
+		    ></i>
+		  <span [innerHTML]="list.text"></span>
+		<!-- <a href="javascript:;" (click)="FnClose()"><i class="iconfont_common  common-iconfontquxiao f-r close color666"></i></a> -->
+	  </div>
+  </div>
+
+</div>

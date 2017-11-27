@@ -1,0 +1,69 @@
+<div class="message common">
+    <!-- 通用顶部的从左侧弹出的组件 -->
+    <app-riccio-pop-up-right></app-riccio-pop-up-right>
+    <div class="message-common">
+        <div class="title">
+            <span class="name">{{msgCommon.title}}</span>
+            <a href="javascript:;" *ngIf="msgCommon.showReadAll" (click)="confirmAllRead($event)">
+                <i class="iconfont_console console-iconfontbiaoji2"></i>
+                全部标记已读
+            </a>
+        </div>
+        <div class="main">
+            <div class="gr-wrapper-table tableList">
+                <div class="wrapper-content">
+                    <table class="table table-hover gr-table">
+                        <colgroup>
+                            <col width="25">
+                            <col width="200">
+                            <col width="100">
+                        </colgroup>
+                        <thead class="hand">
+                            <tr>
+                                <th class="th-checkbox">
+                                    <a href="javascript:;" class="customer-check" (click)="fnShowPopUp('all')">
+                                            <i class="iconfont_console  {{allCheckIs==true?'console-check1 iconColorNormal':'console-check'}}"></i>
+                                        </a>
+                                </th>
+                                <th *ngFor="let title of messageTitles">
+                                    {{title}}
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                    <div class="wrapper-table" *ngIf="msgCommon.loadingType == 'hide'">
+                        <table class="table hover table-hover gr-table">
+                            <colgroup>
+                                <col width="25">
+                                <col width="200">
+                                <col width="100">
+                            </colgroup>
+                            <tbody #clickTB>
+                                <tr *ngFor="let message of msgCommon.messageList">
+                                    <td class="td-checkbox">
+                                        <a href="javascript:;" class="customer-check gr-checkbox" (click)="fnShowPopUp('one',message)">
+                                            <i class="iconfont_console  {{message.isCheck==true?'console-check1':'console-check'}}">
+                                            </i>
+                                        </a>
+                                    </td>
+                                    <td class="customer-content" [ngClass]="{'read':message.read == 1}">
+                                        <span class="flag"></span>
+                                        <span class="msgTitle" (click)="fnToDetail(message)">{{message.name}}</span>
+                                    </td>
+                                    <td class="customer-content">
+                                        {{message.created_at}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <app-riccio-spinners [type]="msgCommon.loadingType"
+                                        [emptyText]="pageData.emptyText"></app-riccio-spinners>
+                    <app-riccio-paginations [total]="msgCommon.messageTotal"
+                                        (pageValue)="fnPageValue($event)"></app-riccio-paginations>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

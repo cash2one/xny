@@ -1,0 +1,30 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+      "outDir": "../out-tsc/app",
+      "module": "es2015",
+      "baseUrl": "./",
+      "paths": {
+        "@gr-public": [
+          "app/Public"
+        ],
+        "@gr-public/*": [
+          "app/Public/*"
+        ],
+        "@gr-api-service":[
+            "app/ApiServices"
+        ],
+        "@gr-api-service/*":[
+            "app/ApiServices/*"
+        ]
+      },
+      "types": []
+    },
+    "exclude": [
+      "test.ts",
+      "**/*.spec.ts"
+    ],
+    "angularCompilerOptions": {
+      "genDir": "../aot"
+    }
+  }

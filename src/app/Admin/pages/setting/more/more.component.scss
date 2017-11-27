@@ -1,0 +1,56 @@
+.modal-content{
+  padding: 0 25px;
+  .module-header{
+    height: 60px;
+    line-height: 60px;
+    border-bottom: 1px solid #F3F3F3;
+  }
+  .module-body{
+    .application-list{
+      margin-top: 20px;
+      .application-item{
+        display: inline-block;
+        padding: 10px;
+        background-color: #F8F8F8;
+        cursor: pointer;
+        .application-logo{
+          float: left;
+          width: 40px;
+          height: 40px;
+          text-align: center;
+          line-height: 40px;
+          color: #fff;
+          border-radius: 4px;
+          background-color: #679DFF;
+        }
+        .application-word{
+          float: left;
+          height: 40px;
+          line-height: 40px;
+          margin-left: 10px;
+          .application-name{
+            font-size: 14px;
+            height: 23px;
+            line-height: 23px;
+            vertical-align: bottom;
+            color: #333;
+            font-weight: 700;
+          }
+          .application-desc{
+            font-size: 12px;
+            height: 16px;
+            line-height: 16px;
+            vertical-align: top;
+            color: #999;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+          }
+        }
+      }
+      .application-item:hover{
+        background-color: #F2F2F2;
+      }
+    }
+  }
+}

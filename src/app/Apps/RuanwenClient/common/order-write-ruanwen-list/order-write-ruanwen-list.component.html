@@ -1,0 +1,118 @@
+<div class="ruanwenList-main">
+	
+	<div class="normal">
+		<div class="header">
+			<p>代写软文列表</p>
+		</div>
+
+		<div class="number-info">
+			<ul class="info-ul">
+				<li class="info-ul-li">
+					<span class="title">资源数: <em>{{numberInfoStatus.resourceCount}}</em>个</span>
+				</li>
+				<li class="info-ul-li">
+					<span class="title">写作中: <em class="num-price font16">{{numberInfoStatus.writingCount}}</em>个</span>
+				</li>
+				<li class="info-ul-li">
+					<span class="title">已完成: <em class="num-blue font16">{{numberInfoStatus.completeCount}}</em>个</span>
+				</li>
+				<li class="info-ul-li">
+					<span class="title">已完成: <em class="font16">{{numberInfoStatus.cancelCount}}</em>个</span>
+				</li>
+			</ul>
+		</div>
+
+		<div class="order-list">
+
+			<!-- 执行中的订单列表 -->
+			<div class="gr-wrapper-table">
+
+				<div class="wrapper-content">
+					<!-- 所有员工列表 -->
+					<table class="table table-hover gr-table">
+						<colgroup>
+				    		<col width="80">
+				    		<col width="80">
+				    		<col width="80">
+				    		<col width="80">
+				    		<col width="80">
+				    		<col width="40">
+				    	</colgroup>
+						<thead class="hand">
+						    <tr>
+						        <th *ngFor="let name of tableTitle">
+						            {{name}}
+						            <a href="javascript:;" *ngIf = "name==='订单状态'"
+						            					   (click)="fnRefreshOrderStatus('all')">
+						            	<i class="iconfont_ruanwen ruanwen-shuaxin1"></i>
+						            </a>
+						        </th>
+						    </tr>
+						</thead>
+					</table>
+					<div class="wrapper-table">
+						<table class="table table-hover gr-table">
+							<colgroup>
+					    		<col width="80">
+					    		<col width="80">
+					    		<col width="80">
+					    		<col width="80">
+					    		<col width="80">
+					    		<col width="40">
+					    	</colgroup>
+							<tbody id="undetails">
+							    <tr *ngFor = "let list of writeRuanwenItem">
+							        <td class="customer-content">
+									{{list.id}}
+							        </td>
+							        <td class="customer-content">
+									{{list.article_id}}
+							        </td>
+							        <td class="customer-content">
+									{{list.title}}
+							        </td>
+							        <td class="customer-content">
+										<span class="price">¥{{list.article_cost}}元</span>
+							        </td>
+							        <td class="customer-content order-status">
+							        	<span class="status {{list.status==0
+																?'yellow'
+																:list.status==1
+																?'green'
+																:list.status==2
+																?'red'
+																:''}}"></span>
+										{{list.status==0
+										?'进行中'
+										:list.status==1
+										?'已完成'
+										:list.status==2
+										?'已取消'
+										:''}}
+
+										<a href="javascript:;" 
+											*ngIf = "list.status==0"
+											class="{{list.is_refres==true?'show':'hide'}}" 
+										   (click)="fnRefreshOrderStatus('list',list)">
+											<i class="iconfont_ruanwen  {{list.is_refres==true?'ruanwen-shuaxin':'ruanwen-shuaxin1'}}"></i>
+										</a>
+							        </td>
+							        <td class="td-status">
+							        	<a (click)="fnEmitRuanwenInfo(list)">
+				        					查看
+				        				</a>
+							        </td>
+
+							    </tr>
+							    
+							</tbody>
+						</table>
+			
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

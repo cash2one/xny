@@ -1,0 +1,38 @@
+<div class="gr-window-scroll" [@fade]="'in'" *ngIf="isShow">
+    <div class="openBox-Main" style="z-index: 150;"></div>
+    <div class="modal-content" [@fade]="'in'" *ngIf="isShow"
+        [ngStyle]="{'width':kwConf.width + 'px','margin-left':'-' + kwConf.width/2 + 'px'}">
+        <div class="">
+            <div class="modal-header">
+                <a href="javascript:;" class="modal-close" (click)="fnClose()">
+                    <i class="lcfont xm-close iconfont_common common-iconfontcha"></i>
+                </a>
+                <h3 class="modal-title">{{kwConf.title}}</h3>
+            </div>
+            <div class="modal-body">
+                <div class="select-member-area">
+                    <div class="search">
+                        <div class="select-cp" (click)="fnShowDate('start')">
+                            <i class="down iconfont_bsby bsby-xuanzeshijian"></i>
+                            <div class="select color666" #startDateDiv>
+                                {{searchParam.time[0]?searchParam.time[0]:'请选择起始时间'}}
+                            </div>
+                        </div>
+                        <span class="word">至</span>
+                        <div class="select-cp" (click)="fnShowDate('end')">
+                            <i class="down iconfont_bsby bsby-xuanzeshijian"></i>
+                            <div class="select color666" #endDateDiv>
+                                {{searchParam.time[1]?searchParam.time[1]:'请选择结束时间'}}
+                            </div>
+                        </div>
+                        <button class="gr-btn gr-btn-primary bsbyBtn" (click)="fnEmitSearch()">
+                            搜索
+                        </button>
+                    </div>
+                    <div [ngStyle]="{'height':kwConf.height + 'px'}"
+                         echarts [options]="kwConf.chartOption" class="demo-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

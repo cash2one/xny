@@ -1,0 +1,49 @@
+<div class="myGongdan">
+  <div class="remind">
+    <div class="remind-header">
+      <span>我的工单提醒：</span>
+      <span>待您反馈（{{feedback}}）</span>
+    </div>
+    <div class="remind-body">
+      <div class="content-header">
+        <label>
+          <span>工单编号：</span>
+          <input type="text" placeholder="请输入编号">
+        </label>
+        <label>
+          <span>开始时间：</span>
+          <input type="date" placeholder="请输入开始时间">
+        </label>
+        <label>
+          <span>结束时间</span>
+          <input type="date" placeholder="请输入结束时间">
+        </label>
+        <label>
+          <span>关键字：</span>
+          <input type="text" placeholder="请输入关键字">
+        </label>
+        <button>查询</button>
+      </div>
+      <div class="content-body">
+        <table>
+          <tr>
+            <th>工单编号</th>
+            <th>问题内容</th>
+            <th>问题分类</th>
+            <th>提交时间</th>
+            <th>状态（全部）</th>
+            <th>操作</th>
+          </tr>
+          <tr *ngFor="let myGongdan of gongdanList">
+            <td>{{myGongdan.number}}</td>
+            <td>{{myGongdan.content}}</td>
+            <td>{{myGongdan.cate_name}}</td>
+            <td>{{myGongdan.created_at}}</td>
+            <td>{{myGongdan.status == 0?"工单已分派":myGongdan.status == 1?"待您反馈":myGongdan.status == 2?"正在为您处理":myGongdan.status == 3?"待您确认":myGongdan.status == 4?"待您评价":myGongdan.status == 5?"工单已关闭":""}}</td>
+            <td><a href="javascript:;" (click)="seeDetail(myGongdan.id)">查看</a></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

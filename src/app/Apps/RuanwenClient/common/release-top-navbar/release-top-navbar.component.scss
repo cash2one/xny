@@ -1,0 +1,20 @@
+.top-navbar{
+    background-color: #fff;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    padding-left: 20px;
+    ul.nav-ul{
+    	font-size: 0;
+    	height: 40px;
+    	li.nav-ul-li{
+    		display: inline-block;
+			font-size: 14px;
+			padding: 0 5px;
+    		span{
+    			font-weight: 500;
+    			font-size: 14px;
+    		}
+    	}
+    }
+}

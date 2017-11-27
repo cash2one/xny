@@ -1,0 +1,93 @@
+<div class="programmeList bsbyCommon">
+    <div class="head">
+        <div class="title">
+            <i class="iconfont_bsby bsby-fangan-copy"></i>
+            <span>执行方案</span>
+        </div>
+        <div class="action">
+            <button class="gr-btn gr-btn-primary bsbyBtn addBtn" (click)="fnGoOp('add')">
+                <i class="iconfont_bsby bsby-jia"></i>
+                添加方案
+            </button>
+        </div>
+    </div>
+    <div class="body">
+        <div class="bodyHead" *ngIf="siteLoadingType == 'hide'">
+            <div class="title">
+                <span class="name">{{siteInfo.domain}}</span>
+            </div>
+            <div class="subTitle">
+                 {{siteInfo.company_name}}
+            </div>
+        </div>
+        <div class="bodyMain" *ngIf="siteLoadingType == 'hide'">
+            <div class="gr-wrapper-table keywordListTable tableList">
+                <div class="wrapper-content"> 
+                    <table class="table table-hover gr-table" tableTitle>
+                        <colgroup>
+                            <col width="50">
+                            <col width="120">
+                            <col width="80">
+                            <col width="60">
+                            <col width="60">
+                        </colgroup>
+                        <thead class="hand">
+                            <tr>
+                                <th *ngFor = "let title of programmeListTitles">
+                                    {{title}}
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                    <div class="wrapper-table" *ngIf="loadingType == 'hide'">
+                        <table class="table hover table-hover gr-table">
+                            <colgroup>
+                                <col width="50">
+                                <col width="120">
+                                <col width="80">
+                                <col width="60">
+                                <col width="60">
+                            </colgroup>
+                            <tbody #detailTB>
+                                <tr *ngFor="let programme of programmeList" tableTitle>
+                                    <td class="customer-content">
+                                        {{programme.month}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{programme.title}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{programme.created_at}}
+                                    </td>
+                                    <td class="customer-content">
+                                        {{programme.username}}
+                                    </td>
+                                    <td class="customer-level" noTitle>
+                                        <a href="javascript:;" class="approval-action" (click)="fnGoOp('edit',programme.id)">
+                                            编辑
+                                        </a>
+                                        <a href="javascript:;" class="approval-action" (click)="fnShowDetail(programme.id)">
+                                            详情
+                                        </a>
+                                        <a href="javascript:;" class="approval-action" (click)="fnShowDel(programme.id,delBtn,$event)" #delBtn>
+                                            删除
+                                        </a>
+                                    </td>
+                                </tr>                   
+                            </tbody>
+                        </table>
+                    </div>
+                    <app-riccio-spinners [type]="loadingType"
+                        [emptyText]="pageData.emptyText"></app-riccio-spinners>
+                    <app-riccio-paginations
+                        [total]="pageData['total']"
+                        (pageValue)="fnPagination($event)"></app-riccio-paginations>
+                </div>
+            </div>
+        </div>
+        <app-riccio-spinners [type]="siteLoadingType"></app-riccio-spinners>
+    </div>
+</div>
+
+<show-detail></show-detail>

@@ -1,0 +1,39 @@
+@charset "UTF-8";
+//通用动画函数
+
+@mixin setAnimation(
+    $name,
+    $time:1s,
+    $timingFunction:linear,
+    $delay:0s,
+    $count:infinite,
+    $direction:normal
+){
+    animation: #{$name} #{$time} #{$timingFunction} #{$delay} #{$count} #{$direction};
+    -moz-animation: #{$name} #{$time} #{$timingFunction} #{$delay} #{$count} #{$direction};
+    -webkit-animation: #{$name} #{$time} #{$timingFunction} #{$delay} #{$count} #{$direction};
+    -o-animation: #{$name} #{$time} #{$timingFunction} #{$delay} #{$count} #{$direction};
+}
+
+@mixin defineKeyframes($name){
+    @keyframes #{$name}{
+        @content
+    }
+    @-moz-keyframes #{$name}{
+        @content
+    }
+    @-webkit-keyframes #{$name}{
+        @content
+    }
+    @-o-keyframes #{$name}{
+        @content
+    }
+}
+
+@include defineKeyframes(rotate360){
+    from{
+        transform: rotate(0deg)
+    }to{
+        transform: rotate(360deg)
+    }
+}

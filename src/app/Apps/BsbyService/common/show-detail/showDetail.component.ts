@@ -1,0 +1,121 @@
+import { 
+    Component,
+    Input,
+    OnInit,
+    OnDestroy,
+    EventEmitter,
+    Output,
+    HostListener,
+    ElementRef,
+    AfterViewInit,
+    ViewContainerRef,
+    Renderer
+} from '@angular/core'
+
+import { ShowDetailService } from './show-detail.service'
+import { animations } from '@gr-public/Animations/index'
+import { ShowDetailConf } from './show-detail.data'
+
+
+@Component({
+    selector:'show-detail',
+    templateUrl:'./showDetail.componnet.html',
+    styleUrls:[
+        './showDetail.component.scss'
+    ],
+    animations:[
+        animations.rightIn
+    ]
+})
+export class ShowDetailComponent implements OnInit,OnDestroy{
+    public isShow:boolean
+    public detailData:ShowDetailConf
+
+    //点击事件
+    public clickHandler:any
+
+    //订阅对象
+    public modalObs:any
+    public pboxObs:any
+    public clickObs:any
+
+    @Output() onEmit = new EventEmitter<{
+        flag:number,
+        main:any
+    }>();
+
+    constructor(
+        public showDetailService:ShowDetailService,
+        public eleRef:ElementRef,
+        public renderer:Renderer
+    ){
+        this.detailData = new ShowDetailConf()
+        this.showDetailService.GetDetailConfOb().subscribe((config)=>{
+            this.detailData = Object.assign(this.detailData,config)
+            this.isShow=true
+        })
+        this.resolveClick(true)
+    }
+
+    ngOnInit(){
+        this.clickObs = this.showDetailService.clickObj.subscribe(res => {
+            if(res){
+                setTimeout(()=>{
+                    this.resolveClick(true)
+                },400) 
+            }
+        })
+    }
+
+    ngOnDestroy(){
+        this.modalObs ? this.modalObs.unsubscribe() : {}
+        this.pboxObs ? this.pboxObs.unsubscribe() : {}
+        this.clickObs ? this.clickObs.unsubscribe() : {}
+    }
+
+    /**
+     * 处理点击事件
+     * @param flag 关闭或打开监听
+     */
+    public resolveClick(flag:boolean){
+        if(flag){
+            this.clickHandler = this.renderer.listen(document,'click',(e)=>{
+                //此组件之外点击
+                if(this.detailData.expectClick){
+                    if(!this.detailData.expectClick.element.nativeElement.contains(e.target)){
+                        if(!this.eleRef.nativeElement.contains(e.target)){
+                            this.isShow=false
+                        }
+                    }
+                }else{
+                    if(!this.eleRef.nativeElement.contains(e.target)){
+                        this.isShow=false
+                    }
+                }
+            })
+        }else{
+            if(this.clickHandler){
+                this.clickHandler()
+            }
+        }
+    }
+
+    emit(flag:number,e:MouseEvent){
+        this.resolveClick(false)
+        let emitData={
+            flag:flag,
+            main:this.detailData.activeList,
+            event:e
+        }
+        //1 编辑   2删除
+        this.onEmit.emit(emitData)
+    }
+
+    /**
+     * 加载图片失败事件
+     * @param one 单个数据 
+    */
+    public noImg(one:any){
+        one['noImg'] = true
+    }
+}

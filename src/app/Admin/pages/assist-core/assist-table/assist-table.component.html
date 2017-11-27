@@ -1,0 +1,123 @@
+<div class="site-content">
+	<div class="module-header">
+	    <div class="title">
+	        <span>帮助文档</span>
+	        <span class="lettle-font">当前分类名称:&nbsp;{{checkMenuName==''?'无':checkMenuName}}</span>
+	    </div>
+	    <div class="flex-panel"> 
+	    	<button class="btn btn-primary btn-sm f-r" style="line-height: -1" (click)="addModalDoc()">添加文档</button>
+	    	<a href="javascript:;" (click)="getHelpDocList(docId)">刷新</a>
+	    </div>
+	</div>
+
+	<!-- 从上侧弹出的组件样式 -->
+   <!--  <div class="flyLeftContent" *ngIf = "FlyLeftData.isShow" [@flyTop]="'in'">
+        <div class="content-text">已选择<span>{{FlyLeftData.number}}</span>项</div>
+        <ul class="content-list">
+            <li *ngFor="let list of FlyLeftData.showText"><a href="javascript:;">{{list.name}}</a></li>
+        </ul>
+        <a href="javascript:;" class="f-r up-hide" (click)="FnCheckAll(false)"><span><i class="iconfont_admin  admin-up"></i></span></a>
+    </div> -->
+
+	<div class="module-body">
+
+	<div  class="modal-content">
+
+	        <div  class="modal-body">
+
+					<div class="customer-list">
+						<div class="gr-wrapper-table">
+
+							<div class="wrapper-content">
+								<!-- 所有员工列表 -->
+								<table class="table table-hover gr-table">
+									<colgroup>
+							    		<!-- <col width="40"> -->
+							    		<col width="80">
+							    		<col width="60">
+							    		<col width="60">
+							    		<col width="100">
+							    		<col width="80">
+							    	</colgroup>
+									<thead class="hand">
+									    <tr>
+									        <!-- <th class="th-checkbox">
+									            <div class="gr-checkbox">
+										            <span class="gr-checkbox-label"></span>
+									            </div>
+									        </th> -->
+									        <th *ngFor = "let name of tableTitle">
+									        	{{name}}
+									        </th>
+									    </tr>
+									</thead>
+								</table>
+
+								<app-riccio-spinners [type]='spinnerType' [emptyText]="'暂无文档,请选择其他分类'"></app-riccio-spinners>
+
+								<div class="wrapper-table">
+									<table class="table table-hover gr-table">
+										<colgroup>
+								    		<!-- <col width="40"> -->
+								    		<col width="80">
+								    		<col width="60">
+								    		<col width="60">
+								    		<col width="100">
+								    		<col width="80">
+								    	</colgroup>
+										<tbody id="undetails">
+										    <tr *ngFor = "let list of helpDocList">
+										        <!-- <td class="td-checkbox">
+										            <div class="gr-checkbox">
+										            	<span class="gr-checkbox-label"></span>
+										            </div>
+										        </td> -->
+										        <td class="customer-director" 
+										        (click)="isSort=list.id;$event.stopPropagation()">
+													<span *ngIf="!(isSort==list.id)">{{list.listorder}}</span>
+													<input type="number" 
+													       name="{{list.listorder}}" 
+													       [(ngModel)]="list.listorder" 
+													       *ngIf="isSort==list.id" 
+													       autofocus
+													       onkeyup="this.value=this.value.replace(/\D/g,'')" 
+													       onafterpaste="this.value=this.value.replace(/\D/g,'')" 
+													       (focus)="autoSort = list.listorder"
+													       (blur)="sortListorder(list);isSort='-1'">
+												</td>
+										        <!-- <td class="customer-content" >
+												{{list.listorder}}
+										        </td> -->
+										        <td class="customer-content" >
+												{{list.id}}
+										        </td>
+										        <td class="customer-content" >
+												{{list.name}}
+										        </td>
+										        <td class="customer-content" title="{{list.media_memo}}">
+												{{list.status==1?'显示':'不显示'}}
+										        </td>
+										        <td class="customer-content td-status">
+										        	<a href="javascript:;" (click)="editModalDoc(list)">编辑</a>
+										        	<a href="javascript:;">浏览</a>
+										        	<a href="javascript:;" (click)="delModalDoc(list)">删除</a>
+										        </td>
+										    </tr>
+										    
+										</tbody>
+									</table>
+						
+								</div>
+
+								<app-riccio-paginations [total]="total"
+								                        (pageValue)="getHelpDocList(docId,$event['page'])"></app-riccio-paginations>
+
+							</div>
+						</div>
+					</div>
+
+	        </div>
+	</div>
+
+	</div>
+</div>

@@ -1,0 +1,34 @@
+<link rel="stylesheet" type="text/css" [href]="windowUrl">
+<!-- 整体部分 -->
+<div class="container-fill">
+
+	<!-- 头部导航 -->
+	<app-riccio-top-navbar [navName] = "companyInfo.name"
+						   [logoSrc]= "comLogo"
+						   [userName] = "userInfo ? userInfo['user_info']['name']+'('+userInfo['company_userinfo']['real_name']+')' : '未知'"
+                           [navMenu] = "topNavMenuData"
+                           [companyName] = "companyInfo.name"
+                           [companyMenu] = "comMenu"
+						   [notifyCount]="notifyCount"></app-riccio-top-navbar>
+	<div class="site-main">
+        <app-riccio-app-left-menu *ngIf="flagUrl != 'index'" [leftData]="leftMenuData"></app-riccio-app-left-menu>
+		<!-- 路由开始 -->
+		<div class="site-nav-secound" *ngIf="showSecoundMenu">
+			<!-- 二级菜单 -->
+			<app-secound-menu [menuList]="secoundMenu" [title]="secoundMenuTitle" style="height: 100%"></app-secound-menu>
+		</div>
+		<div class="site-nav-right">
+			<app-top-menu *ngIf="flagUrl != 'index'" [menuList]="topMenu" [menuIcon]="topMenuIcon" 
+				[menuTitle]="topMenuTitle"></app-top-menu>
+			<router-outlet></router-outlet>
+		</div>
+    </div>
+</div>
+
+<!-- tip提示 -->
+<app-riccio-popovers [aspect]="'right'" *ngIf="!openShrink">
+	<div #menuEle>{{tipText}}</div>
+</app-riccio-popovers>
+<!-- 选项卡组件 -->
+<app-riccio-pbox></app-riccio-pbox>
+<!-- 弹窗提示组件 -->

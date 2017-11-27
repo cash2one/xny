@@ -1,0 +1,62 @@
+@import '../../../../Public/theme/common/variable.scss';
+
+$successColor:#55BD47;
+$dangerColor:#FF6600;
+
+.tempDetail{
+    position:fixed;
+    z-index: 99;
+    top:53px;
+    right:0px;
+    width:400px;
+    bottom:0px;
+    background-color: #fff;
+    border-right:none;
+    overflow:auto;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    .detailHead{
+        border-bottom:1px solid #DDDDDD;
+        margin-left:30px;
+        padding-right:30px;
+        .title{
+            font-size: 16px;
+            display: inline-block;
+            width: 80%;
+            vertical-align: middle;
+            padding: 15px 0 15px 0;
+        }
+    }
+    .detailBody{
+        padding:20px 30px 20px 30px;
+        .one{
+            font-size: 12px;
+            width:100%;
+            padding: 8px 0 8px 0;
+            .key,
+            .val{
+                display: inline-block;
+            }
+            .key{
+                width:20%;
+                vertical-align: top;
+                text-align: right;
+            }
+            .val{
+                width:75%;
+                padding-left:10px;
+                &.money{
+                    font-weight: 700;
+                    font-size: 14px;
+                    line-height: 1;
+                }
+                &.add{
+                    font-weight: 500;
+                    color:$successColor;
+                }
+                &.redure{
+                    color:$dangerColor;
+                }
+            }
+        }
+    }
+}

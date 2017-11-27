@@ -1,0 +1,248 @@
+<div class="csd-header">
+	<span>所有客服</span>
+</div>
+
+<app-riccio-pbox></app-riccio-pbox>
+
+<!-- 添加客服 -->
+<!--   
+  @Input() public leftData:Array<any>    //左侧待选择的数据成员
+  @Input() public rightData:Array<any>   //右侧已选择的数据成员
+  @Input() public isShow:boolean    //是否显示
+  @Input() public nextPage:string   // loading | hide | normal  分别对应 加载中 | 隐藏 | 正常显示(加载更多)
+  @Input() public keyName:string    //需要遍历的key值名称
+  @Input() public leftTitle:string    //左侧头部标题
+  @Input() public rightTitle:string    //右侧头部标题
+  @Input() public header:string    //头部标题
+
+  @Output() public searchValue:EventEmitter<string>   //延迟返回搜索的值
+  @Output() public emitData:EventEmitter<any>         //点击保存返回右侧所有数据  
+  @Output() public pageValue:EventEmitter<any>    //点击加载更多返回页数
+  @Output() public close:EventEmitter<boolean>        //是否关闭了视图
+ -->
+<app-riccio-select-members [leftData]="viewData['csdLeftData']"
+                           [rightData]="viewData['csdRightData']"
+                           [isShow]="viewData['csdIsShow']"
+                           [nextPage]="viewData['csdNextPage']"
+                           [keyName]="'real_name'"
+                           [leftTitle]="'待添加成员'"
+                           [rightTitle]="'客服成员列表'"
+                           [header]="'添加客服'"
+                           (emitData) = "acceptAddCsdData($event)"
+                           (close)="viewData['csdIsShow'] = !$event;viewData['csdLeftData'].length = 0"></app-riccio-select-members>
+
+<div class="csd-main clearfix">
+	
+	<!-- 左侧客服的分组组件 -->
+	<app-grouping-tree [listData] = 'customerGroupList'
+	                   [firstNumber] = 'customerNoAdminNumber'
+	                   [secondNumber] = 'customerUserNoGroupNumber'
+	                   (emitGroupingData)="acceptGroupingData($event)"
+	                   (emitType)="acceptGroupingType($event)"></app-grouping-tree>
+	
+	<!-- 表格内容 -->
+	<div class="csd-table" [ngSwitch] = "viewData['groupingTagType']">
+
+		<!-- 未设置管理员的表格 -->
+		<ng-template [ngSwitchCase]="'first'">
+			<app-group-no-admin></app-group-no-admin>
+		</ng-template>
+		<!-- 未设置客服分组的表格 -->
+		<ng-template [ngSwitchCase]="'second'">
+			<app-customer-user-no-group></app-customer-user-no-group>
+		</ng-template>
+
+		<!-- 正常表格列表 -->
+		<ng-template [ngSwitchCase]="''">
+			<div class="gr-wrapper-table" [ngSwitch]="tagToggle">
+
+				<div class="wrapper-table-top">
+					<div class="table-top-title">
+						<span>{{viewData['groupingName'] == '' ? '请选择客服分组' :viewData['groupingName']}}</span>
+						<span class="font12 color999">(<em>{{viewData['groupingNumber']}}</em>人)</span>
+					</div>
+					<div class="table-top-directions f-l">
+
+					</div>
+					<div class="table-top-button f-r">
+						<ul class="table-ul clearfix">
+							<li class="table-ul-li f-l">
+								<i class="iconfont_console console-adduser"></i>
+								<a href="javascript:;" (click)="fnAddCsdMember()">添加客服</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="wrapper-tabLab">
+
+					<div class="gr-navbar-title RoleTitleTab">
+						<div class="navbar-menu f-l">
+							<ul class="menu-ul clearfix">
+								<li class="menu-ul-li f-l {{tagToggle == 0?'active':''}}"><a href="javascript:;" (click)="tagToggle = 0;fnGetCustomerUserList(customerUserPostObj)">客服列表</a></li>
+								<li class="menu-ul-li f-l {{tagToggle == 1?'active':''}}"><a href="javascript:;" (click)="tagToggle = 1;initClassifyList()">分类范围</a></li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+				
+				<div class="wrapper-filter clearfix">
+
+					<div class="gr-search-main f-l">
+						<i class="iconfont_console console-search1"></i>
+						<form>
+							<input class="gr-search" 
+								   type="" 
+								   name="Search"
+								   placeholder="搜索姓名、电话">
+							<button type="submit" style="display: none"></button>
+						</form>
+					</div>
+
+				</div>
+				
+				<!-- 客服列表表格数据 -->
+				<ng-template [ngSwitchCase]="0">
+					<div class="wrapper-content"> 
+							
+						<table class="table table-hover gr-table">
+							<colgroup>
+					    		<col width="20">
+					    		<col width="60">
+					    		<col width="60">
+					    		<col width="60">
+					    		<col width="60">
+					    	</colgroup>
+							<thead class="hand">
+							    <tr>
+							    	<th class="th-checkbox">
+										<div class="gr-checkbox">
+								            <span class="gr-checkbox-label {{viewData['allIsCheck']==false?'':'checked'}}"></span>
+							            </div>
+									</th>
+							        <th class="th-checkbox" *ngFor = "let name of customerGroupTableTitle">
+							            <a href="javascript:;" class="customer-check">
+							            	{{name}}
+							            </a>
+							        </th>
+							    </tr>
+							</thead>
+						</table>
+
+						<div class="wrapper-table">
+							<!-- 角色成员列表 -->
+							<table class="table table-hover gr-table">
+								<colgroup>
+						    		<col width="20">
+						    		<col width="60">
+						    		<col width="60">
+						    		<col width="60">
+						    		<col width="60">
+						    	</colgroup>
+								<tbody id="undetails">
+
+								    <tr *ngFor = "let list of customerUserList">
+								        <td class="td-checkbox">
+								            <div class="gr-checkbox">
+									            <span class="gr-checkbox-label {{viewData['allIsCheck']==false?'':'checked'}}"></span>
+								            </div>
+								        </td>
+								        <td class="customer-content">
+								        {{list.real_name}}
+								        </td>
+										<td class="customer-content" [title]="list.real_name">
+										{{list.mobile}}
+								        </td>
+										<td class="customer-content" [title]="list.phone">
+								        {{list.sex == 1?'男':'女'}}
+								        </td>
+								        <td class="td-status">
+											<!-- <a href="javascript:;">编辑</a> -->
+											<a href="javascript:;" #removeUserEl (click)="fnRemoveCsdPbox(list,removeUserEl)">移除</a>
+								        </td>
+								    </tr>
+								    
+								</tbody>
+
+							</table>
+						</div>
+
+						<!-- 分页组件 -->
+						<!-- <app-riccio-paginations [total]="pageTotal" 
+												[pboxData]="[20,100,200]"
+						                        (pageValue)="fnOutputPage($event)"></app-riccio-paginations> -->
+					</div>
+				</ng-template>	
+				
+
+				<!-- 分类范围 -->
+				<ng-template [ngSwitchCase]="1">
+					<div class="wrapper-content"> 
+							
+						<table class="table table-hover gr-table">
+							<colgroup>
+					    		<col width="20">
+					    		<col width="100">
+					    		<col width="30">
+					    	</colgroup>
+							<thead class="hand">
+							    <tr>
+							    	<th class="th-checkbox">
+										<a class="customer-check" href="javascript:;">
+							                <i class="iconfont_console  console-check"></i>
+							            </a>
+									</th>
+							        <th class="th-checkbox" *ngFor = "let name of ['分类名称','编辑']">
+							            <a href="javascript:;" class="customer-check">
+							            	{{name}}
+							            </a>
+							        </th>
+							    </tr>
+							</thead>
+						</table>
+
+						<div class="wrapper-table">
+							<!-- 角色成员列表 -->
+							<table class="table table-hover gr-table">
+								<colgroup>
+						    		<col width="20">
+						    		<col width="100">
+						    		<col width="30">
+						    	</colgroup>
+								<tbody id="undetails">
+
+								    <tr *ngFor = "let list of classifyList">
+								        <td class="td-checkbox">
+								            <a href="javascript:;"
+								               class="customer-check gr-checkbox">
+								                <i class="iconfont_console console-check">
+								                </i>
+								            </a>
+								        </td>
+								        <td class="customer-content">
+								        {{list.name}}
+								        </td>
+								        <td class="td-status">
+											<a href="javascript:;">移除</a>
+								        </td>
+								    </tr>
+								    
+								</tbody>
+
+							</table>
+						</div>
+
+						<!-- 分页组件 -->
+						<!-- <app-riccio-paginations [total]="pageTotal" 
+												[pboxData]="[20,100,200]"
+						                        (pageValue)="fnOutputPage($event)"></app-riccio-paginations> -->
+					</div>
+				</ng-template>	
+			</div>
+		</ng-template>
+		
+	
+	</div>
+
+</div>

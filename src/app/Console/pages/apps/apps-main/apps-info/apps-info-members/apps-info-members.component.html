@@ -1,0 +1,105 @@
+<app-riccio-pbox></app-riccio-pbox>
+
+
+<!--   @Input() private leftData:Array<any>    //左侧待选择的数据成员
+  @Input() private rightData:Array<any>   //右侧已选择的数据成员
+  @Input() private isShow:boolean    //是否显示
+  @Input() private nextPage:string   // loading | hide | normal  分别对应 加载中 | 隐藏 | 正常显示(加载更多)
+  @Input() private keyName:string    //需要遍历的key值名称
+
+  @Output() public searchValue:EventEmitter<string>   //延迟返回搜索的值
+  @Output() public emitData:EventEmitter<any>         //点击保存返回右侧所有数据  
+  @Output() public pageValue:EventEmitter<any>        //点击加载更多返回页数
+  @Output() public close:EventEmitter<boolean>        //是否关闭了视图
+ -->
+
+<app-riccio-select-members [header]="'添加应用成员'"
+						   [leftTitle]="'企业所有成员'"
+						   [rightTitle]="'已选成员'"
+						   [leftData]="companyAllMembersData"
+						   [rightData]="rightAppsMembersItem"
+						   [keyName]="'real_name'"
+						   [nextPage]="membersLoading"
+						   [isShow]="membersIsShow"
+						   (close)="membersIsShow=false"
+						   (searchValue)="fnGetCompanyAllMembersData('search',$event)"
+						   (pageValue)="fnGetCompanyAllMembersData('page',$event)"
+						   (emitData)="fnEmitRightData($event)"></app-riccio-select-members>
+
+<div class="main-add-button clearfix">
+	<button class="gr-btn gr-btn-primary f-r" (click)="addMembers()">添加应用成员</button>
+</div>
+
+<div class="gr-wrapper-table">
+
+	<div class="wrapper-content">
+		<!-- 所有员工列表 -->
+		<table class="table table-hover gr-table">
+			<colgroup>
+	    		<col width="80">
+	    		<col width="100">
+	    		<col width="80">
+	    		<col width="120">
+	    		<col width="50">
+	    		<col width="100">
+	    		<col width="100">
+	    	</colgroup>
+			<thead class="hand">
+			    <tr>
+			        <th *ngFor="let name of tableTitle">
+			            {{name}}
+			        </th>
+			    </tr>
+			</thead>
+		</table>
+		<div class="wrapper-table" *ngIf = "tableLoadingType=='hide'">
+			<table class="table table-hover gr-table">
+				<colgroup>
+		    		<col width="80">
+		    		<col width="100">
+		    		<col width="80">
+		    		<col width="120">
+		    		<col width="50">
+		    		<col width="100">
+		    		<col width="100">
+		    	</colgroup>
+				<tbody id="undetails">
+				    <tr *ngFor = "let list of appsMembersItem">
+				        <td class="customer-content">
+						<span>{{list.real_name}}</span>
+				        </td>
+				        <td class="customer-content">
+						{{list.phone}}
+				        </td>
+				        <td class="customer-content">
+						{{list.positionname}}
+				        </td>
+				        <td class="customer-content" >
+						{{list.email}}
+				        </td>
+				        <td class="customer-content" >
+						{{list.sex=='1'?'男':'女'}}
+				        </td>
+				        <td class="customer-content" >
+						{{list.employeecode}}
+				        </td>
+				        <td class="td-status">
+				        	<a href="javascript:;" 
+				        	   class=""
+				        	   #deleteEl
+				        	   (click)="fnPboxDel(list,deleteEl,$event)">移除</a>
+				        </td>
+				    </tr>
+				    
+				</tbody>
+			</table>
+		</div>
+
+		<!-- loading组件 -->
+		<app-riccio-spinners [type]="tableLoadingType"
+							 [emptyText]="'没有查询到符合条件的记录'"></app-riccio-spinners>
+		<app-riccio-paginations [total]="pageTotal"
+		                        (pageValue)="fnOutputPageValue($event)"></app-riccio-paginations>
+
+	</div>
+</div>

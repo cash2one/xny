@@ -1,0 +1,13 @@
+<div class="gr-navbar-title topMenu">
+	<div class="navbar-text">
+		<i class="iconfont_console  {{menuIcon}}"></i>
+		<span>{{menuTitle}}</span>
+	</div>
+	<div class="navbar-menu f-r">
+		<ul class="menu-ul clearfix">
+			<li class="menu-ul-li f-l" *ngFor = "let list of menuList" routerLinkActive='active'>
+				<a href="javascript:;" routerLink="{{list.url}}">{{list.name}}</a>
+			</li>
+		</ul>
+	</div>
+</div>

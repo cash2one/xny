@@ -1,0 +1,21 @@
+<div class="site-content">
+	<div class="module-header">
+		<div class="title">
+			<i class="iconfont_admin  {{MenuDataOnly.data.fonticon}}"></i>
+			<span>{{MenuDataOnly.title}}</span>
+		</div>
+		<div class="flex-panel">
+			<ul class="nav nav-pills lc-tabs" role="tablist">
+				<li class="" *ngFor="let list of MenuRight" routerLinkActive='active'>
+					<a class="" href="javascript:;" [routerLink]="['../../'+list.url]">{{list.name}}</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="module-body">
+
+		<router-outlet></router-outlet>
+
+	</div>
+</div>

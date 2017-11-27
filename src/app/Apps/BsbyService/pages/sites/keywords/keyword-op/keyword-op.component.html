@@ -1,0 +1,66 @@
+<div class="opKeyword" *ngIf="kwOpConfig && (kwOpConfig.type == 'add' || kwOpConfig.type == 'edit')">
+    <form class="gr-form-horizontal opKeywordForm" [formGroup]="keywordForm"
+        (ngSubmit)="fnEmitOpKeyword()">
+        <div class="form-group f-i">
+            <label class="control-label color666 label-required col-gr-2">
+                关键词
+            </label>
+            <div class="control-panel col-gr-10">
+                <input name="name" class="form-control" autocomplete="off" placeholder="请输入关键词" 
+                    [formControl]="ctrlKeyword.name" [(ngModel)]="keywordData.name"
+                    [ngClass]="{'danger':!ctrlKeyword.name.valid && ctrlKeyword.name.touched}">
+            </div>
+        </div>
+        <div class="form-group f-i f-select">
+            <label class="control-label label-required color666 col-gr-2">
+                难易程度
+            </label>
+            <div class="control-panel col-gr-10" (click)="showDifficult(showDiff)" >
+                <div class="form-control" #showDiff>
+                    {{keywordShow.difficult}}
+                    <i class="down iconfont_bsby bsby-down"></i>
+                </div>
+            </div>
+        </div>
+        <div class="form-group f-i f-select">
+            <label class="control-label label-required color666 col-gr-2">
+                关键词类型
+            </label>
+            <div class="control-panel col-gr-10" (click)="showType(showTypes)" >
+                <div class="form-control" #showTypes>
+                    {{keywordShow.type}}
+                    <i class="down iconfont_bsby bsby-down"></i>
+                </div>
+            </div>
+        </div>
+        <div class="form-group f-i f-select">
+            <label class="control-label color666 label-required col-gr-2">
+                启动时间
+            </label>
+            <div class="control-panel col-gr-10">
+                <div class="form-control" (click)="fnShowStartDate()"
+                        #showStarttime>
+                    <i class="down iconfont_bsby bsby-xuanzeshijian"></i>
+                    {{keywordShow.starttime}}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group f-btn col-gr-3 col-gr-ml-2">
+            <button type="submit" class="gr-btn gr-btn-primary" [disabled]="!keywordForm.valid || !submitBtn.status">
+                {{submitBtn.text}}
+            </button>
+        </div>
+    </form>
+</div>
+
+<div *ngIf="kwOpConfig && kwOpConfig.type == 'del'">
+    <div class="tip">
+        <span>你确定删除此关键词？</span>
+    </div>
+    <div class="member-action">
+        <button class="gr-btn gr-btn-danger" (click)="del()" [disabled]="!submitBtn.status">{{submitBtn.text}}</button>
+        <button class="gr-btn help" (click)="cancle()">取消</button>
+    </div>
+</div>
+

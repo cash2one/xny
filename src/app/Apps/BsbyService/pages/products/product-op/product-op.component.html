@@ -1,0 +1,67 @@
+<app-riccio-modal>
+	<div body class="opProduct">
+        <form class="gr-form-horizontal productForm" [formGroup]="productForm"
+            (ngSubmit)="fnEmitProductForm()">
+            <div class="form-group f-i">
+                <label class="control-label color666 label-required col-gr-2">
+                    产品名称
+                </label>
+                <div class="control-panel col-gr-10">
+                    <input name="name" class="form-control" autocomplete="off" placeholder="请输入产品名称" 
+                        [formControl]="ctrlProduct.name" [(ngModel)]="productData.name"
+                        [ngClass]="{'danger':!ctrlProduct.name.valid && ctrlProduct.name.touched}">
+                </div>
+            </div>
+            <div class="form-group f-i">
+                <label class="control-label color666 col-gr-2">
+                    精准核心词上限
+                </label>
+                <div class="control-panel col-gr-10">
+                    <input name="name" type="number" class="form-control" autocomplete="off" placeholder="输入精准核心词上限" 
+                             [formControl]="ctrlProduct.core_num"
+                             [(ngModel)]="productData.core_num">
+                    <span class="tip">为0不限制</span>
+                </div>
+            </div>
+            <div class="form-group f-i">
+                <label class="control-label color666 col-gr-2">
+                    精准长尾词上限
+                </label>
+                <div class="control-panel col-gr-10">
+                    <input name="name" type="number" class="form-control" autocomplete="off" placeholder="输入精准长尾词上限" 
+                              [formControl]="ctrlProduct.long_num"
+                             [(ngModel)]="productData.long_num">
+                    <span class="tip">为0不限制</span>
+                </div>
+            </div>
+            <div class="form-group f-i">
+                <label class="control-label color666 col-gr-2">
+                    品牌词上限
+                </label>
+                <div class="control-panel col-gr-10">
+                    <input name="name" type="number" class="form-control" autocomplete="off" placeholder="输入品牌词上限" 
+                            [formControl]="ctrlProduct.brand_num"
+                             [(ngModel)]="productData.brand_num">
+                    <span class="tip">为0不限制</span>
+                </div>
+            </div>
+            <div class="form-group f-i">
+                <label class="control-label color666 col-gr-2">
+                    产品默认角色
+                </label>
+                <div class="control-panel col-gr-10">
+                    <textarea name="name" class="form-control" autocomplete="off" placeholder="输入产品默认角色" 
+                        [formControl]="ctrlProduct.role"
+                        [(ngModel)]="productData.role"></textarea>
+                    <span class="tip">一行一个</span>
+                </div>
+            </div>
+
+            <div class="form-group f-btn col-gr-3 col-gr-ml-2">
+                <button type="submit" class="gr-btn gr-btn-primary" [disabled]="!productForm.valid || !submitBtn.status">
+                    {{submitBtn.text}}
+                </button>
+            </div>
+        </form>
+	</div>
+</app-riccio-modal>

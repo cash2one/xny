@@ -1,0 +1,56 @@
+@import "../theme/common/variable.scss";
+
+.PopUp-Right{
+    width: 100%;
+    position: absolute;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+	box-shadow:  0 1px 4px rgba(0,0,0,0.1);
+    height: 60px;
+    font-size: 13px;
+    line-height: 60px;
+    padding-left: 20px;
+    padding-right: 20px;
+	transition:all .35s;
+	overflow: hidden;
+	.content-text{
+		float: left;
+		&:after{
+			content: '|';
+			position: absolute;
+			left:110px;			
+		}
+		span{
+			font-size: 16px;
+		    color: #2b3c4d;
+		    font-weight: bold;
+		    margin: 0 5px 0 5px;
+		}
+	}
+	ul.content-list{
+		display: inline-block;
+		margin-left: 30px;
+		li{
+			float: left;
+		    margin: 0 10px 0 10px;
+		    a{
+		    	color: $textColorLink;
+			    &:hover{
+			    	text-decoration: underline !important;
+			    }
+		    }
+		}
+	}
+	a.up-hide{
+		span{
+		    width: 30px;
+		    height: 30px;
+		    display: inline-block;
+		    position: relative;
+		    background-color: $textColorLink;
+		    color: #fff;
+		    text-align: center;
+		    line-height: 30px;
+		}
+	}
+}

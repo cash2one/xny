@@ -1,0 +1,127 @@
+<div class="Description-title">
+    <span class="color999">通过手机号给企业成员发送注册当前企业的邀请链接（有效期7天），你可以拷贝企业通讯录批量输入手机号。</span>
+</div>
+
+
+<div class="Description-content">
+    
+    <div class="content-tab">
+        <a href="javascript:;" [ngClass]="{'color666':TabSymbol!=='OneByOne'}" (click)="TabSymbol = 'OneByOne'">逐个添加</a>
+        <a href="javascript:;" [ngClass]="{'color666':TabSymbol!=='batch'}" (click)="TabSymbol = 'batch'">批量添加</a>
+    </div>
+
+    <div class="content-view" [ngSwitch]="TabSymbol">
+
+        <ng-template [ngSwitchCase]="'OneByOne'">
+            <form class="gr-form-horizontal c-f">
+
+                <div class="form-group c-f">
+                    <label class="col-sm-1 control-label t-r">
+                        手机
+                    </label>
+                    <div class="mobile-select f-l col-sm-2">
+                        <div class="gr-select">
+                            <select class="form-control select" name="">
+                                  <option class="" selected="selected" value="">中国+86</option>
+                            </select>
+                            <i class="iconfont_console console-xia"></i>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 control-panel mobile-number">
+                        <input name="FirstMobile"  
+                               class="form-control" 
+                               placeholder="请输入对方的手机号"
+                               maxlength="11"
+                               onkeyup="this.value=this.value.replace(/\D/g,'')"
+                               [ngClass]="{'danger':FirstMobileData['danger']}"
+                               [(ngModel)]="FirstMobileData['mobile']"
+                               (focus)="FirstMobileData['danger']=false"
+                               style="">
+                    </div>
+                    <div class="col-sm-3 control-panel">
+                        <input name="FirstName"  
+                               class="form-control" 
+                               placeholder="备注名称"
+                               [(ngModel)]="FirstMobileData['name']"  
+                               style="">
+                    </div>
+                </div>
+
+                <div class="form-group c-f" *ngFor = "let list of PostMobileAddData;let i = index">
+                    <label class="col-sm-1 control-label t-r">
+                        手机
+                    </label>
+                    <div class="mobile-select f-l col-sm-2">
+                        <div class="gr-select">
+                            <select class="form-control select" name="">
+                                  <option class="" selected="selected" value="">中国+86</option>
+                            </select>
+                            <i class="iconfont_console console-xia"></i>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 control-panel mobile-number">
+                        <input name="addMobile{{i}}"  
+                               class="form-control" 
+                               placeholder="请输入对方的手机号"
+                               maxlength="11"
+                               onkeyup="this.value=this.value.replace(/\D/g,'')"
+                               [ngClass]="{'danger':list['danger']}"
+                               [(ngModel)]="list['mobile']"
+                               (focus)="list['danger']=false"
+                               style="">
+                    </div>
+                    <div class="col-sm-3 control-panel">
+                        <input name="addName{{i}}"  
+                               class="form-control" 
+                               placeholder="备注名称"
+                               [(ngModel)]="list['name']"
+                               style="">
+                    </div>
+                    <a href="javascript:;" class="gr-btn p-a right10" (click)="FnDelMobile(list,i)"><i class="iconfont_console console-shanchu"></i></a>
+                </div>
+
+                <div class="form-group c-f">
+                    <div class="col-sm-4 col-sm-offset-8">
+                        <a href="javascript:;" class="gr-btn" (click)="FnAddMore()"><i class="iconfont_console console-jiahao"></i>邀请更多</a>
+                    </div>
+                </div>
+
+            </form>
+        </ng-template>
+
+        <ng-template [ngSwitchCase]="'batch'">
+            <form class="gr-form-horizontal c-f">
+
+                <div class="form-group c-f">
+                    <label class="col-sm-1 control-label t-r">
+                        手机
+                    </label>
+                    <div class="col-sm-7 control-panel">
+                        <textarea name="batchValue" 
+                                  class="form-control"
+                                  [ngClass]="{'danger':batchDanger}"
+                                  [(ngModel)]="batchValue"
+                                  (focus)="batchDanger=false"
+                                  placeholder="手机号｜备注名称"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group c-f">
+                    <div class="col-sm-6 col-sm-offset-1">
+                        <span href="javascript:;" class="color666">一行一个</span>
+                    </div>
+                </div>
+
+            </form>
+        </ng-template>
+
+        <div class="form-group c-f">
+            <div class="col-sm-6 col-sm-offset-1">
+                <button type="button" disabled="{{BtnData.disabled==true?'disabled':''}}" class="gr-btn gr-btn-primary" (click)="FnPostMobile()">{{BtnData.name}}</button>
+                <a href="javascript:;" class="gr-btn gr-btn-link" (click)="close()">取消</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>

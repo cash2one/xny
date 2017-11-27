@@ -1,0 +1,57 @@
+@import "../../../Admin.value.scss";
+
+$statusYes:#7EC856;
+$statusNo:#F37263;
+
+
+.module-body{
+    bottom: 0px;
+    .modal-content{
+        margin-top:0px;
+    }
+    .title,
+    .module-header{
+        height:54px;
+        line-height: 54px;
+    }
+    .module-header{
+        .title{
+            transition: all 0.7s;
+            .title-w{
+                font-size: 12px;
+                padding-left:10px;
+                margin-right: 20px;
+                a{
+                    color:#adadad !important;
+                }
+                
+            }
+            .title-active{
+                font-size: 14px;
+                a{
+                    color:#666 !important;
+                }
+                border-left:2px solid $themeColor;
+            }
+        }
+        .f-r{
+            height:30px;
+            margin-top:12px;
+        }
+    }
+    .gr-content-wrap{
+        top: 0px;
+        .gr-wrapper-table{
+            .wrapper-table-top{
+                .table-top-button{
+                    margin-right: 32px;
+                }
+            }
+        }
+        .nav-tree-content{
+            .tree-content-view{
+                overflow-x: hidden;
+            }
+        }
+    }
+}
